@@ -1,0 +1,48 @@
+<items gfxroot="gfx/items/" version="1" deathanm2="gfx/death_items.anm2">
+
+
+	<passive name="Mercurius?" id="0" description="Your very own army" cache="flying speed" quality="2" craftquality="3" gfx="collectibles_109_mercurius.png" tags="stars offensive summonable"/>
+	<familiar name="Venus?" id="1" description="Wax friends!" quality="2" cache="familiars" craftquality="2" gfx="collectibles_109_venus.png" tags="stars offensive summonable monstermanual"/>
+	<passive name="Terra?" id="2" description="The forbidden fruit" quality="3" craftquality="3" gfx="collectibles_109_terra.png" tags="stars offensive summonable"/>
+	<active name="Mars?" id="3" description="Born to kill" quality="3" craftquality="2" gfx="collectibles_109_mars.png" tags="stars offensive" chargetype="special" maxcharges="1000"/>
+	<passive name="Jupiter?" id="4" description="High voltage" quality="2" craftquality="2" gfx="collectibles_109_jupiter.png" tags="stars offensive summonable"/>
+	<active name="Saturnus?" id="5" description="Pocket chronostasis" quality="3" craftquality="2" gfx="collectibles_109_saturnus.png" tags="stars" chargetype="special" maxcharges="1350"/>
+	<passive name="Uranus?" id="6" description="Filthy feast" quality="2" craftquality="2" gfx="collectibles_109_uranus.png" tags="stars offensive poop summonable"/>
+	<familiar name="Neptunus?" id="7" description="The abyss stares back" quality="3" cache="familiars" craftquality="3" gfx="collectibles_109_neptunus.png" tags="stars offensive summonable monstermanual" />
+	
+	<familiar name="La Luna" id="8" description="With you, not yours" quality="4" craftquality="-1" gfx="collectibles_109_luna.png" tags="stars uniquefamiliar noeden quest" special="true" hidden="true" />
+
+	<trinket name="Quantum Shard" id="0" description="Everywhere at all times" gfx="trinket_quantum_shard.png" />
+	<trinket name="Sputnik" id="1" description="Fellow traveler" cache="familiars" gfx="trinket_sputnik.png" />
+	<trinket name="Faded flag" id="2" description="Into the Moon" gfx="trinket_faded_flag.png" />
+
+	<familiar name="Lil Jupiter" id="9" description="Gas dwarf" quality="0" craftquality="-1" gfx="collectibles_109_lilJupiter.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Saturn" id="10" description="Back to the future" quality="0" craftquality="-1" gfx="collectibles_109_lilSaturn.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Uranus" id="11" description="It's smelly" quality="0" craftquality="-1" gfx="collectibles_109_lilUranus.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Neptune" id="12" description="Embrace the abyss" quality="0" craftquality="-1" gfx="collectibles_109_lilNeptune.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Mercury" id="13" description="Rainbow is magic" quality="0" craftquality="-1" gfx="collectibles_109_lilMercury.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Venus" id="14" description="Flame blazes fiercely" quality="0" craftquality="-1" gfx="collectibles_109_lilVenus.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Terra" id="15" description="The blue pearl" quality="0" craftquality="-1" gfx="collectibles_109_lilTerra.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Mars" id="16" description="Red dead no redemption" quality="0" craftquality="-1" gfx="collectibles_109_lilMars.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Luna" id="17" description="Look at la Luna" quality="0" craftquality="-1" gfx="collectibles_109_lilLuna.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Errant" id="18" description="Extreme changeability" quality="0" craftquality="-1" gfx="collectibles_109_lilErrant.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	
+	<familiar name="Lil Ceres" id="19" description="Who are you gonna call?" quality="0" craftquality="-1" gfx="collectibles_109_lilCeres.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Io" id="20" description="Spicy" quality="0" craftquality="-1" gfx="collectibles_109_lilIo.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Europa" id="21" description="How are the residents of this moon called?" quality="0" craftquality="-1" gfx="collectibles_109_lilEuropa.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Ganymede" id="22" description="King of moons" quality="0" craftquality="-1" gfx="collectibles_109_lilGanymede.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Callisto" id="23" description="The ancient" quality="0" craftquality="-1" gfx="collectibles_109_lilCallisto.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Titan" id="24" description="Tiny Goliath" quality="0" craftquality="-1" gfx="collectibles_109_lilTitan.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Titania" id="25" description="Lady of the flies" quality="0" craftquality="-1" gfx="collectibles_109_lilTitania.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Oberon" id="26" description="Lord of the flies" quality="0" craftquality="-1" gfx="collectibles_109_lilOberon.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Triton" id="27" description="Made in abyss" quality="0" craftquality="-1" gfx="collectibles_109_lilTriton.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Pluto" id="28" description="King of dwarves" quality="0" craftquality="-1" gfx="collectibles_109_lilPluto.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Charon" id="29" description="Across the styx" quality="0" craftquality="-1" gfx="collectibles_109_lilCharon.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Eris" id="30" description="It's easy to preach peace when you live in heaven" quality="0" craftquality="-1" gfx="collectibles_109_lilEris.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Makemake" id="31" description="*Vine boom sound effect*" quality="0" craftquality="-1" gfx="collectibles_109_lilMakemake.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil Haumea" id="32" description="We are born of the blood, made men by the blood, undone by the blood" quality="0" craftquality="-1" gfx="collectibles_109_lilHaumea.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	
+	<familiar name="Lil Iris" id="34" description="⧫︎♒︎♏︎ ♓︎❒︎♓︎⬧︎ ♓︎⬧︎ ♋︎●︎❍︎□︎⬧︎⧫︎ ♒︎♏︎❒︎♏︎📪︎ ♌︎♏︎♒︎□︎●︎♎︎ ⧫︎♒︎⍓︎ ♑︎❒︎♏︎♋︎⧫︎■︎♏︎⬧︎⬧︎" quality="0" craftquality="-1" gfx="collectibles_109_lilIris.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	<familiar name="Lil End" id="35" description="You are the player. The story. The program. The human. Made from nothing but milk and love." quality="0" craftquality="-1" gfx="collectibles_109_lilEnd.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
+	
+</items>

@@ -1,0 +1,7 @@
+<costumes anm2root="gfx/characters/">
+    <costume id="0" anm2path="costume_mercurius.anm2" type="passive" hasSkinAlt="true" priority="26" isFlying="true" />
+    <costume id="2" anm2path="costume_terra.anm2" type="passive" priority="2" />
+    <costume id="3" anm2path="costume_mars.anm2" type="active" hasSkinAlt="true" priority="25" />
+    <costume id="4" anm2path="costume_jupiter.anm2" type="passive" priority="2" />
+    <costume id="6" anm2path="costume_uranus.anm2" type="passive" hasSkinAlt="true" priority="2" />
+</costumes>

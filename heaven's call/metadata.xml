@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>Heaven's Call [Lunar Update]</name>
+    <directory>heaven's call</directory>
+    <id>2839972756</id>
+    <description>[url=https://twitter.com/HeavensCallMOD] Follow Heaven's Call on twitter [/url]
+[h1] What is this mod [/h1] 
+This mod adds two new types of rooms the [i] Astral Challenge Room[/i], which has two variants, an easy one, where outer planets spawn, and a difficult one, where the inner planets spawn and the [i] Lunar Pact Room[/i], where you can get Ultra Secret Room Items for broken hearts, and find 8 new items. 
+
+To have detailed information about the mod contents check its [url=https://github.com/Ultrinik/HeavensCall/wiki] GitHub Wiki [/url]
+
+[img] https://i.imgur.com/LJeD5m7.png [/img] 
+
+[img] https://i.imgur.com/0J85B0c.png [/img] 
+
+The Outer Planet Astral Challenge Room can spawn between Chapter 2-1 and Chapter 3-2 with a 9% chance. 
+
+The Inner Planet Astral Challenge Room can spawn in Chapter 5 with a 30% chance or in Corpse with 16.2%. 
+
+The Lunar Pact Room can randomly replace the Devil Deal Room with a 5% chance from Chapter 2. 
+
+The  Astral Challenge Room contains a random  [b] planetarium or zodiac [/b] collectible, you can pick it up or blow up glass statue in the room to transform it into some pickups. 
+
+After that, a boss will spawn and you will have to defeat it to leave the room. 
+
+Defeating a terrestrial planet in chapter 5, it will grant a random pool item, a victory chest and a 50% chance for The Void portal to open.  
+
+The Lunar Pact Room has 8 new items to collect, the Tainted Planetarium Items!   
+
+[h1] What bosses [/h1] 
+[h3] Jupiter the Gargantuan [img]https://i.imgur.com/NMYJol2.png[/img] [/h3] 
+The biggest and tankiest of the outer planets, born from an amalgamation of rotten flesh. They are always surrounded by toxic gas and are charged with a high voltage. 
+[h3] Saturn the Intransigent [img]https://i.imgur.com/mzy1aj9.png[/img] [/h3] 
+A masked warden of her never-ending treasure. Nobody knows how much is inside her bag, but she spares no expense. Stubborn enough to freeze time. 
+[h3] Uranus the Unpleasant [img]https://i.imgur.com/ogD0OvM.png[/img] [/h3] 
+Seems like Ultra Greed and Colostomia have a new challenger for having the best butt title. This constipated snowball is finally having its release upon your arrival. You're so kind for helping him. 
+[h3] Neptune the Unfathomable [img]https://i.imgur.com/GMN8hxx.png[/img] [/h3] 
+A creature from the bottom of the abyss, made from water and pure fear. Leyeds says that if you say its name 3 times in the mirror at 3 am, it will appear on your back and bite your ass. 
+[h3] Mercury the Unwary [img]https://i.imgur.com/NjkrJjx.png[/img] [/h3] 
+An iridescent ball made of speed (and metal, mostly metal). This unicorn doesn't know fear. He will charge at you, mutilate his body, and explode into pieces just to kill you. 
+[h3] Venus the Termagant [img]https://i.imgur.com/fLcJOYa.png[/img] [/h3] 
+A giant willo of blazing beauty, her carcass is made from the bodies of her lovers, who will die for her again and again. Don't accept her kisses, unless you want to be scorched. 
+[h3] Terra the Fatalist [img]https://i.imgur.com/hxRBb1D.png[/img] [/h3] 
+A pretty green planet, fresh water flows through her body. Nothing bad will happen to this little baby. She's perfect as she is. You wouldn't hurt her, right? 
+[h3] Mars the Vainglorious [img]https://i.imgur.com/KvvAAHc.png[/img] [/h3] 
+An overhauled creature, enhanced with mechanical pieces, seeking glory at all cost, no matter the cost of it. 
+[h3] Pluto the Frivolous [img]https://i.imgur.com/IWxZ75k.png[/img] [/h3] 
+A tumorous skull that uses his spine as a stinger to grab things, loves to be with his brother. 
+[h3] Luna the Tainted [img]https://i.imgur.com/0dhx8TW.png[/img] [/h3] 
+A once cheerful and expresfull rabbit, not tainted by the penance of the light. Free from the restraints of the statue, found refugee in the other side, where the light can not reach.  
+ [h2] Mods with special interactions [/h2] 
+[list] 
+    [*] [b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1978904635] MiniMAPI [/url]: Highly recommended. Without it, the room will still spawn and function properly, but it won't show up correctly on the map. [/b] 
+    [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2635267643] Enhanced Boss Bars [/url]: Bosses have custom icons and health bars. 
+    [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787] Mod Config Menu [/url]: Configure spawn chances, set alternatives skins and more. 
+    [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2880387531] Revelations [/url]: Astral Challenge Room can spawn in both Glacier and Tomb. 
+[/list]  
+[h1] Extra credits [/h1] 
+[list] 
+[*] [url=https://www.youtube.com/channel/UCOkq76alQLrfSFkQVLPlgeA] Nihil[/url]: Creator of the battle music track. 
+[*] [url=https://twitter.com/JunkyX1122] Junky[/url]: Thumbnail art. 
+[*] fridge: Help with sprites. 
+[*] Churupinha: Help with sprites.  
+[*] Grommy: Help with sprites. 
+[*] Harvester: Creator of the new Lunar Pact door sprite. 
+[*] IzzyIsakoi_: Creator of the new Astral Challenge door sprite. 
+[*] [url=https://twitter.com/Aladar_C137] Aladar[/url]: Creator of the original concept for Venus. 
+[/list] 
+[h1][b] If you are going to report a bug or post a suggestion, please do so in the appropriate discussion. [/b][/h1]  </description>
+    <version>1.4.33</version>
+    <visibility>Public</visibility>
+    <tag id="Lua"/>
+    <tag id="Items"/>
+    <tag id="Active Items"/>
+    <tag id="Trinkets"/>
+    <tag id="Pickups"/>
+    <tag id="Familiars"/>
+    <tag id="Rooms"/>
+    <tag id="Enemies"/>
+    <tag id="Bosses"/>
+</metadata>

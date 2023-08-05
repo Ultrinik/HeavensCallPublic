@@ -1,0 +1,11 @@
+<music root="music/">
+	<track name="Supernova" path="supernova.ogg" loop="false" />
+	<track name="Supernova_loop" path="supernova_loop.ogg" loop="true" />
+	
+	<track name="Doing_some_Errants_Intro" path="Errands_intro.ogg" loop="false" />
+	<track name="Doing_some_Errants" path="Doing_some_Errants.ogg" loop="true" />
+	
+	<track name="Luna_Intro" path="Luna_Intro.ogg" loop="false" />
+	<track name="Waning_Blood" path="Waning_Blood.ogg" loop="true" />
+	<track name="Luna_Death" path="Luna_Death.ogg" loop="false" />
+</music>

@@ -1,0 +1,12 @@
+<ItemPools>
+	<Pool Name="ultraSecret">
+		<Item Name="Mercurius?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Venus?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Terra?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Mars?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Jupiter?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Saturnus?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Uranus?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Neptunus?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+</ItemPools>

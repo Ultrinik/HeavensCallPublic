@@ -1,0 +1,389 @@
+<shaders>
+    <shader name="Timestuck">
+        <parameters>
+            <param name="Enabled" type="float"/>
+        </parameters>
+        <vertex><![CDATA[
+            attribute vec3 Position;
+            attribute vec4 Color;
+            attribute vec2 TexCoord;
+            attribute vec4 RenderData;
+            attribute float Scale;
+            attribute float Enabled;
+            varying vec4 Color0;
+            varying vec2 TexCoord0;
+            varying vec4 RenderDataOut;
+            varying float ScaleOut;
+            varying float EnabledOut;
+            uniform mat4 Transform;
+            void main(void)
+            {
+                RenderDataOut = RenderData;
+                ScaleOut = Scale;           // Passing data to fragment shader
+                EnabledOut = Enabled;             // Passing data to fragment shader
+                Color0 = Color;
+                TexCoord0 = TexCoord;
+                gl_Position = Transform * vec4(Position.xyz, 1.0);
+            }
+        ]]></vertex>
+
+        <fragment><![CDATA[
+            varying lowp vec4 Color0;
+            varying mediump vec2 TexCoord0;
+            varying lowp vec4 RenderDataOut;
+            varying lowp float ScaleOut;
+            varying lowp float EnabledOut;
+            uniform sampler2D Texture0;
+            void main(void)
+            {
+                vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
+                Color.r += EnabledOut * 0.2;
+                gl_FragColor = Color;
+            }
+        ]]></fragment>
+    </shader>
+
+    <shader name="VenusHeat">
+        <parameters>
+            <param name="PlayerPos" type="vec2"/>
+            <param name="CenterPos" type="vec2"/>
+            <param name="Time" type="float"/>
+            <param name="VenusTime" type="float"/>
+        </parameters>
+
+        <vertex><![CDATA[
+                attribute vec3 Position; 
+                attribute vec4 Color; 
+                attribute vec2 TexCoord; 
+                attribute vec4 RenderData; 
+                attribute float Scale;
+                attribute vec2 PlayerPos;
+                attribute vec2 CenterPos;
+                attribute float Time;
+                attribute float VenusTime;
+                
+                varying vec4 Color0; 
+                varying vec2 TexCoord0; 
+                varying vec4 RenderDataOut; 
+                varying float ScaleOut;
+                varying vec2 PlayerPosOut;
+                varying vec2 CenterPosOut;
+                varying float TimeOut;
+                varying float VenusTimeOut;
+                uniform mat4 Transform; 
+
+                void main(void) 
+                {
+                    RenderDataOut = RenderData;
+                    ScaleOut = Scale;           // Passing data to fragment shader
+                    PlayerPosOut = PlayerPos;
+                    CenterPosOut = CenterPos;
+                    TimeOut = Time;             // Passing data to fragment shader
+                    VenusTimeOut = VenusTime;             // Passing data to fragment shader
+                    Color0 = Color;
+
+
+                    vec2 pos = (PlayerPos / RenderData.zw) * Scale;
+
+
+                    vec2 diff = TexCoord - pos;
+                    float dist = diff.x*diff.x + diff.y*diff.y;
+
+                    
+                    vec2 coord = TexCoord;
+
+                    float margin = 0.5;
+                    if ( dist < margin ) {
+                        float _Strength = 0.005 * (VenusTimeOut / 60.0);
+                        float _Frequency = 100.0; 
+                        float _Speed = 0.25;
+
+                        float sineNoise = sin(_Frequency * TexCoord.y - Time * _Speed);
+                        float offset = sineNoise * _Strength; 
+
+                        //float t;
+                        //float edge0 = 1.0 - TexCoord.y;
+                        //float edge1 = 0.45;
+                        //float x = 0.6;
+                        //t = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0);
+                        //offset *= t * t * (3.0 - 2.0 * t);
+                        
+                        coord.x += offset;
+                    }
+
+                    TexCoord0 = coord;
+                    gl_Position = Transform * vec4(Position.xyz, 1.0);
+                }
+
+        ]]></vertex>
+
+        <fragment><![CDATA[
+            varying lowp vec4 Color0; 
+            varying mediump vec2 TexCoord0; 
+            varying lowp vec4 RenderDataOut;
+            varying lowp float ScaleOut; 
+            varying mediump vec2 PlayerPosOut;
+            varying mediump vec2 CenterPosOut;
+            varying lowp float TimeOut; 
+            varying lowp float VenusTimeOut; 
+            uniform sampler2D Texture0; 
+            void main(void)
+            {
+                vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
+
+                vec2 pos = (PlayerPosOut / RenderDataOut.zw) * ScaleOut;
+
+                float dist = distance(TexCoord0, pos );
+                if (dist < 10.0) {
+                    Color.r += (0.2 / dist/2.0) * (VenusTimeOut / 60.0);
+                    Color.g += (0.1 / dist/5.0) * (VenusTimeOut / 60.0);
+                }
+                gl_FragColor = Color;
+            }
+        ]]></fragment>
+
+    </shader>
+
+    <shader name="PitchBlack">
+        <parameters>
+            <param name="Enabled" type="float"/>
+        </parameters>
+        <vertex><![CDATA[
+            attribute vec3 Position;
+            attribute vec4 Color;
+            attribute vec2 TexCoord;
+            attribute vec4 RenderData;
+            attribute float Scale;
+            attribute float Enabled;
+            varying vec4 Color0;
+            varying vec2 TexCoord0;
+            varying vec4 RenderDataOut;
+            varying float ScaleOut;
+            varying float EnabledOut;
+            uniform mat4 Transform;
+            void main(void)
+            {
+                RenderDataOut = RenderData;
+                ScaleOut = Scale;           // Passing data to fragment shader
+                EnabledOut = Enabled;             // Passing data to fragment shader
+                Color0 = Color;
+                TexCoord0 = TexCoord;
+                gl_Position = Transform * vec4(Position.xyz, 1.0);
+            }
+        ]]></vertex>
+
+        <fragment><![CDATA[
+            varying lowp vec4 Color0;
+            varying mediump vec2 TexCoord0;
+            varying lowp vec4 RenderDataOut;
+            varying lowp float ScaleOut;
+            varying lowp float EnabledOut;
+            uniform sampler2D Texture0;
+            void main(void)
+            {
+                vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
+                Color.r -= EnabledOut * Color.r;
+                Color.g -= EnabledOut * Color.g;
+                Color.b -= EnabledOut * Color.b;
+                gl_FragColor = Color;
+            }
+        ]]></fragment>
+    </shader>
+
+    <shader name="BlackHole">
+        <parameters>
+            <param name="Enabled" type="float"/>
+            <param name="BlackPosition" type="vec3"/>
+            <param name="Time" type="float"/>
+        </parameters>
+
+        <vertex><![CDATA[
+                attribute vec3 Position; 
+                attribute vec4 Color; 
+                attribute vec2 TexCoord; 
+                attribute vec4 RenderData; 
+                attribute float Scale;
+                attribute float Enabled;
+                attribute vec3 BlackPosition;
+                attribute float Time;
+                
+                varying vec4 Color0; 
+                varying vec2 TexCoord0; 
+                varying vec4 RenderDataOut; 
+                varying float ScaleOut;
+                varying float EnabledOut;
+                varying vec3 BlackPositionOut;
+                varying float TimeOut;
+                uniform mat4 Transform; 
+
+                void main(void) 
+                {
+                    RenderDataOut = RenderData;
+                    ScaleOut = Scale;           // Passing data to fragment shader
+                    EnabledOut = Enabled;             // Passing data to fragment shader
+                    BlackPositionOut = BlackPosition;             // Passing data to fragment shader
+                    TimeOut = Time;             // Passing data to fragment shader
+                    Color0 = Color;
+                    TexCoord0 = TexCoord;
+                    gl_Position = Transform * vec4(Position.xyz, 1.0);
+                }
+
+        ]]></vertex>
+
+        <fragment><![CDATA[
+            varying lowp vec4 Color0; 
+            varying mediump vec2 TexCoord0; 
+            varying lowp vec4 RenderDataOut;
+            varying lowp float ScaleOut; 
+            varying lowp float EnabledOut; 
+            varying mediump vec3 BlackPositionOut;
+            varying lowp float TimeOut; 
+            uniform sampler2D Texture0; 
+            void main(void)
+            {
+                float aspect = RenderDataOut.z/RenderDataOut.w;
+                vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
+
+                vec2 pos = (BlackPositionOut.xy / RenderDataOut.zw) * ScaleOut ;
+                vec2 rad = (BlackPositionOut.zy / RenderDataOut.zw) * ScaleOut * 1.02;
+
+                float radius = length((rad - pos)       * vec2(aspect,1.0)); //Actual radius
+                float dist   = length((TexCoord0 - pos) * vec2(aspect,1.0)); //Distance from pixel to center
+
+                if (dist < radius * TimeOut) {
+                    Color.r -= EnabledOut * Color.r;
+                    Color.g -= EnabledOut * Color.g;
+                    Color.b -= EnabledOut * Color.b;
+                }
+                gl_FragColor = Color;
+            }
+        ]]></fragment>
+
+    </shader>
+
+    <shader name="Mars">
+            <parameters>
+                <param name="Enabled" type="float"/>
+                <param name="Charge" type="float"/>
+                <param name="Time" type="float"/>
+            </parameters>
+
+            <vertex><![CDATA[
+                    attribute vec3 Position; 
+                    attribute vec4 Color; 
+                    attribute vec2 TexCoord; 
+                    attribute vec4 RenderData; 
+                    attribute float Scale;
+                    attribute float Enabled;
+                    attribute float Charge;
+                    attribute float Time;
+                    
+                    varying vec4 Color0; 
+                    varying vec2 TexCoord0; 
+                    varying vec4 RenderDataOut; 
+                    varying float ScaleOut;
+                    varying float EnabledOut;
+                    varying float ChargeOut;
+                    varying float TimeOut;
+                    uniform mat4 Transform; 
+
+                    void main(void) 
+                    {
+                        RenderDataOut = RenderData;
+                        ScaleOut = Scale;           // Passing data to fragment shader
+                        EnabledOut = Enabled;             // Passing data to fragment shader
+                        ChargeOut = Charge;             // Passing data to fragment shader
+                        TimeOut = Time;             // Passing data to fragment shader
+                        Color0 = Color;
+                        TexCoord0 = TexCoord;
+                        gl_Position = Transform * vec4(Position.xyz, 1.0);
+                    }
+
+            ]]></vertex>
+
+            <fragment><![CDATA[
+                varying lowp vec4 Color0; 
+                varying mediump vec2 TexCoord0; 
+                varying lowp vec4 RenderDataOut;
+                varying lowp float ScaleOut; 
+                varying lowp float EnabledOut; 
+                varying lowp float ChargeOut; 
+                varying lowp float TimeOut; 
+                uniform sampler2D Texture0; 
+                void main(void)
+                {
+
+                    float aspect = RenderDataOut.z/RenderDataOut.w;
+
+                    vec2 center = vec2(RenderDataOut.x / 2.0, RenderDataOut.y / 2.0);
+                    vec2 path = vec2(center.x - gl_FragCoord.x,center.y - gl_FragCoord.y) / 2000.0;
+                    vec2 dist = vec2(abs(path.x), abs(path.y));
+                    
+                    vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
+
+                    if (EnabledOut > 0.0) {
+                        float time = TimeOut/2.0;
+                        vec4 fragColor = vec4(0.0);
+
+                        float dispersion = .01;
+                        float distortion = .04;
+                        float bendscale = 0.25;
+
+                        vec2 uv = (path.xy) * vec2(aspect, 1.0) / aspect * 2.0;
+
+                        vec2 disp = uv;
+                        disp *= sqrt(length(disp));
+                        uv += disp * bendscale;
+
+                        vec2 uvr = uv * (1.0 - dispersion) + vec2(dispersion)/2.0;
+                        vec2 uvg = uv * 1.0;
+                        vec2 uvb = uv * (1.0 + dispersion) - vec2(dispersion)/2.0;
+
+                        float r = 0.25;
+                        float g = 0.0;
+                        float b = 0.0;
+                        
+                        if (uv.x > -1.0 && uv.x < 1.0 && uv.y > -1.0 && uv.y < 1.0) {
+                            float stripes = sin(uv.y * 600.0 * aspect + time);
+                            vec3 col = vec3(r, g, b);
+                            col = mix(col, vec3(.8), stripes / 20.0);
+                            fragColor = vec4(col, 1.0);
+                        } else {
+                            Color = vec4(0.0, 0.0, 0.0, 1.0);	
+                        }
+
+
+                        Color.r += fragColor.r;
+                        Color.g += fragColor.g;
+                        Color.b += fragColor.b;
+
+                        float p = 8.0;
+                        if (pow(dist.x / 1.85 , p) + pow(dist.y, p) > pow(0.06 * ScaleOut, p))
+                        {
+                            Color.r = dist.x/2.0;
+                            Color.g = 0.0;
+                            Color.b = 0.0;
+                        }
+
+                        if (0.1013 < path.x && path.x < 0.1877 &&
+                        0.09 > -path.y && -path.y > 0.080){
+                            Color.r = dist.x/2.0;
+                            Color.g = 0.0;
+                            Color.b = 0.0;
+
+                            // 0.102 == 100%
+                            // 0.19 == 0%
+                            float charge = -0.088 * ChargeOut + 0.19;
+                            if (charge < path.x && path.x < 0.19 &&
+                        0.088 > -path.y && -path.y > 0.082){
+                                Color.r = 1.0 * (1.0+sin(path.x*1033.5));
+                            }
+                        }
+                    }
+
+                    gl_FragColor = Color;
+                }
+            ]]></fragment>
+    </shader>
+    
+</shaders>
