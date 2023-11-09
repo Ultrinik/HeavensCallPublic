@@ -83,9 +83,6 @@ function mod:UpdateRoomDisplayFlags(initroomdesc)
 					roomdesc.DisplayFlags = RoomDescriptor.DISPLAY_NONE
 				end
 
-				if mod.savedata.redShovelUsed > 0 then
-					roomdesc.Flags = RoomDescriptor.FLAG_RED_ROOM
-				end
 			end
 		end
 	end

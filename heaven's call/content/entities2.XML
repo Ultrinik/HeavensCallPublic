@@ -497,4 +497,92 @@
 	<!-- SOL -->
 	
 
+	<!-- Errant Challenge-->
+	<entity name=" Everchanger " id="716" variant="370" subtype="0" anm2path="entity_Everchanger.anm2" baseHP="99999" stageHP="0" shieldStrength="0" boss="1" champion="0" collisionDamage="1" collisionMass="100" collisionRadius="30" friction="0.975" numGridCollisionPoints="12" shadowSize="30" bestiary="false" gridCollision="none" tags="nodelirium" portrait="28" shutdoors="false">
+	</entity>
+	
+	<entity name="Fake Door (HC)" id="716" variant="371" subtype="0" anm2path="grid/fakedoor.anm2" baseHP="99999" stageHP="0" shieldStrength="0" boss="1" champion="0" collisionDamage="0" collisionMass="1000" collisionRadius="0" friction="0.975" numGridCollisionPoints="12" shadowSize="0" bestiary="false" gridCollision="none" tags="nodelirium" portrait="28" shutdoors="false">
+	</entity>
+
+	<entity name="Fake Isaac (HC)" anm2path="entity_IsaacFaker.anm2" id="297" variant="0" subtype="161" reroll="false" baseHP="7" boss="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" numGridCollisionPoints="12" shadowSize="16" stageHP="0" portrait="0">
+		<bestiary transform="0,0,1" anim="WalkV" overlay="Head1" />
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+    </entity>
+	
+    <entity name="Corpse (HC)" id="5" variant="472" subtype="370" anm2path="furniture_Corpse.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="28" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Generator (HC)" id="5" variant="472" subtype="371" anm2path="furniture_Generator.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionMass="50" friction="1" numGridCollisionPoints="24" shadowSize="28" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Sink (HC)" id="5" variant="472" subtype="372" anm2path="furniture_Sink.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionMass="50" friction="1" numGridCollisionPoints="24" shadowSize="28" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Stove (HC)" id="5" variant="472" subtype="373" anm2path="furniture_Stove.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionMass="50" friction="1" numGridCollisionPoints="24" shadowSize="28" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Fridge (HC)" id="5" variant="472" subtype="374" anm2path="furniture_Fridge.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionMass="50" friction="1" numGridCollisionPoints="24" shadowSize="28" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Toilet (HC)" id="5" variant="472" subtype="375" anm2path="furniture_Toilet.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionMass="50" friction="1" numGridCollisionPoints="24" shadowSize="28" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Clean Toilet (HC)" id="5" variant="472" subtype="376" anm2path="furniture_ToiletClean.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionMass="50" friction="1" numGridCollisionPoints="24" shadowSize="28" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Tank (HC)" id="5" variant="472" subtype="377" anm2path="furniture_TankFull.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionMass="50" friction="1" numGridCollisionPoints="24" shadowSize="28" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Broken Tank (HC)" id="5" variant="472" subtype="378" anm2path="furniture_TankEmpty.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionMass="50" friction="1" numGridCollisionPoints="24" shadowSize="28" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Turret (HC)" id="5" variant="472" subtype="379" anm2path="furniture_Turret.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionMass="50" friction="1" numGridCollisionPoints="24" shadowSize="28" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Tree (HC)" id="5" variant="472" subtype="380" anm2path="furniture_Tree.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionMass="50" friction="1" numGridCollisionPoints="24" shadowSize="28" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Tree Empty (HC)" id="5" variant="472" subtype="381" anm2path="furniture_TreeEmpty.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionMass="50" friction="1" numGridCollisionPoints="24" shadowSize="28" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity name="Solar Statue (HC)" id="5" variant="472" subtype="382" anm2path="furniture_SolarStatue.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" collisionMass="50" friction="1" numGridCollisionPoints="24" shadowSize="28" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
+    <entity name="Chain Cord (HC)" id="865" variant="10" subtype="62" anm2path="entity_ChainCord.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="15" friction="1" numGridCollisionPoints="1" shadowSize="5" shutdoors="false" stageHP="0" tags="noreroll">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+    </entity>
+	
+    <entity name="Effigy circle (HC)" id="1000" variant="390" subtype="160" anm2path="effect_EffigyCircle.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="1" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+	<entity name="Computer Button (HC)" id="1000" variant="390" subtype="161" anm2path="effect_ComputerButton.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="20" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
+    </entity>
+	<entity name="Flying Corpse (HC)" id="1000" variant="390" subtype="162" anm2path="effect_CorpseFlying.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
+    </entity>
+	<entity name="Mirror Isaac (HC)" id="1000" variant="390" subtype="163" anm2path="mirror_Player.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="20" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
+    </entity>
+	<entity name="Mirror Guppy (HC)" id="1000" variant="390" subtype="164" anm2path="mirror_EVGuppy.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="20" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
+    </entity>
+	<entity name="Bubbles source (HC)" id="1000" variant="390" subtype="165" anm2path="sdadsadasd.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="20" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
+    </entity>
+	<entity name="Background planet (HC)" id="1000" variant="390" subtype="166" anm2path="backdrop/planets/luna.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="20" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
+    </entity>
+	<entity name="Saturn Button (HC)" id="1000" variant="390" subtype="167" anm2path="effect_SaturnButton.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="20" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
+    </entity>
+	<entity name="Saturn Clock (HC)" id="1000" variant="390" subtype="168" anm2path="effect_SaturnClock.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="20" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
+    </entity>
+	<entity name="Minecart (HC)" id="1000" variant="390" subtype="169" anm2path="effect_Minecart.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="20" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
+    </entity>
+	<entity name="Mini Hud (HC)" id="1000" variant="390" subtype="170" anm2path="screen_miniHud.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="20" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
+    </entity>
+	<entity name="Full Effigy (HC)" id="1000" variant="390" subtype="171" anm2path="effect_EffigyCorpse.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="20" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
+    </entity>
+	<entity name="Sol Light (HC)" id="1000" variant="390" subtype="172" anm2path="effect_SolLight.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="20" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
+    </entity>
+
+	<entity name="Guppy (HC)" id="3" variant="56" subtype="160" anm2path="familiar_EVGuppy.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1"  numGridCollisionPoints="12" shadowSize="11" stageHP="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
 </entities>

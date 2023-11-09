@@ -2254,7 +2254,7 @@ function mod:UranusDeath(entity)
 
 		--Poops
 		for i=1,15 do
-			poop = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, mod:RandomInt(0,1), entity.Position + Vector(0.1,0):Rotated(rng:RandomFloat()*360), Vector((rng:RandomFloat() * 8) + 3.5,0):Rotated(rng:RandomFloat()*360), entity)
+			local poop = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, mod:RandomInt(0,1), entity.Position + Vector(0.1,0):Rotated(rng:RandomFloat()*360), Vector((rng:RandomFloat() * 8) + 3.5,0):Rotated(rng:RandomFloat()*360), entity)
 		end
 
 		mod:NormalDeath(entity)

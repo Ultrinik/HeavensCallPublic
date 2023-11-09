@@ -487,3 +487,20 @@ function mod:LunarPactDoomSpawn()
 end
 mod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, mod.LunarPactDoomSpawn)
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.LunarPactDoomSpawn)
+
+
+--[[
+function mod:a(entity)
+    print(entity.Type, entity.Variant, entity.SubType)
+    print(entity:HasEntityFlags(EntityFlag.FLAG_DONT_COUNT_BOSS_HP))
+    print(entity:GetData().HeavensCall)
+end
+mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.a, EntityType.ENTITY_ADVERSARY)
+
+function mod:b()
+    local adversary = Isaac.Spawn(EntityType.ENTITY_ADVERSARY, 0, 0, Vector.Zero, Vector.Zero, nil)
+    adversary:GetData().HeavensCall = true
+
+    adversary:AddEntityFlags(EntityFlag.FLAG_DONT_COUNT_BOSS_HP)
+end
+]]

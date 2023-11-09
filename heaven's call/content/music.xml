@@ -8,4 +8,6 @@
 	<track name="Luna_Intro" path="Luna_Intro.ogg" loop="false" />
 	<track name="Waning_Blood" path="Waning_Blood.ogg" loop="true" />
 	<track name="Luna_Death" path="Luna_Death.ogg" loop="false" />
+	
+	<track name="evERR" path="evERR.ogg" loop="true" />
 </music>

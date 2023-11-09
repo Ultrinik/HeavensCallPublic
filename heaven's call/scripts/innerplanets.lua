@@ -3255,6 +3255,13 @@ function mod:RocketDirected(bomb)
         local percent = math.min(counter / framesUntilFullSpeed, 1)
         bomb.Velocity = mod:Lerp(startVel,targetVel,percent)
         bomb.SpriteRotation = targetVel:GetAngleDegrees()
+
+        if bomb.Parent and bomb:GetData().MaxParentDistance then
+            local distance = bomb.Parent.Position:Distance(bomb.Position)
+            if distance > bomb:GetData().MaxParentDistance then
+                bomb:SetExplosionCountdown(0)
+            end
+        end
     end
 end
 

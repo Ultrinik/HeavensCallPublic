@@ -347,4 +347,129 @@
 	<sound name="MarsDischarge">
 		<sample weight="1" path="mars_discharge.wav" />
 	</sound>
+	<sound name="WoodStep">
+		<sample weight="1" path="woodstep_1.wav" />
+		<sample weight="1" path="woodstep_2.wav" />
+		<sample weight="1" path="woodstep_3.wav" />
+		<sample weight="1" path="woodstep_4.wav" />
+		<sample weight="1" path="woodstep_5.wav" />
+		<sample weight="1" path="woodstep_6.wav" />
+		<sample weight="1" path="woodstep_7.wav" />
+		<sample weight="1" path="woodstep_8.wav" />
+		<sample weight="1" path="woodstep_9.wav" />
+		<sample weight="1" path="woodstep_10.wav" />
+		<sample weight="1" path="woodstep_11.wav" />
+		<sample weight="1" path="woodstep_12.wav" />
+		<sample weight="1" path="woodstep_13.wav" />
+		<sample weight="1" path="woodstep_14.wav" />
+	</sound>
+	<sound name="GrassStep">
+		<sample weight="1" path="grassstep_1.wav" />
+		<sample weight="1" path="grassstep_2.wav" />
+		<sample weight="1" path="grassstep_3.wav" />
+		<sample weight="1" path="grassstep_4.wav" />
+		<sample weight="1" path="grassstep_5.wav" />
+	</sound>
+	<sound name="LockedBox">
+		<sample weight="1" path="lockedbox.wav" />
+	</sound>
+	<sound name="Crack">
+		<sample weight="1" path="crack.wav" />
+	</sound>
+	<sound name="Broke">
+		<sample weight="1" path="broke.wav" />
+	</sound>
+	<sound name="StaticScream">
+		<sample weight="1" path="staticScream.wav" />
+	</sound>
+	<sound name="GeneratorLoop">
+		<sample weight="1" path="generatorLoop.wav" />
+	</sound>
+	<sound name="AngryStaticScream">
+		<sample weight="1" path="angryStaticScream.wav" />
+	</sound>
+	<sound name="ChainBreak">
+		<sample weight="1" path="chainBreak.wav" />
+	</sound>
+	<sound name="EffigyCompleted">
+		<sample weight="1" path="Effigy_Complete.wav" />
+	</sound>
+	<sound name="ThroughDoor">
+		<sample weight="1" path="Through_door.wav" />
+	</sound>
+	<sound name="CorpsePush">
+		<sample weight="1" path="Squishy_Push_1.wav" />
+		<sample weight="1" path="Squishy_Push_2.wav" />
+		<sample weight="1" path="Squishy_Push_3.wav" />
+	</sound>
+	<sound name="GlitchGaper">
+		<sample weight="1" path="Glitch_Gaper_1.wav" />
+		<sample weight="1" path="Glitch_Gaper_2.wav" />
+		<sample weight="1" path="Glitch_Gaper_3.wav" />
+		<sample weight="1" path="Glitch_Gaper_4.wav" />
+		<sample weight="1" path="Glitch_Gaper_5.wav" />
+		<sample weight="1" path="Glitch_Gaper_6.wav" />
+	</sound>
+	<sound name="LightsOff">
+		<sample weight="1" path="Lights_off.wav" />
+	</sound>
+	<sound name="CorrectPassword">
+		<sample weight="1" path="CorrectPassword.wav" />
+	</sound>
+	<sound name="PasswordAlarm">
+		<sample weight="1" path="PasswordAlarm.wav" />
+	</sound>
+	<sound name="PasswordClick">
+		<sample weight="1" path="PasswordClick.wav" />
+	</sound>
+	<sound name="Purring">
+		<sample weight="1" path="Purring1.wav" />
+		<sample weight="1" path="Purring2.wav" />
+		<sample weight="1" path="Purring3.wav" />
+	</sound>
+	<sound name="Sink">
+		<sample weight="1" path="Sink.wav" />
+	</sound>
+	<sound name="EvilClock">
+		<sample weight="1" path="EvilClock.wav" />
+	</sound>
+	<sound name="ClockTick">
+		<sample weight="1" path="ClockTick.wav" />
+	</sound>
+	<sound name="SecretRoom">
+		<sample weight="1" path="SecretRoom.wav" />
+	</sound>
+	<sound name="TrainBells">
+		<sample weight="1" path="TrainBells.wav" />
+	</sound>
+	<sound name="Supernova">
+		<sample weight="1" path="Supernova.wav" />
+	</sound>
+	<sound name="effigy1">
+		<sample weight="1" path="effigy1.wav" />
+	</sound>
+	<sound name="effigy2">
+		<sample weight="1" path="effigy2.wav" />
+	</sound>
+	<sound name="effigy3">
+		<sample weight="1" path="effigy3.wav" />
+	</sound>
+	<sound name="effigy4">
+		<sample weight="1" path="effigy4.wav" />
+	</sound>
+	<sound name="effigy5">
+		<sample weight="1" path="effigy5.wav" />
+	</sound>
+	<sound name="effigy6">
+		<sample weight="1" path="effigy6.wav" />
+	</sound>
+	<sound name="effigy7">
+		<sample weight="1" path="effigy7.wav" />
+	</sound>
+	<sound name="effigy8">
+		<sample weight="1" path="effigy8.wav" />
+	</sound>
+	<sound name="effigy9">
+		<sample weight="1" path="effigy9.wav" />
+	</sound>
 </sounds>

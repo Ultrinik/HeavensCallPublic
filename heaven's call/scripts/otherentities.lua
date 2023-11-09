@@ -2803,6 +2803,21 @@ function mod:LunaSpikeUpdate(entity)
 
 	local tookDamage = false
 	entity.DepthOffset = -100
+
+	if sprite:IsFinished("Attack") then
+		sprite:Play("Low", true)
+
+	elseif sprite:GetAnimation() == "Low" then
+		if not data.Disabled then
+			for i=0, game:GetNumPlayers ()-1 do
+				local player = game:GetPlayer(i)
+				if player.Position:Distance(entity.Position) < 20 then
+					sprite:Play("Attack", true)
+				end
+			end
+		end
+	end
+
 	if sprite:IsEventTriggered("LowDamage") then
 		for i=0, game:GetNumPlayers ()-1 do
 			local player = game:GetPlayer(i)

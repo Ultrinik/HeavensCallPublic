@@ -15,6 +15,22 @@
 	<trinket name="Quantum Shard" id="0" description="Everywhere at all times" gfx="trinket_quantum_shard.png" />
 	<trinket name="Sputnik" id="1" description="Fellow traveler" cache="familiars" gfx="trinket_sputnik.png" />
 	<trinket name="Faded flag" id="2" description="Into the Moon" gfx="trinket_faded_flag.png" />
+	
+	<trinket name="  My Little Unicorn  " id="20" description="..." gfx="trinket_unicorn.png" achievement="700"/>
+	<trinket name="  Pyromaniac  " id="21" description="..." gfx="trinket_pyromaniac.png" achievement="700"/>
+	<trinket name="  The Apple  " id="22" description="..." gfx="trinket_apple.png" achievement="700"/>
+	<trinket name="  Technology  " id="23" description="..." gfx="trinket_technology.png" achievement="700"/>
+	<trinket name="  Yuck Heart  " id="24" description="..." gfx="trinket_yuckheart.png" achievement="700"/>
+	<trinket name="  Sack Head  " id="25" description="..." gfx="trinket_sackhead.png" achievement="700"/>
+	<trinket name="  Ice Cube  " id="26" description="..." gfx="trinket_icecube.png" achievement="700"/>
+	<trinket name="  Dark Matter  " id="27" description="..." gfx="trinket_darkmatter.png" achievement="700"/>
+	<trinket name="  Death Certificate  " id="28" description="..." gfx="trinket_death.png" achievement="700"/>
+	<trinket name="  Pause  " id="29" description="..." gfx="trinket_pause.png" achievement="700"/>
+	<trinket name="  Pandora's box  " id="30" description="..." gfx="trinket_pandora.png" achievement="700"/>
+	<trinket name="  Fish  " id="31" description="..." gfx="trinket_fish.png" achievement="700"/>
+	<trinket name="  Red key?  " id="32" description="..." gfx="trinket_redkey.png" achievement="700"/>
+	<trinket name="  Plunger  " id="33" description="..." gfx="trinket_plunger.png" achievement="700"/>
+	<familiar name="CATCATCATCATCATCAT" id="40" description="..." quality="0" craftquality="-1" gfx="collectibles_109_luna.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" achievement="700"/>
 
 	<familiar name="Lil Jupiter" id="9" description="Gas dwarf" quality="0" craftquality="-1" gfx="collectibles_109_lilJupiter.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
 	<familiar name="Lil Saturn" id="10" description="Back to the future" quality="0" craftquality="-1" gfx="collectibles_109_lilSaturn.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />

@@ -683,7 +683,6 @@ function mod:OnCache(player, cacheFlag)
 		end
 
 	end
-	
 
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.OnCache)

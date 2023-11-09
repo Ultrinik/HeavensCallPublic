@@ -226,6 +226,8 @@ include("scripts.lunaritems")
 
 include("scripts.newrooms")
 
+include("scripts.errantchallenge.everchangermain")
+
 --Room and planet
 mod.RoomsPlanet = {
 	[8500] = mod.Entity.Jupiter,
@@ -779,6 +781,7 @@ function mod:AppearPlanet(entity, noMusic)
 						music:Queue(Isaac.GetMusicIdByName("Supernova_loop"))
 					end
 				else
+					local customMusic
 					if mod.savedata.planetNum == mod.Entity.Luna then
 						customMusic = Isaac.GetMusicIdByName("Waning_Blood")
 						music:Crossfade (customMusic, 2)
@@ -846,6 +849,13 @@ function mod:InitializeRoomsData()
 
 	mod.diceroomdata = {}
 	mod:InitializeDiceRoomData(mod.diceroomdata)
+
+	mod.everchangerroomdata = {}
+	mod:InitializeRoomData("blackmarket", mod.EVFloorIdRange.X, 8503, mod.everchangerroomdata)
+	mod:InitializeRoomData("shop", 8504, 8504, mod.everchangerroomdata) --damn venus
+	mod:InitializeRoomData("blackmarket", 8505, 8507, mod.everchangerroomdata)
+	mod:InitializeRoomData("supersecret", 8508, 8508, mod.everchangerroomdata) --damn saturn
+	mod:InitializeRoomData("blackmarket", 8509, mod.EVFloorIdRange.Y, mod.everchangerroomdata)
 end
 
 --Load (or reset) things when the run is started or continued
@@ -1588,14 +1598,13 @@ end
 
 --Item pool in room
 function mod:GetAstralCollectible()
-	--If cant find a collectible that a player doesnt have in 100 tries, just spawn a regular one, the pool is empty
-	local randomChance = rng:RandomFloat()
-				
-	if randomChance <= 0.65 then
+
+	if rng:RandomFloat() <= 0.65 then
 		return game:GetItemPool():GetCollectible(ItemPoolType.POOL_PLANETARIUM, false)
 		
 	else
-		local newItem = nil
+		--If cant find a collectible that a player doesnt have in 100 tries, just spawn a regular one, the pool is empty
+		local newItem = 0
 		for i=1, 100 do
 			local pool = mod.AstralChallengePoolExtras
 
@@ -1606,21 +1615,18 @@ function mod:GetAstralCollectible()
 			if not aPLayerHasIt then
 				break
 			end
-			newItem = nil
+			newItem = 0
 		end
 		return newItem
 	end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, function(_)
+function mod:GetCollectibleCustomRoom(poolType, decrese, seed)
 	--things
 	local level = game:GetLevel()
 	local roomdesc = level:GetCurrentRoomDesc()
-	
-	if not mod.ModFlags.noPool then
-		--New pool
-		mod:PausePool()
-		local haschaos = mod:SomebodyHasItem(CollectibleType.COLLECTIBLE_CHAOS)
-		if not haschaos then
+	if mod:IsPlayerOnCustomPoolRoom(roomdesc, poolType) then
+
+		if not (mod.ModFlags.noPool or mod:SomebodyHasItem(CollectibleType.COLLECTIBLE_CHAOS)) then
 			if mod:IsRoomDescAstralChallenge(roomdesc) then
 				return mod:GetAstralCollectible()
 			elseif mod:IsRoomDescLunarPact(roomdesc) then
@@ -1628,7 +1634,15 @@ mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, function(_)
 			end
 		end
 	end
-end)
+end
+mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.GetCollectibleCustomRoom)
+
+--Is on a room with a custom pool
+function mod:IsPlayerOnCustomPoolRoom(roomdesc, poolType)
+	return mod:IsRoomDescAstralChallenge(roomdesc) and poolType == ItemPoolType.POOL_TREASURE or
+		mod:IsRoomDescLunarPact(roomdesc) and poolType == ItemPoolType.POOL_DEVIL
+end
+
 --Deactivating the pool
 function mod:PausePool()
 	mod.ModFlags.noPool = true
@@ -1730,6 +1744,7 @@ function mod:ShadersRender(shaderName)
 				Enabled = 1,
 				Charge = mod.ModFlags.marsCharge,
 				Time = Isaac.GetFrameCount(),
+				NotBattery = mod.EverchangerFlags.enabledZoom,
 				}
 			return params
 		else
@@ -1737,10 +1752,128 @@ function mod:ShadersRender(shaderName)
 				Enabled = 0,
 				Charge = 0,
 				Time = 0,
+				NotBattery = 0,
 				}
 			return params
 		end
 	
+	elseif shaderName == "Darkness" then
+		local flags = mod.EverchangerFlags
+		if flags.darknessDebug then
+			local pos0 = Vector(flags.position0[0], flags.position0[1])
+			local pos1 = Vector(flags.position1[0], flags.position1[1])
+			local pos2 = Vector(flags.position2[0], flags.position2[1])
+			local pos3 = Vector(flags.position3[0], flags.position3[1])
+			local pos4 = Vector(flags.position4[0], flags.position4[1])
+			local pos5 = Vector(flags.position5[0], flags.position5[1])
+			local pos6 = Vector(flags.position6[0], flags.position6[1])
+			local pos7 = Vector(flags.position7[0], flags.position7[1])
+
+			local distance0 = Vector(flags.position0[2], flags.position0[2]+10)
+			local distance1 = Vector(flags.position1[2], flags.position1[2]+10)
+			local distance2 = Vector(flags.position2[2], flags.position2[2]+10)
+			local distance3 = Vector(flags.position3[2], flags.position3[2]+10)
+			local distance4 = Vector(flags.position4[2], flags.position4[2]+10)
+			local distance5 = Vector(flags.position5[2], flags.position5[2]+10)
+			local distance6 = Vector(flags.position6[2], flags.position6[2]+10)
+			local distance7 = Vector(flags.position7[2], flags.position7[2]+10)
+
+			local fadePos0 = Isaac.WorldToScreen(pos0 + Vector(distance0.Y, 0))
+			local fadePos1 = Isaac.WorldToScreen(pos1 + Vector(distance1.Y, 0))
+			local fadePos2 = Isaac.WorldToScreen(pos2 + Vector(distance2.Y, 0))
+			local fadePos3 = Isaac.WorldToScreen(pos3 + Vector(distance3.Y, 0))
+			local fadePos4 = Isaac.WorldToScreen(pos4 + Vector(distance4.Y, 0))
+			local fadePos5 = Isaac.WorldToScreen(pos5 + Vector(distance5.Y, 0))
+			local fadePos6 = Isaac.WorldToScreen(pos6 + Vector(distance6.Y, 0))
+			local fadePos7 = Isaac.WorldToScreen(pos7 + Vector(distance7.Y, 0))
+
+			pos0 = Isaac.WorldToScreen(pos0)
+			pos1 = Isaac.WorldToScreen(pos1)
+			pos2 = Isaac.WorldToScreen(pos2)
+			pos3 = Isaac.WorldToScreen(pos3)
+			pos4 = Isaac.WorldToScreen(pos4)
+			pos5 = Isaac.WorldToScreen(pos5)
+			pos6 = Isaac.WorldToScreen(pos6)
+			pos7 = Isaac.WorldToScreen(pos7)
+
+			local params = {
+				ActiveIn = flags.enabledDarkness,
+				
+				TargetPosition0 = {pos0.X, pos0.Y, fadePos0.X, fadePos0.Y},
+				TargetPosition1 = {pos1.X, pos1.Y, fadePos1.X, fadePos1.Y},
+				TargetPosition2 = {pos2.X, pos2.Y, fadePos2.X, fadePos2.Y},
+				TargetPosition3 = {pos3.X, pos3.Y, fadePos3.X, fadePos3.Y},
+				TargetPosition4 = {pos4.X, pos4.Y, fadePos4.X, fadePos4.Y},
+				TargetPosition5 = {pos5.X, pos5.Y, fadePos5.X, fadePos5.Y},
+				TargetPosition6 = {pos6.X, pos6.Y, fadePos6.X, fadePos6.Y},
+				TargetPosition7 = {pos7.X, pos7.Y, fadePos7.X, fadePos7.Y},
+				
+				WarpCheck = {pos0.X + 1, pos0.Y + 1},
+			}
+
+            return params
+		else
+			local params = {
+				ActiveIn = 0,
+
+				TargetPosition0 = {0, 0, 0, 0},
+				}
+			return params
+		end
+
+	elseif shaderName == "DarknessOther" then
+		local flags = mod.EverchangerFlags
+		if flags.darknessOther then
+			local room = game:GetRoom()
+			local time = flags.time
+
+			local position0 = room:WorldToScreenPosition(Vector(flags.position0[0], flags.position0[1]))
+			local radius0 = room:WorldToScreenPosition(Vector(flags.position0[0], flags.position0[1]) + Vector(flags.position0[2], 0))
+
+			local position1 = room:WorldToScreenPosition(Vector(flags.position1[0], flags.position1[1]))
+			local radius1 = room:WorldToScreenPosition(Vector(flags.position1[0], flags.position1[1]) + Vector(flags.position1[2], 0))
+
+			local params = {
+				EnabledStatic = flags.enabledStatic,
+				EnabledZoom = flags.enabledZoom,
+				Position0 = {position0.X,  position0.Y, radius0.X},
+				Position1 = {position1.X,  position1.Y, radius1.X},
+				Time = time,
+				Distance = flags.distance,
+				Red = flags.alarmColor,
+				WarpCheck = {position0.X + 1, position0.Y + 1},
+				}
+			return params
+		else
+			local params = {
+				EnabledStatic = 0,
+				EnabledZoom = 0,
+				Position0 = {0,  0,  0},
+				Position1 = {0,  0,  0},
+				Time = 0,
+				Distance = 999999,
+				Red = 0,
+				}
+			return params
+		end
+
+	elseif shaderName == "Underwater" then
+		local flags = mod.EverchangerFlags
+		if flags.inWaterRoom then
+			local time = flags.time
+			local params = {
+				Enabled = 1,
+				Time = time
+			}
+			return params
+		else
+			local params = {
+				Enabled = 0,
+				Time = 0
+			}
+			return params
+		end
+
 	end
 
 end
@@ -1789,7 +1922,7 @@ if HPBars then
 	HPBars.BossIgnoreList[tostring(mod.EntityInf[mod.Entity.Horsemen].ID).."."..tostring(mod.EntityInf[mod.Entity.Horsemen].VAR)] = {truFunc}
 	HPBars.BossIgnoreList[tostring(mod.EntityInf[mod.Entity.Horsemen].ID).."."..tostring(mod.EntityInf[mod.Entity.Horsemen].VAR+1)] = {truFunc}
 	HPBars.BossIgnoreList[tostring(EntityType.ENTITY_DOGMA)..".10"] = {truFunc}
-	HPBars.BossIgnoreList[tostring(EntityType.ENTITY_ADVERSARY)..".0"] = {function(entity) if entity:GetData().HeavensCall then return true end end}
+	HPBars.BossIgnoreList[tostring(EntityType.ENTITY_ADVERSARY)..".0"] = {truFunc}
 	HPBars.BossIgnoreList[tostring(mod.EntityInf[mod.Entity.Attlerock].ID).."."..tostring(mod.EntityInf[mod.Entity.Attlerock].VAR)] = {truFunc}
 	HPBars.BossIgnoreList[tostring(mod.EntityInf[mod.Entity.HollowsLantern].ID).."."..tostring(mod.EntityInf[mod.Entity.HollowsLantern].VAR)] = {truFunc}
 	HPBars.BossIgnoreList[tostring(mod.EntityInf[mod.Entity.WhiteHole].ID).."."..tostring(mod.EntityInf[mod.Entity.WhiteHole].VAR)] = {truFunc}

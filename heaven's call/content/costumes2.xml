@@ -4,4 +4,14 @@
     <costume id="3" anm2path="costume_mars.anm2" type="active" hasSkinAlt="true" priority="25" />
     <costume id="4" anm2path="costume_jupiter.anm2" type="passive" priority="2" />
     <costume id="6" anm2path="costume_uranus.anm2" type="passive" hasSkinAlt="true" priority="2" />
+
+    
+	<costume id="27" anm2path="259_darkmatter.anm2" type="trinket" />
+    <costume id="23" anm2path="068_Technology.anm2" type="trinket" priority="22" hasSkinAlt="true" />
+	<costume id="21" anm2path="223_pyromaniac.anm2" type="trinket"  />
+	<costume id="25" anm2path="424_SackHead.anm2" type="trinket" />
+
+    <costume type="none" anm2path="costume_Antichrist.anm2" priority="999"/>
+
+</costumes>
 </costumes>
