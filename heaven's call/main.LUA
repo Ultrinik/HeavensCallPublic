@@ -1922,7 +1922,7 @@ if HPBars then
 	HPBars.BossIgnoreList[tostring(mod.EntityInf[mod.Entity.Horsemen].ID).."."..tostring(mod.EntityInf[mod.Entity.Horsemen].VAR)] = {truFunc}
 	HPBars.BossIgnoreList[tostring(mod.EntityInf[mod.Entity.Horsemen].ID).."."..tostring(mod.EntityInf[mod.Entity.Horsemen].VAR+1)] = {truFunc}
 	HPBars.BossIgnoreList[tostring(EntityType.ENTITY_DOGMA)..".10"] = {truFunc}
-	HPBars.BossIgnoreList[tostring(EntityType.ENTITY_ADVERSARY)..".0"] = {truFunc}
+	HPBars.BossIgnoreList[tostring(EntityType.ENTITY_ADVERSARY)..".0"] = function(entity) return entity:HasEntityFlags(EntityFlag.FLAG_DONT_COUNT_BOSS_HP) end
 	HPBars.BossIgnoreList[tostring(mod.EntityInf[mod.Entity.Attlerock].ID).."."..tostring(mod.EntityInf[mod.Entity.Attlerock].VAR)] = {truFunc}
 	HPBars.BossIgnoreList[tostring(mod.EntityInf[mod.Entity.HollowsLantern].ID).."."..tostring(mod.EntityInf[mod.Entity.HollowsLantern].VAR)] = {truFunc}
 	HPBars.BossIgnoreList[tostring(mod.EntityInf[mod.Entity.WhiteHole].ID).."."..tostring(mod.EntityInf[mod.Entity.WhiteHole].VAR)] = {truFunc}

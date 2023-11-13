@@ -22,6 +22,7 @@ mod.EverchangerTrinkets = {
     fish = Isaac.GetTrinketIdByName("  Fish  "),
     redkey = Isaac.GetTrinketIdByName("  Red key?  "),
     plunger = Isaac.GetTrinketIdByName("  Plunger  "),
+    bible = Isaac.GetTrinketIdByName("  Bible  "),
     bluekey = TrinketType.TRINKET_STRANGE_KEY,
 
     guppy = Isaac.GetItemIdByName("CATCATCATCATCATCAT"),
@@ -51,8 +52,10 @@ function mod:EverchangerPlayerUpdate(player)
     end
 
     if Input.IsActionTriggered(ButtonAction.ACTION_ITEM, player.ControllerIndex) or Input.IsActionTriggered(ButtonAction.ACTION_PILLCARD, player.ControllerIndex) then
-        local trinket = player:GetTrinket(0)
-        mod:EverchangerTrinketUse(player, data, trinket)
+        local trinket1 = player:GetTrinket(0)
+        mod:EverchangerTrinketUse(player, data, trinket1)
+        local trinket2 = player:GetTrinket(1)
+        mod:EverchangerTrinketUse(player, data, trinket2)
     end
     if Input.IsActionTriggered(ButtonAction.ACTION_MAP, player.ControllerIndex) then
         local position = player.Position + Vector(0, -60)
@@ -60,7 +63,7 @@ function mod:EverchangerPlayerUpdate(player)
         hud:GetData().Full = true
     end
 
-    if (sprite:GetFrame() == 10 or sprite:GetFrame() == 19) and not flags.SolRoom then
+    if (sprite:GetFrame() == 10 or sprite:GetFrame() == 19) and not flags.SolRoom and not player.CanFly then
         sfx:Play(mod.SFX.WoodStep, 2)
     end
 
@@ -132,13 +135,13 @@ function mod:EverchangerPlayerUpdate(player)
         end
     end
 
-    if player:GetPlayerType() == PlayerType.PLAYER_THELOST and game:GetLevel():GetCurrentRoomIndex() >= 0 then
+    if player:GetPlayerType() == PlayerType.PLAYER_BLACKJUDAS and game:GetLevel():GetCurrentRoomIndex() >= 0 then
 
         player:ChangePlayerType(PlayerType.PLAYER_ISAAC)
         mod:scheduleForUpdate(function()
             player:AddMaxHearts(6)
             player:AddHearts(6)
-            player:AddSoulHearts(-1)
+            player:AddSoulHearts(-24)
         end, 1)
         
         if flags.inBattle then
@@ -166,9 +169,15 @@ function mod:EverchangerTrinketUse(player, data, trinket)
         --player:AnimateCollectible(CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN, "UseItem")
         sfx:Play(mod.SFX.Crack)
         player:UseActiveItem(CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN, true)
-        player:UseActiveItem(CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN)
-        player:UseActiveItem(CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN)
-        player:UseActiveItem(CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN)
+
+        local n = 3
+        if flags.inWaterRoom then
+            n = 30
+        end
+        for i=1, n do
+            player:UseActiveItem(CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN)
+        end
+        
         data.Rainbow = 6*30*4*2
         mod.EverchangerItemCharges[trinket] = false
 
@@ -213,7 +222,10 @@ function mod:EverchangerTrinketUse(player, data, trinket)
 
     elseif trinket == trinkets.pandorasbox then
         sfx:Play(mod.SFX.LockedBox)
-        
+
+    elseif trinket == trinkets.bible then
+        player:UseActiveItem(CollectibleType.COLLECTIBLE_BIBLE, true)
+        mod.EverchangerItemCharges[trinket] = false
 
     end
 end

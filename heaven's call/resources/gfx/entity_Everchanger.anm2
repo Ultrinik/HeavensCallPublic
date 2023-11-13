@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="trtv" CreatedOn="21-10-2023 0:54:33" Version="34" Fps="30"/>
+	<Info CreatedBy="trtv" CreatedOn="11-11-2023 22:24:29" Version="36" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="bosses\everchanger\shuffled_ec_roaming.png" Id="0"/>
@@ -161,7 +161,7 @@
 			<NullAnimations/>
 			<Triggers/>
 		</Animation>
-		<Animation Name="Jupiter" FrameNum="15" Loop="false">
+		<Animation Name="4" FrameNum="15" Loop="true">
 			<RootAnimation>
 				<Frame XPosition="5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				<Frame XPosition="-5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
@@ -236,7 +236,7 @@
 			<NullAnimations/>
 			<Triggers/>
 		</Animation>
-		<Animation Name="Saturn" FrameNum="15" Loop="false">
+		<Animation Name="5" FrameNum="15" Loop="true">
 			<RootAnimation>
 				<Frame XPosition="5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				<Frame XPosition="-5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
@@ -311,7 +311,7 @@
 			<NullAnimations/>
 			<Triggers/>
 		</Animation>
-		<Animation Name="Uranus" FrameNum="15" Loop="false">
+		<Animation Name="6" FrameNum="15" Loop="true">
 			<RootAnimation>
 				<Frame XPosition="5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				<Frame XPosition="-5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
@@ -386,7 +386,7 @@
 			<NullAnimations/>
 			<Triggers/>
 		</Animation>
-		<Animation Name="Neptune" FrameNum="15" Loop="false">
+		<Animation Name="7" FrameNum="15" Loop="true">
 			<RootAnimation>
 				<Frame XPosition="5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				<Frame XPosition="-5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
@@ -461,7 +461,7 @@
 			<NullAnimations/>
 			<Triggers/>
 		</Animation>
-		<Animation Name="Luna" FrameNum="15" Loop="false">
+		<Animation Name="8" FrameNum="15" Loop="true">
 			<RootAnimation>
 				<Frame XPosition="5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				<Frame XPosition="-5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
@@ -536,7 +536,7 @@
 			<NullAnimations/>
 			<Triggers/>
 		</Animation>
-		<Animation Name="Mercury" FrameNum="15" Loop="false">
+		<Animation Name="0" FrameNum="15" Loop="true">
 			<RootAnimation>
 				<Frame XPosition="5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				<Frame XPosition="-5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
@@ -611,7 +611,7 @@
 			<NullAnimations/>
 			<Triggers/>
 		</Animation>
-		<Animation Name="Venus" FrameNum="15" Loop="false">
+		<Animation Name="1" FrameNum="15" Loop="true">
 			<RootAnimation>
 				<Frame XPosition="5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				<Frame XPosition="-5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
@@ -686,7 +686,7 @@
 			<NullAnimations/>
 			<Triggers/>
 		</Animation>
-		<Animation Name="Terra" FrameNum="15" Loop="false">
+		<Animation Name="2" FrameNum="15" Loop="true">
 			<RootAnimation>
 				<Frame XPosition="5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				<Frame XPosition="-5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
@@ -761,7 +761,7 @@
 			<NullAnimations/>
 			<Triggers/>
 		</Animation>
-		<Animation Name="Mars" FrameNum="15" Loop="false">
+		<Animation Name="3" FrameNum="15" Loop="true">
 			<RootAnimation>
 				<Frame XPosition="5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				<Frame XPosition="-5" YPosition="-40" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>

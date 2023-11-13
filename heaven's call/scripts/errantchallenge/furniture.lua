@@ -48,6 +48,7 @@ function mod:FurnitureUpdate(entity)
             sprite:SetFrame("Idle", mod:RandomInt(0, 3))
             sprite:Stop()
             sprite.Scale = Vector.One
+
         else
             entity:SetSize(20, Vector(2,1), 12)
         end
@@ -153,6 +154,7 @@ function mod:FurnitureUpdate(entity)
             if mod:IsRoomElectrified() then
                 if (#Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, mod.EverchangerTrinkets.icecube) == 0) and not Isaac.GetPlayer(0):HasTrinket(mod.EverchangerTrinkets.icecube) then
                     local cube = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, mod.EverchangerTrinkets.icecube, entity.Position, Vector(0, 5), entity)
+                    sfx:Play(SoundEffect.SOUND_FREEZE_SHATTER)
                 end
             else
                 sfx:Play(SoundEffect.SOUND_BATTERYDISCHARGE)
@@ -255,19 +257,38 @@ function mod:FurnitureUpdate(entity)
         data.TargetPos = mod:Lerp(data.TargetPos, targetPos, 0.1)
         local aimDirection = targetPos - entity.Position
 
-        if not player:HasTrinket(TrinketType.TRINKET_SAFETY_SCISSORS) and (player.Position.X < entity.Position.X) and (50 <= direction:Length() and direction:Length() < range) then
-            sprite:SetFrame("Idle", 1)
+        local correctDirection = (player.Position.X < entity.Position.X)
+        local inRange = (75 <= direction:Length() and direction:Length() < range)
+
+        if sprite:IsFinished("Sleep") then
+            sprite:Play("Idle", true)
+
+        elseif sprite:IsFinished("Wake") then
+            sprite:Play("Attack", true)
+
+        elseif sprite:IsFinished("Attack") then
+            sprite:Play("Attack", true)
+
+        end
+
+        if not player:HasTrinket(TrinketType.TRINKET_SAFETY_SCISSORS) and correctDirection and inRange then
+            
+            if not (sprite:IsPlaying("Wake") or sprite:IsPlaying("Attack")) then
+                sprite:Play("Wake", true)
+            end
 
             if not data.Laser then
-                data.Laser = EntityLaser.ShootAngle(LaserVariant.TRACTOR_BEAM, entity.Position, aimDirection:GetAngleDegrees(), -1, Vector.Zero, entity)
-                data.Laser:GetSprite().Color = Color(1,0,0,1,1,0,0)
+                data.Laser = EntityLaser.ShootAngle(LaserVariant.THIN_RED, entity.Position, aimDirection:GetAngleDegrees(), -1, Vector(0,-10), player)
+                data.Laser.DisableFollowParent = true
+                local laserSprite = data.Laser:GetSprite()
+                laserSprite.Color = Color(1,0,0,0.25,1,0,0)
             else
                 local laser = data.Laser
                 laser.Angle = aimDirection:GetAngleDegrees()
                 laser.MaxDistance = aimDirection:Length()
                 laser.Radius = 0.1
 
-                if entity.FrameCount % 20 == 0 then
+                if sprite:IsEventTriggered("Attack") then
                     local rocketDirection = aimDirection:Normalized()
                     local rocket = mod:SpawnEntity(mod.Entity.MarsRocket, entity.Position + rocketDirection*25, rocketDirection, entity):ToBomb()
 					rocket:GetData().IsDirected_HC = true
@@ -279,7 +300,9 @@ function mod:FurnitureUpdate(entity)
                 end
             end
         else
-            sprite:SetFrame("Idle", 0)
+            if not (sprite:IsPlaying("Sleep") or sprite:IsPlaying("Idle")) then
+                sprite:Play("Sleep", true)
+            end
 
             if data.Laser then
                 data.Laser:Remove()
@@ -324,7 +347,7 @@ function mod:FurnitureCollision(entity, player)
                     local poop = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, mod:RandomInt(0,1), entity.Position + 2*velocity, velocity, entity)
                 end
                 
-                local velocity = Vector((rng:RandomFloat() * 3) + 3,0):Rotated(rng:RandomFloat()*360)
+                local velocity = Vector(0, (rng:RandomFloat() * 3) + 3):Rotated(mod:RandomInt(-90,90))
                 local corpse = Isaac.Spawn(mod.furnitureData.CORPSE.ID, mod.furnitureData.CORPSE.VAR, mod.furnitureData.CORPSE.SUB, entity.Position, velocity, entity)
                 
                 local matter = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, mod.EverchangerTrinkets.darkmatter, entity.Position, Vector(0, 5), entity)
@@ -472,8 +495,15 @@ function mod:EverchangerSolarStateUpdate(entity, data, sprite, room)
         game:SpawnParticles (entity.Position, EffectVariant.DIAMOND_PARTICLE, 15, 9, Color(1,1,0.5,1,1,1,1))
         game:ShakeScreen(15)
 
+
+        local ever = Isaac.FindByType(Isaac.GetEntityTypeByName(" Everchanger "), Isaac.GetEntityVariantByName(" Everchanger "), 0)[1]
+        ever:GetSprite():Play(tostring(nEffigies), true)
+
         if nEffigies == 8 then
             sprite:Play("End3", true)
+            mod:scheduleForUpdate(function()
+                ever:GetSprite():Play("Idle", true)
+            end, 30)
         else
         end
 

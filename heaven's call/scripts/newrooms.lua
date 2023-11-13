@@ -249,9 +249,7 @@ function mod:AstralRoomGenerator()
 		totalchance = mod.savedata.spawnchancemultiplier2*spawnChance
 	end
 
-	local negFlag = (mod.savedata.redShovelUsed > 0)
-
-	if (totalchance > 0) and not negFlag then
+	if (totalchance > 0) then
 		local randomchance = rng:RandomFloat()
 		if randomchance <= (totalchance+extraChance) or mod.ModFlags.forceSpawn then
 			--SPAWN IT! (It may not spawn if there is absolutelly no avalible space in the stage...)

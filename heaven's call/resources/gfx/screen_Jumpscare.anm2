@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="29-10-2023 23:57:12" Version="125" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="12-11-2023 19:52:27" Version="126" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="screens\jumpscare.png" Id="0"/>
@@ -34,7 +34,7 @@
 			</LayerAnimations>
 			<NullAnimations/>
 			<Triggers>
-				<Trigger EventId="0" AtFrame="20"/>
+				<Trigger EventId="0" AtFrame="41"/>
 			</Triggers>
 		</Animation>
 	</Animations>

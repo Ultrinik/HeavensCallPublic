@@ -70,6 +70,7 @@ mod.EverchangerFlags = {
     errantMoving = false,
     jumpscareFlag = false,
     achievementFlag = false,
+    deleteInfinite = false,
 
     alarmColor = 0
 }
@@ -124,6 +125,7 @@ function mod:EverchangerStartCheck(isContinue)
 
     flags.jumpscareFlag = false
     flags.achievementFlag = false
+    flags.deleteInfinite = false
 
     mod.CirclesStates = {}
     mod.furnitureQueue = {}
@@ -139,6 +141,7 @@ function mod:EverchangerStartCheck(isContinue)
             [mod.EverchangerTrinkets.unicorn] = true,
             [mod.EverchangerTrinkets.yuckheart] = true,
             [mod.EverchangerTrinkets.pause] = true,
+            [mod.EverchangerTrinkets.bible] = true,
         }
 
         if flags.darknessDebug then
@@ -235,10 +238,6 @@ function mod:EverchangerMainRender()
 
             sprite:Load("gfx/screen_Jumpscare.anm2", true)
             sprite:Play("Idle", true)
-            
-            flags.enabledDarkness = 0
-            flags.enabledStatic = 0
-            flags.enabledZoom = 0
         end
         sprite = flags.jumpscareSprite
         if sprite then
@@ -248,6 +247,10 @@ function mod:EverchangerMainRender()
 
             sprite:Render(position)
             sprite:Update()
+            
+            flags.enabledDarkness = 0
+            flags.enabledStatic = 0
+            flags.enabledZoom = 0
 
             if sprite:IsEventTriggered("BaseEnd") or sprite:IsFinished() then
                 flags.jumpscareFlag = false
@@ -295,7 +298,7 @@ function mod:EverchangerMainRender()
 
             sprite:Load("gfx/screen_GameOver.anm2", true)
 
-            if Isaac.GetPlayer(0):HasTrinket(TrinketType.TRINKET_MISSING_POSTER) then
+            if Isaac.GetPlayer(0):HasCollectible(CollectibleType.COLLECTIBLE_JUDAS_SHADOW) then
                 sprite:Play("Idle1", true)
             else
                 sprite:Play("Idle2", true)
@@ -465,10 +468,8 @@ function mod:InitEverchangerFloor()
 
     --extra lives
     local player = Isaac.GetPlayer(0)
-    player:AddTrinket(TrinketType.TRINKET_MISSING_POSTER)
-    player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, false)
-    player:AddTrinket(TrinketType.TRINKET_MISSING_POSTER)
-    player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, false)
+    player:AddCollectible(CollectibleType.COLLECTIBLE_JUDAS_SHADOW)
+    player:AddCollectible(CollectibleType.COLLECTIBLE_JUDAS_SHADOW)
     
     mod:scheduleForUpdate(function()
         player.Position = room:GetCenterPos() + Vector(0,-150)
@@ -499,7 +500,7 @@ function mod:ResetEverchangerEntity()
         local currentIdx = game:GetLevel():GetCurrentRoomIndex()
         local x = currentIdx % 13
         local respawnIdx = 63
-        if x <= 5 then
+        if x > 5 then
             respawnIdx = 79
         end
 
@@ -597,7 +598,7 @@ function mod:OnEverchangerNewRoom()
             local sprite = effect:GetSprite()
             sprite:Load("gfx/backdrop/instructions.anm2", true)
             sprite:LoadGraphics()
-            sprite:Play("idle", true)
+            sprite:SetFrame("idle", player:GetCollectibleNum(CollectibleType.COLLECTIBLE_JUDAS_SHADOW))
             effect.DepthOffset = -5000
         elseif flags.enabledErrant and not flags.HasEverchangeBeenInitialized then
             mod:StartEverchangerEntity()
@@ -659,16 +660,19 @@ function mod:OnEverchangerNewRoom()
                         local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.WOMB_TELEPORT, 0, room:GetCenterPos(), Vector.Zero, nil) --Some inert thing thats in the floor
                         effect:SetColor(Color(0, 0, 0, 1), 60, 1, true, true)
                         local sprite = effect:GetSprite()
-                        sprite.Scale = ( (i<3) and (Vector.One * 0.75)) or Vector.One
+                        sprite.Scale = Vector.One
                         sprite:Load("gfx/backdrop/sol/solarsky.anm2", true)
                         for j=0, 3 do
                             sprite:ReplaceSpritesheet(j, "gfx/backdrop/sol/stars"..tostring(i)..".png")
                         end
                         sprite:LoadGraphics()
                         sprite:Play("idle")
+
                         sprite.PlaybackSpeed = (1 + 1.5*i)
                         sprite.PlaybackSpeed = sprite.PlaybackSpeed*sprite.PlaybackSpeed
                         sprite.PlaybackSpeed = sprite.PlaybackSpeed*0.0125
+                        --sprite.PlaybackSpeed = 5
+
                         effect.DepthOffset = -5000 + i*10
                     end, i*5)
                 end
@@ -723,7 +727,7 @@ function mod:OnEverchangerNewRoom()
 
         else
             flags.SolRoom = false
-            if not darknessDebug then
+            if flags.darknessDebug then
                 flags.enabledZoom = 1
             end
         end
@@ -740,15 +744,35 @@ function mod:OnEverchangerNewRoom()
                     if pickup.Variant == PickupVariant.PICKUP_TRINKET then
                         if pickup.SubType == TrinketType.TRINKET_PETRIFIED_POOP then
                             pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, mod.EverchangerTrinkets.fish)
-                            break
+                        elseif pickup.SubType == TrinketType.TRINKET_SWALLOWED_PENNY then
+                            pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, mod.EverchangerTrinkets.bible)
                         end
                     end
                 end
             end
 
-            local position = Vector(70, 410)
+            local position = Vector(160, 600)
             local circle = Isaac.Spawn(mod.EntityCircleData.ID, mod.EntityCircleData.VAR, mod.EntityCircleData.SUB+5, position, Vector.Zero, nil)
 
+            local grid = room:GetGridEntity(24)
+            if grid and grid:GetType() == GridEntityType.GRID_TELEPORTER then
+
+                local flag = true
+                for i, corpse in ipairs(Isaac.FindByType(mod.furnitureData.CORPSE.ID, mod.furnitureData.CORPSE.VAR, mod.furnitureData.CORPSE.SUB)) do
+                    local position = corpse.Position
+                    if not (position.X == 160 and position.Y == 680) then
+                        flag = false
+                    end
+                end
+                if flag then
+                    grid.CollisionClass = GridCollisionClass.COLLISION_PIT
+                    grid:GetSprite().Color = Color(1,1,1,0)
+                end
+            end
+            local grid = room:GetGridEntity(211)
+            if grid and grid:GetType() == GridEntityType.GRID_TELEPORTER then
+                grid:GetSprite().Color = Color(0,1,1,1)
+            end
             
             if player:HasTrinket(mod.EverchangerTrinkets.redkey) then
                 player:TryRemoveTrinket(mod.EverchangerTrinkets.redkey)
@@ -757,6 +781,18 @@ function mod:OnEverchangerNewRoom()
 
         else
             flags.inWaterRoom = false
+        end
+
+        if roomid == 8518 then --pre neptune
+            --WARNING
+            local position = Vector(160, 240)
+            local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.WOMB_TELEPORT, 0, position, Vector.Zero, nil) --Some inert thing thats in the floor
+            effect.SortingLayer = SortingLayer.SORTING_DOOR
+            effect.DepthOffset = 15
+            local sprite = effect:GetSprite()
+            sprite.Scale = Vector.One*0.85
+            sprite:Load("gfx/backdrop/everchanger_neptune.anm2", true)
+            sprite:Play("idle", true)
         end
 
         if roomid == 8504 then --Venus
@@ -810,7 +846,6 @@ function mod:OnEverchangerNewRoom()
                 sprite:LoadGraphics()
             end
         end
-
         
         if roomid == 8509 or roomid == 8510 then --Station; 9 -> ; 10 v
             local gridSize = room:GetGridSize()
@@ -847,6 +882,10 @@ function mod:OnEverchangerNewRoom()
                 sprite.Rotation = -90
                 
                 cart:GetSprite():Play("IdleVertical", true)
+
+                for i, trinket in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, mod.EverchangerTrinkets.bible)) do
+                    trinket.Position = room:GetCenterPos() + Vector(50, -50)
+                end
             end
 
             if flags.FromMinecart then
@@ -983,6 +1022,12 @@ function mod:OnEverchangerNewRoom()
             flags.inMirror = false
         end
 
+        if roomid == 8515 then --Terra
+            if flags.deleteInfinite then
+                room:RemoveDoor(DoorSlot.LEFT0)
+            end
+        end
+
         if roomid == 8540 then --Infinite
 
             local gridSize = room:GetGridSize()
@@ -1005,6 +1050,10 @@ function mod:OnEverchangerNewRoom()
                     sprite:LoadGraphics()
                 end
             end
+
+            if #Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY) == 0 then
+                flags.deleteInfinite = true
+            end
         end
         if roomidx == 78 then
             game:StartRoomTransition(79, Direction.LEFT, RoomTransitionAnim.WALK)
@@ -1014,7 +1063,7 @@ function mod:OnEverchangerNewRoom()
         if true then
             local centerPos = room:GetCenterPos()
             
-            if roomid == 8533 then
+            if roomid == 8533 then --clock
                 local clock = Isaac.Spawn(mod.EntityCircleData.ID, mod.EntityCircleData.VAR, mod.EntityCircleData.SUB+8, centerPos, Vector.Zero, nil)
                 if flags.endRoomOpen then
                     --Door(s)
@@ -1159,7 +1208,12 @@ function mod:FinishEverchangerBattle(forceStart, lost)
     local c2 = t2>0 and mod.EverchangerItemCharges[t2] == false
     if (not lost) and ( c1 or c2 ) then
         
-        sfx:Play(SoundEffect.SOUND_BATTERYCHARGE)
+        mod:scheduleForUpdate(function()
+            sfx:Play(SoundEffect.SOUND_BATTERYCHARGE, 2)
+            local player = Isaac.GetPlayer(0)
+			local battery = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BATTERY, 0, player.Position + Vector(0,10), Vector.Zero, player)
+			battery.DepthOffset = 200
+        end, 30)
 
         if c1 then
             mod.EverchangerItemCharges[t1] = true
@@ -1189,8 +1243,12 @@ function mod:EverchagerCache(player, cacheFlag)
     if cacheFlag == CacheFlag.CACHE_FAMILIARS then
 
 		local numFamiliars = player:GetCollectibleNum(mod.EverchangerTrinkets.guppy)
-		player:CheckFamiliar(FamiliarVariant.LEECH, numFamiliars, player:GetCollectibleRNG(mod.EverchangerTrinkets.guppy), Isaac.GetItemConfig():GetCollectible(mod.EverchangerTrinkets.guppy), 160)
-
+        player:CheckFamiliar(FamiliarVariant.LEECH, numFamiliars, player:GetCollectibleRNG(mod.EverchangerTrinkets.guppy), Isaac.GetItemConfig():GetCollectible(mod.EverchangerTrinkets.guppy), 160)
+        
+        mod:scheduleForUpdate(function()
+            if not player then return end
+            player:CheckFamiliar(FamiliarVariant.LEECH, numFamiliars, player:GetCollectibleRNG(mod.EverchangerTrinkets.guppy), Isaac.GetItemConfig():GetCollectible(mod.EverchangerTrinkets.guppy), 160)
+        end, 5)
     end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.EverchagerCache)

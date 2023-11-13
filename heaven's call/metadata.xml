@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-    <name>Heaven's Call [Lunar Update]</name>
+    <name>Heaven's Call [Halloween Update] PLAY THE NEW CHALLENGE</name>
     <directory>heaven's call</directory>
     <id>2839972756</id>
     <description>[url=https://twitter.com/HeavensCallMOD] Follow Heaven's Call on twitter [/url]
+[url=https://github.com/Ultrinik/HeavensCallPublic/releases/tag/steam] Mirror download for manual installation  [/url]
+
 [h1] What is this mod [/h1] 
 This mod adds two new types of rooms the [i] Astral Challenge Room[/i], which has two variants, an easy one, where outer planets spawn, and a difficult one, where the inner planets spawn and the [i] Lunar Pact Room[/i], where you can get Ultra Secret Room Items for broken hearts, and find 8 new items. 
 
-To have detailed information about the mod contents check its [url=https://github.com/Ultrinik/HeavensCall/wiki] GitHub Wiki [/url]
+To have detailed information about the mod contents check its [url=https://github.com/Ultrinik/HeavensCallPublic/wiki] GitHub Wiki [/url]
 
 [img] https://i.imgur.com/LJeD5m7.png [/img] 
 
@@ -66,8 +68,8 @@ A once cheerful and expresfull rabbit, not tainted by the penance of the light. 
 [*] IzzyIsakoi_: Creator of the new Astral Challenge door sprite. 
 [*] [url=https://twitter.com/Aladar_C137] Aladar[/url]: Creator of the original concept for Venus. 
 [/list] 
-[h1][b] If you are going to report a bug or post a suggestion, please do so in the appropriate discussion. [/b][/h1]  </description>
-    <version>1.4.34</version>
+[h1][b] If you are going to report a bug or post a suggestion, please do so in the appropriate discussion. [/b][/h1]</description>
+    <version>1.5.2</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
@@ -78,4 +80,8 @@ A once cheerful and expresfull rabbit, not tainted by the penance of the light. 
     <tag id="Rooms"/>
     <tag id="Enemies"/>
     <tag id="Bosses"/>
+    <tag id="Challenges"/>
+    <tag id="Shaders"/>
+    <tag id="Sound Effects"/>
+    <tag id="Music"/>
 </metadata>

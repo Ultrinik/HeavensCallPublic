@@ -222,7 +222,6 @@ function mod:FakeUpdate(entity)
         if not data.Init then
             data.Init = true
         
-            sprite:PlayOverlay("Head1", true)
             sprite:SetOverlayRenderPriority(false)
     
             entity:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
@@ -230,12 +229,7 @@ function mod:FakeUpdate(entity)
 
         end
 
-        if entity.FrameCount % 2 == 0 then
-
-            local file = "gfx/monsters/fakers/h"..tostring(mod:RandomInt(1,65))..".png"
-            sprite:ReplaceSpritesheet(1, file)
-            sprite:LoadGraphics()
-        end
+        sprite:SetOverlayFrame("Head1", mod:RandomInt(0,65))
 
         if rng:RandomFloat() < 0.075 then
             sprite.Rotation = rng:RandomFloat()*360
@@ -322,14 +316,14 @@ mod.CircleTrinkets = {
     [8] = mod.EverchangerTrinkets.certificate,
 }
 mod.CirclesData = {
-    [0] = {POSITION = Vector(230,280), IDX = 128}, --mercury
+    [0] = {POSITION = Vector(120,205), IDX = 128}, --mercury
     [1] = {POSITION = Vector(520,390), IDX = 77}, --venus
     [2] = {POSITION = Vector(320, 340), IDX = 80}, --terra
     [3] = {POSITION = Vector(320,340), IDX = 136}, --mars
     [4] = {POSITION = Vector(190,215), IDX = 107}, --jupiter
     [5] = {POSITION = Vector(150,280), IDX = 116}, --saturn
     [6] = {POSITION = Vector(320,340), IDX = 125}, --uranus
-    [7] = {POSITION = Vector(90,390), IDX = 118}, --neptune
+    [7] = {POSITION = Vector(120,640), IDX = 118}, --neptune
     [8] = {POSITION = Vector(150,200), IDX = 48}, --luna
 }
 
@@ -342,6 +336,11 @@ function mod:CircleUpdate(entity)
 
         if not data.Init then
             data.Init = true
+
+
+            if #Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.WISP) > 0 then
+                mod.CirclesStates[tipo] = true
+            end
 
             if mod.CirclesStates[tipo] then
                 local corpse = Isaac.Spawn(mod.EntityCircleData.ID, mod.EntityCircleData.VAR, mod.EntityCircleData.SUB+11, entity.Position, Vector.Zero, entity)
@@ -703,6 +702,10 @@ function mod:MirrorEntityRender(entity)
                 else
                     sprite:SetOverlayFrame(olAnim, ogSprite:GetOverlayFrame())
                 end
+
+                
+                local r = 100 + 3*math.sin( (flags.time or 0)/10 )
+                flags.position6 = {[0]=entity.Position.X, [1]=entity.Position.Y-15, [2]=r}
 
             else
                 sprite.FlipX = ogSprite.FlipX

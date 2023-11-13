@@ -143,7 +143,7 @@
                     RedOut = Red;             // Passing data to fragment shader
 
                     Color0 = Color;
-                    if (EnabledZoom){
+                    if (EnabledZoom > 0.){
                         
                         vec2 TargetPos = (Position0.xy / RenderData.zw) * Scale;
                         
@@ -180,7 +180,7 @@
             {
                 vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
                 
-                if (EnabledStaticOut){
+                if (EnabledStaticOut > 0.){
                     float aspect = RenderDataOut.z/RenderDataOut.w;
                     float time = TimeOut/1000.0;
                     float timeFlor = floor(time) + (time * 0.5);
@@ -267,7 +267,7 @@
 
                 Active = ActiveIn;
 
-                if (Active) {
+                if (Active > 0.) {
                     vec4 TargetPos;
 
                     TargetPos.xy = (TargetPosition0.xy / RenderData.zw) * Scale;
@@ -321,15 +321,14 @@
             uniform sampler2D Texture0;
 
             varying float Active;
-            varying vec4 TargetPositionOut0;
-            varying vec4 TargetPositionOut1;
-            varying vec4 TargetPositionOut2;
-            varying vec4 TargetPositionOut3;
-            varying vec4 TargetPositionOut4;
-            varying vec4 TargetPositionOut5;
-            varying vec4 TargetPositionOut6;
-            varying vec4 TargetPositionOut7;
-            varying vec4 Distance;
+            varying vec3 TargetPositionOut0;
+            varying vec3 TargetPositionOut1;
+            varying vec3 TargetPositionOut2;
+            varying vec3 TargetPositionOut3;
+            varying vec3 TargetPositionOut4;
+            varying vec3 TargetPositionOut5;
+            varying vec3 TargetPositionOut6;
+            varying vec3 TargetPositionOut7;
             varying float YWarping;
 
             float warpedDistance(vec2 a, vec2 b) {
@@ -340,10 +339,10 @@
 
             void main(void) {
                 vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
-                if (Active) {
+                if (Active > 0.) {
                     vec4 newColor = vec4(vec3(0.),1.);
 
-                    float dist = warpedDistance(TexCoord0, TargetPositionOut0.xy);
+                    float dist = warpedDistance(TexCoord0.xy, TargetPositionOut0.xy);
                     float intensity   = dist / TargetPositionOut0.z / 1.8;
                     newColor = max(newColor, Color*0.8 - intensity*intensity);
 
@@ -760,7 +759,7 @@
             void main(void)
             {
                 vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
-                if (EnabledOut) {
+                if (EnabledOut > 0.) {
 
                     float aspect = RenderDataOut.z/RenderDataOut.w;
 

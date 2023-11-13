@@ -1,23 +1,30 @@
 <AnimatedActor>
-	<Info CreatedBy="Unknown" CreatedOn="08-11-2023 20:46:21" Version="77" Fps="30"/>
+	<Info CreatedBy="Unknown" CreatedOn="12-11-2023 19:21:47" Version="79" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="everchanger_instructions.png" Id="0"/>
+			<Spritesheet Path="everchaner_lives.png" Id="1"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="br" Id="0" SpritesheetId="0"/>
+			<Layer Name="lives" Id="1" SpritesheetId="1"/>
 		</Layers>
 		<Nulls/>
 		<Events/>
 	</Content>
 	<Animations DefaultAnimation="idle">
-		<Animation Name="idle" FrameNum="1" Loop="true">
+		<Animation Name="idle" FrameNum="1" Loop="false">
 			<RootAnimation>
 				<Frame XPosition="0" YPosition="0" XScale="85" YScale="85" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 			</RootAnimation>
 			<LayerAnimations>
 				<LayerAnimation LayerId="0" Visible="true">
 					<Frame XPosition="0" YPosition="0" XPivot="221" YPivot="234" XCrop="0" YCrop="0" Width="442" Height="468" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				</LayerAnimation>
+				<LayerAnimation LayerId="1" Visible="true">
+					<Frame XPosition="0" YPosition="45" XPivot="32" YPivot="16" XCrop="0" YCrop="34" Width="64" Height="17" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+					<Frame XPosition="0" YPosition="45" XPivot="32" YPivot="16" XCrop="0" YCrop="17" Width="64" Height="17" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+					<Frame XPosition="0" YPosition="45" XPivot="32" YPivot="16" XCrop="0" YCrop="0" Width="64" Height="17" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</LayerAnimation>
 			</LayerAnimations>
 			<NullAnimations/>

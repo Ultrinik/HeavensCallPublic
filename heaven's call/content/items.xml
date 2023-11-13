@@ -30,6 +30,7 @@
 	<trinket name="  Fish  " id="31" description="..." gfx="trinket_fish.png" achievement="700"/>
 	<trinket name="  Red key?  " id="32" description="..." gfx="trinket_redkey.png" achievement="700"/>
 	<trinket name="  Plunger  " id="33" description="..." gfx="trinket_plunger.png" achievement="700"/>
+	<trinket name="  Bible  " id="34" description="..." gfx="trinket_bible.png" achievement="700"/>
 	<familiar name="CATCATCATCATCATCAT" id="40" description="..." quality="0" craftquality="-1" gfx="collectibles_109_luna.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" achievement="700"/>
 
 	<familiar name="Lil Jupiter" id="9" description="Gas dwarf" quality="0" craftquality="-1" gfx="collectibles_109_lilJupiter.png" tags="uniquefamiliar noeden quest cansacrifice" special="true" hidden="true" />
