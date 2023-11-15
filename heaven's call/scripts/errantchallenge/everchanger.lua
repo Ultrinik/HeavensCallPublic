@@ -48,6 +48,7 @@ function mod:EverchangerUpdate(entity)
             data.HasSawPlayer = false
             data.Direction = (target.Position - entity.Position):Normalized()
             data.BattleSpeed = data.BattleSpeed or 1
+            data.CatchSpeed = data.CatchSpeed or 0
             
             entity:AddEntityFlags(EntityFlag.FLAG_NO_TARGET)
             entity:AddEntityFlags(EntityFlag.FLAG_NO_FLASH_ON_DAMAGE)
@@ -97,14 +98,20 @@ end
 mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.EverchangerUpdate, ID)
 
 function mod:EverchangerCatch(entity, sprite, data, target)
+    local speed = data.CatchSpeed
+    data.CatchSpeed = math.max(data.CatchSpeed+0.05, 5)
+
     local direction = target.Position - entity.Position
     direction = direction:Normalized()
 
     entity.Velocity = entity.Velocity*0.5 + direction*5
+    entity.Velocity = entity.Velocity:Normalized()*speed
 
     if entity.Position:Distance(target.Position) < (target.Size + entity.Size + 10) then
         entity:Remove()
-        mod:TriggerEverchangerBattle()
+        mod:scheduleForUpdate(function()
+            mod:TriggerEverchangerBattle()
+        end, 2)
     end
 end
 function mod:EverchangerBattle(entity, sprite, data, target)

@@ -69,7 +69,7 @@ A once cheerful and expresfull rabbit, not tainted by the penance of the light. 
 [*] [url=https://twitter.com/Aladar_C137] Aladar[/url]: Creator of the original concept for Venus. 
 [/list] 
 [h1][b] If you are going to report a bug or post a suggestion, please do so in the appropriate discussion. [/b][/h1]</description>
-    <version>1.5.2</version>
+    <version>1.5.4</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
@@ -78,6 +78,7 @@ A once cheerful and expresfull rabbit, not tainted by the penance of the light. 
     <tag id="Pickups"/>
     <tag id="Familiars"/>
     <tag id="Rooms"/>
+    <tag id="Floors"/>
     <tag id="Enemies"/>
     <tag id="Bosses"/>
     <tag id="Challenges"/>

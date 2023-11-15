@@ -1231,3 +1231,8 @@ function mod:SolLightUpdate(entity)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.SolLightUpdate, mod.EntityCircleData.VAR)
+
+--PICKUPS
+function mod:EverchangerPickupInit(entity)
+    entity:GetSprite():Play("Appear", true)
+end

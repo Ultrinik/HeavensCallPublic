@@ -96,6 +96,7 @@ function mod:EverchangerCallbacks(init)
     mod:RemoveCallback(ModCallbacks.MC_NPC_UPDATE, mod.ShopkeeperUpdate, EntityType.ENTITY_SHOPKEEPER)
     mod:RemoveCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.AntiGoldBomb, PickupVariant.PICKUP_BOMB)
     mod:RemoveCallback(ModCallbacks.MC_POST_BOMB_UPDATE, mod.EverchangerBombUpdate, BombVariant.BOMB_NORMAL)
+    mod:RemoveCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.EverchangerPickupInit)
 
     if init then
 		mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.KeepMusicGoing)
@@ -108,6 +109,7 @@ function mod:EverchangerCallbacks(init)
         mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.ShopkeeperUpdate, EntityType.ENTITY_SHOPKEEPER)
         mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.AntiGoldBomb, PickupVariant.PICKUP_BOMB)
         mod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, mod.EverchangerBombUpdate, BombVariant.BOMB_NORMAL)
+        mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.EverchangerPickupInit)
     end
 end
 
@@ -494,10 +496,10 @@ function mod:StartEverchangerEntity()
         sfx:Play(Isaac.GetSoundIdByName("QuantumThunder"),1.3)
     end
 end
-function mod:ResetEverchangerEntity()
+function mod:ResetEverchangerEntity(currentIdx)
     if flags.enabledErrant then
 
-        local currentIdx = game:GetLevel():GetCurrentRoomIndex()
+        currentIdx = currentIdx or game:GetLevel():GetCurrentRoomIndex()
         local x = currentIdx % 13
         local respawnIdx = 63
         if x > 5 then
@@ -954,6 +956,8 @@ function mod:OnEverchangerNewRoom()
 
             if not player:HasCollectible(mod.EverchangerTrinkets.guppy) then
                 player:AddCollectible(mod.EverchangerTrinkets.guppy)
+                player:CheckFamiliar(FamiliarVariant.LEECH, 1, player:GetCollectibleRNG(mod.EverchangerTrinkets.guppy), Isaac.GetItemConfig():GetCollectible(mod.EverchangerTrinkets.guppy), 160)
+        
             end
             
         end
@@ -1200,7 +1204,7 @@ function mod:FinishEverchangerBattle(forceStart, lost)
             player.Position = game:GetRoom():GetCenterPos()+Vector(0,60)
         end, 2)
     end
-    mod:ResetEverchangerEntity()
+    mod:ResetEverchangerEntity(flags.lastRoom)
 
     local t1 = player:GetTrinket(0)
     local t2 = player:GetTrinket(1)
@@ -1245,10 +1249,6 @@ function mod:EverchagerCache(player, cacheFlag)
 		local numFamiliars = player:GetCollectibleNum(mod.EverchangerTrinkets.guppy)
         player:CheckFamiliar(FamiliarVariant.LEECH, numFamiliars, player:GetCollectibleRNG(mod.EverchangerTrinkets.guppy), Isaac.GetItemConfig():GetCollectible(mod.EverchangerTrinkets.guppy), 160)
         
-        mod:scheduleForUpdate(function()
-            if not player then return end
-            player:CheckFamiliar(FamiliarVariant.LEECH, numFamiliars, player:GetCollectibleRNG(mod.EverchangerTrinkets.guppy), Isaac.GetItemConfig():GetCollectible(mod.EverchangerTrinkets.guppy), 160)
-        end, 5)
     end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.EverchagerCache)
