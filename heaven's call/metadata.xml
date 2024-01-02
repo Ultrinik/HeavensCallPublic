@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-    <name>Heaven's Call [Halloween Update] PLAY THE NEW CHALLENGE</name>
+    <name>Heaven's Call</name>
     <directory>heaven's call</directory>
     <id>2839972756</id>
     <description>[url=https://twitter.com/HeavensCallMOD] Follow Heaven's Call on twitter [/url]
 [url=https://github.com/Ultrinik/HeavensCallPublic/releases/tag/steam] Mirror download for manual installation  [/url]
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3084494619] Black screen issues? try this version [/url]
+
+[url=https://ultrinik.itch.io/heavens-call-suika] Play Heaven's Call suika [/url]
 
 [h1] What is this mod [/h1] 
 This mod adds two new types of rooms the [i] Astral Challenge Room[/i], which has two variants, an easy one, where outer planets spawn, and a difficult one, where the inner planets spawn and the [i] Lunar Pact Room[/i], where you can get Ultra Secret Room Items for broken hearts, and find 8 new items. 
@@ -69,7 +73,7 @@ A once cheerful and expresfull rabbit, not tainted by the penance of the light. 
 [*] [url=https://twitter.com/Aladar_C137] Aladar[/url]: Creator of the original concept for Venus. 
 [/list] 
 [h1][b] If you are going to report a bug or post a suggestion, please do so in the appropriate discussion. [/b][/h1]</description>
-    <version>1.5.4</version>
+    <version>1.5.6</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

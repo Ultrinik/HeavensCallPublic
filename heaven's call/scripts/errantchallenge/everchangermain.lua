@@ -1108,7 +1108,7 @@ function mod:OnEverchangerNewRoom()
         
         if roomidx == 102 then --Evil spikeroom
             local walls = {[59] = true, [60] = true, [74] = true, [75] = true}
-            local safe = {[50] = true, [65] = true, [80] = true, [54] = true, [69] = true, [84] = true, [66] = true, [67] = true, [68] = true,}
+            local safe = {[50] = true, [65] = true, [80] = true, [54] = true, [69] = true, [84] = true, [66] = true, [67] = true, [68] = true, [46]=true, [61]=true, [76]=true, [58]=true, [73]=true, [88]=true}
             for i=46, 88 do
                 if not walls[i] then
                     local position = room:GetGridPosition(i)
