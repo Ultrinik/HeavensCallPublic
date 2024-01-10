@@ -29,11 +29,11 @@
         ]]></vertex>
 
         <fragment><![CDATA[
-            varying lowp vec4 Color0;
-            varying mediump vec2 TexCoord0;
-            varying lowp vec4 RenderDataOut;
-            varying lowp float ScaleOut;
-            varying lowp float EnabledOut;
+            varying vec4 Color0;
+            varying vec2 TexCoord0;
+            varying vec4 RenderDataOut;
+            varying float ScaleOut;
+            varying float EnabledOut;
             uniform sampler2D Texture0;
             void main(void)
             {
@@ -75,11 +75,11 @@
         ]]></vertex>
 
         <fragment><![CDATA[
-            varying lowp vec4 Color0;
-            varying mediump vec2 TexCoord0;
-            varying lowp vec4 RenderDataOut;
-            varying lowp float ScaleOut;
-            varying lowp float EnabledOut;
+            varying vec4 Color0;
+            varying vec2 TexCoord0;
+            varying vec4 RenderDataOut;
+            varying float ScaleOut;
+            varying float EnabledOut;
             uniform sampler2D Texture0;
             void main(void)
             {
@@ -164,17 +164,17 @@
         ]]></vertex>
 
         <fragment><![CDATA[
-            varying lowp vec4 Color0; 
-            varying mediump vec2 TexCoord0; 
-            varying lowp vec4 RenderDataOut;
-            varying lowp float ScaleOut; 
-            varying lowp float EnabledStaticOut; 
-            varying lowp float EnabledZoomOut; 
+            varying vec4 Color0; 
+            varying vec2 TexCoord0; 
+            varying vec4 RenderDataOut;
+            varying float ScaleOut; 
+            varying float EnabledStaticOut; 
+            varying float EnabledZoomOut; 
             varying vec3 Position0Out;
             varying vec3 Position1Out;
-            varying lowp float TimeOut;
-            varying lowp float DistanceOut; 
-            varying lowp float RedOut; 
+            varying float TimeOut;
+            varying float DistanceOut; 
+            varying float RedOut; 
             uniform sampler2D Texture0; 
             void main(void)
             {
@@ -456,14 +456,14 @@
         ]]></vertex>
 
         <fragment><![CDATA[
-            varying lowp vec4 Color0; 
-            varying mediump vec2 TexCoord0; 
-            varying lowp vec4 RenderDataOut;
-            varying lowp float ScaleOut; 
-            varying mediump vec2 PlayerPosOut;
-            varying mediump vec2 CenterPosOut;
-            varying lowp float TimeOut; 
-            varying lowp float VenusTimeOut; 
+            varying vec4 Color0; 
+            varying vec2 TexCoord0; 
+            varying vec4 RenderDataOut;
+            varying float ScaleOut; 
+            varying vec2 PlayerPosOut;
+            varying vec2 CenterPosOut;
+            varying float TimeOut; 
+            varying float VenusTimeOut; 
             uniform sampler2D Texture0; 
             void main(void)
             {
@@ -523,13 +523,13 @@
         ]]></vertex>
 
         <fragment><![CDATA[
-            varying lowp vec4 Color0; 
-            varying mediump vec2 TexCoord0; 
-            varying lowp vec4 RenderDataOut;
-            varying lowp float ScaleOut; 
-            varying lowp float EnabledOut; 
-            varying mediump vec3 BlackPositionOut;
-            varying lowp float TimeOut; 
+            varying vec4 Color0; 
+            varying vec2 TexCoord0; 
+            varying vec4 RenderDataOut;
+            varying float ScaleOut; 
+            varying float EnabledOut; 
+            varying vec3 BlackPositionOut;
+            varying float TimeOut; 
             uniform sampler2D Texture0; 
             void main(void)
             {
@@ -598,14 +598,14 @@
             ]]></vertex>
 
             <fragment><![CDATA[
-                varying lowp vec4 Color0; 
-                varying mediump vec2 TexCoord0; 
-                varying lowp vec4 RenderDataOut;
-                varying lowp float ScaleOut; 
-                varying lowp float EnabledOut; 
-                varying lowp float ChargeOut; 
-                varying lowp float NotBatteryOut; 
-                varying lowp float TimeOut; 
+                varying vec4 Color0; 
+                varying vec2 TexCoord0; 
+                varying vec4 RenderDataOut;
+                varying float ScaleOut; 
+                varying float EnabledOut; 
+                varying float ChargeOut; 
+                varying float NotBatteryOut; 
+                varying float TimeOut; 
                 uniform sampler2D Texture0; 
                 void main(void)
                 {
@@ -662,7 +662,7 @@
                             Color.b = 0.0;
                         }
 
-                        if (NotBatteryOut == 0){
+                        if (NotBatteryOut == 0.){
                             if (0.1013 < path.x && path.x < 0.1877 &&
                             0.09 > -path.y && -path.y > 0.080){
                                 Color.r = dist.x/2.0;
@@ -740,12 +740,12 @@
         ]]></vertex>
 
         <fragment><![CDATA[
-            varying lowp vec4 Color0;
-            varying mediump vec2 TexCoord0;
-            varying lowp vec4 RenderDataOut;
-            varying lowp float ScaleOut;
-            varying lowp float EnabledOut;
-            varying lowp float TimeOut;
+            varying vec4 Color0;
+            varying vec2 TexCoord0;
+            varying vec4 RenderDataOut;
+            varying float ScaleOut;
+            varying float EnabledOut;
+            varying float TimeOut;
             uniform sampler2D Texture0;
 
             //https://glslsandbox.com/e#106046.0
