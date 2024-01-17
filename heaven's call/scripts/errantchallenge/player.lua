@@ -293,6 +293,22 @@ function mod:EverchangerPlayerDamage(player, amount, damageFlags, source, frames
 end
 
 
+function mod:EverchangerTrinketInit(entity)
+    if not flags.inChallenge then
+        local sub = entity.SubType
+        if not (sum == TrinketType.TRINKET_STRANGE_KEY) then
+            for k, trinket in pairs(mod.EverchangerTrinkets) do
+                if sub == trinket then
+                    --entity:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, -1)
+                    local nt = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, entity.Position, entity.Velocity, entity.SpawnerEntity)
+                    entity:Remove()
+                    break
+                end
+            end
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.EverchangerTrinketInit, PickupVariant.PICKUP_TRINKET)
 
 
 --POPOPOPOP

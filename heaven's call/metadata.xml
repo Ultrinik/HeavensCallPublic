@@ -6,8 +6,6 @@
     <description>[url=https://twitter.com/HeavensCallMOD] Follow Heaven's Call on twitter [/url]
 [url=https://github.com/Ultrinik/HeavensCallPublic/releases/tag/steam] Mirror download for manual installation  [/url]
 
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3084494619] Black screen issues? try this version [/url]
-
 [url=https://ultrinik.itch.io/heavens-call-suika] Play Heaven's Call suika [/url]
 
 [h1] What is this mod [/h1] 
@@ -69,11 +67,12 @@ A once cheerful and expresfull rabbit, not tainted by the penance of the light. 
 [*] Churupinha: Help with sprites.  
 [*] Grommy: Help with sprites. 
 [*] Harvester: Creator of the new Lunar Pact door sprite. 
-[*] IzzyIsakoi_: Creator of the new Astral Challenge door sprite. 
+[*] IzzyIsakoi_: Creator of the new Astral Challenge door sprite.
+[*] Jerb: Help with shaders.  
 [*] [url=https://twitter.com/Aladar_C137] Aladar[/url]: Creator of the original concept for Venus. 
 [/list] 
 [h1][b] If you are going to report a bug or post a suggestion, please do so in the appropriate discussion. [/b][/h1]</description>
-    <version>1.5.6</version>
+    <version>1.5.8</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

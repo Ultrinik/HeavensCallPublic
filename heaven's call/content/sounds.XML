@@ -355,13 +355,6 @@
 		<sample weight="1" path="woodstep_5.wav" />
 		<sample weight="1" path="woodstep_6.wav" />
 		<sample weight="1" path="woodstep_7.wav" />
-		<sample weight="1" path="woodstep_8.wav" />
-		<sample weight="1" path="woodstep_9.wav" />
-		<sample weight="1" path="woodstep_10.wav" />
-		<sample weight="1" path="woodstep_11.wav" />
-		<sample weight="1" path="woodstep_12.wav" />
-		<sample weight="1" path="woodstep_13.wav" />
-		<sample weight="1" path="woodstep_14.wav" />
 	</sound>
 	<sound name="GrassStep">
 		<sample weight="1" path="grassstep_1.wav" />

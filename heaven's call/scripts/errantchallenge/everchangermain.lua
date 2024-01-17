@@ -124,6 +124,7 @@ function mod:EverchangerStartCheck(isContinue)
     flags.oxygen = 100
     flags.endRoomOpen = false
     flags.alarmColor = 0
+    flags.inWaterRoom = false
 
     flags.jumpscareFlag = false
     flags.achievementFlag = false

@@ -1460,9 +1460,6 @@
 		<spawn x="11" y="1">
 			<entity type="33" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
-		<spawn x="2" y="2">
-			<entity type="33" variant="0" subtype="0" weight="1.0"/>
-		</spawn>
 		<spawn x="9" y="2">
 			<entity type="33" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
@@ -1509,6 +1506,9 @@
 			<entity type="33" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="7" y="5">
+			<entity type="33" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="6">
 			<entity type="33" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="3" y="6">
