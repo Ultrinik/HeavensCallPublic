@@ -3,8 +3,10 @@
     <name>Heaven's Call</name>
     <directory>heaven's call</directory>
     <id>2839972756</id>
-    <description>[url=https://twitter.com/HeavensCallMOD] Follow Heaven's Call on twitter [/url]
-[url=https://github.com/Ultrinik/HeavensCallPublic/releases/tag/steam] Mirror download for manual installation  [/url]
+    <description>disclaimer: To beat the horror challenge you need to be familiar with the contents of the mod.
+
+[url=https://twitter.com/HeavensCallMOD] Follow Heaven's Call on twitter [/url]
+[url=https://github.com/Ultrinik/HeavensCallPublic/releases/latest] Mirror download for manual installation  [/url]
 
 [url=https://ultrinik.itch.io/heavens-call-suika] Play Heaven's Call suika [/url]
 
@@ -72,7 +74,7 @@ A once cheerful and expresfull rabbit, not tainted by the penance of the light. 
 [*] [url=https://twitter.com/Aladar_C137] Aladar[/url]: Creator of the original concept for Venus. 
 [/list] 
 [h1][b] If you are going to report a bug or post a suggestion, please do so in the appropriate discussion. [/b][/h1]</description>
-    <version>1.5.8</version>
+    <version>1.5.10</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

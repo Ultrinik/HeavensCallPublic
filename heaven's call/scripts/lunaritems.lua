@@ -1318,83 +1318,91 @@ mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup, collid
 end, mod.EntityInf[mod.Entity.Apple].VAR)
 
 function mod:SnakeUpdate(entity)
-	entity.Velocity = Vector.Zero
-
-	local data = entity:GetData()
-	local room = game:GetRoom()
-
-	local n = (1 + (entity.Variant - mod.EntityInf[mod.Entity.Snake3].VAR))
-	local m = 0.125*n + 0.625
-	
-	if not data.Init then
-		data.Init = true
-
-		data.Direcion = -1 --Up
-		if entity.Position.Y < room:GetCenterPos().Y then
-			data.Direcion = 1 --Down
-			entity:GetSprite().FlipY = true
-		end
-
-		if not data.PosX then data.PosX = entity.Position.X end
-		if not data.Offset then data.Offset = 0 end
-
-		entity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ENEMIES
-		entity.CollisionDamage = 7*n
-		entity:AddEntityFlags(EntityFlag.FLAG_CHARM | EntityFlag.FLAG_NO_TARGET | EntityFlag.FLAG_NO_FLASH_ON_DAMAGE | EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
-		entity:GetSprite().Color = Color.Default
-
+	if entity.Variant == mod.EntityInf[mod.Entity.Snake1].VAR or
+		entity.Variant == mod.EntityInf[mod.Entity.Snake2].VAR or
+		entity.Variant == mod.EntityInf[mod.Entity.Snake3].VAR then
 		
-		if entity.SubType == 0 then
-			local parent = entity
+		entity.Velocity = Vector.Zero
 
-			for i=1, 13*n do
-				local position = entity.Position - Vector(0, -data.Direcion*50*m)
-				local tail = Isaac.Spawn(mod.EntityInf[mod.Entity.Snake1].ID, entity.Variant, 1, position, Vector.Zero, entity)
-				tail.Parent = parent
+		local data = entity:GetData()
+		local room = game:GetRoom()
 
-				if data.Direcion > 0 then
-					tail.DepthOffset = parent.DepthOffset + data.Direcion*51*m
-				end
+		local n = (1 + (entity.Variant - mod.EntityInf[mod.Entity.Snake3].VAR))
+		local m = 0.125*n + 0.625
+		
+		if not data.Init then
+			data.Init = true
 
-				tail:GetData().PosX = data.PosX
-				tail:GetData().Offset = i*86
-				
-				tail:GetData().Target = entity:GetData().Target
-
-				parent = tail
+			data.Direcion = -1 --Up
+			if entity.Position.Y < room:GetCenterPos().Y then
+				data.Direcion = 1 --Down
+				entity:GetSprite().FlipY = true
 			end
 
+			if not data.PosX then data.PosX = entity.Position.X end
+			if not data.Offset then data.Offset = 0 end
+
+			entity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ENEMIES
+			entity.CollisionDamage = 7*n
+			entity:AddEntityFlags(EntityFlag.FLAG_CHARM | EntityFlag.FLAG_NO_TARGET | EntityFlag.FLAG_NO_FLASH_ON_DAMAGE | EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
+			entity:GetSprite().Color = Color.Default
+
+			
+			if entity.SubType == 0 then
+				local parent = entity
+
+				for i=1, 13*n do
+					local position = entity.Position - Vector(0, -data.Direcion*50*m)
+					local tail = Isaac.Spawn(mod.EntityInf[mod.Entity.Snake1].ID, entity.Variant, 1, position, Vector.Zero, entity)
+					tail.Parent = parent
+
+					if data.Direcion > 0 then
+						tail.DepthOffset = parent.DepthOffset + data.Direcion*51*m
+					end
+
+					tail:GetData().PosX = data.PosX
+					tail:GetData().Offset = i*86
+					
+					tail:GetData().Target = entity:GetData().Target
+
+					parent = tail
+				end
+
+
+			elseif entity.SubType == 1 then
+				entity:GetSprite():Play("Tail", true)
+			end
+		end
+
+		if data.Target then
+			data.PosX = data.PosX*0.975 + data.Target.Position.X*0.025
+		end
+
+		local posX = data.PosX + 20*math.sin((entity.FrameCount + data.Offset)/1.75)
+
+		local posY
+		if entity.SubType == 0 then
+			if math.abs(entity.Position.Y) > 4000 then entity:Remove() end
+			posY = entity.Position.Y + data.Direcion*25
 
 		elseif entity.SubType == 1 then
-			entity:GetSprite():Play("Tail", true)
+			if not entity.Parent then 
+				entity:Remove() 
+				return 
+			end
+			posY = entity.Parent.Position.Y - data.Direcion*75*m
 		end
+
+		entity.Position = Vector(posX, posY)
 	end
-
-	if data.Target then
-		data.PosX = data.PosX*0.975 + data.Target.Position.X*0.025
-	end
-
-	local posX = data.PosX + 20*math.sin((entity.FrameCount + data.Offset)/1.75)
-
-	local posY
-	if entity.SubType == 0 then
-		if math.abs(entity.Position.Y) > 4000 then entity:Remove() end
-		posY = entity.Position.Y + data.Direcion*25
-
-	elseif entity.SubType == 1 then
-		if not entity.Parent then 
-			entity:Remove() 
-			return 
-		end
-		posY = entity.Parent.Position.Y - data.Direcion*75*m
-	end
-
-	entity.Position = Vector(posX, posY)
-
 end
 mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.SnakeUpdate, mod.EntityInf[mod.Entity.Snake1].ID)
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity, amount, flags, source, frames)
-	if source and source.Type == mod.EntityInf[mod.Entity.Snake1].ID and source.Entity and (flags&DamageFlag.DAMAGE_CLONES==0) then
+	if source and source.Type == mod.EntityInf[mod.Entity.Snake1].ID and 
+		(entity.Variant == mod.EntityInf[mod.Entity.Snake1].VAR or
+		entity.Variant == mod.EntityInf[mod.Entity.Snake2].VAR or
+		entity.Variant == mod.EntityInf[mod.Entity.Snake3].VAR) and
+		source.Entity and (flags&DamageFlag.DAMAGE_CLONES==0) then
 		entity:TakeDamage(source.Entity.CollisionDamage+2, flags | DamageFlag.DAMAGE_EXPLOSION | DamageFlag.DAMAGE_CRUSH | DamageFlag.DAMAGE_IGNORE_ARMOR | DamageFlag.DAMAGE_CLONES, source, frames)
 		entity.Velocity = Vector.Zero
 		entity.Position = mod:Lerp(entity.Position, source.Entity.Position, 0.1)
