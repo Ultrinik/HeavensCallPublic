@@ -197,8 +197,8 @@ function mod:AstralRoomGenerator()
 	local level = game:GetLevel()
 
 	--Initialize mod.roomdata
-	if not mod.roomdata and level:GetStage() ~= LevelStage.STAGE1_1 and not BasementRenovator then
-		mod:InitializeRoomsData()
+	if not mod.roomdata then
+		return
 	end
 
 	local spawnChance = 0

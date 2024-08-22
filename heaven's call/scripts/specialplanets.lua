@@ -6623,7 +6623,11 @@ function mod:ErrantDeath(entity)
         local shard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, mod.Trinkets.Shard, entity.Position, Vector((rng:RandomFloat() * 4) + 3.5,0):Rotated(rng:RandomFloat()*360), nil)
 
         if game:GetLevel():GetCurrentRoomDesc().Data.Type == RoomType.ROOM_ERROR then
-            local trapdoor = Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 1, game:GetRoom():GetCenterPos(), true)
+            -- for i=1, 10 do local card = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, Card.CARD_FOOL, entity.Position, Vector(rng:RandomFloat()*10, 0):Rotated(rng:RandomFloat()*360), nil) end
+
+            local v = Vector(25,0)
+            local light = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEAVEN_LIGHT_DOOR, 0, game:GetRoom():GetCenterPos()+v, Vector.Zero, nil)
+            local trapdoor = Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 1, game:GetRoom():GetCenterPos()-v, true)
         end
     end
 end

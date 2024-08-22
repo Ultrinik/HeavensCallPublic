@@ -2458,12 +2458,6 @@ function mod:OnMoonUpdate(familiar)
 	local sprite = familiar:GetSprite()
 	local data = familiar:GetData()
 
-
-	familiar.CollisionDamage = 1
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) then
-		familiar.CollisionDamage = familiar.CollisionDamage * 2
-	end
-
 	if player:GetData().PressedDirection_HC and player:GetData().PressedDirection_HC:Length() > 0 then
 		data.Direcion = player:GetData().PressedDirection_HC
 
@@ -2479,13 +2473,15 @@ function mod:OnMoonUpdate(familiar)
 	elseif sprite:IsEventTriggered("Attack") and data.Direcion then
 		local velocity = data.Direcion * 8
 		local tear = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLUE, 0, familiar.Position, velocity, familiar):ToTear()
+
 		tear.CollisionDamage = 4*familiar.CollisionDamage
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) then tear.CollisionDamage = tear.CollisionDamage*2 end
 
 		if familiar.Player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
 			tear:AddTearFlags(TearFlags.TEAR_HOMING)
 		end
 		if familiar.Player:HasTrinket(mod.Trinkets.Flag) then
-			tear.CollisionDamage = 1.5*familiar.CollisionDamage*familiar.Player:GetTrinketMultiplier(mod.Trinkets.Flag)
+			tear.CollisionDamage = 1.5*tear.CollisionDamage*familiar.Player:GetTrinketMultiplier(mod.Trinkets.Flag)
 		end
 
 		local subtype = familiar.SubType

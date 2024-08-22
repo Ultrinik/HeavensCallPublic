@@ -836,26 +836,51 @@ if MinimapAPI then
 end
 mod.minimaprooms = {} --Stores rooms that need to be updated on MinimapAPI
 
-function mod:InitializeRoomsData()
+function mod:InitializeRoomsData(delayFrames, generator)
+	delayFrames = delayFrames or 0
+		
+	if game:GetLevel():GetStage() <= LevelStage.STAGE1_1 or game:GetLevel():GetStage() >= LevelStage.STAGE8 then return end
 
-	local vivitatedCase = VitiatedCharacters and game:GetLevel():GetStage() == LevelStage.STAGE8
-	if vivitatedCase then return end
+	function mod:initFunc()
 
-	mod.roomdata = {}
-	mod:InitializeRoomData("dice", mod.minvariant1, mod.maxvariant2+1, mod.roomdata)
+		mod.roomdata = {}
+		mod:InitializeRoomData("dice", mod.minvariant1, mod.maxvariant2+1, mod.roomdata)
 
-	mod.pactroomdata = {}
-	mod:InitializeRoomData("devil", mod.minlunarvariant, mod.maxlunarvariant, mod.pactroomdata)
+		mod.pactroomdata = {}
+		mod:InitializeRoomData("devil", mod.minlunarvariant, mod.maxlunarvariant, mod.pactroomdata)
 
-	mod.diceroomdata = {}
-	mod:InitializeDiceRoomData(mod.diceroomdata)
+		mod.diceroomdata = {}
+		mod:InitializeDiceRoomData(mod.diceroomdata)
 
-	mod.everchangerroomdata = {}
-	mod:InitializeRoomData("blackmarket", mod.EVFloorIdRange.X, 8503, mod.everchangerroomdata)
-	mod:InitializeRoomData("shop", 8504, 8504, mod.everchangerroomdata) --damn venus
-	mod:InitializeRoomData("blackmarket", 8505, 8507, mod.everchangerroomdata)
-	mod:InitializeRoomData("supersecret", 8508, 8508, mod.everchangerroomdata) --damn saturn
-	mod:InitializeRoomData("blackmarket", 8509, mod.EVFloorIdRange.Y, mod.everchangerroomdata)
+		if Isaac.GetChallenge() == Isaac.GetChallengeIdByName("[HC] Escape the Everchanger") then
+			mod.everchangerroomdata = {}
+			mod:InitializeRoomData("blackmarket", mod.EVFloorIdRange.X, 8503, mod.everchangerroomdata)
+			mod:InitializeRoomData("shop", 8504, 8504, mod.everchangerroomdata) --damn venus
+			mod:InitializeRoomData("blackmarket", 8505, 8507, mod.everchangerroomdata)
+			mod:InitializeRoomData("supersecret", 8508, 8508, mod.everchangerroomdata) --damn saturn
+			mod:InitializeRoomData("blackmarket", 8509, mod.EVFloorIdRange.Y, mod.everchangerroomdata)
+		end
+
+		if generator then
+			mod:AstralRoomGenerator()
+		end
+	end
+
+	local currentRoomIdx = game:GetLevel():GetCurrentRoomIndex()
+	local currentLevelIdx = game:GetLevel():GetDungeonPlacementSeed()
+	if delayFrames == 0 then
+		mod:initFunc()
+	else
+		function mod:schelFunc()
+			if currentLevelIdx ~= game:GetLevel():GetDungeonPlacementSeed() then return end
+			if currentRoomIdx == game:GetLevel():GetCurrentRoomIndex() then
+				mod:initFunc()
+			else
+				mod:scheduleForUpdate(mod.schelFunc, delayFrames)
+			end
+		end
+		mod:scheduleForUpdate(mod.schelFunc, delayFrames)
+	end
 end
 
 --Load (or reset) things when the run is started or continued
@@ -899,15 +924,7 @@ function mod:OnGameStartMain(iscontinued)
 	end
 
 	if iscontinued and not BasementRenovator and not mod.roomdata then
-		if StageAPI then
-			mod:scheduleForUpdate(function()
-				mod:InitializeRoomsData()
-			end, 3, ModCallbacks.MC_POSTR)
-		else
-			mod:scheduleForUpdate(function()
-				mod:InitializeRoomsData()
-			end, 0, ModCallbacks.MC_POST_RENDER)
-		end
+		mod:InitializeRoomsData(3)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnGameStartMain)
@@ -929,13 +946,17 @@ function mod:OnNewLevelMain()
 		mod.savedata.errantKilled = false
 	end
 
-	--Try to generate the Astral Challenge Room.
-	if StageAPI then
-		mod:scheduleForUpdate(function()
+	--Initialize the rooms
+	if Isaac.GetChallenge() ~= Isaac.GetChallengeIdByName("[HC] Escape the Everchanger") then
+		if not mod.roomdata then
+			if StageAPI then
+				mod:InitializeRoomsData(3, true)
+			else
+				mod:InitializeRoomsData(0, true)
+			end
+		else
 			mod:AstralRoomGenerator()
-		end, 3, ModCallbacks.MC_POST_UPDATE)
-	else
-		mod:AstralRoomGenerator()
+		end
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.OnNewLevelMain)
@@ -2331,6 +2352,9 @@ if EID then
 	
     EID:addCollectible(mod.Items.Neptunus, "# Gives a trident familiar that behaves like a faster version of Mom's Knife. # The trident have a chance to open black holes on killed enemies while is being thrown.", "Neptunus?", "en_us")
     EID:addCollectible(mod.Items.Neptunus, "# Da un familiar tridente que se comporta como una versión más rápida de el Cuchillo de Mamá. # El tridente tiene la posibilidad de abrir agujeros negros en los enemigos asesinados mientras es lanzado.", "Neptuno?", "spa")
+	
+	EID:addCollectible(Isaac.GetItemIdByName("La Luna"), "# Not implemented.", "La Luna", "en_us")
+    EID:addCollectible(Isaac.GetItemIdByName("La Luna"), "# No implementado.", "La Luna", "spa")
 
 	
 	

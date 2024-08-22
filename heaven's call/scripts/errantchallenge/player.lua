@@ -298,9 +298,13 @@ function mod:EverchangerTrinketInit(entity)
         local sub = entity.SubType
         if not (sum == TrinketType.TRINKET_STRANGE_KEY) then
             for k, trinket in pairs(mod.EverchangerTrinkets) do
-                if sub == trinket then
-                    --entity:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, -1)
-                    local nt = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, entity.Position, entity.Velocity, entity.SpawnerEntity)
+                if (sub%32768) == trinket then
+                    local golden = 0
+                    if sub > TrinketType.TRINKET_GOLDEN_FLAG then golden = TrinketType.TRINKET_GOLDEN_FLAG end
+
+                    local ntrinket = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, entity.Position, entity.Velocity, entity.SpawnerEntity):ToPickup()
+                    ntrinket:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, ntrinket.SubType + golden, true, true)
+
                     entity:Remove()
                     break
                 end

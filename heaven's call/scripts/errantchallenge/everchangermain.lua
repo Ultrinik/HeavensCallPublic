@@ -395,10 +395,6 @@ function mod:OnEverchangerStart()
 
     Isaac.GetPlayer(0):AddBombs(-1)
 
-    if not mod.everchangerroomdata then
-        mod:InitializeRoomsData()
-    end
-
     mod:scheduleForUpdate(function()
         Isaac.ExecuteCommand("stage 9")
 
@@ -408,9 +404,10 @@ function mod:OnEverchangerStart()
 
             mod:scheduleForUpdate(function()
                 mod.ModFlags.forcedPitchBlack = false
-            end,1)
+            end, 15)
     
-            game:StartRoomTransition(game:GetLevel():GetCurrentRoomIndex(), 0, RoomTransitionAnim.FADE)
+            game:StartRoomTransition(game:GetLevel():GetCurrentRoomIndex(), Direction.UP, RoomTransitionAnim.FADE)
+            Isaac.GetPlayer(0).Position = game:GetRoom():GetCenterPos() + Vector(0,-80) 
         end, 1)
     end, 1)
 end
@@ -481,7 +478,7 @@ function mod:InitEverchangerFloor()
     mod.ModFlags.forcedPitchBlack = true
     mod:scheduleForUpdate(function()
         mod.ModFlags.forcedPitchBlack = false
-    end, 60, ModCallbacks.MC_POST_RENDER)
+    end, 180, ModCallbacks.MC_POST_RENDER)
 
 end
 
