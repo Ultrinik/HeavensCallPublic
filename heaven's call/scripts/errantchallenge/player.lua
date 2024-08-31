@@ -296,7 +296,7 @@ end
 function mod:EverchangerTrinketInit(entity)
     if not flags.inChallenge then
         local sub = entity.SubType
-        if not (sum == TrinketType.TRINKET_STRANGE_KEY) then
+        if not (sub == TrinketType.TRINKET_STRANGE_KEY or sub == (TrinketType.TRINKET_GOLDEN_FLAG + TrinketType.TRINKET_STRANGE_KEY)) then
             for k, trinket in pairs(mod.EverchangerTrinkets) do
                 if (sub%32768) == trinket then
                     local golden = 0

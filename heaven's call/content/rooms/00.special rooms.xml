@@ -5441,7 +5441,7 @@
 			<entity type="999" variant="116" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="8534" name="everchanger_mirror" type="22" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
+	<room variant="8534" name="everchanger_mirror" type="22" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.0">
 		<door exists="False" x="-1" y="3"/>
 		<door exists="False" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
