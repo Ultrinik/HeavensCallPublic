@@ -110,10 +110,10 @@ function mod:PocketizeItem(player)
 		if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == mod.Items.Mars or player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == mod.Items.Saturnus then
 			slot = ActiveSlot.SLOT_PRIMARY
 		elseif player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == mod.Items.Mars or player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == mod.Items.Saturnus then
-			slot = ActiveSlot.SLOT_SECONDARY 
+			slot = ActiveSlot.SLOT_SECONDARY
 		end
 
-		if slot and player:GetActiveItem(ActiveSlot.SLOT_POCKET == 0) then
+		if slot and player:GetActiveItem(ActiveSlot.SLOT_POCKET) == 0 then
 			player:SetPocketActiveItem(player:GetActiveItem(slot), ActiveSlot.SLOT_POCKET, false)
 			player:RemoveCollectible(player:GetActiveItem(slot), false, slot, false)
 		end
@@ -2261,9 +2261,19 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, blackhole)
 			data.Init_HC = true
 
 			data.Position_HC = blackhole.Position
+
 			mod.ModFlags.blackHolePosition = blackhole.Position
 			mod.ModFlags.blackHoleTime = 0
 			mod.ModFlags.blackHole = true
+
+			local room = game:GetRoom()
+			if room:IsMirrorWorld() then
+				local ogY = mod.ModFlags.blackHolePosition.Y
+				local center = room:GetCenterPos()
+				local direction = mod.ModFlags.blackHolePosition - center
+				mod.ModFlags.blackHolePosition = center - direction
+				mod.ModFlags.blackHolePosition.Y = ogY
+			end
 		end
 
 		if data.Position_HC and mod.ModFlags.blackHoleTime then
