@@ -2261,11 +2261,10 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, blackhole)
 			data.Init_HC = true
 
 			data.Position_HC = blackhole.Position
-
 			mod.ModFlags.blackHolePosition = blackhole.Position
 			mod.ModFlags.blackHoleTime = 0
 			mod.ModFlags.blackHole = true
-
+			
 			local room = game:GetRoom()
 			if room:IsMirrorWorld() then
 				local ogY = mod.ModFlags.blackHolePosition.Y

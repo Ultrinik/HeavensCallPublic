@@ -1747,7 +1747,6 @@ function mod:ShadersRender(shaderName)
 				Enabled = 1,
 				BlackPosition = {position.X,  position.Y, radius.X},
 				Time = time,
-				WarpCheck = {position.X + 1, position.Y + 1},
 				}
 			return params
 		else
@@ -1755,7 +1754,6 @@ function mod:ShadersRender(shaderName)
 				Enabled = 0,
 				BlackPosition = {0,  0,  0},
 				Time = 0,
-				WarpCheck = {0, 0},
 				}
 			return params
 		end

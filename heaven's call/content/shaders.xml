@@ -487,7 +487,6 @@
             <param name="Enabled" type="float"/>
             <param name="BlackPosition" type="vec3"/>
             <param name="Time" type="float"/>
-            <param name="WarpCheck" type="vec2"/>
         </parameters>
 
         <vertex><![CDATA[
@@ -496,49 +495,29 @@
                 attribute vec2 TexCoord; 
                 attribute vec4 RenderData; 
                 attribute float Scale;
-
                 attribute float Enabled;
                 attribute vec3 BlackPosition;
                 attribute float Time;
-                attribute vec2 WarpCheck;
                 
-
                 varying vec4 Color0; 
                 varying vec2 TexCoord0; 
                 varying vec4 RenderDataOut; 
                 varying float ScaleOut;
-
                 varying float EnabledOut;
                 varying vec3 BlackPositionOut;
                 varying float TimeOut;
-                varying float YWarping;
-
                 uniform mat4 Transform; 
 
                 void main(void) 
                 {
                     RenderDataOut = RenderData;
                     ScaleOut = Scale;           // Passing data to fragment shader
+                    EnabledOut = Enabled;             // Passing data to fragment shader
+                    BlackPositionOut = BlackPosition;             // Passing data to fragment shader
+                    TimeOut = Time;             // Passing data to fragment shader
                     Color0 = Color;
                     TexCoord0 = TexCoord;
                     gl_Position = Transform * vec4(Position.xyz, 1.0);
-
-                    if (Enabled > 0.0) {
-                        
-                        EnabledOut = Enabled;                                                               // Passing data to fragment shader
-                        TimeOut = Time;                                                                     // Passing data to fragment shader
-                        
-                        vec4 TargetPos;
-
-                        TargetPos.xy = (BlackPosition.xy / RenderData.zw) * Scale;
-                        TargetPos.zw =  (BlackPosition.zy / RenderData.zw) * Scale;
-                        BlackPositionOut = vec3(TargetPos.xy, distance(TargetPos.xy, TargetPos.zw));        // Passing data to fragment shader
-                        
-                        vec2 WarpChecker = (WarpCheck.xy / RenderData.zw) * Scale;
-                        float xDistance = distance(vec2(WarpChecker.x, TargetPos.y), TargetPos.xy);
-                        float yDistance = distance(vec2(TargetPos.x, WarpChecker.y), TargetPos.xy);
-                        YWarping = xDistance / yDistance;                                                   // Passing data to fragment shader
-                    }
                 }
 
         ]]></vertex>
@@ -548,33 +527,26 @@
             varying vec2 TexCoord0; 
             varying vec4 RenderDataOut;
             varying float ScaleOut; 
-
             varying float EnabledOut; 
             varying vec3 BlackPositionOut;
             varying float TimeOut; 
-            varying float YWarping;
-
             uniform sampler2D Texture0; 
-
-            float warpedDistance(vec2 a, vec2 b) {
-                vec2 diff = a - b;
-                float distanceSquared = (diff.x * diff.x) + (diff.y * diff.y * YWarping * YWarping);
-                return sqrt(distanceSquared);
-            }
-
             void main(void)
             {
+                float aspect = RenderDataOut.z/RenderDataOut.w;
                 vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
 
-                if (EnabledOut > 0.0){
-                    float dist = warpedDistance(TexCoord0.xy, BlackPositionOut.xy);
-                    if (dist < 0.035 * TimeOut){
-                        Color.r = 0.0;
-                        Color.g = 0.0;
-                        Color.b = 0.0;
-                    }
-                }
+                vec2 pos = (BlackPositionOut.xy / RenderDataOut.zw) * ScaleOut ;
+                vec2 rad = (BlackPositionOut.zy / RenderDataOut.zw) * ScaleOut * 1.02;
 
+                float radius = length((rad - pos)       * vec2(aspect,1.0)); //Actual radius
+                float dist   = length((TexCoord0 - pos) * vec2(aspect,1.0)); //Distance from pixel to center
+
+                if (dist < radius * TimeOut) {
+                    Color.r -= EnabledOut * Color.r;
+                    Color.g -= EnabledOut * Color.g;
+                    Color.b -= EnabledOut * Color.b;
+                }
                 gl_FragColor = Color;
             }
         ]]></fragment>
