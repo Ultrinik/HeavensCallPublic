@@ -216,7 +216,7 @@ function mod:AstralRoomGenerator()
 
 	local corpseFlag = ( (level:GetStage() == LevelStage.STAGE4_1 or level:GetStage() == LevelStage.STAGE4_2) and ( level:GetStageType() == StageType.STAGETYPE_REPENTANCE or level:GetStageType() == StageType.STAGETYPE_REPENTANCE_B ))
 
-	if (level:GetStage() < LevelStage.STAGE5 and not corpseFlag) and not mod.savedata.planetAlive and not mod.savedata.planetKilled1 then
+	if (level:GetStage() < LevelStage.STAGE5 and not (corpseFlag or (LastJudgement and LastJudgement.STAGE.Mortis:IsStage()) ) ) and not mod.savedata.planetAlive and not mod.savedata.planetKilled1 then
 		--If the room can spawn, the chance is 0.2
 		if level:GetStage() >= stageMin and level:GetStage() <= stageLimit and not game:IsGreedMode() and not level:IsAscent() then
 			if mod.ModConfigs.roomSpawnChance == nil then mod.ModConfigs.roomSpawnChance = 9 end
@@ -227,7 +227,7 @@ function mod:AstralRoomGenerator()
 			end
 		end
 
-	elseif (level:GetStage() == LevelStage.STAGE5 or corpseFlag) and not mod.savedata.planetAlive and not mod.savedata.planetKilled2 then
+	elseif (level:GetStage() == LevelStage.STAGE5 or corpseFlag or (LastJudgement and LastJudgement.STAGE.Mortis:IsStage()) ) and not mod.savedata.planetAlive and not mod.savedata.planetKilled2 then
 		if mod.ModConfigs.roomSpawnChance2 == nil then mod.ModConfigs.roomSpawnChance2 = 30 end
 		spawnChance = mod.ModConfigs.roomSpawnChance2/100
 		if corpseFlag then

@@ -117,7 +117,7 @@ function mod:GenerateRoomFromDataset(dataset, onnewlevel)
 	local level = game:GetLevel()
 	local data = nil
 
-	if (level:GetStage() == LevelStage.STAGE5 or ( (level:GetStage() == LevelStage.STAGE4_1 or level:GetStage() == LevelStage.STAGE4_2) and ( level:GetStageType() == StageType.STAGETYPE_REPENTANCE or level:GetStageType() == StageType.STAGETYPE_REPENTANCE_B ))) then
+	if (level:GetStage() == LevelStage.STAGE5 or ( (level:GetStage() == LevelStage.STAGE4_1 or level:GetStage() == LevelStage.STAGE4_2) and ( level:GetStageType() == StageType.STAGETYPE_REPENTANCE or level:GetStageType() == StageType.STAGETYPE_REPENTANCE_B ))) or (LastJudgement and LastJudgement.STAGE.Mortis:IsStage()) then
 		data = dataset[mod:RandomInt(mod.minvariant2,mod.maxvariant2)]
 	else
 		data = dataset[mod:RandomInt(mod.minvariant1,mod.maxvariant1)]
