@@ -1,0 +1,97 @@
+<giantbook anm2root="gfx/ui/giantbook/">
+
+	<entry name="Taking a shit" anm2="giantbook_taking_a_shit_hc.anm2" anim="Idle" gfx="taking_a_shit_hc.png" />
+
+	<entry anm2="giantbook_hyperdice.anm2" anim="Appear" name="The Hyperdice" gfx="tesseract2.png">
+		<layer name="poof" r="228" g="228" b="228" a="0" />
+		<layer name="bg" r="228" g="228" b="228" a="0" />
+		<layer name="poof2" r="225" g="225" b="225" a="0" />
+	</entry>
+
+
+	<entry name="Hagalaz (HC)" anm2="GiantBook.anm2" anim="Appear" gfx="rune_01_hagalaz.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+		<layer name="popup" r="255" g="1500" b="1500" a="255" />
+	</entry>
+	<entry name="Jera (HC)" anm2="GiantBook.anm2" anim="Appear" gfx="rune_02_jera.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+		<layer name="popup" r="255" g="1500" b="1500" a="255" />
+	</entry>
+	<entry name="Ehwaz (HC)" anm2="GiantBook.anm2" anim="Appear" gfx="rune_03_ehwaz.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+		<layer name="popup" r="255" g="1500" b="1500" a="255" />
+	</entry>
+	<entry name="Dagaz (HC)" anm2="GiantBook.anm2" anim="Appear" gfx="rune_04_dagaz.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+		<layer name="popup" r="255" g="1500" b="1500" a="255" />
+	</entry>
+	<entry name="Ansuz (HC)" anm2="GiantBook.anm2" anim="Appear" gfx="rune_05_ansuz.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+		<layer name="popup" r="255" g="1500" b="1500" a="255" />
+	</entry>
+	<entry name="Perthro (HC)" anm2="GiantBook.anm2" anim="Appear" gfx="rune_06_perthro.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+		<layer name="popup" r="255" g="1500" b="1500" a="255" />
+	</entry>
+	<entry name="Berkano (HC)" anm2="GiantBook.anm2" anim="Appear" gfx="rune_07_berkand.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+		<layer name="popup" r="255" g="1500" b="1500" a="255" />
+	</entry>
+	<entry name="Algiz (HC)" anm2="GiantBook.anm2" anim="Appear" gfx="rune_08_algiz.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+		<layer name="popup" r="255" g="1500" b="1500" a="255" />
+	</entry>
+
+	<entry name="Fehu (HC)" anm2="GiantBook.anm2" anim="Appear" gfx="Fehu.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+		<layer name="popup" r="255" g="1500" b="1500" a="255" />
+	</entry>
+	<entry name="Gebo (HC)" anm2="GiantBook.anm2" anim="Appear" gfx="Gebo.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+		<layer name="popup" r="255" g="1500" b="1500" a="255" />
+	</entry>
+	<entry name="Ingwaz (HC)" anm2="GiantBook.anm2" anim="Appear" gfx="Ingwaz.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+		<layer name="popup" r="255" g="1500" b="1500" a="255" />
+	</entry>
+	<entry name="Kenaz (HC)" anm2="GiantBook.anm2" anim="Appear" gfx="Kenaz.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+		<layer name="popup" r="255" g="1500" b="1500" a="255" />
+	</entry>
+	<entry name="Othala (HC)" anm2="GiantBook.anm2" anim="Appear" gfx="Othala.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+		<layer name="popup" r="255" g="1500" b="1500" a="255" />
+	</entry>
+	<entry name="Sowilo (HC)" anm2="GiantBook.anm2" anim="Appear" gfx="Sowilo.png">
+		<layer name="poof" r="51" g="25" b="72" a="255" />
+		<layer name="bg" r="30" g="3" b="51" a="255" />
+		<layer name="poof2" r="13" g="13" b="13" a="255" />
+		<layer name="popup" r="255" g="1500" b="1500" a="255" />
+	</entry>
+</giantbook>

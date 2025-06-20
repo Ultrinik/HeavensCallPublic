@@ -1,3 +1,7 @@
 <challenges version="1">
-	<challenge playertype="0" name="[HC] Escape the Everchanger" roomfilter="2,4" cursefilter="255" />
+	<challenge name="[HC] Tower of Babel" roomfilter="2,4" cursefilter="251" unlockachievement="double_nothing (HC)" />
+	<challenge name="[HC] True Solar System" roomfilter="" startingcard="20" startingitems="20" endstage="8" canshoot="false" playertype="Sol (HC)" unlockachievement="lil_sol (HC)" />
+	<challenge name="[HC] Escape the Everchanger" roomfilter="2,4" cursefilter="255" unlockachievement="curse_wanderer (HC)" achievements="challenge_everchanger (HC)" />
+	<!--<challenge name="[HC] Doomsday!" endstage="6" difficulty="1" unlockachievement="meteor_grid (HC)" /> -->
+	<!--<challenge name="[HC] Omnitricked" roomfilter="2,4,9,12,14,15,18,19,21,24" endstage="8" altpath="false" secretpath="true" achievements="eye_of_the_universe (HC)" unlockachievement="ballons (HC)" /> -->
 </challenges>

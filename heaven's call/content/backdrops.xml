@@ -1,0 +1,104 @@
+<backdrops gfxroot="gfx/backdrop/" gridgfxroot="gfx/grid/" effectsgfxroot="gfx/effects/">
+
+	<backdrop name="jupiter_room (hc)" gfx="jupiter_hc.png" walls="2" wallvariants="3" floors="1" floorvariants="6"
+		door		= "jupiter_door.png"
+
+		watergfx	= "water_blood_corpse.png"
+		props		= "props_07_the corpse.anm2"
+		rocks		= "rocks_corpse.png"
+		pit			= "grid_pit_corpse.png"
+		waterpit	= "grid_pit_blood_corpse.png"
+		bridge		= "grid_bridge_corpseentrance.png"
+		holeinwall	= "door_08_holeinwall_corpse.png"
+		spikes		= "grid_spikes_corpse.png"
+		waterpitsmode	= "1"
+	/>
+    
+	<backdrop name="neptune_room (hc)"  gfx="cove_hc.png" walls="2" wallvariants="3" floors="2" floorvariants="3"
+        
+		watergfx	= "blue_water_hc.png"
+		lfloorgfx	= "cove_lthe_hc.png"
+		nfloorgfx	= "cove_nfloor_hc.png"
+
+		rocks		= "rocks_drownedcaves.png"
+		pit			= "grid_pit_cathedral.png"
+		waterpit	= "grid_pit_water_drownedcaves.png"
+		bridge		= "grid_bridge_drownedcaves.png"
+    
+	/>
+    
+	<backdrop name="doomsday_chamber (hc)"  gfx="chamber_hc.png" walls="1" wallvariants="4" floors="1" floorvariants="1"
+
+		props		= "props_05_depths.anm2"
+		rocks		= "rocks_mausoleum.png"
+		pit			= "grid_pit_catacombs.png"
+		bridge		= "grid_bridge.png"
+		holeinwall	= "door_08_holeinwall_caves.png"
+	/>
+
+	<backdrop name="mercury_room (hc)"  gfx="bismuth_hc.png" walls="3" wallvariants="2" floors="3" floorvariants="2"
+    
+		props		= "props_03x_mines.anm2"
+		rocks		= "rocks_sheol.png"
+		pit			= "grid_pit_depths.png"
+		bridge		= "grid_bridge_depths.png"
+        
+	/>
+    
+	<backdrop name="martian_laboratory (hc)"  gfx="martian_hc.png" walls="1" wallvariants="4" floors="1" floorvariants="1"
+		door		= "marsdoor_hc.png"
+		
+		watergfx	= "mars_tech_hc.png"
+	/>
+    
+	<backdrop name="venus_room (hc)"  gfx="venus_hc.png" walls="1" wallvariants="4" floors="1" floorvariants="1"
+		door		= "venusdoor_hc.png"
+
+		watergfx	= "lesbian_fire.png"
+		reversewatergfx = "true"
+		props		= "Props_01_Basement.anm2"
+		rocks		= "rocks_burningbasement.png"
+		pit			= "grid_pit.png"
+		bridge		= "grid_bridge.png"
+		holeinwall	= "door_08_holeinwall.png"
+	/>
+    
+	<backdrop name="bathroom (hc)"  gfx="bathroom_hc.png" walls="1" wallvariants="4" floors="1" floorvariants="1"
+		door		= "bathroom_door_2_hc.png"
+		
+		watergfx	= "water.png"
+		props		= "props_02x_dross.anm2"
+		rocks		= "rocks_dross.png"
+		pit			= "grid_pit_dross.png"
+		bridge		= "grid_bridge_dross.png"
+		holeinwall	= "door_08_holeinwall.png"
+	/>
+
+	
+	<backdrop name="charon_room (hc)"  gfx="charon_hc.png" walls="2" wallvariants="2" floors="3" floorvariants="2"
+		
+		watergfx	= "water_purple_smooth.png"
+		props		= "props_05_depths.anm2"
+		rocks		= "rocks_mausoleum.png"
+		pit			= "grid_pit_mausoleum.png"
+		bridge		= "grid_bridge_mausoleum.png"
+		door		= "door_01_mausoleumdoor.png"
+		holeinwall	= "door_08_holeinwall_depths.png"
+	/>
+
+	<backdrop name="draw (hc)" gfx="draw_hc.png" walls="1" wallvariants="4" floors="1" floorvariants="1" props = "props_01_basement.anm2" 
+	
+	/>
+
+	
+	<backdrop name="golden (hc)"  gfx="golden_hc.png" walls="1" wallvariants="4" floors="1" floorvariants="4"
+		
+		props		= "Props_11_The Chest.anm2"
+		rocks		= "rocks_basement.png"
+		pit			= "grid_pit.png"
+		bridge		= "grid_bridge.png"
+		door		= "door_23_chestdoor.png"
+		holeinwall	= "door_08_holeinwall.png"
+	/>
+    
+</backdrops>

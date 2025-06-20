@@ -1,333 +1,408 @@
 local mod = HeavensCall
+local rng = mod:GetRunRNG()
 
 mod.EntityInf = {}
-mod.Entity ={
-    Statue = 0,
+mod.Entity ={}
 
-    Jupiter = 1,
-    Saturn = 2,
-    Uranus = 3,
-    Neptune = 4,
+--------------------------------
+local entityCount = 0
+function mod:AddEntityInf(dicName, entName)
+    mod.Entity[dicName] = entityCount
+    entityCount = entityCount + 1
 
-    Mercury = 5,
-    Venus = 6,
-    Terra1 = 7,
-    Terra2 = 56,
-    Terra3 = 57,
-    Mars = 8,
-
-    Luna = 9,
-    Pluto = 10,
-    Charon1 = 11,
-    Charon2 = 88,
-    Eris = 12,
-    Makemake = 13,
-    Haumea = 14,
-    Errant = 75,
-    Interloper = 85,
-
-    Sol = 15,
-
-    ---------
-
-    IETDDATD = 16,
-    Hyperion = 17,
-    IceTurd = 18,
-    NeptuneFaker = 19,
-    Ulcers = 36,
-    Candle = 37,
-    CandleGurdy = 38,
-    CandleSiren = 39,
-    SirenRag = 40,
-    CandleColostomia = 41,
-    CandleMist = 42,
-    Deimos = 49,
-    Phobos = 50,
-    MercuryBird = 54,
-    Horsemen = 61,
-    Turd = 53,
-    LunaWisp = 78,
-    LunaKnife = 79,
-    LunaIncubus = 80,
-    AltHorsemen = 82,
-    PlutoBone = 86,
-    MiniBranbleSeed = 89,
-    BrambleCord = 90,
-    BrambleSeed = 91,
-    BrambleSpike = 92,
-    Attlerock = 93,
-    WhiteHole = 94,
-    HollowsLantern = 95,
-    AshTwin = 96,
-    TwinChain = 97,
-
-    ---------
-
-    TimeFreezeSource = 20,
-    TimeFreezeObjective = 21,
-    Snowflake = 22,
-    Tornado = 23,
-    RedTrapdoor = 24,
-    Thunder = 25,
-    IceCreep = 26,
-    Aurora = 27,
-    MarsTarget = 43,
-    MarsAirstrike = 44,
-    TerraTarget = 59,
-    Meteor = 60,
-    TarBomb = 62,
-    Tongue = 63,
-    TongueCord = 64,
-    SonicBoom = 65,
-    MarsBoost = 66,
-    LaserSword = 67,
-    MercuryTrace = 69,
-    ICUP = 71,
-    GlassFracture = 72,
-    LunaDoor = 73,
-    LunaMegaSatanDoor = 74,
-    Card = 76,
-    Spike = 77,
-    TrapTile = 83,
-    Trap = 84,
-    ErisNaue = 87,
-    TritonHole = 112,
-    SleepZZZ = 113,
-    AnimaSola = 114,
-    LunaTarget = 98,
-    GreedDoor = 110,
-
-    ---------
-    
-    KeyKnife = 28,
-    KeyKnifeRed = 29,
-    Icicle = 30,
-    BigIcicle = 31,
-    Hail = 32,
-    Flame = 33,
-    Fireball = 34,
-    Kiss = 35,
-    Missile = 45,
-    Horn = 55,
-    Bubble = 51,
-    Leaf = 58,
-    ChaosCard = 68,
-    Bismuth = 70,
-    LunaFetus = 81,
-    Projectile3D = 120,
-    
-    ---------
-
-    MarsGigaBomb = 46,
-    MarsRocket = 47,
-    MarsGigaRocket = 48,
-
-    ---------
-
-    FamiliarCandle = 101,
-    Willo = 102,
-    BlazeHeart = 103,
-    Apple = 99,
-    Snake1 = 100,
-    Snake2 = 104,
-    Snake3 = 105,
-    Trident = 106,
-    Price = 107,
-    Telescope = 108,
-    Moon = 109,
-    
-    ---------
-
-    JupiterLaser = 111,
-
-}
-mod.DefaultSub = 160
-mod.DefaultEntitySub = 0
+    mod.EntityInf[mod.Entity[dicName]] = {ID = Isaac.GetEntityTypeByName(entName), VAR = Isaac.GetEntityVariantByName(entName), SUB = Isaac.GetEntitySubTypeByName(entName)}
+end
 
 --BOSSES-----------------------------------------------------------------------------------------------
+mod:AddEntityInf("Statue", "Astral Statue")
+mod:AddEntityInf("LunarStatue", "Luna Statue")
+mod:AddEntityInf("BossStatue", "Boss Statue (HC)")
 
-mod.EntityInf[mod.Entity.Statue] = {ID = Isaac.GetEntityTypeByName("Astral Statue"), VAR = Isaac.GetEntityVariantByName("Astral Statue"), SUB = mod.DefaultEntitySub}
+mod:AddEntityInf("Jupiter", "Jupiter the Gargantuan")
+mod:AddEntityInf("Saturn", "Saturn the Intransigent")
+mod:AddEntityInf("Uranus", "Uranus the Unpleasant")
+mod:AddEntityInf("Neptune", "Neptune the Unfathomable")
 
-mod.EntityInf[mod.Entity.Jupiter] = {ID = Isaac.GetEntityTypeByName("Jupiter the Gargantuan"), VAR = Isaac.GetEntityVariantByName("Jupiter the Gargantuan"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Saturn] = {ID = Isaac.GetEntityTypeByName("Saturn the Intransigent"),  VAR = Isaac.GetEntityVariantByName("Saturn the Intransigent"),   SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Uranus] = {ID = Isaac.GetEntityTypeByName("Uranus the Unpleasant"),  VAR = Isaac.GetEntityVariantByName("Uranus the Unpleasant"),   SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Neptune] = {ID = Isaac.GetEntityTypeByName("Neptune the Unfathomable"), VAR = Isaac.GetEntityVariantByName("Neptune the Unfathomable"),  SUB = mod.DefaultEntitySub}
+mod:AddEntityInf("Mercury", "Mercury the Unwary")
+mod:AddEntityInf("Venus", "Venus the Termagant")
+mod:AddEntityInf("Terra1", "Terra the Fatalist (Green)")
+mod:AddEntityInf("Terra2", "Terra the Fatalist (Stoned)")
+mod:AddEntityInf("Terra3", "Terra the Fatalist (Eden)")
+mod:AddEntityInf("Mars", "Mars the Vainglorious")
 
-mod.EntityInf[mod.Entity.Mercury] =  {ID = Isaac.GetEntityTypeByName("Mercury the Unwary"), VAR = Isaac.GetEntityVariantByName("Mercury the Unwary"), SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Venus] =  {ID = Isaac.GetEntityTypeByName("Venus the Termagant"), VAR = Isaac.GetEntityVariantByName("Venus the Termagant"), SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Terra1] =  {ID = Isaac.GetEntityTypeByName("Terra the Fatalist (green)"), VAR = Isaac.GetEntityVariantByName("Terra the Fatalist (green)"), SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Terra2] =  {ID = Isaac.GetEntityTypeByName("Terra the Fatalist (rock)"), VAR = Isaac.GetEntityVariantByName("Terra the Fatalist (rock)"), SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Terra3] =  {ID = Isaac.GetEntityTypeByName("Terra the Fatalist (eden)"), VAR = Isaac.GetEntityVariantByName("Terra the Fatalist (eden)"), SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Mars] =  {ID = Isaac.GetEntityTypeByName("Mars the Vainglorious"), VAR = Isaac.GetEntityVariantByName("Mars the Vainglorious"), SUB = mod.DefaultEntitySub}
+mod:AddEntityInf("Luna", "Luna the Tainted")
+mod:AddEntityInf("Pluto", "Pluto the Frivolous")
+mod:AddEntityInf("Charon1", " Charon the Benumbed ")
+mod:AddEntityInf("Charon2", "Charon the Benumbed")
+mod:AddEntityInf("Eris", "Eris the Vehement")
+mod:AddEntityInf("Makemake", "Makemake the Phlegmatic")
+mod:AddEntityInf("Haumea", "Haumea the Diffident")
+mod:AddEntityInf("Ceres", "Ceres the Cauterized")
+mod:AddEntityInf("Errant", "The Errant")
 
-mod.EntityInf[mod.Entity.Luna] =  {ID = Isaac.GetEntityTypeByName("Luna the Tainted"), VAR = Isaac.GetEntityVariantByName("Luna the Tainted"), SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Pluto] =  {ID = Isaac.GetEntityTypeByName("Pluto the Frivolous"), VAR = Isaac.GetEntityVariantByName("Pluto the Frivolous"), SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Charon1] =  {ID = Isaac.GetEntityTypeByName("Charon the Benumbed Pre"), VAR = Isaac.GetEntityVariantByName("Charon the Benumbed Pre"), SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Charon2] =  {ID = Isaac.GetEntityTypeByName("Charon the Benumbed"), VAR = Isaac.GetEntityVariantByName("Charon the Benumbed"), SUB = 36}
-mod.EntityInf[mod.Entity.Eris] =  {ID = Isaac.GetEntityTypeByName("Eris the Vehement"), VAR = Isaac.GetEntityVariantByName("Eris the Vehement"), SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Makemake] =  {ID = Isaac.GetEntityTypeByName("Makemake the Phlegmatic"), VAR = Isaac.GetEntityVariantByName("Makemake the Phlegmatic"), SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Haumea] =  {ID = Isaac.GetEntityTypeByName("Haumea the Diffident"), VAR = Isaac.GetEntityVariantByName("Haumea the Diffident"), SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Errant] =  {ID = Isaac.GetEntityTypeByName("The Errant"), VAR = Isaac.GetEntityVariantByName("The Errant"), SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Interloper] =  {ID = Isaac.GetEntityTypeByName("The Interloper"), VAR = Isaac.GetEntityVariantByName("The Interloper"), SUB = mod.DefaultEntitySub}
-
-mod.EntityInf[mod.Entity.Sol] =  {ID = Isaac.GetEntityTypeByName("Sol the Absolute"), VAR = Isaac.GetEntityVariantByName("Sol the Absolute"), SUB = mod.DefaultEntitySub}
+mod:AddEntityInf("Sol", "Sol the Absolute")
+mod:AddEntityInf("RSaturn", "Ouroboros (Paradox Saturn)")
+mod:AddEntityInf("Everchanger", " Everchanger ")
 --ENEMIES-----------------------------------------------------------------------------------------------
 
-mod.EntityInf[mod.Entity.IETDDATD] = {ID = Isaac.GetEntityTypeByName("Invisible entity that does damage and then dies"), VAR = Isaac.GetEntityVariantByName("Invisible entity that does damage and then dies"), SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.Hyperion] = {ID = EntityType.ENTITY_SUB_HORF, VAR = 1, SUB = mod.DefaultSub}
+mod:AddEntityInf("IETDDATD", "Invisible entity that does damage and then dies")
+mod:AddEntityInf("Hyperion", "Hyperion the Restrained")
 
-mod.EntityInf[mod.Entity.IceTurd] = {ID = Isaac.GetEntityTypeByName("Ice Turd (HC)"), VAR = Isaac.GetEntityVariantByName("Ice Turd (HC)"), SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Turd] = {ID = Isaac.GetEntityTypeByName("Tasty ice turd"), VAR = Isaac.GetEntityVariantByName("Tasty ice turd"), SUB = mod.DefaultEntitySub}
+mod:AddEntityInf("IceTurd", "Ice Turd (HC)")
+mod:AddEntityInf("Turd", "Tasty Ice Turd (HC)")
+mod:AddEntityInf("IceCrystal", "Ice Crystal (HC)")
+mod:AddEntityInf("Oberon", " Oberon ")
 
-mod.EntityInf[mod.Entity.NeptuneFaker] = {ID = Isaac.GetEntityTypeByName("Neptune Faker (HC)"), VAR = Isaac.GetEntityVariantByName("Neptune Faker (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("NeptuneFaker", "Neptune Faker (HC)")
 
-mod.EntityInf[mod.Entity.MercuryBird] = {ID = Isaac.GetEntityTypeByName("Mercury Bird (HC)"), VAR = Isaac.GetEntityVariantByName("Mercury Bird (HC)"),  SUB = mod.DefaultEntitySub}
+mod:AddEntityInf("MercuryBird", "Mercury Bird (HC)")
 
-mod.EntityInf[mod.Entity.Ulcers] = {ID = Isaac.GetEntityTypeByName("Ulcers"), VAR = Isaac.GetEntityVariantByName("Ulcers"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Candle] = {ID = Isaac.GetEntityTypeByName("Venus Candle"), VAR = Isaac.GetEntityVariantByName("Venus Candle"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.CandleGurdy] = {ID = Isaac.GetEntityTypeByName("Candle Gurdy"), VAR = Isaac.GetEntityVariantByName("Candle Gurdy"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.CandleSiren] = {ID = Isaac.GetEntityTypeByName("Candle Siren"), VAR = Isaac.GetEntityVariantByName("Candle Siren"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.SirenRag] = {ID = Isaac.GetEntityTypeByName("Siren Rag (HC)"), VAR = Isaac.GetEntityVariantByName("Siren Rag (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.CandleColostomia] = {ID = Isaac.GetEntityTypeByName("Candle Colostomia"), VAR = Isaac.GetEntityVariantByName("Candle Colostomia"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.CandleMist] = {ID = Isaac.GetEntityTypeByName("Candle Maid in the Mist"), VAR = Isaac.GetEntityVariantByName("Candle Maid in the Mist"),  SUB = mod.DefaultEntitySub}
+mod:AddEntityInf("Ulcers", "Ulcers")
+mod:AddEntityInf("Candle", "Venus Candle")
+mod:AddEntityInf("CandleGurdy", "Candle Gurdy")
+mod:AddEntityInf("CandleSiren", "Candle Siren")
+mod:AddEntityInf("SirenRag", "Siren Rag (HC)")
+mod:AddEntityInf("CandleColostomia", "Candle Colostomia")
+mod:AddEntityInf("CandleMist", "Candle Maid in the Mist")
+mod:AddEntityInf("CandleDevil", "Candle Dust Devil")
+mod:AddEntityInf("CandleBall", "Candle Ball")
 
-mod.EntityInf[mod.Entity.Horsemen] = {ID = Isaac.GetEntityTypeByName("Horsemen (HC)"), VAR = Isaac.GetEntityVariantByName("Horsemen (HC)"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.TarBomb] = {ID = Isaac.GetEntityTypeByName("Tar Bomb (HC)"), VAR = Isaac.GetEntityVariantByName("Tar Bomb (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.Tongue] = {ID = Isaac.GetEntityTypeByName("Tongue (HC)"), VAR = Isaac.GetEntityVariantByName("Tongue (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.TongueCord] = {ID = Isaac.GetEntityTypeByName("Tongue Cord (HC)"), VAR = Isaac.GetEntityVariantByName("Tongue Cord (HC)"),  SUB = 60}
+mod:AddEntityInf("Horsemen", "Horsemen (HC)")
+mod:AddEntityInf("TarBomb", "Tar Bomb (HC)")
+mod:AddEntityInf("Tongue", "Tongue (HC)")
+mod:AddEntityInf("TongueCord", "Tongue Cord (HC)")
 
-mod.EntityInf[mod.Entity.Deimos] = {ID = Isaac.GetEntityTypeByName("Deimos the Tarnished"), VAR = Isaac.GetEntityVariantByName("Deimos the Tarnished"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Phobos] = {ID = Isaac.GetEntityTypeByName("Phobos the Tarnished"), VAR = Isaac.GetEntityVariantByName("Phobos the Tarnished"),  SUB = mod.DefaultEntitySub}
+mod:AddEntityInf("Deimos", "Deimos the Tarnished")
+mod:AddEntityInf("Phobos", "Phobos the Tarnished")
 
-mod.EntityInf[mod.Entity.LunaWisp] = {ID = Isaac.GetEntityTypeByName("Luna Wisp (HC)"), VAR = Isaac.GetEntityVariantByName("Luna Wisp (HC)"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.LunaKnife] = {ID = Isaac.GetEntityTypeByName("Luna Knife (HC)"), VAR = Isaac.GetEntityVariantByName("Luna Knife (HC)"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.LunaIncubus] = {ID = Isaac.GetEntityTypeByName("Luna Incubus (HC)"), VAR = Isaac.GetEntityVariantByName("Luna Incubus (HC)"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.AltHorsemen] = {ID = Isaac.GetEntityTypeByName("Alt Horsemen (HC)"), VAR = Isaac.GetEntityVariantByName("Alt Horsemen (HC)"),  SUB = mod.DefaultEntitySub}
+mod:AddEntityInf("LunaWisp", "Luna Wisp (HC)")
+mod:AddEntityInf("LunaKnife", "Luna Knife (HC)")
+mod:AddEntityInf("LunaIncubus", "Luna Incubus (HC)")
+mod:AddEntityInf("AltHorsemen", "Alt Horsemen (HC)")
 
-mod.EntityInf[mod.Entity.PlutoBone] = {ID = Isaac.GetEntityTypeByName("Pluto Bone (HC)"), VAR = Isaac.GetEntityVariantByName("Pluto Bone (HC)"),  SUB = mod.DefaultEntitySub}
+mod:AddEntityInf("PlutoBone", "Pluto Bone (HC)")
 
-mod.EntityInf[mod.Entity.BrambleSeed] = {ID = Isaac.GetEntityTypeByName("Bramble Seed (HC)"), VAR = Isaac.GetEntityVariantByName("Bramble Seed (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.MiniBranbleSeed] = {ID = Isaac.GetEntityTypeByName("Brample Mini-seed (HC)"), VAR = Isaac.GetEntityVariantByName("Brample Mini-seed (HC)"),  SUB = mod.DefaultSub+1}
-mod.EntityInf[mod.Entity.BrambleCord] = {ID = Isaac.GetEntityTypeByName("Bramble Cord (HC)"), VAR = Isaac.GetEntityVariantByName("Bramble Cord (HC)"),  SUB = 60+1}
-mod.EntityInf[mod.Entity.BrambleSpike] = {ID = Isaac.GetEntityTypeByName("Bramble Spike (HC)"), VAR = Isaac.GetEntityVariantByName("Bramble Spike (HC)"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.WhiteHole] = {ID = Isaac.GetEntityTypeByName("The Errant (WH)"), VAR = Isaac.GetEntityVariantByName("The Errant (WH)"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Attlerock] = {ID = Isaac.GetEntityTypeByName("The Errant (AR)"), VAR = Isaac.GetEntityVariantByName("The Errant (AR)"),  SUB = mod.DefaultEntitySub+1}
-mod.EntityInf[mod.Entity.HollowsLantern] = {ID = Isaac.GetEntityTypeByName("The Errant (HL)"), VAR = Isaac.GetEntityVariantByName("The Errant (HL)"),  SUB = mod.DefaultEntitySub+2}
-mod.EntityInf[mod.Entity.AshTwin] = {ID = Isaac.GetEntityTypeByName("The Errant (AT)"), VAR = Isaac.GetEntityVariantByName("The Errant (AT)"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.TwinChain] = {ID = Isaac.GetEntityTypeByName("Twin Chain (HC)"), VAR = Isaac.GetEntityVariantByName("Twin Chain (HC)"),  SUB = mod.DefaultEntitySub + 1}
+mod:AddEntityInf("BrambleSeed", "Bramble Seed (HC)")
+mod:AddEntityInf("MiniBranbleSeed", "Brample Mini-seed (HC)")
+mod:AddEntityInf("BrambleCord", "Bramble Cord (HC)")
+mod:AddEntityInf("BrambleSpike", "Bramble Spike (HC)")
+mod:AddEntityInf("WhiteHole", "The Errant (WH)")
+mod:AddEntityInf("Attlerock", "The Errant (AR)")
+mod:AddEntityInf("HollowsLantern", "The Errant (HL)")
+mod:AddEntityInf("AshTwin", "The Errant (AT)")
+mod:AddEntityInf("TwinChain", "Twin Chain (HC)")
 
 
-mod.EntityInf[mod.Entity.Projectile3D] = {ID = Isaac.GetEntityTypeByName("3D Projectile (HC)"), VAR = Isaac.GetEntityVariantByName("3D Projectile (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("SolarBlaster", "Solar Blaster (HC)")
+mod:AddEntityInf("Projectile3D", "3D Projectile (HC)")
+mod:AddEntityInf("GlassGaper", " Glass Gaper ")
+mod:AddEntityInf("SolHand", "Sol Hand (HC)")
+
+mod:AddEntityInf("LilSteven", "Ouroboros Steven (HC)")
+mod:AddEntityInf("Steven", "Ouroboros Steven Depression (HC)")
+mod:AddEntityInf("Drifter", " Drifter  ")
+mod:AddEntityInf("Froh", " Froh  ")
+mod:AddEntityInf("Warper", " Warper  ")
+mod:AddEntityInf("OuroborosFakeTrace", "Ouroboros Fake (HC)")
+mod:AddEntityInf("StevenBall", "Ouroboros Ball (HC)")
+mod:AddEntityInf("StevenLaser", "Steven Laser (HC)")
+mod:AddEntityInf("SaturnGhost", "Steven Ghost (HC)")
+mod:AddEntityInf("StevenBox", "Steven Box (HC)")
 
 --EFFECTS-----------------------------------------------------------------------------------------------
 
-mod.EntityInf[mod.Entity.Aurora] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Aurora (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.Thunder] = {ID = EntityType.ENTITY_EFFECT, VAR = EffectVariant.CRACK_THE_SKY,  SUB = 5}
+mod:AddEntityInf("Background", "Wall (HC)")
 
-mod.EntityInf[mod.Entity.TimeFreezeSource] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Timestuck Source (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.TimeFreezeObjective] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Timestuck Objective (HC)"),  SUB = mod.DefaultSub+1}
+mod:AddEntityInf("Aurora", "Aurora (HC)")
+mod:AddEntityInf("Thunder", "Thunder (HC)")
+mod:AddEntityInf("InstantThunder", "Instant Thunder (HC)")
 
-mod.EntityInf[mod.Entity.Snowflake] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Snowflake (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.IceCreep] = {ID = EntityType.ENTITY_EFFECT, VAR = EffectVariant.CREEP_SLIPPERY_BROWN,  SUB = mod.DefaultSub}
+mod:AddEntityInf("TimeFreezeSource", "Timestuck Source (HC)")
+mod:AddEntityInf("TimeFreezeObjective", "Timestuck Objective (HC)")
+mod:AddEntityInf("SaturnTrace", "Timestuck Saturn (HC)")
 
-mod.EntityInf[mod.Entity.Tornado] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Tornado (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("Snowflake", "Snowflake (HC)")
+mod:AddEntityInf("IceCreep", "Slippery Ice Creep (HC)")
 
-mod.EntityInf[mod.Entity.Horn] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Horn (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.SonicBoom] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Sonic Boom (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.MercuryTrace] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Mercury Trace (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("Tornado", "Tornado (HC)")
 
-mod.EntityInf[mod.Entity.TerraTarget] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Terra Target (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.Meteor] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Meteor (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("Horn", "Horn (HC)")
+mod:AddEntityInf("SonicBoom", "Sonic Boom (HC)")
+mod:AddEntityInf("MercuryTrace", "Mercury Trace (HC)")
+mod:AddEntityInf("GlassFracture", "Glass Fracture (HC)")
+mod:AddEntityInf("MercuryTarget", "Mercury Target (HC)")
 
-mod.EntityInf[mod.Entity.MarsTarget] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Mars Target (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.MarsAirstrike] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Mars Airstrike (HC)"),  SUB = mod.DefaultSub+1}
-mod.EntityInf[mod.Entity.MarsBoost] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Mars Boost (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.LaserSword] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Laser Sword (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("TerraTarget", "Terra Target (HC)")
+mod:AddEntityInf("Meteor", "Meteor (HC)")
+mod:AddEntityInf("TerraNova", "Terra Nova (HC)")
+mod:AddEntityInf("Pollen", "Pollen (HC)")
 
-mod.EntityInf[mod.Entity.RedTrapdoor] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Red Trapdoor (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.ICUP] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("ICUP (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.LunaDoor] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Luna Door (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.LunaMegaSatanDoor] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Mega Satan Luna Door (HC)"),  SUB = mod.DefaultSub+1}
-mod.EntityInf[mod.Entity.Card] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Card (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.GreedDoor] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Luna Greed Door (HC)"),  SUB = mod.DefaultSub + 1}
-mod.EntityInf[mod.Entity.Spike] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Luna Spike (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.TrapTile] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Tomb Traptile (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.Trap] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Tomb Trap (HC)"),  SUB = mod.DefaultSub + 1}
-mod.EntityInf[mod.Entity.SleepZZZ] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Sleep ZZZ (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.AnimaSola] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Luna Anima Sola (HC)"),  SUB = mod.DefaultSub+1}
-mod.EntityInf[mod.Entity.LunaTarget] = {ID = Isaac.GetEntityTypeByName("Luna Target (HC)"), VAR = Isaac.GetEntityVariantByName("Luna Target (HC)"),  SUB = mod.DefaultSub + 2}
+mod:AddEntityInf("MarsTarget", "Mars Target (HC)")
+mod:AddEntityInf("MarsAirstrike", "Mars Airstrike (HC)")
+mod:AddEntityInf("MarsBoost", "Mars Boost (HC)")
+mod:AddEntityInf("LaserSword", "Laser Sword (HC)")
+mod:AddEntityInf("MarsGun", "Laser Gun (HC)")
+mod:AddEntityInf("MarsLilGun", "Laser Lil Gun (HC)")
 
-mod.EntityInf[mod.Entity.ErisNaue] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Eris Naue (HC)"),  SUB = mod.DefaultSub + 1}
+mod:AddEntityInf("RedTrapdoor", "Red Trapdoor (HC)")
+mod:AddEntityInf("ICUP", "ICUP (HC)")
+mod:AddEntityInf("LunaDoor", "Luna Door (HC)")
+mod:AddEntityInf("LunaMegaSatanDoor", "Mega Satan Luna Door (HC)")
+mod:AddEntityInf("Card", "Card (HC)")
+mod:AddEntityInf("GreedDoor", "Luna Greed Door (HC)")
+mod:AddEntityInf("Spike", "Luna Spike (HC)")
+mod:AddEntityInf("TrapTile", "Tomb Traptile (HC)")
+mod:AddEntityInf("Trap", "Tomb Trap (HC)")
+mod:AddEntityInf("SleepZZZ", "Sleep ZZZ (HC)")
+mod:AddEntityInf("AnimaSola", "Luna Anima Sola (HC)")
+mod:AddEntityInf("LunaTarget", "Luna Target (HC)")
+
+mod:AddEntityInf("ErisNaue", "Eris Naue (HC)")
+
+mod:AddEntityInf("StarZodiac", "Sol Zodiac Star (HC)")
+mod:AddEntityInf("StarBig", "Sol Big Star (HC)")
+mod:AddEntityInf("SolLightTarget", "Sol Airstrike Light (HC)")
+mod:AddEntityInf("SolStarTarget", "Sol Airstrike Star (HC)")
+mod:AddEntityInf("SolTimeVent", "Sol TimeVent (HC)")
+mod:AddEntityInf("SolProjectileDeath", "Sol Projectile Death (HC)")
+mod:AddEntityInf("SolEye", "Sol Eye (HC)")
+mod:AddEntityInf("SolSwordTrace", "Sol Sword Trace (HC)")
+mod:AddEntityInf("SolWingTrace", "Sol Wing Trace (HC)")
+mod:AddEntityInf("SolarPaticle", "Solar Particle (HC)")
+mod:AddEntityInf("SolSnake", "Sol Snake Head (HC)")
+mod:AddEntityInf("SolSword", "Sol Sword (HC)")
+mod:AddEntityInf("BossSolStatue", "Sol Statue Spawn (HC)")
+
+mod:AddEntityInf("CeresWatch", "Ceres Watcher (HC)")
+
+mod:AddEntityInf("LoopController", "Loop Controler (HC)")
+
+mod:AddEntityInf("StevenScreen", "Steven Screen (HC)")
+
+mod:AddEntityInf("Deintegration", "Deintegration (HC)")
+
+mod:AddEntityInf("Debuff", "Debuff (HC)")
+
+mod:AddEntityInf("QuantumPlayer", "Quantum Player (HC)")
+mod:AddEntityInf("Glitch", "EC Glitch (HC)")
+mod:AddEntityInf("ECEye", "EC Eye (HC)")
+
+mod:AddEntityInf("StarAstral", "Astral Zodiac Star (HC)")
 
 --PROJECTILES-----------------------------------------------------------------------------------------------
 
-mod.EntityInf[mod.Entity.KeyKnife] = {ID = EntityType.ENTITY_PROJECTILE, VAR = Isaac.GetEntityVariantByName("Key Knife (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.KeyKnifeRed] = {ID = EntityType.ENTITY_PROJECTILE, VAR = Isaac.GetEntityVariantByName("Key Knife Special (HC)"),  SUB = mod.DefaultSub+1}
+mod:AddEntityInf("KeyKnife", "Key Knife (HC)")
+mod:AddEntityInf("KeyKnifeRed", "Key Knife Special (HC)")
 
-mod.EntityInf[mod.Entity.Icicle] = {ID = EntityType.ENTITY_PROJECTILE, VAR = Isaac.GetEntityVariantByName("Icicle (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.BigIcicle] = {ID = EntityType.ENTITY_PROJECTILE, VAR = Isaac.GetEntityVariantByName("Big Icicle (HC)"),  SUB = mod.DefaultSub+1}
-mod.EntityInf[mod.Entity.Hail] = {ID = EntityType.ENTITY_PROJECTILE, VAR = Isaac.GetEntityVariantByName("Hail (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("Icicle", "Icicle (HC)")
+mod:AddEntityInf("BigIcicle", "Big Icicle (HC)")
+mod:AddEntityInf("Hail", "Hail (HC)")
 
-mod.EntityInf[mod.Entity.Bismuth] = {ID = EntityType.ENTITY_PROJECTILE, VAR = Isaac.GetEntityVariantByName("Bismuth (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("DarkMatter", "Dark Matter (HC)")
+mod:AddEntityInf("NemoFish", "Nemo Fish (HC)")
 
-mod.EntityInf[mod.Entity.Bubble] = {ID = EntityType.ENTITY_PROJECTILE, VAR = Isaac.GetEntityVariantByName("Bubble (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.Leaf] = {ID = EntityType.ENTITY_PROJECTILE, VAR = Isaac.GetEntityVariantByName("Leaf (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("Bismuth", "Bismuth (HC)")
 
-mod.EntityInf[mod.Entity.Flame] = {ID = EntityType.ENTITY_PROJECTILE, VAR = Isaac.GetEntityVariantByName("Flame (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.Fireball] = {ID = EntityType.ENTITY_PROJECTILE, VAR = Isaac.GetEntityVariantByName("Fireball (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.Kiss] = {ID = EntityType.ENTITY_PROJECTILE, VAR = Isaac.GetEntityVariantByName("Kiss (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("Bubble", "Bubble (HC)")
+mod:AddEntityInf("Leaf", "Leaf (HC)")
+mod:AddEntityInf("Cloud", "Cloud (HC)")
 
-mod.EntityInf[mod.Entity.Missile] = {ID = EntityType.ENTITY_PROJECTILE, VAR = Isaac.GetEntityVariantByName("Missile (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.ChaosCard] = {ID = EntityType.ENTITY_PROJECTILE, VAR = Isaac.GetEntityVariantByName("Chaos Card (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("Kiss", "Kiss (HC)")
+mod:AddEntityInf("Flame", "Flame (HC)")
+mod:AddEntityInf("Fireball", "Fireball (HC)")
 
-mod.EntityInf[mod.Entity.LunaFetus] = {ID = EntityType.ENTITY_PROJECTILE, VAR = Isaac.GetEntityVariantByName("Luna Fetus (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("Missile", "Missile (HC)")
+mod:AddEntityInf("ChaosCard", "Chaos Card (HC)")
+
+mod:AddEntityInf("LunaFetus", "Luna Fetus (HC)")
+
+mod:AddEntityInf("Star4", "Sol 4Star (HC)")
+mod:AddEntityInf("Star5", "Sol 5Star (HC)")
+mod:AddEntityInf("Star8", "Sol 8Star (HC)")
+mod:AddEntityInf("Flare", "Sol Flare (HC)")
+mod:AddEntityInf("BigFlare", "Sol Big Flare (HC)")
+mod:AddEntityInf("SolarSaw", "Sol Saw (HC)")
+mod:AddEntityInf("Galaxy", "Sol Galaxy (HC)")
+mod:AddEntityInf("GlassShard", "Glass Shard (HC)")
+mod:AddEntityInf("SolFeather", "Solar Feather (HC)")
+
+mod:AddEntityInf("ElectricWisp", "Electric Wisp (HC)")
+mod:AddEntityInf("CallistoEye", "Callisto Eye (HC)")
 
 --OTHERS-------------------------------------------------------------------------------------------------
 
-mod.EntityInf[mod.Entity.MarsGigaBomb] = {ID = EntityType.ENTITY_BOMB, VAR = BombVariant.BOMB_NORMAL,  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.MarsRocket] = {ID = EntityType.ENTITY_BOMB, VAR = BombVariant.BOMB_ROCKET,  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.MarsGigaRocket] = {ID = EntityType.ENTITY_BOMB, VAR = BombVariant.BOMB_ROCKET,  SUB = mod.DefaultSub+1}
+mod:AddEntityInf("MarsGigaBomb", "Mars Giga Bomb (HC)")
+mod:AddEntityInf("MarsRocket", "Mars Rocket (HC)")
+mod:AddEntityInf("MarsGigaRocket", "Mars Giga Rocket (HC)")
 
-mod.EntityInf[mod.Entity.JupiterLaser] = {ID = EntityType.ENTITY_LASER, VAR = Isaac.GetEntityVariantByName("Jupiter Laser (HC)"),  SUB = mod.DefaultEntitySub}
+mod:AddEntityInf("JupiterLaser", "Jupiter Laser (HC)")
 
---ITEMS THINGS--------------------------------------------------------------------------------------------
+mod:AddEntityInf("SolLaser", "Sol Laser (HC)")
+mod:AddEntityInf("SolWarningLaser", "Sol Warning Laser (HC)")
+mod:AddEntityInf("HyperBeam", "Hyper Laser (HC)")
 
-mod.EntityInf[mod.Entity.FamiliarCandle] = {ID = EntityType.ENTITY_FAMILIAR, VAR = Isaac.GetEntityVariantByName("Candle (HC)"),  SUB = 0}
-mod.EntityInf[mod.Entity.Willo] = {ID = EntityType.ENTITY_FAMILIAR, VAR = Isaac.GetEntityVariantByName("Attack Willo (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.BlazeHeart] = {ID = EntityType.ENTITY_PICKUP, VAR = Isaac.GetEntityVariantByName("Blaze Heart (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("House", "House (HC)")
+mod:AddEntityInf("Tree", "Tree Empty (HC)")
+mod:AddEntityInf("BabelButton", "Babel Button (HC)")
+mod:AddEntityInf("Grass", "Grass (HC)")
 
-mod.EntityInf[mod.Entity.Apple] = {ID = EntityType.ENTITY_PICKUP, VAR = Isaac.GetEntityVariantByName("Apple (HC)"),  SUB = mod.DefaultSub}
-mod.EntityInf[mod.Entity.Snake1] = {ID = Isaac.GetEntityTypeByName("Snake big (HC)"), VAR = Isaac.GetEntityVariantByName("Snake big (HC)"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Snake2] = {ID = Isaac.GetEntityTypeByName("Snake madium (HC)"), VAR = Isaac.GetEntityVariantByName("Snake madium (HC)"),  SUB = mod.DefaultEntitySub}
-mod.EntityInf[mod.Entity.Snake3] = {ID = Isaac.GetEntityTypeByName("Snake small (HC)"), VAR = Isaac.GetEntityVariantByName("Snake small (HC)"),  SUB = mod.DefaultEntitySub}
+--LUNAR ITEMS THINGS--------------------------------------------------------------------------------------------
 
-mod.EntityInf[mod.Entity.Trident] = {ID = EntityType.ENTITY_FAMILIAR, VAR = Isaac.GetEntityVariantByName("Trident (HC)"),  SUB = 0}
-mod.EntityInf[mod.Entity.TritonHole] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Triton Hole (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("FamiliarCandle", "Candle (HC)")
+mod:AddEntityInf("Willo", "Attack Willo (HC)")
+mod:AddEntityInf("BlazeHeart", "Blaze Heart (HC)")
 
-mod.EntityInf[mod.Entity.Price] = {ID = EntityType.ENTITY_EFFECT, VAR = Isaac.GetEntityVariantByName("Price (HC)"),  SUB = mod.DefaultSub}
+mod:AddEntityInf("Apple", "Apple (HC)")
+mod:AddEntityInf("Snake1", "Snake big (HC)")
+mod:AddEntityInf("Snake2", "Snake madium (HC)")
+mod:AddEntityInf("Snake3", "Snake small (HC)")
+mod:AddEntityInf("BadApple", "Bad Apple (HC)")
 
-mod.EntityInf[mod.Entity.Telescope] = {ID = EntityType.ENTITY_SLOT, VAR = Isaac.GetEntityVariantByName("Telescope (HC)"),  SUB = mod.DefaultEntitySub}
+mod:AddEntityInf("Trident", "Trident (HC)")
+mod:AddEntityInf("TritonHole", "Triton Hole (HC)")
 
-mod.EntityInf[mod.Entity.Moon] = {ID = EntityType.ENTITY_FAMILIAR, VAR = Isaac.GetEntityVariantByName("Moon Jupiter (HC)"),  SUB = 0}
+mod:AddEntityInf("Price", "Price (HC)")
+
+mod:AddEntityInf("Telescope", "Telescope (HC)")
+mod:AddEntityInf("Titan", "Lil Titan Beggar")
+
+mod:AddEntityInf("Moon", "Moon Jupiter (HC)")
+
+
+--SOLAR ITEMS THINGS--------------------------------------------------------------------------------------------
+mod:AddEntityInf("Mothership", "Mothership (HC)")
+mod:AddEntityInf("AlienCharger", "Alien Charger (HC)")
+mod:AddEntityInf("Computer", "Computer (HC)")
+
+
+mod:AddEntityInf("Cow", "Cow in a trash farm (HC)")
+mod:AddEntityInf("Spell", "Scepter Spell (HC)")
+
+
+mod:AddEntityInf("RopeNode", "Rope Node (HC)")
+mod:AddEntityInf("RopeCord", "Rope Cord (HC)")
+
+
+mod:AddEntityInf("BismuthOre", "Bismuth 1 (HC)")
+mod:AddEntityInf("ItemSelection", "Item Selection (HC)")
+
+
+mod:AddEntityInf("Wormhole", "Wormhole (HC)")
+
+
+mod:AddEntityInf("EngineLaser", "Engine Laser (HC)")
+
+
+mod:AddEntityInf("Theia", "Theia (HC)")
+mod:AddEntityInf("RuneMeteor", "Rune Meteor (HC)")
+mod:AddEntityInf("MeteorRune", "Meteor Rune (HC)")
+
+
+mod:AddEntityInf("Hyperdice", "Hyperdice (HC)")
+mod:AddEntityInf("Hypersquare", "Hypersqueare (HC)")
+mod:AddEntityInf("Hyperhole", "Hypersquare (HC)")
+mod:AddEntityInf("Hyperfloor", "Hyperfloor generator (HC)")
+
+
+mod:AddEntityInf("PickupFamiliar", "Penny Orbital (HC)")
+
+mod:AddEntityInf("LilSol", "Moon Sol (HC)")
+
+
+mod:AddEntityInf("TransformLight", "Transform Light (HC)")
+
+
+mod:AddEntityInf("GlassHeart", "Glass Heart (HC)")
+
+
+mod:AddEntityInf("Friend", "Friend (HC)")
+mod:AddEntityInf("FriendHook", "Friend Hook (HC)")
+
+mod:AddEntityInf("FleshWhip", "Flesh Whip (HC)")
+mod:AddEntityInf("Teratomato", "Teratomato")
+
+--MOUNT THINGS--------------------------------------------------------------------------------------------
+mod:AddEntityInf("SnakeHead", "Snake head (HC)")
+mod:AddEntityInf("SnakeBody", "Snake body (HC)")
+
 
 --BLABLA
-mod.PlanetName = {
-    [mod.Entity.Jupiter] = "Jupiter the Gargantuan",
-    [mod.Entity.Saturn] = "Saturn the Intransigent",
-    [mod.Entity.Uranus] = "Uranus the Unpleasant",
-    [mod.Entity.Neptune] = "Neptune the Unfathomable",
-    
-    [mod.Entity.Mercury] = "Mercury the Unwary",
-    [mod.Entity.Venus] = "Venus the Termagant",
-    [mod.Entity.Terra1] = "Terra the Fatalist",
-    [mod.Entity.Mars] = "Mars the Vainglorious",
-    
-    [mod.Entity.Luna] = "Luna the Tainted",
-    [mod.Entity.Pluto] = "Pluto the Frivolous",
-    [mod.Entity.Charon1] = "Charon the Benumbed",
-    [mod.Entity.Eris] = "Eris the Vehement",
-    [mod.Entity.Makemake] = "Makemake the Phlegmatic",
-    [mod.Entity.Haumea] = "Haumea the Diffident",
-    [mod.Entity.Errant] = "The Errant",
-    
-}
+function mod:SetPlanetNames(lenguaje)
+    if lenguaje == "es" then
+        mod.PlanetName = {
+            [mod.Entity.Jupiter] = "Jupiter el Colosal",
+            [mod.Entity.Saturn] = "Saturno la Intransigente",
+            [mod.Entity.Uranus] = "Urano el Desagradable",
+            [mod.Entity.Neptune] = "Neptuno el Insondable",
+            
+            [mod.Entity.Mercury] = "Mercurio el Imprudente",
+            [mod.Entity.Venus] = "Venus la Arpía",
+            [mod.Entity.Terra1] = "Terra la Fatalista",
+            [mod.Entity.Mars] = "Marte el Vanaglorioso",
+            
+            [mod.Entity.Luna] = "Luna la Corrupta",
+            [mod.Entity.Pluto] = "Plutón el Frivolo",
+            [mod.Entity.Charon1] = "Caronte el Entumecido",
+            [mod.Entity.Eris] = "Eris la Vehemente",
+            [mod.Entity.Makemake] = "Makemake el Flemático",
+            [mod.Entity.Haumea] = "Haumea la Cohibida",
+            [mod.Entity.Ceres] = "Ceres el Cauterizado",
+            [mod.Entity.Errant] = "El Errante",
+            
+            [mod.Entity.Sol] = "Sol el Abosluto",
+            [mod.Entity.RSaturn] = "Otro Saturno",
+            
+        }
+    else
+        mod.PlanetName = {
+            [mod.Entity.Jupiter] = "Jupiter the Gargantuan",
+            [mod.Entity.Saturn] = "Saturn the Intransigent",
+            [mod.Entity.Uranus] = "Uranus the Unpleasant",
+            [mod.Entity.Neptune] = "Neptune the Unfathomable",
+            
+            [mod.Entity.Mercury] = "Mercury the Unwary",
+            [mod.Entity.Venus] = "Venus the Termagant",
+            [mod.Entity.Terra1] = "Terra the Fatalist",
+            [mod.Entity.Mars] = "Mars the Vainglorious",
+            
+            [mod.Entity.Luna] = "Luna the Tainted",
+            [mod.Entity.Pluto] = "Pluto the Frivolous",
+            [mod.Entity.Charon1] = "Charon the Benumbed",
+            [mod.Entity.Eris] = "Eris the Vehement",
+            [mod.Entity.Makemake] = "Makemake the Phlegmatic",
+            [mod.Entity.Haumea] = "Haumea the Diffident",
+            [mod.Entity.Ceres] = "Ceres the Cauterized",
+            [mod.Entity.Errant] = "The Errant",
+            
+            [mod.Entity.Sol] = "Sol the Absolute",
+            [mod.Entity.RSaturn] = "Another Saturn",
+            
+        }
+    end
+
+    mod.PlanetName2 = {
+        [Isaac.GetEntityTypeByName("Jupiter the Gargantuan")] = mod.PlanetName[mod.Entity.Jupiter],
+        [Isaac.GetEntityTypeByName("Saturn the Intransigent")] = mod.PlanetName[mod.Entity.Saturn],
+        [Isaac.GetEntityTypeByName("Uranus the Unpleasant")] = mod.PlanetName[mod.Entity.Uranus],
+        [Isaac.GetEntityTypeByName("Neptune the Unfathomable")] = mod.PlanetName[mod.Entity.Neptune],
+        
+        [Isaac.GetEntityTypeByName("Mercury the Unwary")] = mod.PlanetName[mod.Entity.Mercury],
+        [Isaac.GetEntityTypeByName("Venus the Termagant")] = mod.PlanetName[mod.Entity.Venus],
+        [Isaac.GetEntityTypeByName("Terra the Fatalist (Green)")] = mod.PlanetName[mod.Entity.Terra1],
+        [Isaac.GetEntityTypeByName("Mars the Vainglorious")] = mod.PlanetName[mod.Entity.Mars],
+        
+        [Isaac.GetEntityTypeByName("Luna the Tainted")] = mod.PlanetName[mod.Entity.Luna],
+        [Isaac.GetEntityTypeByName("Pluto the Frivolous")] = mod.PlanetName[mod.Entity.Pluto],
+        [Isaac.GetEntityTypeByName(" Charon the Benumbed ")] = mod.PlanetName[mod.Entity.Charon1],
+        [Isaac.GetEntityTypeByName("Eris the Vehement")] = mod.PlanetName[mod.Entity.Eris],
+        [Isaac.GetEntityTypeByName("Makemake the Phlegmatic")] = mod.PlanetName[mod.Entity.Makemake],
+        [Isaac.GetEntityTypeByName("Haumea the Diffident")] = mod.PlanetName[mod.Entity.Haumea],
+        [Isaac.GetEntityTypeByName("Ceres the Cauterized")] = mod.PlanetName[mod.Entity.Ceres],
+        [Isaac.GetEntityTypeByName("The Errant")] = mod.PlanetName[mod.Entity.Errant],
+        
+        [Isaac.GetEntityTypeByName("Sol the Absolute")] = mod.PlanetName[mod.Entity.Sol],
+        [Isaac.GetEntityTypeByName("Ouroboros (Paradox Saturn)")] = mod.PlanetName[mod.Entity.RSaturn],
+        
+    }
+end
+mod:SetPlanetNames(Options.Language)

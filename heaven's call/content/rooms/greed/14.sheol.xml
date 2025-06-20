@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<rooms>
+	<room variant="1" name="astral s (copy) (10)" type="5" subtype="1" shape="4" width="13" height="14" difficulty="10" weight="0.5">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="2">
+			<entity type="704" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="1" name="astral s (copy) (11)" type="5" subtype="1" shape="4" width="13" height="14" difficulty="10" weight="0.5">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="2">
+			<entity type="705" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="1" name="astral s (copy) (12)" type="5" subtype="1" shape="4" width="13" height="14" difficulty="10" weight="0.5">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="2">
+			<entity type="706" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="1" name="astral s (copy) (13)" type="5" subtype="1" shape="4" width="13" height="14" difficulty="10" weight="0.5">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="2">
+			<entity type="707" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="1" name="astral s (copy) (14)" type="5" subtype="1" shape="4" width="13" height="14" difficulty="10" weight="0.5">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="2">
+			<entity type="708" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="1" name="astral s (copy) (15)" type="5" subtype="1" shape="4" width="13" height="14" difficulty="10" weight="0.5">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="2">
+			<entity type="715" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+</rooms>

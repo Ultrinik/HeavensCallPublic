@@ -1,0 +1,51 @@
+<AnimatedActor>
+	<Info CreatedBy="trtv" CreatedOn="10-04-2025 0:02:29" Version="90" Fps="30"/>
+	<Content>
+		<Spritesheets>
+			<Spritesheet Path="bosses\errant\everchanger\ec_normal.png" Id="0"/>
+			<Spritesheet Path="bosses\errant\everchanger\ec_noisy.png" Id="1"/>
+			<Spritesheet Path="bosses\errant\everchanger\isaac.png" Id="2"/>
+			<Spritesheet Path="bosses\errant\everchanger\eye.png" Id="3"/>
+		</Spritesheets>
+		<Layers>
+			<Layer Name="eye" Id="0" SpritesheetId="3"/>
+		</Layers>
+		<Nulls/>
+		<Events>
+			<Event Name="Attack" Id="0"/>
+		</Events>
+	</Content>
+	<Animations DefaultAnimation="Appear">
+		<Animation Name="Appear" FrameNum="8" Loop="false">
+			<RootAnimation>
+				<Frame XPosition="5" YPosition="-27" XScale="60" YScale="60" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+			</RootAnimation>
+			<LayerAnimations>
+				<LayerAnimation LayerId="0" Visible="true">
+					<Frame XPosition="8" YPosition="-33" XPivot="277" YPivot="232" XCrop="0" YCrop="0" Width="500" Height="465" XScale="60" YScale="60" Delay="7" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
+					<Frame XPosition="7" YPosition="46" XPivot="277" YPivot="232" XCrop="0" YCrop="0" Width="500" Height="465" XScale="60" YScale="30" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				</LayerAnimation>
+			</LayerAnimations>
+			<NullAnimations/>
+			<Triggers/>
+		</Animation>
+		<Animation Name="Attack" FrameNum="33" Loop="false">
+			<RootAnimation>
+				<Frame XPosition="5" YPosition="-27" XScale="60" YScale="60" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+			</RootAnimation>
+			<LayerAnimations>
+				<LayerAnimation LayerId="0" Visible="true">
+					<Frame XPosition="7" YPosition="46" XPivot="277" YPivot="232" XCrop="0" YCrop="0" Width="500" Height="465" XScale="60" YScale="30" Delay="20" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="true"/>
+					<Frame XPosition="7" YPosition="46" XPivot="277" YPivot="232" XCrop="0" YCrop="0" Width="500" Height="465" XScale="60" YScale="30" Delay="7" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="255" GreenOffset="255" BlueOffset="255" Rotation="0" Interpolated="true"/>
+					<Frame XPosition="7" YPosition="46" XPivot="277" YPivot="232" XCrop="0" YCrop="0" Width="500" Height="465" XScale="60" YScale="30" Delay="3" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="255" GreenOffset="255" BlueOffset="255" Rotation="0" Interpolated="true"/>
+					<Frame XPosition="4" YPosition="47" XPivot="277" YPivot="232" XCrop="0" YCrop="0" Width="500" Height="465" XScale="50" YScale="25" Delay="3" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="255" GreenOffset="255" BlueOffset="255" Rotation="0" Interpolated="true"/>
+					<Frame XPosition="39" YPosition="51" XPivot="277" YPivot="232" XCrop="0" YCrop="0" Width="500" Height="465" XScale="200" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="0" RedOffset="255" GreenOffset="255" BlueOffset="255" Rotation="0" Interpolated="false"/>
+				</LayerAnimation>
+			</LayerAnimations>
+			<NullAnimations/>
+			<Triggers>
+				<Trigger EventId="0" AtFrame="30"/>
+			</Triggers>
+		</Animation>
+	</Animations>
+</AnimatedActor>

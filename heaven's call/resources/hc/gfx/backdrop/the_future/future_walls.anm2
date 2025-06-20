@@ -1,0 +1,47 @@
+<AnimatedActor>
+	<Info CreatedBy="Unknown" CreatedOn="23-10-2024 17:10:12" Version="85" Fps="30"/>
+	<Content>
+		<Spritesheets>
+			<Spritesheet Path="future_walls.png" Id="0"/>
+		</Spritesheets>
+		<Layers>
+			<Layer Name="b1" Id="0" SpritesheetId="0"/>
+			<Layer Name="g1" Id="1" SpritesheetId="0"/>
+			<Layer Name="w1" Id="2" SpritesheetId="0"/>
+			<Layer Name="b2" Id="3" SpritesheetId="0"/>
+			<Layer Name="g2" Id="4" SpritesheetId="0"/>
+			<Layer Name="w2" Id="5" SpritesheetId="0"/>
+		</Layers>
+		<Nulls/>
+		<Events/>
+	</Content>
+	<Animations DefaultAnimation="idle">
+		<Animation Name="idle" FrameNum="1" Loop="false">
+			<RootAnimation>
+				<Frame XPosition="0" YPosition="0" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+			</RootAnimation>
+			<LayerAnimations>
+				<LayerAnimation LayerId="5" Visible="true">
+					<Frame XPosition="0" YPosition="0" XPivot="265" YPivot="172" XCrop="0" YCrop="0" Width="530" Height="343" XScale="-100" YScale="-100" Delay="1" Visible="true" RedTint="110" GreenTint="125" BlueTint="149" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				</LayerAnimation>
+				<LayerAnimation LayerId="4" Visible="true">
+					<Frame XPosition="0" YPosition="0" XPivot="265" YPivot="172" XCrop="1060" YCrop="0" Width="530" Height="343" XScale="-100" YScale="-100" Delay="1" Visible="true" RedTint="58" GreenTint="66" BlueTint="88" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				</LayerAnimation>
+				<LayerAnimation LayerId="3" Visible="true">
+					<Frame XPosition="0" YPosition="0" XPivot="265" YPivot="172" XCrop="530" YCrop="0" Width="530" Height="343" XScale="-100" YScale="-100" Delay="1" Visible="true" RedTint="0" GreenTint="0" BlueTint="0" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				</LayerAnimation>
+				<LayerAnimation LayerId="2" Visible="true">
+					<Frame XPosition="0" YPosition="0" XPivot="265" YPivot="172" XCrop="1060" YCrop="0" Width="530" Height="343" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="110" GreenTint="125" BlueTint="149" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				</LayerAnimation>
+				<LayerAnimation LayerId="1" Visible="true">
+					<Frame XPosition="0" YPosition="0" XPivot="265" YPivot="172" XCrop="530" YCrop="0" Width="530" Height="343" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="58" GreenTint="66" BlueTint="88" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				</LayerAnimation>
+				<LayerAnimation LayerId="0" Visible="true">
+					<Frame XPosition="0" YPosition="0" XPivot="265" YPivot="172" XCrop="0" YCrop="0" Width="530" Height="343" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="0" GreenTint="0" BlueTint="0" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				</LayerAnimation>
+			</LayerAnimations>
+			<NullAnimations/>
+			<Triggers/>
+		</Animation>
+	</Animations>
+</AnimatedActor>

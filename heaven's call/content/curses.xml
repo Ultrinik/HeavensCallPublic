@@ -1,0 +1,14 @@
+<curses>
+    <curse name="Curse of la Luna!" />
+    <curse name="Curse of the Wanderer!" />
+    <curse name="Curse of the Invictus!" />
+
+    <curse name="The world is ending!" />
+    
+    <!--<curse name="Blessing of the Dwarf!" />-->
+    <!--<curse name="Blessing of Retribution!" />-->
+    <!--<curse name="Blessing of the Robust!" />-->
+    <!--<curse name="Blessing of Genesis!" />-->
+    <!--<curse name="Blessing of Rebirth!" />-->
+    <!--<curse name="Blessing of the Traveler!" />-->
+</curses>

@@ -1,0 +1,97 @@
+<achievements gfxroot="hc/gfx/ui/achievement/">
+
+	<!-- install HC -->
+	<achievement name="astral_challenge (HC)" text='"The Astral Challenge" has opened its doors' gfx="Achievement_AstralChallenge.png" gfxback="paper.png"/>
+	<achievement name="lunar_pact (HC)" text='"The Lunar Pact" has opened its doors' gfx="Achievement_LunarPact.png" gfxback="paper.png"/>
+	<achievement name="retro_planet (HC)" text='"Mysterious Planets" have appeared in the basement' gfx="Achievement_RetroPlanet.png" gfxback="paper.png"/>
+	<achievement name="clairvoyance (HC)" text='"Clairvoyance" has appeared in the basement' gfx="Achievement_Clairvoyance.png" gfxback="paper.png"/>
+	<achievement name="balls_up (HC)" text='"Balls" have appeared in the basement' gfx="Achievement_Balls.png" gfxback="paper.png"/>
+	<achievement name="glass_heart (HC)" text='"Glass Hearts" have appeared in the basement' gfx="Achievement_GlassHeart.png" gfxback="paper.png"/>
+	<achievement name="telescope (HC)" text='A "Telescope" has appeared in the basement' gfx="Achievement_Telescope.png" gfxback="paper.png"/>
+	
+	<!-- beat astral boss in greed -->
+	<achievement name="titan (HC)" text='"Titan" has appeared in the basement' gfx="Achievement_Titan.png" gfxback="paper.png"/>
+
+
+	<!-- beat tower of babel -->
+	<achievement name="double_nothing (HC)" text='"Double-or-Nothing" has appeared in the Astral Challenge' gfx="Achievement_DoubleNothing.png" gfxback="paper.png"/>
+	<!-- die by everchanger in babel tower -->
+	<achievement name="challenge_everchanger (HC)" text='You unlocked the challenge "Escape the Everchanger"' gfx="Achievement_ChallengeEverchanger.png" gfxback="paper.png"/>
+
+	<!-- beat everchanger -->
+	<achievement name="curse_wanderer (HC)" text='"The Wandering Moon" curses you?' gfx="Achievement_CurseErrant.png" gfxback="paper.png"/>
+
+	<!-- beat solar system -->
+	<achievement name="lil_sol (HC)" text='"Lil Sol" has appeared in the basement' gfx="Achievement_LilSol.png" gfxback="paper.png"/>
+
+
+
+	<!-- defeat Sol with Isaac -->
+	<achievement name="hyperdice (HC)" text='"The Hyperdice" has appeared in the basement' gfx="Achievement_Isaac.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with Maggy -->
+	<achievement name="space_jam (HC)" text='"A jar of Space Jam" has appeared in the basement' gfx="Achievement_Magdalene.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with Cain -->
+	<achievement name="asteroid_belt (HC)" text='"The Asteroid Belt" has appeared in the basement' gfx="Achievement_Cain.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with Judas -->
+	<achievement name="void_pickups_A (HC)" text='"New Pickups" have appeared in the basement' gfx="Achievement_Judas.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with ??? -->
+	<achievement name="heralds_stallion (HC)" text='"A Cow" has appeared in the basement' gfx="Achievement_QQQ.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with Eve -->
+	<achievement name="panspermia (HC)" text='"Panspermia" has appeared in the basement' gfx="Achievement_Eve.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with Samson -->
+	<achievement name="theia (HC)" text='"Theia" has appeared in the planetarium' gfx="Achievement_Samson.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with Azazel -->
+	<achievement name="rocket_engine (HC)" text='"A Rocket Engine" has appeared in the basement' gfx="Achievement_Azazel.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with Lazarus -->
+	<achievement name="void_matter (HC)" text='"Void Matter" has appeared in the basement' gfx="Achievement_Lazarus.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with Eden -->
+	<achievement name="stellar_battery (HC)" text='"The Stellar Battery" has appeared in the basement' gfx="Achievement_Eden.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with Lost -->
+	<!--<achievement name="ad_infinitum (HC)" text='"Ad Infinitum" has appeared in the basement' gfx="Achievement_Lost.png" gfxback="paper_sol.png"/>-->
+	<!-- defeat Sol with Lilith -->
+	<achievement name="mothership (HC)" text='"The Mothership" has appeared in the basement' gfx="Achievement_Lilith.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with Keeper -->
+	<achievement name="golden_telescope (HC)" text='"A Golden Telescope" has appeared in the basement' gfx="Achievement_Keeper.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with Apollyon -->
+	<achievement name="quasar (HC)" text='"Quasar" has appeared in the basement' gfx="Achievement_Apollyon.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with Forgotten -->
+	<achievement name="red_shovel (HC)" text='"The Red Shovel" has appeared in the basement' gfx="Achievement_Forgotten.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with Bethany -->
+	<achievement name="picatrix (HC)" text='"The Picatrix" has appeared in the basement' gfx="Achievement_Bethany.png" gfxback="paper_sol.png"/>
+	<!-- defeat Sol with Jacob & Esau -->
+	<!--<achievement name="background_noise (HC)" text='"Voices of the void" echo in the basement' gfx="Achievement_Jacob.png" gfxback="paper_sol.png"/>-->
+	
+	<!-- defeat Sol with T.Lost -->
+	<achievement name="infinity_chest (HC)" text='"The Infinity Chest" has appeared in the basement' gfx="Achievement_TLost.png" gfxback="paper_sol.png"/>
+
+	<!-- no-hit Mercury -->
+	<achievement name="mercury (HC)" text='"Bismuth Penny" has appeared in the basement' gfx="Achievement_Mercury.png" gfxback="paper.png"/>
+	<!-- no-hit Venus -->
+	<achievement name="venus (HC)" text='"Fervent Incense" has appeared in the basement' gfx="Achievement_Venus.png" gfxback="paper.png"/>
+	<!-- no-hit Terra -->
+	<achievement name="terra (HC)" text='"Bad Apple" has appeared in the basement' gfx="Achievement_Terra.png" gfxback="paper.png"/>
+	<!-- no-hit Mars -->
+	<achievement name="mars (HC)" text='"Nanite" has appeared in the basement' gfx="Achievement_Mars.png" gfxback="paper.png"/>
+	<!-- no-hit Jupiter -->
+	<achievement name="jupiter (HC)" text='"Broken Battery" has appeared in the basement' gfx="Achievement_Jupiter.png" gfxback="paper.png"/>
+	<!-- no-hit Saturn -->
+	<achievement name="saturn (HC)" text='"Golden Gear" has appeared in the basement' gfx="Achievement_Saturn.png" gfxback="paper.png"/>
+	<!-- no-hit Uranus -->
+	<achievement name="uranus (HC)" text='"Clay Brick" has appeared in the basement' gfx="Achievement_Uranus.png" gfxback="paper.png"/>
+	<!-- no-hit Neptune -->
+	<achievement name="neptune (HC)" text='"Neptunes Lure" has appeared in the basement' gfx="Achievement_Neptune.png" gfxback="paper.png"/>
+	<!-- no-hit Kuiper -->
+	<achievement name="kuiper (HC)" text='"Cursed Effigy" has appeared in the basement' gfx="Achievement_Kuiper.png" gfxback="paper.png"/>
+	<!-- no-hit Luna -->
+	<achievement name="luna (HC)" text='"Lunar Crown" has appeared in the basement' gfx="Achievement_Luna.png" gfxback="paper.png"/>
+	<!-- no-hit Errant -->
+	<achievement name="errant (HC)" text='"Quantum Shard" has appeared in the basement' gfx="Achievement_Errant.png" gfxback="paper.png"/>
+	<!-- no-hit R.Saturn -->
+	<achievement name="rsaturn (HC)" text='"i" has appeared in the basement' gfx="Achievement_RSaturn.png" gfxback="paper.png"/>
+	<!-- no-hit Sol -->
+	<achievement name="sol (HC)" text='"Fine Tuning" has appeared in the basement' gfx="Achievement_Sol.png" gfxback="paper.png"/>
+
+
+	<achievement name="PERMALOCK" text='bruh' gfx="bruh" gfxback="bruh"/>
+	
+</achievements>

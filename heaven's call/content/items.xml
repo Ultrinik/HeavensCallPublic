@@ -1,65 +1,158 @@
-<items gfxroot="gfx/items/" version="1" deathanm2="gfx/death_items.anm2">
+<items gfxroot="hc/gfx/items/" version="1" deathanm2="gfx/death_items.anm2">
+
+	<trinket name="Quantum Shard" id="0" description="Everywhere at all times" gfx="trinket_quantum_shard.png" achievement="errant (HC)" />
+	<trinket name="Sputnik" id="1" description="Fellow traveler" cache="familiars" gfx="trinket_sputnik.png" achievement="telescope (HC)" />
+	<trinket name="Faded Flag" id="2" description="Into the Moon" gfx="trinket_faded_flag.png" achievement="telescope (HC)" />
+	<trinket name="Background Noise" id="3" description="Voices of the void" gfx="trinket_backgroundNoise.png" achievement="PERMALOCK" />
+	<trinket name=" Void Matter " id="4" description="A drop of despair" gfx="trinket_void_matter.png" achievement="void_matter (HC)"/>
+	
+	<trinket name="Toy Soldier" id="10" description="Child's play" gfx="trash_toy_soldier.png" achievement="PERMALOCK"/>
+	<trinket name="Mirror Shard" id="11" description="Shines like silver" gfx="trash_mirror.png" achievement="PERMALOCK"/>
+
+	<trinket name="  My Little Unicorn  " id="20" description="You should not be reading this" gfx="trinket_unicorn.png" />
+	<trinket name="  Pyromaniac  " id="21" description="You should not be reading this" gfx="trinket_pyromaniac.png" />
+	<trinket name="  The Apple  " id="22" description="You should not be reading this" gfx="trinket_apple.png" />
+	<trinket name="  Technology  " id="23" description="You should not be reading this" gfx="trinket_technology.png" />
+	<trinket name="  Yuck Heart  " id="24" description="You should not be reading this" gfx="trinket_yuckheart.png" />
+	<trinket name="  Sack Head  " id="25" description="You should not be reading this" gfx="trinket_sackhead.png" />
+	<trinket name="  Ice Cube  " id="26" description="You should not be reading this" gfx="trinket_icecube.png" />
+	<trinket name="  Dark Matter  " id="27" description="You should not be reading this" gfx="trinket_darkmatter.png" />
+	<trinket name="  Death Certificate  " id="28" description="You should not be reading this" gfx="trinket_death.png" />
+	<trinket name="  Pause  " id="29" description="You should not be reading this" gfx="trinket_pause.png" />
+	<trinket name="  Pandora's box  " id="30" description="You should not be reading this" gfx="trinket_pandora.png" />
+	<trinket name="  Fish  " id="31" description="You should not be reading this" gfx="trinket_fish.png" />
+	<trinket name="  Red key?  " id="32" description="You should not be reading this" gfx="trinket_redkey.png" />
+	<trinket name="  Plunger  " id="33" description="You should not be reading this" gfx="trinket_plunger.png" />
+	<trinket name="  Bible  " id="34" description="You should not be reading this" gfx="trinket_bible.png" />
+	
+	
+	<trinket name="Bismuth Penny" id="35" description="Wealth of color" gfx="trinket_mercury.png" achievement="mercury (HC)"/>
+	<trinket name="Fervent Incense" id="36" description="Hot stuff" gfx="trinket_venus.png" achievement="venus (HC)"/>
+	<trinket name="Bad Apple" id="37" description="Bad to the bone" gfx="trinket_terra.png" achievement="terra (HC)"/>
+	<trinket name="Nanite" id="38" description="Nanomachines" gfx="trinket_mars.png" achievement="mars (HC)"/>
+	<trinket name="Broken Battery" id="39" description="Leakage" gfx="trinket_jupiter.png" achievement="jupiter (HC)"/>
+	<trinket name="Golden Gear" id="40" description="Again and again" gfx="trinket_saturn.png" achievement="saturn (HC)"/>
+	<trinket name="Clay Brick" id="41" description="Self made!" gfx="trinket_uranus.png" achievement="uranus (HC)"/>
+	<trinket name="Neptune's Lure" id="42" description="Embrace the void" gfx="trinket_neptune.png" achievement="neptune (HC)"/>
+	<trinket name="Cursed Effigy" id="43" description="Scapegoat" gfx="trinket_charon.png" achievement="kuiper (HC)"/>
+	<trinket name="Lunar Crown" id="44" description="This world is mine" gfx="trinket_luna.png" achievement="luna (HC)"/>
+	<trinket name="Fine Tuning" id="45" description="Rare rooms!" gfx="trinket_sol.png" achievement="sol (HC)"/>
+	<trinket name="i" id="46" description="Dimension drift" gfx="trinket_rsaturn.png" achievement="rsaturn (HC)"/>
+
+	<familiar name="CATCATCATCATCATCAT" id="72" description="You should not be reading this" quality="0" craftquality="-1" cache="familiars" gfx="collectibles_109_luna.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+
+	<passive name="Retrograde Mercurius" id="0" description="Your very own army" cache="flying speed" quality="3" craftquality="3" gfx="collectibles_HC_mercurius.png" tags="stars offensive summonable" achievement="retro_planet (HC)"/>
+	<familiar name="Retrograde Venus" id="1" description="Wax friends!" quality="2" cache="familiars" craftquality="2" gfx="collectibles_HC_venus.png" tags="stars offensive summonable monstermanual" achievement="retro_planet (HC)"/>
+	<passive name="Retrograde Terra" id="2" description="The forbidden fruit" quality="3" craftquality="3" gfx="collectibles_HC_terra.png" tags="stars offensive summonable" achievement="retro_planet (HC)"/>
+	<active name="Retrograde Mars" id="3" description="Born to kill" quality="3" craftquality="2" gfx="collectibles_HC_mars.png" tags="stars offensive" chargetype="special" maxcharges="1000" achievement="retro_planet (HC)"/>
+	<passive name="Retrograde Jupiter" id="4" description="High voltage" quality="2" craftquality="2" gfx="collectibles_HC_jupiter.png" tags="stars offensive summonable" achievement="retro_planet (HC)"/>
+	<active name="Retrograde Saturnus" id="5" description="Pocket chronostasis" quality="3" craftquality="2" gfx="collectibles_HC_saturnus.png" tags="stars" chargetype="special" maxcharges="1350" achievement="retro_planet (HC)"/>
+	<passive name="Retrograde Uranus" id="6" description="Filthy feast" quality="2" craftquality="2" gfx="collectibles_HC_uranus.png" tags="stars offensive poop summonable" achievement="retro_planet (HC)"/>
+	<familiar name="Retrograde Neptunus" id="7" description="The abyss stares back" quality="3" cache="familiars" craftquality="3" gfx="collectibles_HC_neptunus.png" tags="stars offensive summonable monstermanual" achievement="retro_planet (HC)"/>
+	
+	<!--not implemented--><familiar name="Tainted Luna" id="8" description="With you, not yours" quality="4" craftquality="-1" gfx="collectibles_HC_luna.png" tags="stars uniquefamiliar noeden quest" special="true" hidden="true" achievement="PERMALOCK"/>
+
+	<active name="The Hyperdice" id="9" description="Reroll space!" quality="4" craftquality="3" gfx="collectibles_HC_hyperdice.png" tags="offensive" chargetype="normal" maxcharges="6" achievement="hyperdice (HC)"/>
+	<active name="Red Shovel" id="10" description="Into the rabbit hole" quality="4" craftquality="5" gfx="collectibles_HC_redshovel.png" tags="offensive" chargetype="normal" maxcharges="12" initcharge="0" achievement="red_shovel (HC)"/>
+	<familiar name="Mothership-01" id="11" description="The inseminator" quality="4" cache="familiars" craftquality="3" gfx="collectibles_HC_mothership1.png" tags="offensive summonable" achievement="mothership (HC)"/>
+	<familiar name="Mothership-02" id="12" description="The pistol" quality="4" cache="familiars" craftquality="3" gfx="collectibles_HC_mothership2.png" tags="offensive summonable" achievement="mothership (HC)"/>
+	<familiar name="Mothership-03" id="13" description="The penetrator" quality="4" cache="familiars" craftquality="3" gfx="collectibles_HC_mothership3.png" tags="offensive summonable" achievement="mothership (HC)"/>
+	<familiar name="Mothership-04" id="14" description="The protector" quality="4" cache="familiars" craftquality="3" gfx="collectibles_HC_mothership4.png" tags="offensive summonable" achievement="mothership (HC)"/>
+	<familiar name="Herald's Stallion" id="15" description="Hold [drop] to ride" quality="2" cache="familiars" craftquality="3" gfx="collectibles_HC_ox.png" tags="offensive poop summonable stars" achievement="heralds_stallion (HC)"/>
+	<!--not implemented--><active name="The Scepter" id="16" description="Fecal enchanter" quality="2" craftquality="3" gfx="collectibles_HC_scepter.png" tags="offensive poop" chargetype="special" maxcharges="12" hidden="true" achievement="PERMALOCK"/>
+	<passive name="Rocket Engine" id="17" description="Overdrive!" quality="3" craftquality="3" gfx="collectibles_HC_rocketEngine.png" tags="offensive summonable" achievement="rocket_engine (HC)"/>
+	<passive name="Stellar Battery" id="18" description="Tame the stars" quality="3" craftquality="3" gfx="collectibles_HC_battery.png" tags="offensive battery summonable" achievement="stellar_battery (HC)"/>
+	<active name="Picatrix" id="19" description="Astral guardian" quality="3" craftquality="3" gfx="collectibles_HC_picatrix.png" tags="offensive book" chargetype="normal" maxcharges="4" achievement="picatrix (HC)"/>
+	<!--not implemented--><active name="Cosmic Tapeworm" id="20" description="One for the price of two" quality="2" craftquality="3" gfx="collectibles_HC_tapeworm.png" tags="offensive" hidden="true" chargetype="normal" maxcharges="2" achievement="PERMALOCK"/>
+	<familiar name="Theia" id="21" description="Atlantean shackles" quality="3" cache="familiars" craftquality="2" gfx="collectibles_HC_theia.png" tags="offensive summonable stars monstermanual" achievement="theia (HC)"/>
+	<passive name="Golden Telescope" id="22" description="More rooms" quality="3" cache="luck" craftquality="3" gfx="collectibles_HC_goldenTelescope.png" tags="offensive summonable stars" achievement="golden_telescope (HC)"/>
+	<passive name="Space Jam   " id="23" description="Starberries" quality="2" craftquality="3" gfx="collectibles_HC_spaceJam.png" tags="offensive summonable stars" achievement="space_jam (HC)"/>
+	<familiar name="Asteroid Belt   " id="24" description="A waist of space" quality="2" cache="familiars" craftquality="3" gfx="collectibles_HC_asteroidBelt.png" tags="offensive summonable stars" achievement="asteroid_belt (HC)"/>
+	<!--not implemented--><passive name="  Sun Glasses  " id="25" description="Don't look at the sun" quality="2" craftquality="3" gfx="collectibles_HC_sunglasses.png" tags="offensive summonable" hidden="true" achievement="PERMALOCK"/>
+	<!--not implemented--><passive name=" Wait What!? " id="26" description="Double tap crash! I can't believe it's not Jupiter!" quality="3" craftquality="3" gfx="collectibles_HC_jupiter_q.png" tags="offensive summonable stars" hidden="true" achievement="PERMALOCK"/>
+	<familiar name="Lil Sol   " id="27" description="Sol invictus" quality="4" cache="familiars" craftquality="3" gfx="collectibles_HC_lilSol.png" tags="offensive summonable stars" achievement="lil_sol (HC)"/>
+	
+	<!--not implemented--><active name="Eye of the Universe" id="28" description="[Drop] to switch" quality="3" cache="familiars" craftquality="3" gfx="collectibles_HC_eotu.png" tags="offensive summonable stars" hidden="true" chargetype="special" maxcharges="18000" achievement="PERMALOCK"/>
+	<active name=" Eye of the Universe " id="29" description="[Drop] to switch" quality="3" cache="familiars" craftquality="-1" gfx="collectibles_HC_dial_uncharged.png" tags="offensive summonable stars noeden" special="true" hidden="true" chargetype="special" maxcharges="18000" achievement="PERMALOCK"/>
+	<active name="  Eye of the Universe  " id="30" description="[Drop] to switch" quality="3" cache="familiars" craftquality="-1" gfx="collectibles_HC_dial_mercury.png" tags="offensive summonable stars noeden" special="true" hidden="true" chargetype="special" maxcharges="18000" achievement="PERMALOCK"/>
+	<active name="   Eye of the Universe   " id="31" description="[Drop] to switch" quality="3" cache="familiars" craftquality="-1" gfx="collectibles_HC_dial_venus.png" tags="offensive summonable stars noeden" special="true" hidden="true" chargetype="special" maxcharges="18000" achievement="PERMALOCK"/>
+	<active name="    Eye of the Universe    " id="32" description="[Drop] to switch" quality="3" cache="familiars" craftquality="-1" gfx="collectibles_HC_dial_terra.png" tags="offensive summonable stars noeden" special="true" hidden="true" chargetype="special" maxcharges="18000" achievement="PERMALOCK"/>
+	<active name="     Eye of the Universe     " id="33" description="[Drop] to switch" quality="3" cache="familiars" craftquality="-1" gfx="collectibles_HC_dial_mars.png" tags="offensive summonable stars noeden" special="true" hidden="true" chargetype="special" maxcharges="18000" achievement="PERMALOCK"/>
+	<active name="      Eye of the Universe      " id="34" description="[Drop] to switch" quality="3" cache="familiars" craftquality="-1" gfx="collectibles_HC_dial_jupiter.png" tags="offensive summonable stars noeden" special="true" hidden="true" chargetype="special" maxcharges="18000" achievement="PERMALOCK"/>
+	<active name="       Eye of the Universe       " id="35" description="[Drop] to switch" quality="3" cache="familiars" craftquality="-1" gfx="collectibles_HC_dial_saturn.png" tags="offensive summonable stars noeden" special="true" hidden="true" chargetype="special" maxcharges="18000" achievement="PERMALOCK"/>
+	<active name="        Eye of the Universe        " id="36" description="[Drop] to switch" quality="3" cache="familiars" craftquality="-1" gfx="collectibles_HC_dial_uranus.png" tags="offensive summonable stars noeden" special="true" hidden="true" chargetype="special" maxcharges="18000" achievement="PERMALOCK"/>
+	<active name="         Eye of the Universe         " id="37" description="[Drop] to switch" quality="3" cache="familiars" craftquality="-1" gfx="collectibles_HC_dial_neptune.png" tags="offensive summonable stars noeden" special="true" hidden="true" chargetype="special" maxcharges="18000" achievement="PERMALOCK"/>
+
+	<passive name="Mochi   " id="38" description="It's homemade" quality="2" cache="firedelay damage luck" craftquality="3" gfx="collectibles_HC_mochi.png" tags="food tearsup summonable offensive" maxhearts="2" hearts="2"/>
+	<passive name="Cat Fish" id="39" description="Just as you imagined" quality="0" craftquality="-1" gfx="collectibles_HC_fish.png" tags="guppy noeden quest" special="true" hidden="true"  achievement="PERMALOCK"/>
+
+	<passive name="Panspermia" id="40" description="Assimilation" quality="3" craftquality="3" gfx="collectibles_HC_panspermia.png" tags="summonable offensive" maxhearts="2" hearts="24" achievement="panspermia (HC)"/>
+
+	<!--not implemented--><familiar name="   Friend   " id="41" description="BFF" quality="4" cache="familiars" craftquality="-1" gfx="collectibles_HC_bff.png" tags="uniquefamiliar noeden quest" special="true" hidden="true"   achievement="PERMALOCK"/>
+	<!--not implemented--><passive name="   Cursed Head   " id="42" description="You have no head" quality="0" craftquality="-1" gfx="collectibles_HC_curseHead.png" tags="uniquefamiliar noeden quest" special="true" hidden="true"   achievement="PERMALOCK"/>
+	<!--not implemented--><passive name="   Cursed Body   " id="43" description="You have no body" quality="0" cache="flying" craftquality="-1" gfx="collectibles_HC_curseBody.png" tags="uniquefamiliar noeden quest" special="true" hidden="true"   achievement="PERMALOCK"/>
+	<!--not implemented--><passive name="   Cursed Soul   " id="44" description="You have no soul" quality="0" cache="firedelay damage speed range shotspeed luck" craftquality="-1" gfx="collectibles_HC_curseSoul.png" tags="uniquefamiliar noeden quest" special="true" hidden="true"   achievement="PERMALOCK"/>
+
+	<familiar name="   Apple   " id="45" description="All stats up!" quality="0" craftquality="-1" gfx="collectibles_HC_babelapple.png" cache="speed firedelay damage range" tags="noeden quest" special="true" hidden="true" hearts="24" maxhearts="4" />
+	<familiar name="   Carrot   " id="46" description="All stats up!" quality="0" craftquality="-1" gfx="collectibles_HC_babelcarrot.png" cache="speed firedelay damage range" tags="noeden quest" special="true" hidden="true" hearts="24" maxhearts="4" />
+	<familiar name="   Egg   " id="47" description="All stats up!" quality="0" craftquality="-1" gfx="collectibles_HC_babelegg.png" cache="speed firedelay damage range" tags="noeden quest" special="true" hidden="true" hearts="24" maxhearts="4" />
+
+	<!--not implemented--><passive name="Tainted Sol" id="48" description="The morning star, bearer of light" quality="4" craftquality="-1" gfx="collectibles_HC_sol.png" tags="stars uniquefamiliar noeden quest" special="true" hidden="true"   achievement="PERMALOCK"/>
+
+	<!--not implemented--><active name="Ad Infinitum" id="49" description="To infinity and beyond" quality="4" craftquality="3" gfx="collectibles_HC_adInfinitum.png" tags="stars offensive" hidden="true" achievement="PERMALOCK"/>
+	<active name="Quasar" id="50" description="Star destroyer" quality="3" craftquality="3" gfx="collectibles_HC_quasar.png" tags="stars offensive" achievement="quasar (HC)"/>
+	<!--not implemented--><active name="Death Whistle" id="51" description="Heat death" quality="3" craftquality="3" gfx="collectibles_HC_death.png" tags="offensive" hidden="true" chargetype="normal" maxcharges="12"  achievement="PERMALOCK"/>
+	
+	
+	<passive name="Fervent Trinket" id="52" description="Hot stuff" quality="2" craftquality="-1" gfx="collectibles_HC_soulscript.png" tags="noeden" hidden="true"  achievement="PERMALOCK"/>
 
 
-	<passive name="Mercurius?" id="0" description="Your very own army" cache="flying speed" quality="2" craftquality="3" gfx="collectibles_109_mercurius.png" tags="stars offensive summonable"/>
-	<familiar name="Venus?" id="1" description="Wax friends!" quality="2" cache="familiars" craftquality="2" gfx="collectibles_109_venus.png" tags="stars offensive summonable monstermanual"/>
-	<passive name="Terra?" id="2" description="The forbidden fruit" quality="3" craftquality="3" gfx="collectibles_109_terra.png" tags="stars offensive summonable"/>
-	<active name="Mars?" id="3" description="Born to kill" quality="3" craftquality="2" gfx="collectibles_109_mars.png" tags="stars offensive" chargetype="special" maxcharges="1000"/>
-	<passive name="Jupiter?" id="4" description="High voltage" quality="2" craftquality="2" gfx="collectibles_109_jupiter.png" tags="stars offensive summonable"/>
-	<active name="Saturnus?" id="5" description="Pocket chronostasis" quality="3" craftquality="2" gfx="collectibles_109_saturnus.png" tags="stars" chargetype="special" maxcharges="1350"/>
-	<passive name="Uranus?" id="6" description="Filthy feast" quality="2" craftquality="2" gfx="collectibles_109_uranus.png" tags="stars offensive poop summonable"/>
-	<familiar name="Neptunus?" id="7" description="The abyss stares back" quality="3" cache="familiars" craftquality="3" gfx="collectibles_109_neptunus.png" tags="stars offensive summonable monstermanual" />
+	<familiar id="60" name="Lil Jupiter" description="Gas dwarf" quality="0" craftquality="-1" gfx="collectibles_HC_lilJupiter.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="61" name="Lil Saturn" description="Back to the future" quality="0" craftquality="-1" gfx="collectibles_HC_lilSaturn.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="62" name="Lil Uranus" description="It's smelly" quality="0" craftquality="-1" gfx="collectibles_HC_lilUranus.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="63" name="Lil Neptune" description="Embrace the abyss" quality="0" craftquality="-1" gfx="collectibles_HC_lilNeptune.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="64" name="Lil Mercury" description="Rainbow is magic" quality="0" craftquality="-1" gfx="collectibles_HC_lilMercury.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="65" name="Lil Venus" description="Flame blazes fiercely" quality="0" craftquality="-1" gfx="collectibles_HC_lilVenus.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="66" name="Lil Terra" description="The blue pearl" quality="0" craftquality="-1" gfx="collectibles_HC_lilTerra.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="67" name="Lil Mars" description="Red dead no redemption" quality="0" craftquality="-1" gfx="collectibles_HC_lilMars.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="68" name="Lil Luna" description="Look at la Luna" quality="0" craftquality="-1" gfx="collectibles_HC_lilLuna.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="69" name="Lil Errant" description="Extreme changeability" quality="0" craftquality="-1" gfx="collectibles_HC_lilErrant.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
 	
-	<familiar name="La Luna" id="8" description="With you, not yours" quality="4" craftquality="-1" gfx="collectibles_109_luna.png" tags="stars uniquefamiliar noeden quest" special="true" hidden="true" />
-
-	<trinket name="Quantum Shard" id="0" description="Everywhere at all times" gfx="trinket_quantum_shard.png" />
-	<trinket name="Sputnik" id="1" description="Fellow traveler" cache="familiars" gfx="trinket_sputnik.png" />
-	<trinket name="Faded flag" id="2" description="Into the Moon" gfx="trinket_faded_flag.png" />
+	<familiar id="70" name="Lil Ceres" description="Who are you gonna call?" quality="0" craftquality="-1" gfx="collectibles_HC_lilCeres.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="71" name="Lil Io" description="Spicy" quality="0" craftquality="-1" gfx="collectibles_HC_lilIo.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="72" name="Lil Europa" description="How are the residents of this moon called?" quality="0" craftquality="-1" gfx="collectibles_HC_lilEuropa.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="73" name="Lil Ganymede" description="King of moons" quality="0" craftquality="-1" gfx="collectibles_HC_lilGanymede.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="74" name="Lil Callisto" description="The ancient" quality="0" craftquality="-1" gfx="collectibles_HC_lilCallisto.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="75" name="Lil Titan" description="Tiny Goliath" quality="0" craftquality="-1" gfx="collectibles_HC_lilTitan.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="76" name="Lil Titania" description="Lady of the flies" quality="0" craftquality="-1" gfx="collectibles_HC_lilTitania.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="77" name="Lil Oberon" description="Lord of the flies" quality="0" craftquality="-1" gfx="collectibles_HC_lilOberon.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="78" name="Lil Umbriel" description="Descending dark." quality="0" craftquality="-1" gfx="collectibles_HC_lilUmbriel.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="79" name="Lil Triton" description="Made in abyss" quality="0" craftquality="-1" gfx="collectibles_HC_lilTriton.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="80" name="Lil Pluto" description="King of dwarves" quality="0" craftquality="-1" gfx="collectibles_HC_lilPluto.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="81" name="Lil Charon" description="Across the styx" quality="0" craftquality="-1" gfx="collectibles_HC_lilCharon.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="82" name="Lil Eris" description="It's easy to preach peace when you live in heaven" quality="0" craftquality="-1" gfx="collectibles_HC_lilEris.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="83" name="Lil Makemake" description="*Vine boom sound effect*" quality="0" craftquality="-1" gfx="collectibles_HC_lilMakemake.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="84" name="Lil Haumea" description="We are born of the blood, made men by the blood, undone by the blood" quality="0" craftquality="-1" gfx="collectibles_HC_lilHaumea.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="85" name="Lil Theia" description="The giant-impact hypothesis." quality="0" craftquality="-1" gfx="collectibles_HC_lilTheia.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="86" name=" Lil Saturn " description="The future is imminent, wake up!" quality="0" craftquality="-1" gfx="collectibles_HC_lilParadox.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
 	
-	<trinket name="  My Little Unicorn  " id="20" description="..." gfx="trinket_unicorn.png" />
-	<trinket name="  Pyromaniac  " id="21" description="..." gfx="trinket_pyromaniac.png" />
-	<trinket name="  The Apple  " id="22" description="..." gfx="trinket_apple.png" />
-	<trinket name="  Technology  " id="23" description="..." gfx="trinket_technology.png" />
-	<trinket name="  Yuck Heart  " id="24" description="..." gfx="trinket_yuckheart.png" />
-	<trinket name="  Sack Head  " id="25" description="..." gfx="trinket_sackhead.png" />
-	<trinket name="  Ice Cube  " id="26" description="..." gfx="trinket_icecube.png" />
-	<trinket name="  Dark Matter  " id="27" description="..." gfx="trinket_darkmatter.png" />
-	<trinket name="  Death Certificate  " id="28" description="..." gfx="trinket_death.png" />
-	<trinket name="  Pause  " id="29" description="..." gfx="trinket_pause.png" />
-	<trinket name="  Pandora's box  " id="30" description="..." gfx="trinket_pandora.png" />
-	<trinket name="  Fish  " id="31" description="..." gfx="trinket_fish.png" />
-	<trinket name="  Red key?  " id="32" description="..." gfx="trinket_redkey.png" />
-	<trinket name="  Plunger  " id="33" description="..." gfx="trinket_plunger.png" />
-	<trinket name="  Bible  " id="34" description="..." gfx="trinket_bible.png" />
-	<familiar name="CATCATCATCATCATCAT" id="40" description="..." quality="0" craftquality="-1" cache="familiars" gfx="collectibles_109_luna.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-
-	<familiar name="Lil Jupiter" id="9" description="Gas dwarf" quality="0" craftquality="-1" gfx="collectibles_109_lilJupiter.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Saturn" id="10" description="Back to the future" quality="0" craftquality="-1" gfx="collectibles_109_lilSaturn.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Uranus" id="11" description="It's smelly" quality="0" craftquality="-1" gfx="collectibles_109_lilUranus.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Neptune" id="12" description="Embrace the abyss" quality="0" craftquality="-1" gfx="collectibles_109_lilNeptune.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Mercury" id="13" description="Rainbow is magic" quality="0" craftquality="-1" gfx="collectibles_109_lilMercury.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Venus" id="14" description="Flame blazes fiercely" quality="0" craftquality="-1" gfx="collectibles_109_lilVenus.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Terra" id="15" description="The blue pearl" quality="0" craftquality="-1" gfx="collectibles_109_lilTerra.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Mars" id="16" description="Red dead no redemption" quality="0" craftquality="-1" gfx="collectibles_109_lilMars.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Luna" id="17" description="Look at la Luna" quality="0" craftquality="-1" gfx="collectibles_109_lilLuna.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Errant" id="18" description="Extreme changeability" quality="0" craftquality="-1" gfx="collectibles_109_lilErrant.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="87" name="Lil Iris" description="It's laughing at you" quality="0" craftquality="-1" gfx="collectibles_HC_lilIris.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="88" name="Lil End" description="You are the player. The story. The program. The human. Made from nothing but milk and love." quality="0" craftquality="-1" gfx="collectibles_HC_lilEnd.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="89" name="Lil Subnautica" description="4546b" quality="0" craftquality="-1" gfx="collectibles_HC_lilSubnautica.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<!--not implemented--><familiar id="90" name="Lil Petrichor" description="Bulwark of the weak." quality="0" craftquality="-1" gfx="collectibles_HC_lilPetrichor.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="91" name="Lil Popstar" description="Poyo!" quality="0" craftquality="-1" gfx="collectibles_HC_lilPopstar.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="92" name=" Lil Titan " description="Lethal." quality="0" craftquality="-1" gfx="collectibles_HC_lilLethalTitan.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="93" name="Lil Cat Planet" description="Thank you for welcoming me!" quality="0" craftquality="-1" gfx="collectibles_HC_lilCat.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<!--not implemented--><familiar id="94" name="Lil Treasure" description="2002." quality="0" craftquality="-1" gfx="collectibles_HC_lilTreasure.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<!--not implemented--><familiar id="95" name="Lil Skaia" description="S U C K E R S" quality="0" craftquality="-1" gfx="collectibles_HC_lilSkaia.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="96" name="Lil Remina" description="Hellstar" quality="0" craftquality="-1" gfx="collectibles_HC_lilRemina.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
 	
-	<familiar name="Lil Ceres" id="19" description="Who are you gonna call?" quality="0" craftquality="-1" gfx="collectibles_109_lilCeres.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Io" id="20" description="Spicy" quality="0" craftquality="-1" gfx="collectibles_109_lilIo.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Europa" id="21" description="How are the residents of this moon called?" quality="0" craftquality="-1" gfx="collectibles_109_lilEuropa.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Ganymede" id="22" description="King of moons" quality="0" craftquality="-1" gfx="collectibles_109_lilGanymede.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Callisto" id="23" description="The ancient" quality="0" craftquality="-1" gfx="collectibles_109_lilCallisto.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Titan" id="24" description="Tiny Goliath" quality="0" craftquality="-1" gfx="collectibles_109_lilTitan.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Titania" id="25" description="Lady of the flies" quality="0" craftquality="-1" gfx="collectibles_109_lilTitania.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Oberon" id="26" description="Lord of the flies" quality="0" craftquality="-1" gfx="collectibles_109_lilOberon.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Triton" id="27" description="Made in abyss" quality="0" craftquality="-1" gfx="collectibles_109_lilTriton.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Pluto" id="28" description="King of dwarves" quality="0" craftquality="-1" gfx="collectibles_109_lilPluto.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Charon" id="29" description="Across the styx" quality="0" craftquality="-1" gfx="collectibles_109_lilCharon.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Eris" id="30" description="It's easy to preach peace when you live in heaven" quality="0" craftquality="-1" gfx="collectibles_109_lilEris.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Makemake" id="31" description="*Vine boom sound effect*" quality="0" craftquality="-1" gfx="collectibles_109_lilMakemake.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil Haumea" id="32" description="We are born of the blood, made men by the blood, undone by the blood" quality="0" craftquality="-1" gfx="collectibles_109_lilHaumea.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	
-	<familiar name="Lil Iris" id="34" description="⧫︎♒︎♏︎ ♓︎❒︎♓︎⬧︎ ♓︎⬧︎ ♋︎●︎❍︎□︎⬧︎⧫︎ ♒︎♏︎❒︎♏︎📪︎ ♌︎♏︎♒︎□︎●︎♎︎ ⧫︎♒︎⍓︎ ♑︎❒︎♏︎♋︎⧫︎■︎♏︎⬧︎⬧︎" quality="0" craftquality="-1" gfx="collectibles_109_lilIris.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	<familiar name="Lil End" id="35" description="You are the player. The story. The program. The human. Made from nothing but milk and love." quality="0" craftquality="-1" gfx="collectibles_109_lilEnd.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
-	
+	<familiar id="97" name="Lil Ash Twin" description="It's always dark" quality="0" craftquality="-1" gfx="collectibles_HC_lilAsh.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="98" name="Lil Ember Twin" description="It's always dark" quality="0" craftquality="-1" gfx="collectibles_HC_lilEmber.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="99" name="Lil Timber Hearth" description="In the ancient glade" quality="0" craftquality="-1" gfx="collectibles_HC_lilTimber.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="100" name="Lil Attlerock" description="In the ancient glade" quality="0" craftquality="-1" gfx="collectibles_HC_lilAttle.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="101" name="Lil Brittle Hollow" description="Across ald bark" quality="0" craftquality="-1" gfx="collectibles_HC_lilBrittle.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="102" name="Lil Hollow's Lantern" description="Across ald bark" quality="0" craftquality="-1" gfx="collectibles_HC_lilLantern.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="103" name="Lil Giant's Deep" description="The quiet shade" quality="0" craftquality="-1" gfx="collectibles_HC_lilGiant.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
+	<familiar id="104" name="Lil Dark Bramble" description="The quiet shade" quality="0" craftquality="-1" gfx="collectibles_HC_lilBramble.png" tags="uniquefamiliar noeden quest" special="true" hidden="true" />
 </items>

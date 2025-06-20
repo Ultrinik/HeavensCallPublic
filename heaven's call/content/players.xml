@@ -1,0 +1,22 @@
+
+<players root="hc/gfx/characters/costumes/" portraitroot="hc/gfx/ui/boss/characters/" nameimageroot="hc/gfx/ui/boss/characters/">
+    <player name="The Blaze (HC)" skin="character_Blaze.png" hp="0"
+          skinColor="2" canShoot="true"
+          items="20"
+          hidden="true"
+          nomarks="true"
+    />
+    <player name="Doll (HC)" skin="character_Doll.png" hp="0"
+          skinColor="4" canShoot="false"
+          hidden="true"
+          nomarks="true"
+    />
+    <player name="Sol (HC)" skin="character_Sol.png" hp="0"
+          canShoot="false"
+          hidden="true"
+          nameimage="playername_sol.png"
+          portrait="playerportrait_sol.png"
+          hp="6"
+          nomarks="true"
+    />
+</players>

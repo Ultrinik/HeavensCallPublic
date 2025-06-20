@@ -1,13 +1,24 @@
-<music root="music/">
-	<track name="Supernova" path="supernova.ogg" loop="false" />
-	<track name="Supernova_loop" path="supernova_loop.ogg" loop="true" />
-	
-	<track name="Doing_some_Errants_Intro" path="Errands_intro.ogg" loop="false" />
+<music root="hc/music/">
+	<track name="Supernova" path="supernova_loop.ogg" loop="true" />
+	<track name="Supernova_intro" path="supernova.ogg" />
+
 	<track name="Doing_some_Errants" path="Doing_some_Errants.ogg" loop="true" />
-	
-	<track name="Luna_Intro" path="Luna_Intro.ogg" loop="false" />
+	<track name="Doing_some_Errants_intro" path="Errands_intro.ogg" />
+
 	<track name="Waning_Blood" path="Waning_Blood.ogg" loop="true" />
+	<track name="Waning_Blood_intro" path="Luna_Intro.ogg" />
+
+	<track name="Retro_Moon" path="Retro_Moon.ogg" loop="true" />
+
+	<track name="Sol_Jar" path="Sol_Jar.ogg" loop="true" />
+	
 	<track name="Luna_Death" path="Luna_Death.ogg" loop="false" />
 	
+	<track name="Warm_and_Calm" path="warm_and_calm.ogg" loop="true" />
+	
+	<track name="Lunar_Pact" path="Lunar_Pact.ogg" loop="true" />
+
 	<track name="evERR" path="evERR.ogg" loop="true" />
+	
+	<track name="Below_Never_More" path="Below_Never_More.ogg" loop="true" />
 </music>

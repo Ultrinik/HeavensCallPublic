@@ -1,0 +1,55 @@
+<data>
+	<entity Name="Telescope (HC)" 	Image="Slots/Telescope.png"	ID="6" Variant="370" Subtype="0" Kind="Heavens Call" Group="Slots" />
+	<entity Name="Toilet Bed (HC)" 		Image="Slots/Toilet.png"		ID="6" Variant="374" Subtype="0" Kind="Heavens Call" Group="Slots" />
+	<entity Name="Toilet Bed Dirty (HC)" Image="Slots/Toilet_Dirty.png" ID="6" Variant="374" Subtype="1" Kind="Heavens Call" Group="Slots" />
+	<entity Name="Computer (HC)" 	Image="Slots/Computer.png"	ID="6" Variant="375" Subtype="4" Kind="Heavens Call" Group="Slots" />
+	
+	<entity Name="Mercury Statue" 	Image="Statues/Mercury_Statue.png"	ID="699" Variant="370" Subtype="2" Kind="Heavens Call" Group="Statues" />
+	<entity Name="Venus Statue" 	Image="Statues/Venus_Statue.png"	ID="699" Variant="370" Subtype="3" Kind="Heavens Call" Group="Statues" />
+	<entity Name="Terra Statue" 	Image="Statues/Terra_Statue.png"	ID="699" Variant="370" Subtype="4" Kind="Heavens Call" Group="Statues" />
+	<entity Name="Mars Statue" 		Image="Statues/Mars_Statue.png"		ID="699" Variant="370" Subtype="5" Kind="Heavens Call" Group="Statues" />
+	<entity Name="Jupiter Statue" 	Image="Statues/Jupiter_Statue.png"	ID="699" Variant="370" Subtype="6" Kind="Heavens Call" Group="Statues" />
+	<entity Name="Saturn Statue" 	Image="Statues/Saturn_Statue.png"	ID="699" Variant="370" Subtype="7" Kind="Heavens Call" Group="Statues" />
+	<entity Name="Uranus Statue" 	Image="Statues/Uranus_Statue.png"	ID="699" Variant="370" Subtype="8" Kind="Heavens Call" Group="Statues" />
+	<entity Name="Neptune Statue" 	Image="Statues/Neptune_Statue.png"	ID="699" Variant="370" Subtype="9" Kind="Heavens Call" Group="Statues" />
+	<entity Name="Sol Statue Spawn (HC)" 	Image="Statues/Sol_Statue.png"	ID="714" Variant="375" Subtype="0" Kind="Heavens Call" Group="Statues" />
+	
+	<entity Name="Jupiter the Gargantuan" 	Image="Bosses/Jupiter.png"	ID="700" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Saturn the Intransigent" 	Image="Bosses/Saturn.png"	ID="701" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Uranus the Unpleasant" 	Image="Bosses/Uranus.png"	ID="702" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Neptune the Unfathomable" Image="Bosses/Neptune.png"	ID="703" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Mercury the Unwary" 		Image="Bosses/Mercury.png"	ID="704" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Venus the Termagant" 		Image="Bosses/Venus.png"	ID="705" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Terra the Fatalist (Green)" 	Image="Bosses/Terra.png"	ID="706" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Mars the Vainglorious" 	Image="Bosses/Mars.png"	ID="707" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Luna the Tainted" 		Image="Bosses/TLuna.png"	ID="708" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Pluto the Frivolous" 		Image="Bosses/Pluto.png"	ID="709" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name=" Charon the Benumbed " 	Image="Bosses/Charon.png"	ID="710" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Eris the Vehement" 		Image="Bosses/Eris.png"	ID="711" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Makemake the Phlegmatic" 	Image="Bosses/Makemake.png"	ID="712" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Haumea the Diffident" 	Image="Bosses/Haumea.png"	ID="713" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Ceres the Cauterized" 	Image="Bosses/Ceres.png"	ID="717" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Sol the Absolute" 		Image="Bosses/Sol.png"	ID="714" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="The Errant" 				Image="Bosses/Errant.png"	ID="715" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Luna the Ilustrated" 		Image="Bosses/ILuna.png"	ID="716" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	<entity Name="Retcon Saturn" 			Image="Bosses/RSaturn.png"	ID="718" Variant="370" Subtype="0" Kind="Heavens Call" Group="Bosses" />
+	
+	<entity Name="Blaze Heart (HC)" 	Image="Pickups/BlazeHeart.png"	ID="5" Variant="10" Subtype="160" Kind="Heavens Call" Group="Pickups" />
+	<entity Name="Glass Heart (HC)" 	Image="Pickups/GlassHeart.png"	ID="5" Variant="10" Subtype="161" Kind="Heavens Call" Group="Pickups" />
+	<entity Name="Bismuth 1 (HC)" 	Image="Pickups/Bismuth.png"	ID="5" Variant="474" Subtype="160" Kind="Heavens Call" Group="Pickups" />
+	<entity Name="Bismuth 2 (HC))" 	Image="Pickups/Bismuth.png"	ID="5" Variant="474" Subtype="161" Kind="Heavens Call" Group="Pickups" />
+	<entity Name="Bismuth 3 (HC)" 	Image="Pickups/Bismuth.png"	ID="5" Variant="474" Subtype="162" Kind="Heavens Call" Group="Pickups" />
+	<entity Name="Bismuth Golden (HC)" 	Image="Pickups/BismuthGolden.png"	ID="5" Variant="474" Subtype="163" Kind="Heavens Call" Group="Pickups" />
+	
+	<entity Name="Corpse (HC)" 	Image="Everchanger/Corpse.png"	ID="5" Variant="472" Subtype="370" Kind="Heavens Call" Group="Everchanger" />
+	<entity Name="Generator (HC)" 	Image="Everchanger/Generator.png"	ID="5" Variant="472" Subtype="371" Kind="Heavens Call" Group="Everchanger" />
+	<entity Name="Sink (HC)" 	Image="Everchanger/Sink.png"	ID="5" Variant="472" Subtype="372" Kind="Heavens Call" Group="Everchanger" />
+	<entity Name="Stove (HC)" 	Image="Everchanger/Stove.png"	ID="5" Variant="472" Subtype="373" Kind="Heavens Call" Group="Everchanger" />
+	<entity Name="Fridge (HC)" 	Image="Everchanger/Fridge.png"	ID="5" Variant="472" Subtype="374" Kind="Heavens Call" Group="Everchanger" />
+	<entity Name="Toilet (HC)" 	Image="Everchanger/Toilet.png"	ID="5" Variant="472" Subtype="375" Kind="Heavens Call" Group="Everchanger" />
+	<entity Name="Tank (HC)" 	Image="Everchanger/Tank.png"	ID="5" Variant="472" Subtype="377" Kind="Heavens Call" Group="Everchanger" />
+	<entity Name="Turret (HC)" 	Image="Everchanger/Turret.png"	ID="5" Variant="472" Subtype="379" Kind="Heavens Call" Group="Everchanger" />
+	<entity Name="Tree (HC)" 	Image="Everchanger/Tree.png"	ID="5" Variant="472" Subtype="380" Kind="Heavens Call" Group="Everchanger" />
+	<entity Name="Tree Empty (HC)"	Image="Everchanger/Tree2.png"	ID="5" Variant="472" Subtype="381" Kind="Heavens Call" Group="Everchanger" />
+	<entity Name="House (HC)"	Image="Babel/House.png"				ID="5" Variant="472" Subtype="383" Kind="Heavens Call" Group="Babel" />
+</data>

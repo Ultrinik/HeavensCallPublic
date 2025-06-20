@@ -1,12 +1,398 @@
 <ItemPools>
+
+
+	<Pool Name="retrogradePlanetarium HC">
+		<Item Name="Retrograde Mercurius" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Venus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Terra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Mars" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Jupiter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Saturnus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Uranus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Neptunus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+
+	</Pool>
+
+	<Pool Name="astral HC">
+		<Item Id="299" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="300" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="301" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="302" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="303" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="304" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="305" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="306" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="307" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="308" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="309" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="318" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="392" Weight="0.25" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Name="Herald's Stallion" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<!-- andromeda--><Item Name="​Ophiuchus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="catLitter HC">
+		<Item Id="133" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="134" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="145" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="187" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="212" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="665" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="81" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="9" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="36" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="209" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="236" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="543" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="576" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="680" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="38" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="4" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
+
+	</Pool>
+
+	<Pool Name="organ HC">
+		<Item Id="558" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="611" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="15" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="642" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="641" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="16" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="657" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="658" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="697" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="725" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="155" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="218" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="229" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="261" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="276" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="273" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="319" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="55" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="452" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="453" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="454" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="467" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="509" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="502" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="525" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="544" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="542" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="529" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="548" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="549" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="458" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="169" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Panspermia" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
+
+	</Pool>
+	
+	<Pool Name="pain HC">
+		<Item Name="Retrograde Mercurius" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Venus" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Terra" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Mars" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Jupiter" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Saturnus" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Uranus" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Neptunus" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Name="Red Shovel" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Panspermia" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Id="612" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="706" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="711" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="187" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="179" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="341" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="385" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="424" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="510" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="547" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="175" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="109" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="33" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="688" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="5" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Id="81" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="133" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="134" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="145" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="580" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="212" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="665" Weight="0.67" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Id="67" Weight="0.25" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="281" Weight="0.25" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="482" Weight="0.25" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Id="188" Weight="0.2" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="telescope HC">
+		<Item Name="Retrograde Mercurius" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Venus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Terra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Mars" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Jupiter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Saturnus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Uranus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Neptunus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Name="Golden Telescope" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Asteroid Belt   " Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Lil Sol   " Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Quasar" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Id="299" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="300" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="301" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="302" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="303" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="304" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="305" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="306" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="307" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="308" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="309" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="318" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="392" Weight="0.25" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Name="Herald's Stallion" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Id="588" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="589" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="590" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="591" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="592" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="593" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="594" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="595" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="596" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="597" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="598" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Name="Theia" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
+	
+		<Item Id="158" Weight="0.25" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="512" Weight="0.25" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="titan HC">
+		<Item Id="202" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="414" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="419" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="546" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="555" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="602" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="689" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="732" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Golden Telescope" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<!-- ============================================================================== -->
+	<!-- ============================================================================== -->
+	<!-- ============================================================================== -->
+	<!-- ============================================================================== -->
+	<!-- ============================================================================== -->
+	<!-- ============================================================================== -->
+	<!-- ============================================================================== -->
+	<!-- ============================================================================== -->
+
+
 	<Pool Name="ultraSecret">
-		<Item Name="Mercurius?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Venus?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Terra?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Mars?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Jupiter?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Saturnus?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Uranus?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Neptunus?" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Mercurius" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Venus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Terra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Mars" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Jupiter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Saturnus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Uranus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Retrograde Neptunus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Name="Red Shovel" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Name="Mothership-01" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-02" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-03" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-04" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		
+		<Item Name="Panspermia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+
+	</Pool>
+
+	<Pool Name="treasure">
+		<Item Name="The Hyperdice" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Name="Mothership-01" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-02" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-03" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-04" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		
+		<Item Name="Herald's Stallion" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Name="Rocket Engine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Name="Stellar Battery" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Name="Space Jam   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Name="Asteroid Belt   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Name="Lil Sol   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Name="Quasar" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Name="Panspermia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="shop">
+		<Item Name="Golden Telescope" Weight="0.2" DecreaseBy="1" RemoveOn="0.02"/>
+	</Pool>
+
+	<Pool Name="boss">
+		<Item Name="Mochi   " Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="devil">
+		<Item Name="Panspermia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="angel">
+		<Item Name="Lil Sol   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Name="Quasar" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="secret">
+		<Item Name="The Hyperdice" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="library">
+		<Item Name="Picatrix" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="shellGame">
+	</Pool>
+
+	<Pool Name="goldenChest">
+	</Pool>
+
+	<Pool Name="redChest">
+		<Item Name="Red Shovel" Weight="0.1" DecreaseBy="0.04" RemoveOn="0.01"/>
+	</Pool>
+
+	<Pool Name="beggar">
+	</Pool>
+
+	<Pool Name="demonBeggar">
+	</Pool>
+
+	<Pool Name="curse">
+		<Item Name="Mochi   " Weight="0.2" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="keyMaster">
+	</Pool>
+
+	<Pool Name="batteryBum">
+		<Item Name="Stellar Battery" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="momsChest">
+	</Pool>
+
+	<Pool Name="greedTreasure">
+
+		<Item Name="Mothership-01" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-02" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-03" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-04" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		
+		<Item Name="Herald's Stallion" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Name="Rocket Engine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Name="Picatrix" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Name="Space Jam   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Name="Lil Sol   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Name="Panspermia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="greedBoss">
+		<Item Name="Mochi   " Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="greedShop">
+
+		<Item Name="Mothership-01" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-02" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-03" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-04" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+
+		<Item Name="Rocket Engine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Name="Stellar Battery" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Name="Space Jam   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Name="Asteroid Belt   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+
+		<Item Name="Lil Sol   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Name="Panspermia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="greedCurse">
+		<Item Name="Mochi   " Weight="0.2" DecreaseBy="1" RemoveOn="0.1"/>
+		
+		<Item Name="Panspermia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="greedDevil">
+		<Item Name="Panspermia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="greedAngel">
+	</Pool>
+
+	<Pool Name="greedSecret">
+	</Pool>
+
+	<Pool Name="craneGame">
+		<Item Name="Stellar Battery" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		
+	</Pool>
+
+	<Pool Name="bombBum">
+		
+		<Item Name="Rocket Engine" Weight="0.2" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="planetarium">
+
+		<Item Name="Theia" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="oldChest">
+	</Pool>
+
+	<Pool Name="babyShop">
+		<Item Name="Lil Sol   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+
+	<Pool Name="woodenChest">
+	</Pool>
+
+	<Pool Name="rottenBeggar">
 	</Pool>
 </ItemPools>

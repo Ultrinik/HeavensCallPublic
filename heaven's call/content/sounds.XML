@@ -1,4 +1,4 @@
-<sounds root="sfx/">
+<sounds root="hc/sfx/">
 	<sound name="SuperFart">
 		<sample weight="1" path="super_fart.wav" />
 	</sound>
@@ -33,9 +33,7 @@
 		<sample weight="1" path="thunder3.wav" />
 	</sound>
 	<sound name="SuperExplosion">
-		<sample weight="1" path="super_explosion1.wav" />
-		<sample weight="1" path="super_explosion2.wav" />
-		<sample weight="1" path="super_explosion3.wav" />
+		<sample weight="1" path="super_explosion.wav" />
 	</sound>
 	<sound name="HailBreak">
 		<sample weight="1" path="hail_break1.wav" />
@@ -177,9 +175,7 @@
 		<sample weight="1" path="train_crash.wav" />
 	</sound>
 	<sound name="Kiss">
-		<sample weight="1" path="kiss1.wav" />
-		<sample weight="1" path="kiss2.wav" />
-		<sample weight="1" path="kiss3.wav" />
+		<sample weight="1" path="venus_kiss.wav" />
 	</sound>
 	<sound name="MarsDamage">
 		<sample weight="1" path="mars_damage.wav" />
@@ -197,9 +193,7 @@
 		<sample weight="1" path="leaf4.wav" />
 	</sound>
 	<sound name="Ow">
-		<sample weight="1" path="ow1.wav" />
-		<sample weight="1" path="ow2.wav" />
-		<sample weight="1" path="ow3.wav" />
+		<sample weight="1" path="ow.wav" />
 	</sound>
 	<sound name="Frog">
 		<sample weight="1" path="frog1.wav" />
@@ -218,7 +212,6 @@
 	</sound>
 	<sound name="CrystalBreak">
 		<sample weight="1" path="crystal_break_big1.wav" />
-		<sample weight="1" path="crystal_break_big2.wav" />
 	</sound>
 	<sound name="StoneSlide">
 		<sample weight="1" path="stone_slide1.wav" />
@@ -234,8 +227,17 @@
 	<sound name="Crit">
 		<sample weight="1" path="crit.wav" />
 	</sound>
+	<sound name="PreSneeze">
+		<sample weight="1" path="PreSneeze1.wav" />
+		<sample weight="1" path="PreSneeze2.wav" />
+		<sample weight="1" path="PreSneeze3.wav" />
+		<sample weight="1" path="PreSneeze4.wav" />
+	</sound>
 	<sound name="Sneeze">
-		<sample weight="1" path="sneeze.wav" />
+		<sample weight="1" path="sneeze2.wav" />
+		<sample weight="1" path="sneeze3.wav" />
+		<sample weight="1" path="sneeze4.wav" />
+		<sample weight="1" path="sneeze5.wav" />
 	</sound>
 	<sound name="NoseBlowing">
 		<sample weight="1" path="nose_blowing.wav" />
@@ -254,9 +256,6 @@
 	</sound>
 	<sound name="SaberReflect">
 		<sample weight="1" path="saber_reflect.wav" />
-	</sound>
-	<sound name="Shivering">
-		<sample weight="1" path="shivering.wav" />
 	</sound>
 	<sound name="IceCrack">
 		<sample weight="1" path="ice_crack1.wav" />
@@ -347,21 +346,17 @@
 	<sound name="MarsDischarge">
 		<sample weight="1" path="mars_discharge.wav" />
 	</sound>
+	<sound name="BismuthPickup">
+		<sample weight="1" path="bismuth_pick1.wav" />
+		<sample weight="1" path="bismuth_pick2.wav" />
+		<sample weight="1" path="bismuth_pick3.wav" />
+	</sound>
 	<sound name="WoodStep">
 		<sample weight="1" path="woodstep_1.wav" />
 		<sample weight="1" path="woodstep_2.wav" />
 		<sample weight="1" path="woodstep_3.wav" />
 		<sample weight="1" path="woodstep_4.wav" />
 		<sample weight="1" path="woodstep_5.wav" />
-		<sample weight="1" path="woodstep_6.wav" />
-		<sample weight="1" path="woodstep_7.wav" />
-	</sound>
-	<sound name="GrassStep">
-		<sample weight="1" path="grassstep_1.wav" />
-		<sample weight="1" path="grassstep_2.wav" />
-		<sample weight="1" path="grassstep_3.wav" />
-		<sample weight="1" path="grassstep_4.wav" />
-		<sample weight="1" path="grassstep_5.wav" />
 	</sound>
 	<sound name="LockedBox">
 		<sample weight="1" path="lockedbox.wav" />
@@ -416,9 +411,7 @@
 		<sample weight="1" path="PasswordClick.wav" />
 	</sound>
 	<sound name="Purring">
-		<sample weight="1" path="Purring1.wav" />
-		<sample weight="1" path="Purring2.wav" />
-		<sample weight="1" path="Purring3.wav" />
+		<sample weight="1" path="Purring.wav" />
 	</sound>
 	<sound name="Sink">
 		<sample weight="1" path="Sink.wav" />
@@ -465,4 +458,365 @@
 	<sound name="effigy9">
 		<sample weight="1" path="effigy9.wav" />
 	</sound>
+	<sound name="Hyperdice">
+		<sample weight="1" path="Hyperdice.wav" />
+	</sound>
+	<sound name="KeyType1">
+		<sample weight="1" path="keyType1.wav" />
+	</sound>
+	<sound name="KeyType2">
+		<sample weight="1" path="keyType2.wav" />
+	</sound>
+	<sound name="Ariral">
+		<sample weight="1" path="ariral1.wav" />
+		<sample weight="1" path="ariral2.wav" />
+	</sound>
+	<sound name="Fireblast">
+		<sample weight="1" path="fireBlast.wav" />
+		<sample weight="1" path="fireBlast2.wav" />
+	</sound>
+	<sound name="Transform">
+		<sample weight="1" path="transform.wav" />
+	</sound>
+	<sound name="Detransform">
+		<sample weight="1" path="detransform.wav" />
+	</sound>
+	<sound name="NoFuel">
+		<sample weight="1" path="noFuel.wav" />
+	</sound>
+	<sound name="EngineLoaded">
+		<sample weight="1" path="EngineLoaded.wav" />
+	</sound>
+	<sound name="Cow">
+		<sample weight="1" path="cow.wav" />
+		<sample weight="1" path="cow2.wav" />
+		<sample weight="1" path="cow3.wav" />
+	</sound>
+	<sound name="MiniBite">
+		<sample weight="1" path="miniBite.wav" />
+	</sound>
+	<sound name="Lick">
+		<sample weight="1" path="lick.wav" />
+	</sound>
+	<sound name="CowStep">
+		<sample weight="1" path="cowStep1.wav" />
+		<sample weight="1" path="cowStep2.wav" />
+		<sample weight="1" path="cowStep3.wav" />
+	</sound>
+    <sound name="deadseascrolls_pop">
+        <sample weight="1" path="deadseascrolls/pop.wav" />
+    </sound>
+    <sound name="deadseascrolls_whoosh">
+        <sample weight="1" path="deadseascrolls/whoosh.wav" />
+    </sound>
+    <sound name="BismuthBreak">
+        <sample weight="1" path="BismuthBreak.wav" />
+    </sound>
+    <sound name="VoidPickup">
+        <sample weight="1" path="VoidPickup.wav" />
+    </sound>
+    <sound name="LightBeam">
+        <sample weight="1" path="LightBeam.wav" />
+    </sound>
+    <sound name="LightBeamEnd">
+        <sample weight="1" path="LightBeamEnd.wav" />
+    </sound>
+    <sound name="Starfall">
+        <sample weight="1" path="Starfall.wav" />
+    </sound>
+    <sound name="FcukClock">
+        <sample weight="1" path="FcukClock.wav" />
+    </sound>
+    <sound name="Geiger">
+        <sample weight="1" path="Geiger.wav" />
+    </sound>
+    <sound name="SolarSnakeSummon">
+        <sample weight="1" path="SolarSnakeSummon.wav" />
+    </sound>
+	<sound name="Evil">
+		<sample weight="1" path="Evil1.wav" />
+		<sample weight="1" path="Evil2.wav" />
+		<sample weight="1" path="Evil3.wav" />
+	</sound>
+    <sound name="ThunderExplosion">
+        <sample weight="1" path="ThunderExplosion.wav" />
+    </sound>
+    <sound name="SolSummon">
+        <sample weight="1" path="SolSummon.wav" />
+    </sound>
+    <sound name="Submerge">
+        <sample weight="1" path="Submerge.wav" />
+    </sound>
+    <sound name="luna_scream">
+        <sample weight="1" path="luna_scream.wav" />
+    </sound>
+    <sound name="bootUp">
+        <sample weight="1" path="bootUp.wav" />
+    </sound>
+    <sound name="alert">
+        <sample weight="1" path="alert.wav" />
+    </sound>
+    <sound name="chainChomp">
+        <sample weight="1" path="chainChomp.wav" />
+    </sound>
+    <sound name="windows_error">
+        <sample weight="1" path="windows_error.wav" />
+    </sound>
+    <sound name="clockwork1">
+        <sample weight="1" path="clockwork.wav" />
+    </sound>
+    <sound name="clockwork2">
+        <sample weight="1" path="clockwork2.wav" />
+    </sound>
+    <sound name="bagsound">
+        <sample weight="1" path="bagsound.wav" />
+    </sound>
+    <sound name="bagclose">
+        <sample weight="1" path="bagclose.wav" />
+    </sound>
+    <sound name="coins">
+        <sample weight="1" path="coins.wav" />
+    </sound>
+    <sound name="parry">
+        <sample weight="1" path="parry.wav" />
+    </sound>
+    <sound name="robocat">
+        <sample weight="1" path="robocat1.wav" />
+        <sample weight="1" path="robocat2.wav" />
+        <sample weight="1" path="robocat3.wav" />
+        <sample weight="1" path="robocat4.wav" />
+    </sound>
+    <sound name="angryrobocat">
+        <sample weight="1" path="angryrobocat.wav" />
+    </sound>
+    <sound name="IceGrow">
+        <sample weight="1" path="IceGrow.wav" />
+    </sound>
+    <sound name="Slash">
+        <sample weight="1" path="Slash.wav" />
+    </sound>
+    <sound name="SolHiss">
+        <sample weight="1" path="SolHiss1.wav" />
+        <sample weight="1" path="SolHiss2.wav" />
+    </sound>
+    <sound name="starSpray">
+        <sample weight="1" path="starSpray.wav" />
+    </sound>
+    <sound name="touhouBullet">
+        <sample weight="1" path="touhouBullet1.wav" />
+        <sample weight="1" path="touhouBullet2.wav" />
+        <sample weight="1" path="touhouBullet3.wav" />
+    </sound>
+    <sound name="flipsound">
+        <sample weight="1" path="flipsound.wav" />
+    </sound>
+    <sound name="ouroborosDeath">
+        <sample weight="1" path="ouroborosDeath.wav" />
+    </sound>
+    <sound name="timeFcuk1">
+        <sample weight="1" path="fuckfuckfuckfuckfuckfuck.wav" />
+    </sound>
+    <sound name="timeFcuk2">
+        <sample weight="1" path="fuckfuckfuckfuckfuckfuck2.wav" />
+    </sound>
+    <sound name="timeFcuk3">
+        <sample weight="1" path="fuckfuckfuckfuckfuckfuck3.wav" />
+    </sound>
+    <sound name="fuckStart">
+        <sample weight="1" path="fuckStart.wav" />
+    </sound>
+    <sound name="fuckP1">
+        <sample weight="1" path="fuckP1.wav" />
+    </sound>
+    <sound name="fuckP2">
+        <sample weight="1" path="fuckP2.wav" />
+    </sound>
+    <sound name="fuckOuroboros">
+        <sample weight="1" path="fuckOuroboros.wav" />
+    </sound>
+    <sound name="fuckSpare">
+        <sample weight="1" path="fuckSpare.wav" />
+    </sound>
+    <sound name="fuckCritical">
+        <sample weight="1" path="fuckCritical.wav" />
+    </sound>
+    <sound name="fuckPregnant">
+        <sample weight="1" path="fuckPregnant.wav" />
+    </sound>
+    <sound name="fuckRandom">
+        <sample weight="1" path="fuckRandomBed.wav" />
+        <sample weight="1" path="fuckRandomDepressed.wav" />
+        <sample weight="1" path="fuckRandomEverchanger.wav" />
+        <sample weight="1" path="fuckRandomFemcel.wav" />
+        <sample weight="1" path="fuckRandomFriends.wav" />
+        <sample weight="1" path="fuckRandomICU.wav" />
+        <sample weight="1" path="fuckRandomLuna.wav" />
+        <sample weight="1" path="fuckRandomMom.wav" />
+        <sample weight="1" path="fuckRandomShadow.wav" />
+        <sample weight="1" path="fuckRandomVoid.wav" />
+        <sample weight="1" path="fuckRandomDie.wav" />
+        <sample weight="1" path="fuckRandomToilet.wav" />
+        <sample weight="1" path="fuckRandomDeath.wav" />
+        <sample weight="1" path="fuckRandomWho.wav" />
+        <sample weight="1" path="fuckRandomBox.wav" />
+    </sound>
+    <sound name="fuckSkillIssue">
+        <sample weight="1" path="fuckRandomSkillIssue.wav" />
+    </sound>
+    <sound name="stevenLaser">
+        <sample weight="1" path="stevenLaser.wav" />
+    </sound>
+    <sound name="stevenLaserMini">
+        <sample weight="1" path="stevenLaserMini.wav" />
+    </sound>
+    <sound name="fuckScreen">
+        <sample weight="1" path="fuckSummon.wav" />
+    </sound>
+    <sound name="marsLaught">
+        <sample weight="1" path="mars_laught_1.wav" />
+        <sample weight="1" path="mars_laught_2.wav" />
+        <sample weight="1" path="mars_laught_3.wav" />
+    </sound>
+    <sound name="missileBoxOpen">
+        <sample weight="1" path="missile_box_open.wav" />
+    </sound>
+    <sound name="marsChargeScream">
+        <sample weight="1" path="marsChargeScream.wav" />
+    </sound>
+    <sound name="marsLaserLaught">
+        <sample weight="1" path="marsLaserLaught.wav" />
+    </sound>
+    <sound name="marsRocketLaught">
+        <sample weight="1" path="marsRocketLaught.wav" />
+    </sound>
+    <sound name="wood_stairs">
+        <sample weight="1" path="wood_stairs.wav" />
+    </sound>
+    <sound name="mercury_laught">
+        <sample weight="1" path="mercury_laught.wav" />
+    </sound>
+    <sound name="mercury_super_happy">
+        <sample weight="1" path="mercury_super_happy.wav" />
+    </sound>
+    <sound name="mercury_happy">
+        <sample weight="1" path="mercury_happy.wav" />
+        <sample weight="1" path="mercury_happy2.wav" />
+        <sample weight="1" path="mercury_happy3.wav" />
+    </sound>
+    <sound name="mercury_ouch">
+        <sample weight="1" path="mercury_ouch.wav" />
+        <sample weight="1" path="mercury_ouch2.wav" />
+        <sample weight="1" path="mercury_ouch3.wav" />
+    </sound>
+    <sound name="mercury_uff">
+        <sample weight="1" path="mercury_uff.wav" />
+    </sound>
+    <sound name="gravity_shift">
+        <sample weight="1" path="gravity shift.wav" />
+    </sound>
+    <sound name="gravity_shift_teleport">
+        <sample weight="1" path="gravity shift teleport.wav" />
+    </sound>
+    <sound name="venus_laught">
+        <sample weight="1" path="venus_laught.wav" />
+        <sample weight="1" path="venus_laught2.wav" />
+        <sample weight="1" path="venus_laught3.wav" />
+    </sound>
+    <sound name="venus_cought">
+        <sample weight="1" path="venus_cought.wav" />
+        <sample weight="1" path="venus_cought2.wav" />
+        <sample weight="1" path="venus_cought3.wav" />
+    </sound>
+    <sound name="venus_evil_laught">
+        <sample weight="1" path="venus_evil_laught.wav" />
+    </sound>
+    <sound name="venus_giggle">
+        <sample weight="1" path="venus_giggle.wav" />
+    </sound>
+    <sound name="that_fucking_laught">
+        <sample weight="1" path="that_fucking_laught.wav" />
+    </sound>
+    <sound name="venus_angry">
+        <sample weight="1" path="venus_angry.wav" />
+    </sound>
+    <sound name="venus_pain">
+        <sample weight="1" path="venus_pain.wav" />
+    </sound>
+    <sound name="terra_gasp">
+        <sample weight="1" path="terra_gasp.wav" />
+    </sound>
+    <sound name="terra_prespin">
+        <sample weight="1" path="terra_prespin.wav" />
+    </sound>
+    <sound name="terra_dizzy">
+        <sample weight="1" path="terra_dizzy.wav" />
+    </sound>
+    <sound name="doom_explosion">
+        <sample weight="1" path="doom_explosion.wav" />
+    </sound>
+    <sound name="dust">
+        <sample weight="1" path="dust.wav" />
+    </sound>
+    <sound name="burp">
+        <sample weight="1" path="burp1.wav" />
+        <sample weight="1" path="burp2.wav" />
+        <sample weight="1" path="burp3.wav" />
+    </sound>
+    <sound name="ugh">
+        <sample weight="1" path="ugh.wav" />
+    </sound>
+    <sound name="annoyed">
+        <sample weight="1" path="annoyed.wav" />
+    </sound>
+    <sound name="frog_gulp">
+        <sample weight="1" path="frog_gulp.wav" />
+    </sound>
+    <sound name="geiger_loop">
+        <sample weight="1" path="geiger_loop.wav" />
+    </sound>
+    <sound name="quantum_signal">
+        <sample weight="1" path="quantum_signal.wav" />
+    </sound>
+    <sound name="drop_bismuth">
+        <sample weight="1" path="drop_bismuth.wav" />
+    </sound>
+    <sound name="snake_hiss">
+        <sample weight="1" path="snake_hiss.wav" />
+    </sound>
+	
+
+	<!-- Isaac... -->
+    <sound name="IsaacSadIsaac">
+        <sample weight="1" path="isaacs/isaac_sad_isaac1.wav" />
+    </sound>
+    <sound name="IsaacAngryIsaac">
+        <sample weight="1" path="isaacs/isaac_angry_isaac1.wav" />
+    </sound>
+    <sound name="IsaacNeutralIsaac">
+        <sample weight="1" path="isaacs/isaac_neutral_isaac1.wav" />
+        <sample weight="1" path="isaacs/isaac_neutral_isaac2.wav" />
+    </sound>
+	
+    <sound name="IsaacSadMom">
+        <sample weight="1" path="isaacs/isaac_sad_mom1.wav" />
+    </sound>
+    <sound name="IsaacAngryMom">
+        <sample weight="1" path="isaacs/isaac_angry_mom1.wav" />
+    </sound>
+    <sound name="IsaacNeutralMom">
+        <sample weight="1" path="isaacs/isaac_mom_neutral1.wav" />
+    </sound>
+	
+    <sound name="IsaacSadDad">
+        <sample weight="1" path="isaacs/isaac_sad_dad1.wav" />
+        <sample weight="1" path="isaacs/isaac_sad_dad2.wav" />
+    </sound>
+    <sound name="IsaacAngryDad">
+        <sample weight="1" path="isaacs/isaac_angry_dad1.wav" />
+        <sample weight="1" path="isaacs/isaac_angry_dad2.wav" />
+    </sound>
+    <sound name="IsaacNeutralDad">
+        <sample weight="1" path="isaacs/isaac_neutral_dad1.wav" />
+        <sample weight="1" path="isaacs/isaac_neutral_dad2.wav" />
+    </sound>
 </sounds>

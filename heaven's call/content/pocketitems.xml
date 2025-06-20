@@ -1,0 +1,50 @@
+<pocketitems>
+	<card description="Call of the void" hud="Void Card" name="Void Card" type="special" mimiccharge="12" pickup="370" achievement="PERMALOCK"/>
+	<rune description="Call of the void" hud="Void Rune" name="Void Rune" type="rune" mimiccharge="12" pickup="371" achievement="PERMALOCK"/>
+	<card description="Call of the void" hud="Void Pill" name="Void Pill" type="object" mimiccharge="12" pickup="372" achievement="PERMALOCK"/>
+	<card description="Call of the void" hud="fAKE Void Pill" name="Fake Void Pill" type="special" mimiccharge="12" pickup="373" achievement="PERMALOCK"/>
+	
+	<card description="Into orbit" hud="The Moon" name="The Moon" type="special" mimiccharge="4" pickup="374" achievement="PERMALOCK"/>
+	
+	<card description="Call me whenever you want" hud="Friend" name="Friend Phone Number" type="object" mimiccharge="12" pickup="375"  achievement="PERMALOCK"/>
+	
+	<card description="Beep boop" hud="Punched" name="Punched Card" type="special" mimiccharge="12" pickup="376" achievement="PERMALOCK"/>
+
+	<rune description="Destruction!" hud="*Hagalaz" name="Meteor of Hagalaz" type="rune" mimiccharge="4" pickup="377" achievement="PERMALOCK"/>
+	<rune description="Abundance!" hud="*Jera" name="Meteor of Jera" type="rune" mimiccharge="32" pickup="378" achievement="PERMALOCK"/>
+	<rune description="Passage!" hud="*Ehwaz" name="Meteor of Ehwaz" type="rune" mimiccharge="8" pickup="379" achievement="PERMALOCK"/>
+	<rune description="Purity!" hud="*Dagaz" name="Meteor of Dagaz" type="rune" mimiccharge="12" pickup="380" achievement="PERMALOCK"/>
+	<rune description="Vision!" hud="*Ansuz" name="Meteor of Ansuz" type="rune" mimiccharge="4" pickup="381" achievement="PERMALOCK"/>
+	<rune description="Change!" hud="*Perthro" name="Meteor of Perthro" type="rune" mimiccharge="8" pickup="382" achievement="PERMALOCK"/>
+	<rune description="Companionship!" hud="*Berkano" name="Meteor of Berkano" type="rune" mimiccharge="6" pickup="383" achievement="PERMALOCK"/>
+	<rune description="Resistance!" hud="*Algiz" name="Meteor of Algiz" type="rune" mimiccharge="6" pickup="384" achievement="PERMALOCK"/>
+	
+	<rune description="Charity!" hud="*Gebo" name="Meteor of Gebo" type="rune" mimiccharge="8" pickup="385" achievement="PERMALOCK"/>
+	<rune description="Pestilence!" hud="*Kenaz" name="Meteor of Kenaz" type="rune" mimiccharge="6" pickup="386" achievement="PERMALOCK"/>
+	<rune description="Wealth!" hud="*Fehu" name="Meteor of Fehu" type="rune" mimiccharge="12" pickup="387" achievement="PERMALOCK"/>
+	<rune description="Legacy!" hud="*Othala" name="Meteor of Othala" type="rune" mimiccharge="12" pickup="388" achievement="PERMALOCK"/>
+	<rune description="Treasure!" hud="*Ingwaz" name="Meteor of Ingwaz" type="rune" mimiccharge="12" pickup="389" achievement="PERMALOCK"/>
+	<rune description="Renewal!" hud="*Sowilo" name="Meteor of Sowilo" type="rune" mimiccharge="3" pickup="390" achievement="PERMALOCK"/>
+	
+	<card description="Become giant" hud="Mercury Globe" name="Mercury Globe" type="object" mimiccharge="8" pickup="430" achievement="PERMALOCK"/>
+	<card description="Become giant" hud="Venus Globe" name="Venus Globe" type="object" mimiccharge="8" pickup="431" achievement="PERMALOCK"/>
+	<card description="Become giant" hud="Terra Globe" name="Earth Globe" type="object" mimiccharge="8" pickup="432" achievement="PERMALOCK"/>
+	<card description="Become giant" hud="Mars Globe" name="Mars Globe" type="object" mimiccharge="8" pickup="433" achievement="PERMALOCK"/>
+	<card description="Become giant" hud="Jupiter Globe" name="Jupiter Globe" type="object" mimiccharge="8" pickup="434" achievement="PERMALOCK"/>
+	<card description="Become giant" hud="Saturn Globe" name="Saturn Globe" type="object" mimiccharge="8" pickup="435" achievement="PERMALOCK"/>
+	<card description="Become giant" hud="Uranus Globe" name="Uranus Globe" type="object" mimiccharge="8" pickup="436" achievement="PERMALOCK"/>
+	<card description="Become giant" hud="Neptune Globe" name="Neptune Globe" type="object" mimiccharge="8" pickup="437" achievement="PERMALOCK"/>
+
+	<card description="1-minute free trial!" hud="Retrograde Disc" name="Retrograde Disc" type="object" mimiccharge="6" pickup="440"/>
+
+	<pilleffect name="  Clairvoyance  " class="2+" mimiccharge="4" achievement="clairvoyance (HC)" />
+	<pilleffect name="  Clarivoyance  " class="1-" mimiccharge="4" achievement="clairvoyance (HC)"/>
+
+	<pilleffect name="  Balls Up   " class="3+" mimiccharge="12"  achievement="balls_up (HC)" />
+	<pilleffect name="  Balls Down   " class="3-" mimiccharge="6" achievement="balls_up (HC)" />
+	
+	<pilleffect name="Marshmallow!?" class="2+" mimiccharge="3" achievement="curse_wanderer (HC)" />
+
+	<pilleffect description="You should not be reading this, if you do, it's a bug" name="Void Pill" class="3+" mimiccharge="12" achievement="PERMALOCK"/>
+
+</pocketitems>

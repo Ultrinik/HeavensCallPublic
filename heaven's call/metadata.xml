@@ -1,93 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-    <name>Heaven's Call</name>
+    <name>Heaven's Call [Solar Update](RGON)</name>
     <directory>heaven's call</directory>
-    <id>2839972756</id>
-    <description>disclaimer: To beat the horror challenge you need to be familiar with the contents of the mod.
+    <id>3503885496</id>
+    <description>[img] https://i.ibb.co/4gfB4Ycy/heaven-call.png [/img]
+[url=https://repentogon.com/index.html][b]THIS MOD REQUIRES [img]https://i.ibb.co/zTdqYPTz/repentogon.png[/img] TO FUNCTION[/b][/url]
+[url=https://twitter.com/HeavensCallMOD] [img] https://i.ibb.co/d09RHHWH/twitter.png [/img] Follow Heaven's Call on Twitter [/url]
+[url=https://github.com/Ultrinik/HeavensCallPublic/releases/latest] [img] https://i.ibb.co/677dKRwp/github.png [/img] Mirror download for manual installation  [/url]
+[url=https://ultrinik.itch.io/heavens-call-suika] [img] https://i.ibb.co/5WtkKpR7/itchio.png [/img] Play Heaven's Call Suika [/url]
 
-[url=https://twitter.com/HeavensCallMOD] Follow Heaven's Call on twitter [/url]
-[url=https://github.com/Ultrinik/HeavensCallPublic/releases/latest] Mirror download for manual installation  [/url]
+[img] https://i.ibb.co/TMqXjnJ9/bosses-tittle.png [/img]
+[b] 13 new boss battles [/b] await your challenge!
+[list]
+    [*] [b]1 FINAL BOSS![/b]
+    [*] 10 Challenge Bosses!
+    [*] 2 Special Bosses!
+[/list]
+[img] https://i.ibb.co/bgm8T5Xw/rooms-tittle.png [/img]
+[b] 2 new rooms [/b] are ready to be explored!
+[list]
+    [*] [b]Astral Challenge[/b]: Battle a planet for treasures!
+    [*] [b]Lunar Pact[/b]: Break your hearts for high quality items!
+[/list]
+[img] https://i.ibb.co/LzpPv7vG/items-tittle.png [/img]
+[b] 23 new items + 16 new trinkets [/b] await to be collected!
+[list]
+    [*] 10 Passives
+    [*] 6 Actives
+    [*] 7 Familiars
+    [*] 16 Trinkets
+[/list]
+[img] https://i.ibb.co/k6chzHDP/challenges-tittle.png [/img]
+[b] 3 new challenges [/b] are ready to be beaten!
+[list]
+    [*] [b] Tower of Babel [/b]: [b]Boss Rush[/b] &amp; [b]Arena[/b] challenge
+    [*] [b] True Solar System [/b]: [b]BALLS![/b]
+    [*] [b] Escape the Everchanger [/b]: [b]Horror[/b] escape room challenge
+[/list]
+[img] https://i.ibb.co/bR13N31J/others-tittle.png [/img]
+[b] More stuff [/b] which I won't dedicate a section to!
 
-[url=https://ultrinik.itch.io/heavens-call-suika] Play Heaven's Call suika [/url]
-
-[h1] What is this mod [/h1] 
-This mod adds two new types of rooms the [i] Astral Challenge Room[/i], which has two variants, an easy one, where outer planets spawn, and a difficult one, where the inner planets spawn and the [i] Lunar Pact Room[/i], where you can get Ultra Secret Room Items for broken hearts, and find 8 new items. 
-
-To have detailed information about the mod contents check its [url=https://github.com/Ultrinik/HeavensCallPublic/wiki] GitHub Wiki [/url]
-
-[img] https://i.imgur.com/LJeD5m7.png [/img] 
-
-[img] https://i.imgur.com/0J85B0c.png [/img] 
-
-The Outer Planet Astral Challenge Room can spawn between Chapter 2-1 and Chapter 3-2 with a 9% chance. 
-
-The Inner Planet Astral Challenge Room can spawn in Chapter 5 with a 30% chance or in Corpse with 16.2%. 
-
-The Lunar Pact Room can randomly replace the Devil Deal Room with a 5% chance from Chapter 2. 
-
-The  Astral Challenge Room contains a random  [b] planetarium or zodiac [/b] collectible, you can pick it up or blow up glass statue in the room to transform it into some pickups. 
-
-After that, a boss will spawn and you will have to defeat it to leave the room. 
-
-Defeating a terrestrial planet in chapter 5, it will grant a random pool item, a victory chest and a 50% chance for The Void portal to open.  
-
-The Lunar Pact Room has 8 new items to collect, the Tainted Planetarium Items!   
-
-[h1] What bosses [/h1] 
-[h3] Jupiter the Gargantuan [img]https://i.imgur.com/NMYJol2.png[/img] [/h3] 
-The biggest and tankiest of the outer planets, born from an amalgamation of rotten flesh. They are always surrounded by toxic gas and are charged with a high voltage. 
-[h3] Saturn the Intransigent [img]https://i.imgur.com/mzy1aj9.png[/img] [/h3] 
-A masked warden of her never-ending treasure. Nobody knows how much is inside her bag, but she spares no expense. Stubborn enough to freeze time. 
-[h3] Uranus the Unpleasant [img]https://i.imgur.com/ogD0OvM.png[/img] [/h3] 
-Seems like Ultra Greed and Colostomia have a new challenger for having the best butt title. This constipated snowball is finally having its release upon your arrival. You're so kind for helping him. 
-[h3] Neptune the Unfathomable [img]https://i.imgur.com/GMN8hxx.png[/img] [/h3] 
-A creature from the bottom of the abyss, made from water and pure fear. Leyeds says that if you say its name 3 times in the mirror at 3 am, it will appear on your back and bite your ass. 
-[h3] Mercury the Unwary [img]https://i.imgur.com/NjkrJjx.png[/img] [/h3] 
-An iridescent ball made of speed (and metal, mostly metal). This unicorn doesn't know fear. He will charge at you, mutilate his body, and explode into pieces just to kill you. 
-[h3] Venus the Termagant [img]https://i.imgur.com/fLcJOYa.png[/img] [/h3] 
-A giant willo of blazing beauty, her carcass is made from the bodies of her lovers, who will die for her again and again. Don't accept her kisses, unless you want to be scorched. 
-[h3] Terra the Fatalist [img]https://i.imgur.com/hxRBb1D.png[/img] [/h3] 
-A pretty green planet, fresh water flows through her body. Nothing bad will happen to this little baby. She's perfect as she is. You wouldn't hurt her, right? 
-[h3] Mars the Vainglorious [img]https://i.imgur.com/KvvAAHc.png[/img] [/h3] 
-An overhauled creature, enhanced with mechanical pieces, seeking glory at all cost, no matter the cost of it. 
-[h3] Pluto the Frivolous [img]https://i.imgur.com/IWxZ75k.png[/img] [/h3] 
-A tumorous skull that uses his spine as a stinger to grab things, loves to be with his brother. 
-[h3] Luna the Tainted [img]https://i.imgur.com/0dhx8TW.png[/img] [/h3] 
-A once cheerful and expresfull rabbit, not tainted by the penance of the light. Free from the restraints of the statue, found refugee in the other side, where the light can not reach.  
- [h2] Mods with special interactions [/h2] 
+[h1] Mods with special interactions [/h1] 
 [list] 
-    [*] [b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1978904635] MiniMAPI [/url]: Highly recommended. Without it, the room will still spawn and function properly, but it won't show up correctly on the map. [/b] 
-    [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2635267643] Enhanced Boss Bars [/url]: Bosses have custom icons and health bars. 
-    [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787] Mod Config Menu [/url]: Configure spawn chances, set alternatives skins and more. 
-    [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2880387531] Revelations [/url]: Astral Challenge Room can spawn in both Glacier and Tomb. 
-[/list]  
-[h1] Extra credits [/h1] 
+    [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1978904635] [b]MiniMAPI[/b] [/url]: Highly recommended [b]but not required[/b], without it mini-map icons won't show properly
+    [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2635267643] [b]Enhanced Boss Bars[/b] [/url]: Bosses have custom icons and health bars
+    [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872] [b]External Item Descriptions[/b] [/url]: Descriptions for most stuff in the mod
+    [*] [i]Small[/i] interactions with the following mods: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2851063440]Fiend Folio[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2880387531]Revelations[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2993558907]The Future[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2974704582]Fall From Grace[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2818356312]Tainted Treasure[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2722017893]Andromeda[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3010945909]Rune Rooms[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3416946312]Exodus[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2530772508]Alt Horsemen[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3297246061]Boss Butch![/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3343815332]Last Judgement[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3420129062]Dark Vaults[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3012430463]Epiphany[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2500963144]Eternal Edition[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3169946719]Time Machine[/url]
+[/list]
+
+[h1] Credits [/h1] 
 [list] 
-[*] [url=https://www.youtube.com/channel/UCOkq76alQLrfSFkQVLPlgeA] Nihil[/url]: Creator of the battle music track. 
-[*] [url=https://twitter.com/JunkyX1122] Junky[/url]: Thumbnail art. 
-[*] fridge: Help with sprites. 
-[*] Churupinha: Help with sprites.  
-[*] Grommy: Help with sprites. 
-[*] Harvester: Creator of the new Lunar Pact door sprite. 
-[*] IzzyIsakoi_: Creator of the new Astral Challenge door sprite.
-[*] Jerb: Help with shaders.  
-[*] [url=https://twitter.com/Aladar_C137] Aladar[/url]: Creator of the original concept for Venus. 
-[/list] 
+[*] [url=https://twitter.com/UltrinikXD]Ultrinik[/url]: Main developer
+[*] [url=https://www.youtube.com/channel/UCOkq76alQLrfSFkQVLPlgeA] Nihil[/url]: Music
+[*] [url=https://twitter.com/JunkyX1122] Junky[/url]: Help with artworks
+[*] Kharjaro: Help with sound effects
+[*] [url=https://twitter.com/Aladar_C137]Aladar[/url], Churupinha, mycenaut, Harvester, Mattee, Grommy, IzzyIsakoi_: Help with sprites
+[*] Jerb: Help with shaders
+[/list]
+And every mod developer from which I used code &lt;3
+[i]If you collaborated with HC development and your name is not here, tell me![/i]
+
 [h1][b] If you are going to report a bug or post a suggestion, please do so in the appropriate discussion. [/b][/h1]</description>
-    <version>1.5.17</version>
-    <visibility>Public</visibility>
+    <version>1.6.1</version>
+    <visibility>Private</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
     <tag id="Active Items"/>
     <tag id="Trinkets"/>
+    <tag id="Pills"/>
     <tag id="Pickups"/>
     <tag id="Familiars"/>
     <tag id="Rooms"/>
     <tag id="Floors"/>
     <tag id="Enemies"/>
     <tag id="Bosses"/>
+    <tag id="Hazards"/>
     <tag id="Challenges"/>
     <tag id="Shaders"/>
-    <tag id="Sound Effects"/>
-    <tag id="Music"/>
 </metadata>

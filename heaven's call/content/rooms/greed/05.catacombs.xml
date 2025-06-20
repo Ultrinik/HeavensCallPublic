@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<rooms>
+	<room variant="1" name="astral cc" type="5" subtype="1" shape="4" width="13" height="14" difficulty="10" weight="0.5">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="2">
+			<entity type="700" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="1" name="astral cc (copy)" type="5" subtype="1" shape="4" width="13" height="14" difficulty="10" weight="0.5">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="2">
+			<entity type="701" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="1" name="astral cc (copy) (1)" type="5" subtype="1" shape="4" width="13" height="14" difficulty="10" weight="0.5">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="2">
+			<entity type="702" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="1" name="astral cc (copy) (2)" type="5" subtype="1" shape="4" width="13" height="14" difficulty="10" weight="0.5">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="2">
+			<entity type="703" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="1" name="astral cc (copy) (3)" type="5" subtype="1" shape="4" width="13" height="14" difficulty="10" weight="0.5">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="5" y="1">
+			<entity type="709" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="7" y="1">
+			<entity type="711" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="2">
+			<entity type="710" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="5" y="3">
+			<entity type="712" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="7" y="3">
+			<entity type="713" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="1" name="astral cc (copy) (4)" type="5" subtype="1" shape="4" width="13" height="14" difficulty="10" weight="0.5">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="-1" y="10"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="14"/>
+		<door exists="True" x="13" y="3"/>
+		<door exists="True" x="13" y="10"/>
+		<spawn x="6" y="2">
+			<entity type="715" variant="370" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+</rooms>
