@@ -606,7 +606,7 @@ function mod:SolUpdate(entity)
         end
 
         --Update solData
-        mod.ShaderData.solData.POSITION = room:WorldToScreenPosition(entity.Position + mod.ShaderData.solData.HPSIZE*Vector(0,-100) + data.OffsetPosition)
+        mod.ShaderData.solData.POSITION = entity.Position + mod.ShaderData.solData.HPSIZE*Vector(0,-100) + data.OffsetPosition
         mod.ShaderData.solData.TRUEPOSITION = entity.Position
         mod.ShaderData.solData.TIME = mod.ShaderData.solData.TIME + data.ShaderSpeed*(1+data.hpStage/3)
         --rotation offset
@@ -725,21 +725,23 @@ function mod:SolRender(entity)
 
         local hpsize = mod.ShaderData.solData.HPSIZE or 0
         local offset = data.OffsetPosition or Vector.Zero
-        mod.ShaderData.solData.POSITION = room:WorldToScreenPosition(entity.Position + hpsize*Vector(0,-100) + offset)
+        mod.ShaderData.solData.POSITION = entity.Position + hpsize*Vector(0,-100) + offset
         mod.ShaderData.solData.TRUEPOSITION = entity.Position
     end
 end
 function mod:SolRenderUpdate()
     if mod.ShaderData.solData.ENABLED then
+        local room = game:GetRoom()
+        
         local eyeSprite = mod.ShaderData.solData.EYESPRITE
         if mod.ShaderData.solData.ROTATIONOFFSET == -1 then
-            eyeSprite:Render(game:GetRoom():WorldToScreenPosition(mod.ShaderData.solData.TRUEPOSITION))
+            eyeSprite:Render(room:WorldToScreenPosition(mod.ShaderData.solData.TRUEPOSITION))
             return
         end
         
         local hpsize = mod.ShaderData.solData.HPSIZE
 
-        local position = mod.ShaderData.solData.POSITION + Vector(0, 100)*hpsize
+        local position = room:WorldToScreenPosition(mod.ShaderData.solData.POSITION) + Vector(0, 100)*hpsize
         local scale = Vector.One*hpsize*2.0
         local target = Isaac.GetPlayer(0)
 
@@ -2883,7 +2885,7 @@ function mod:SolDying(entity)
         room:SetBrokenWatchState(0)
 
         if sprite:IsPlaying("Death") then
-            mod.ShaderData.solData.POSITION = room:WorldToScreenPosition(entity.Position + mod.ShaderData.solData.HPSIZE*Vector(0,-100))
+            mod.ShaderData.solData.POSITION = entity.Position + mod.ShaderData.solData.HPSIZE*Vector(0,-100)
 
 
             local camera = room:GetCamera()
@@ -4821,7 +4823,7 @@ function mod:BetelgeuseUpdate(entity)
         --entity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ENEMIES
 
         --Update solData
-        mod.ShaderData.solData.POSITION = room:WorldToScreenPosition(entity.Position + mod.ShaderData.solData.HPSIZE*Vector(0,-100))
+        mod.ShaderData.solData.POSITION = entity.Position + mod.ShaderData.solData.HPSIZE*Vector(0,-100)
         mod.ShaderData.solData.TIME = mod.ShaderData.solData.TIME + 1
 
         local position = entity.Position+Vector(0,-100)

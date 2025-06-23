@@ -437,16 +437,18 @@ mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, mod.OnStage6BossInit, EntityType.
 mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, mod.OnStage6BossInit, EntityType.ENTITY_ISAAC)
 
 function mod:OnFinalChestInit(winChest)
-	local level = game:GetLevel()
-	local room = game:GetRoom()
-	if level:GetStage() == LevelStage.STAGE6 and room:GetType() == RoomType.ROOM_BOSS then
-		winChest:Remove()
+	if mod.savedatarun().solEnabled then
+		local level = game:GetLevel()
+		local room = game:GetRoom()
+		if level:GetStage() == LevelStage.STAGE6 and room:GetType() == RoomType.ROOM_BOSS then
+			winChest:Remove()
 
-		local gridSize = room:GetGridSize()
-		for index = 0, gridSize do
-			local grid = room:GetGridEntity(index)
-			if grid and grid:GetType() == GridEntityType.GRID_TRAPDOOR and grid:GetVariant() == 1 then
-				grid:Destroy(true)
+			local gridSize = room:GetGridSize()
+			for index = 0, gridSize do
+				local grid = room:GetGridEntity(index)
+				if grid and grid:GetType() == GridEntityType.GRID_TRAPDOOR and grid:GetVariant() == 1 then
+					grid:Destroy(true)
+				end
 			end
 		end
 	end

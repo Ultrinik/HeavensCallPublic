@@ -213,6 +213,8 @@ mod:AddResetFlag(ModCallbacks.MC_POST_GAME_STARTED, "savedatarun.RerolledBismuth
 
 function mod:OnCollectibleInitBismuth(pickup)
 
+    if game:GetLevel():GetDimension() == Dimension.DEATH_CERTIFICATE then return end
+
     local n_bismuth = mod:GetBismuth()
     if n_bismuth > 0 and pickup.SubType > 0 then
         local chance = 1.5/99 * n_bismuth

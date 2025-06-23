@@ -73,19 +73,6 @@ end
 
 --UNLOCKS-----------------------------------------------------------------------------------------------------------------------------
 
-function mod:OnCardInit(pickup)
-	local card = pickup.Subtype
-    if ((not (mod.savedatasettings().UnlockAll or persistentData:Unlocked(Isaac.GetAchievementIdByName("void_pickups_B (HC)")))) and (card == mod.VoidConsumables[1] or card == mod.VoidConsumables[2] or card == mod.VoidConsumables[3])) or 
-	   ((not (mod.savedatasettings().UnlockAll or persistentData:Unlocked(Isaac.GetAchievementIdByName("the_moon (HC)")))) and card == mod.TheMoonConsts.CARD_ID) or
-	   ((not (mod.savedatasettings().UnlockAll or persistentData:Unlocked(Isaac.GetAchievementIdByName("computer (HC)")))) and card == mod.ComputerConts.cardId)
-	then
-		pickup:Morph(pickup.Type, pickup.Variant, 0, true, true, false)
-    end
-end
---[[mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.OnCardInit, PickupVariant.PICKUP_TAROTCARD)]]
-
-
-
 function mod:OnSlotInit(slot)
 	if slot.SubType == mod.EntityInf[mod.Entity.Computer].SUB then
 		if not (mod.savedatasettings().UnlockAll or persistentData:Unlocked(Isaac.GetAchievementIdByName("computer (HC)"))) then

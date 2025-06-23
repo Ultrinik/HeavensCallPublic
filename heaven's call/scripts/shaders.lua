@@ -182,6 +182,7 @@ function mod:ShadersRender(shaderName)
 	elseif shaderName == "Sol" then
 		--mod.ShaderData.solData.ENABLED = false
 		if mod.ShaderData.solData.ENABLED then
+			local room = game:GetRoom()
 			game:GetHUD():Render()
 			if game:IsPaused() then
 				mod.ShaderData.solData.ENABLED = false
@@ -205,11 +206,18 @@ function mod:ShadersRender(shaderName)
 
 			local time = mod.ShaderData.solData.TIME
 
-			local position = mod.ShaderData.solData.POSITION
-
 			local healthSize = mod.ShaderData.solData.HPSIZE -- 100% -> 0.583 ; 0% -> 1.250
 
-			local range = 100*healthSize
+			local range = 100*healthSize * 1.5
+
+			local position = Isaac.WorldToScreen(mod.ShaderData.solData.POSITION)
+			local radius = Isaac.WorldToScreen(mod.ShaderData.solData.POSITION + Vector(range,0))
+			local warp_check = position + Vector(1,1)
+
+			--local resolution = Vector(Isaac.GetScreenWidth(), Isaac.GetScreenHeight())
+			--local normalizedPosition = Vector(position.X / resolution.X, position.Y / resolution.Y)
+			--local normalizedRadius = Vector(radius.X / resolution.X, radius.Y / resolution.Y)
+			--local normalizedWarpCheck = Vector(warp_check.X / resolution.X, warp_check.Y / resolution.Y)
 
 			local color1 = mod.ShaderData.solData.CORONACOLOR
 			local color2 = mod.ShaderData.solData.BODYCOLOR
@@ -225,7 +233,8 @@ function mod:ShadersRender(shaderName)
 
 			local params = {
 				Enabled = 1,
-				SolPosition = {position.X,  position.Y, position.X+range},
+				SolPosition = {position.X,  position.Y, radius.X},
+				--SolPosition = {normalizedPosition.X,  normalizedPosition.Y, normalizedRadius.X},
 				Time = time,
 				Angle1 = angle1,
 				Angle2 = angle2,
@@ -235,7 +244,8 @@ function mod:ShadersRender(shaderName)
 				Health = healthSize*isEternal,
 				CoronaColor = {color1.R, color1.G, color1.B},
 				SolColor = {color2.R, color2.G, color2.B},
-				WarpCheck = {position.X + 1, position.Y + 1},
+				WarpCheck = {warp_check.X + 1, warp_check.Y + 1},
+				--WarpCheck = {normalizedWarpCheck.X + 1, normalizedWarpCheck.Y + 1},
 				}
 			return params
 		else

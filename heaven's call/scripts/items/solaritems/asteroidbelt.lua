@@ -100,9 +100,6 @@ function mod:OnFamiliarPickupUpdate(familiar)
     end
 
     if player then
-        if player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS) then
-            familiar.CollisionDamage = familiar.CollisionDamage * 2
-        end
 
         familiar.Velocity = familiar:GetOrbitPosition(player.Position + player.Velocity) - familiar.Position
         familiar.OrbitSpeed = mod.PickupSpeeds[familiar.SubType]

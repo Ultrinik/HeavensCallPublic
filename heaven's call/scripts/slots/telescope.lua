@@ -66,9 +66,9 @@ mod.TRewards = {
 	[10] = "NOTHING",
 }
 --                   		MOON    WISP    ASTRAL 	RETRO   SOUL    HSOUL   BLAZE   EXPLO   GLASS	NOTHING	
-mod.TelescopeChain = 		{7,  	12,		5,		5,		5,		5,		5,		5,		3,		104}
+mod.TelescopeChain = 		{7,  	12,		5,		5,		5,		5,		5,		5,		5,		104}
 mod.TelescopeChain = mod:NormalizeList(mod.TelescopeChain)
-mod.LuckyTelescopeChain = 	{14, 	18, 	8, 		7, 		8, 		7, 		8, 		10, 	5, 		100}
+mod.LuckyTelescopeChain = 	{14, 	18, 	8, 		7, 		8, 		7, 		8, 		10, 	7, 		100}
 mod.LuckyTelescopeChain = mod:NormalizeList(mod.LuckyTelescopeChain)
 
 function mod:SpawnTelescopeReward(slot)

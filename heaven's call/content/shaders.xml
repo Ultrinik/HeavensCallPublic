@@ -26,10 +26,7 @@
                 TexCoord0 = TexCoord;
 
                 if (EnabledOut > 0.0){
-                    //resize by half the image and them render it four times in each corner
-                    //TexCoord0+=vec2(-0.25, 0.);
-                    TexCoord0*=2.;
-                    //Position*=0.5;
+                    TexCoord0 *= 2.0;
                 }
 
                 gl_Position = Transform * vec4(Position.xyz, 1.0);
@@ -47,23 +44,23 @@
             void main(void)
             {
                 vec2 tCoord = TexCoord0;
-                gl_FragColor = texture(Texture0, tCoord);
+                gl_FragColor = texture2D(Texture0, tCoord);
 
                 if (EnabledOut > .0) {
 
-                    vec2 v = gl_FragCoord.xy / RenderDataOut.xy;
-                    vec2 b = RenderDataOut.xy / RenderDataOut.zw;
+                    vec2 v = vec2(gl_FragCoord.x / RenderDataOut.x, gl_FragCoord.y / RenderDataOut.y);
+                    vec2 b = RenderDataOut.xy/RenderDataOut.zw;
 
                     vec2 vv = b;
 
                     if (v.x > .5 && v.y > .5){
-                        gl_FragColor = texture(Texture0, tCoord - vv);
+                        gl_FragColor = texture2D(Texture0, tCoord - vv);
                     }
                     if (v.x > .5 && v.y <= .5){
-                        gl_FragColor = texture(Texture0, tCoord - vec2(vv.x,0.));
+                        gl_FragColor = texture2D(Texture0, tCoord - vec2(vv.x,0.));
                     }
                     if (v.x <= .5 && v.y > .5){
-                        gl_FragColor = texture(Texture0, tCoord - vec2(0.,vv.y));
+                        gl_FragColor = texture2D(Texture0, tCoord - vec2(0.,vv.y));
                     }
                 }
             }
@@ -113,7 +110,7 @@
             void main(void)
             {
                 vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
-                if (EnabledOut) {
+                if (EnabledOut > 0.0) {
                     //Color.r += 0.2;
 
                     float intensity = min(1.0, TimeOut/240.0);
@@ -184,7 +181,7 @@
 
                     vec2 coord = TexCoord;
                     
-                    if ( (FlagsOut > 0.0) && (mod(floor(float(FlagsOut) / 8.0), 2.0) >= 1.0)){
+                    if ( (FlagsOut > 0.0) && (mod(floor(FlagsOut / 8.0), 2.0) >= 1.0)){
 
                         float _Strength = 0.005;
                         float _Frequency = 1000.0; 
@@ -377,40 +374,44 @@
                 if (FlagsOut > 0.0){
                     if (isBitSet(FlagsOut, 1))// Rain
                     {
+						// Normalized pixel coordinates (from 0 to 1)
+						vec2 uv = vec2(gl_FragCoord.x / RenderDataOut.x, gl_FragCoord.y / RenderDataOut.y) * 0.3;
+						uv.x *= 1.4;
 
-                        // Normalized pixel coordinates (from 0 to 1)
-                        vec2 uv = gl_FragCoord.xy/RenderDataOut.xy * .3;
-                        uv.x *= 1.4;
-                        
-                        float T = -TimeOut*0.5;
-                        float grado = min(1., TimeOut / 120.);
-                        
-                        float t = T*.005;
-                        
-                        float rainAmount = (sin(T)*0.2 + 8.)*0.03*grado;
-                        
-                        float maxBlur = 10.;
-                        float minBlur = 1.;
-                        
-                        float staticDrops = S(0., 1., rainAmount);
-                        float layer1 = S(.25, .75, rainAmount);
-                        float layer2 = S(.0, .5, rainAmount);
-                        
-                        vec2 c = Drops(uv, t, staticDrops, layer1, layer2);
-                    
-                        vec2 n = vec2(dFdx(c.x), dFdy(c.x));
-                        
-                        
-                        float focus = mix(maxBlur-c.y, minBlur, S(.1, .2, c.x));
-                        Color = Color0 * texture2D(Texture0, TexCoord0 + n * focus);
-                        
+						float T = -TimeOut * 0.5;
+						float grado = min(1.0, TimeOut / 120.0);
+
+						float t = T * 0.005;
+
+						float rainAmount = (sin(T) * 0.2 + 8.0) * 0.03 * grado;
+
+						float maxBlur = 10.0;
+						float minBlur = 1.0;
+
+						float staticDrops = S(0.0, 1.0, rainAmount);
+						float layer1 = S(0.25, 0.75, rainAmount);
+						float layer2 = S(0.0, 0.5, rainAmount);
+
+						// Original value
+						vec2 c = Drops(uv, t, staticDrops, layer1, layer2);
+
+						// Pixel size in uv space (1 pixel step)
+						vec2 pixel = vec2(1.0 / RenderDataOut.x, 1.0 / RenderDataOut.y);
+
+						// Approximate derivatives with finite differences
+						float dc_dx = Drops(uv + vec2(pixel.x, 0.0), t, staticDrops, layer1, layer2).x - Drops(uv - vec2(pixel.x, 0.0), t, staticDrops, layer1, layer2).x;
+						float dc_dy = Drops(uv + vec2(0.0, pixel.y), t, staticDrops, layer1, layer2).x - Drops(uv - vec2(0.0, pixel.y), t, staticDrops, layer1, layer2).x;
+
+						vec2 n = vec2(dc_dx, dc_dy) * 0.5; // central difference approx
+
+						float focus = mix(maxBlur - c.y, minBlur, S(0.1, 0.2, c.x));
+						Color = Color0 * texture2D(Texture0, TexCoord0 + n * focus);
 
                     }
                     if (isBitSet(FlagsOut, 2))// Heat
                     {
 
                         vec2 uv = TexCoord0.xy;
-                        //vec2 uv = gl_FragCoord.xy/RenderDataOut.xy;
 
                         float intesity = 0.003;
                         float freq = 0.000005;
@@ -428,7 +429,7 @@
                         uv.x += distortion_y * sin(ratio);
                         uv.y += distortion_x * (1.-cos(ratio));
                                     
-                        Color = Color0 * texture(Texture0, uv);
+                        Color = Color0 * texture2D(Texture0, uv);
 
                         Color += uv.y*(0.75 + 0.25 * sin(TimeOut*0.05)) * vec4(1.,0.3,0.,1.) * grado;
                         Color += uv.y*(0.75 + 0.25 * cos(TimeOut*0.05)) * vec4(0.,0.,0.4,1.) * grado;
@@ -440,7 +441,7 @@
                         //Color.x = 0.;
 
                         // Normalized pixel coordinates (from 0 to 1)
-                        vec2 uv = gl_FragCoord.xy / RenderDataOut.xy * 0.7;
+                        vec2 uv = vec2(gl_FragCoord.x / RenderDataOut.x, gl_FragCoord.y / RenderDataOut.y) * 0.7;
 
                         uv.x *= RenderDataOut.x / RenderDataOut.y;
                         float t = -TimeOut * .002;
@@ -906,7 +907,7 @@
       ]]></fragment>
     </shader>
     
-    <shader name="Sol">
+	<shader name="Sol">
         <parameters>
             <param name="Enabled" type="float"/>
             <param name="SolPosition" type="vec3"/>
@@ -1044,7 +1045,9 @@
             }
 
             float angleTo1_360 (float angle){
-                angle = (mod((int)angle,360)) + (angle-trunc(angle));
+				float floorAngle = floor(angle);
+				float modAngle = mod(floorAngle, 360.0);
+				angle = modAngle + (angle - floorAngle);
 
                 if(angle>0.0){
                     return angle;
@@ -1053,23 +1056,33 @@
                     return angle + 360.0;
                 }
             }
-
-            float pointInAngles(float a, float b, vec2 v){
+			
+			float atan2_c(float y, float x){
+				if (x>0.0) {
+					return atan(y/x);
+				} else if (x<0.0) {
+					return atan(y/x) + (y >= 0.0 ? 3.14159 : -3.14159);
+				} else {
+					return (y > 0.0) ? 0.5 * 3.14159 : ((y<0.0) ? -0.5 * 3.14159 : 0.0);
+				}
+			}
+			
+            bool pointInAngles(float a, float b, vec2 v){
                 a = angleTo1_360(a);
                 b = angleTo1_360(b);
-                float c = atan2(v.y,v.x) * 180.0/3.14159265;
+                float c = atan2_c(v.y,v.x) * 180.0/3.14159265;
                 float N = angleTo1_360(c);
 
                 if (a < b){
-                    return a <= N && N <= b;
+					return a <= N && N <= b;
                 }
                 else{
-                    return a <= N || N <= b;
+					return a <= N || N <= b;
                 }
-                return 0.0;
+                return false;
             }
             
-            float lightRayEval(float a1, float a2, float a3, float a4, float a5, vec2 v, float segment, float offset, float healthScale){
+            bool lightRayEval(float a1, float a2, float a3, float a4, float a5, vec2 v, float segment, float offset, float healthScale){
                 segment = segment*2.5*(healthScale);
                 a1 += offset;
                 a2 += offset;
@@ -1179,577 +1192,550 @@
 
             // help functions
 
-            vec3 mod289(vec3 x) { 
-                return x - floor(x * (1.0 / 289.0)) * 289.0; 
-            }
-
-            vec4 mod289(vec4 x) { 
-                return x - floor(x * (1.0 / 289.0)) * 289.0; 
-            }
-
-            vec4 permute(vec4 x) { 
-                return mod289(((x*34.0)+1.0)*x); 
-            }
-
-            vec4 taylorInvSqrt(vec4 r){ 
-                return 1.79284291400159 - 0.85373472095314 * r; 
-            }
-
-            float snoise(vec3 v)
-            {
-                const vec2  C = vec2(1.0/6.0, 1.0/3.0);
-                const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);
-            
-                // First corner
-                vec3 i  = floor(v + dot(v, C.yyy));
-                vec3 x0 = v - i + dot(i, C.xxx);
-            
-                // Other corners
-                vec3 g = step(x0.yzx, x0.xyz);
-                vec3 l = 1.0 - g;
-                vec3 i1 = min(g.xyz, l.zxy);
-                vec3 i2 = max(g.xyz, l.zxy);
-                vec3 x1 = x0 - i1 + C.xxx;
-                vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y
-                vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y
-            
-                // Permutations
-                i = mod289(i);
-                vec4 p = permute( permute( permute( i.z + vec4(0.0, i1.z, i2.z, 1.0)) + i.y + vec4(0.0, i1.y, i2.y, 1.0 )) + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));
-            
-                // Gradients: 7x7 points over a square, mapped onto an octahedron.
-                // The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)
-                float n_ = 0.142857142857; // 1.0/7.0
-                vec3  ns = n_ * D.wyz - D.xzx;
-                vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)
-            
-                vec4 x_ = floor(j * ns.z);
-                vec4 y_ = floor(j - 7.0 * x_);    // mod(j,N)
-            
-                vec4 x = x_ *ns.x + ns.yyyy;
-                vec4 y = y_ *ns.x + ns.yyyy;
-            
-                vec4 h = 1.0 - abs(x) - abs(y);
-                vec4 b0 = vec4(x.xy, y.xy);
-                vec4 b1 = vec4(x.zw, y.zw);
-            
-                vec4 s0 = floor(b0) * 2.0 + 1.0;
-                vec4 s1 = floor(b1) * 2.0 + 1.0;
-                vec4 sh = -step(h, vec4(0.0));
-            
-                vec4 a0 = b0.xzyw + s0.xzyw * sh.xxyy;
-                vec4 a1 = b1.xzyw + s1.xzyw * sh.zzww;
-            
-                vec3 p0 = vec3(a0.xy, h.x);
-                vec3 p1 = vec3(a0.zw, h.y);
-                vec3 p2 = vec3(a1.xy, h.z);
-                vec3 p3 = vec3(a1.zw, h.w);
-            
-                //Normalise gradients
-                vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
-            
-                p0 *= norm.x;
-                p1 *= norm.y;
-                p2 *= norm.z;
-                p3 *= norm.w;
-
-                // Mix final noise value
-                vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
-                m = m * m;
-            
-                return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
-            }
-
-            float Turbulence(vec3 position, float minFreq, float maxFreq, float qWidth)
-            {
-                float value = 0.0;
-                float cutoff = clamp(0.5/qWidth, 0.0, maxFreq);
-                float fade;
-                float fOut = minFreq;
-            
-                for(int i=NoiseSteps ; i>=0 ; i--)
-                {
-                    if(fOut >= 0.5 * cutoff) break;
-                    fOut *= 2.0;
-                    value += abs(snoise(position * fOut))/fOut;
-                }
-                fade = clamp(2.0 * (cutoff-fOut)/cutoff, 0.0, 1.0);
-                return 1.0 - value - fade * abs(snoise(position * fOut)) / fOut;
-            }
-
-            float SphereDist(vec3 position)
-            {
-                float l = length(position - ExpPosition) - Radius;
-                return l*7.5;
-            }
-            
-            vec3 Shade(float distance)
-            {
-                float c1 = saturate(distance*5.0 + 0.5);
-                float c2 = saturate(distance*5.0 - 0.25);
-                float c3 = saturate(distance*3.4 - 0.5);
-
-                vec3 a = mix(Color1,Color2, c1);
-                vec3 b = mix(a,     Color3, c2);
-                return 	 mix(b,     Color4, c3);
-            }
-
-            // Draws the scene
-            float RenderScene(vec3 position, out float distance)
-            {
-                float time = TimeOut/10.0;
-                float noise = Turbulence(position * NoiseFrequency + Animation*time*0.4, 0.1, 1.5, 0.03) * NoiseAmplitude;
-                noise = saturate(abs(noise));
-                distance = SphereDist(position) - noise;
-                return noise;
-            }
-
-            // Basic ray marching method.
-            vec3 March(vec3 rayOrigin, vec3 rayStep)
-            {
-                vec3 position = rayOrigin;
-                float distance;
-                float displacement;
-                for(int step = MarchSteps; step >=0  ; --step)
-                {
-                    displacement = RenderScene(position, distance);
-                    if(distance < 0.05) break;
-                    position += rayStep * distance;
-                }
-                return mix(Shade(displacement), Background, float(distance >= 0.5));
-            }
-
-            // check sphrer hit
-            bool IntersectSphere(vec3 ro, vec3 rd, vec3 pos, float radius, out vec3 intersectPoint)
-            {
-                vec3 relDistance = (ro - pos);
-                float b = dot(relDistance, rd);
-                float c = dot(relDistance, relDistance) - radius*radius;
-                float d = b*b - c;
-                intersectPoint = ro + rd*(-b - sqrt(d));
-                return d >= 0.0;
-            }
-
-            vec3 fireball(vec2 p, float aspect)
-            {
-                float rotx = TimeOut/100.0;
-                float roty = TimeOut/100.0;
-                float zoom = 10.0/aspect;
-
-                // camera
-                vec3 ro = zoom * normalize(vec3(cos(roty), cos(rotx), sin(roty)));
-                vec3 ww = normalize(vec3(0.0, 0.0, 0.0) - ro);
-                vec3 uu = normalize(cross( vec3(0.0, 1.0, 0.0), ww));
-                vec3 vv = normalize(cross(ww, uu));
-                vec3 rd = normalize(p.x*uu + p.y*vv + 1.5*ww);
-
-                vec3 col = vec3(0.0);
-                vec3 origin;
-                
-                if(IntersectSphere(ro, rd, ExpPosition, Radius + NoiseAmplitude*6.0, origin))
-                {
-                    col = March(origin, rd)/2.0;
-                }
-                return col;
-            }
-
-            void main(void)
-            {
-                vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
-
-                if (EnabledOut > 0.0){
-
-                    bool notLittleFucker = SolColorOut.r != -1.;
-
-                    bool eternal = false;
-                    if (HealthOut < 0.){
-                        eternal = true;
-                        HealthOut = -HealthOut;
-                    }
-
-                    float healthScale = HealthOut;
-                    float healthBin = -(HealthOut-1.25)/0.67;
-
-                    float aspect = RenderDataOut.z/RenderDataOut.w;
-                    
-                    float time = TimeOut;
-                    float timeFlor = floor(time) + (time * 0.005);
-                    vec2 coord = (TexCoord0.xy) * vec2(aspect,1.0);
-                    coord = floor(coord * 300.0/aspect) * 4.0;
-                    float staticCol = (sin(fract(sin(dot((coord / timeFlor), vec2(12.9898, 78.233))) * 43758.5453)) * 0.5) + 0.5;
-                    staticCol = staticCol*staticCol*healthBin/1.5;
-
-                    vec2 pos = (SolPositionOut.xy / RenderDataOut.zw) * ScaleOut ; //Location of the center of Sol
-                    vec2 rad = (SolPositionOut.zy / RenderDataOut.zw) * ScaleOut * 1.02 ; //Most external point of Sol
-
-                    float radius = length((rad - pos) * vec2(aspect,1.0)); //Actual radius
-                    float dist = length((TexCoord0 - pos) * vec2(aspect,1.0)); //Distance from pixel to center
-
-                    vec2 uv = (TexCoord0 - pos) * vec2(aspect,1.0);
-
-                    bool eyeCondition = Color.r == 0 && Color.g == 1.0 && Color.b == 0.564705908298492431640625;
-
-                    if (dist < radius*1.7 && eyeCondition){
-                        Color.r = 0.01;
-                        Color.g = 0.01;
-                        Color.b = 0.01;
-
-                        Color.r = staticCol;
-                        Color.g = staticCol;
-                        Color.b = staticCol;
-                    }
-                    else if (dist < radius*3.0) //Is inside?
-                    {
-                        if (dist < radius) {
-
-                            //Body
-                            Color.r = SolColorOut.x;
-                            Color.g = SolColorOut.y;
-                            Color.b = SolColorOut.z;
-
-                            //Plasma
-                            if(true){
-                                if(notLittleFucker){
-                                    Color = vec4(fireball(uv, aspect), 1.0);
-                                }
-                                else{
-                                    Color = vec4(fireball(uv*dist*0.3, 1.*aspect), 1.0)*1.5;
-                                }
-                            }
-                            if (true){
-                                vec3 col = vec3(0.);
-                                float t = TimeOut/100.0 * (20.0*(1.0-healthBin));
-                                
-                                vec2 n = vec2(0);
-                                vec2 q = vec2(0);
-                                vec2 p = uv/aspect;
-                                float d = dot(p,p);
-                                float S = 15.0;
-                                float a = healthBin*healthBin;
-                                mat2 m = rotate2D(5.);
-
-                                for (float j = 0.; j < 15.; j++) {
-                                    p *= m;
-                                    n *= m;
-                                    q = p * S + t + .8 + j + n; // wtf???
-                                    a += dot(cos(q)/S, vec2(.2));
-                                    n -= sin(q);
-                                    S *= 1.2;
-                                }
-
-                                col = vec3(8., 2., 1.) * (2.0*a + .2) - d;
-                                
-                                if(notLittleFucker){
-
-                                    if (eternal){
-                                        float avg_ = (col.x + col.y + col.z)/3.;
-                                        Color.r += avg_;
-                                        Color.g += avg_;
-                                        Color.b += avg_;
-                                    }
-                                    else{
-                                        Color.r += col.x;
-                                        Color.g += col.y;
-                                        Color.b += col.z;
-                                    }
-                                }
-                                else{
-                                    Color.r += col.x;
-                                }
-                            }
-
-                            //Corona
-                            if (true){
-                                float intensity = 1.1-dist*dist/aspect/aspect * 26.5;
-                                if (!notLittleFucker){
-                                    intensity = dist*dist*dist;
-                                }
-
-                                if (eternal){
-                                    float avg_ = (2.*CoronaColorOut.x + CoronaColorOut.y)/3.;
-                                    Color.r -= intensity * avg_;
-                                    Color.g -= intensity * avg_;
-                                    Color.b -= intensity * avg_;
-                                }
-                                else{
-                                    Color.r -= intensity * CoronaColorOut.y;
-                                    Color.g -= intensity * CoronaColorOut.x;
-                                    Color.b -= intensity * CoronaColorOut.x;
-                                }
-                            }
-                            
-                        }
-
-                        //Light rays
-                        if (true){
-                            float size = 0.8;
-                            if(!notLittleFucker){
-                                size *= 1.5;
-                            }
-
-                            if (lightRayEval(Angle1Out,Angle2Out,Angle3Out,Angle4Out,Angle5Out,uv,5.0, 0.0, HealthOut)){
-                                float intensity = 0.3*sin((dist / (1.5 * radius * size ) * 2.2) + 12.0);
-
-                                if (intensity > 0.0){
-                                    if (eternal){
-                                        float avg_ = ((CoronaColorOut.x+SolColorOut.x) + (CoronaColorOut.y+SolColorOut.y) + (CoronaColorOut.z+SolColorOut.z))/3.;
-                                        Color.r += avg_ * intensity;
-                                        Color.g += avg_ * intensity;
-                                        Color.b += avg_ * intensity;
-                                    }
-                                    else{
-                                        Color.r += (CoronaColorOut.x+SolColorOut.x) * intensity;
-                                        Color.g += (CoronaColorOut.y+SolColorOut.y) * intensity;
-                                        Color.b += (CoronaColorOut.z+SolColorOut.z) * intensity;
-                                    }
-                                }
-                            }
-                            if (lightRayEval(Angle1Out,Angle2Out,Angle3Out,Angle4Out,Angle5Out,uv,10.0, 120.0, HealthOut)){
-                                float intensity = 0.3*sin((dist / (1.5 * radius * size ) * 2.2) + 10.75);
-
-                                if (intensity > 0.0){
-                                    if (eternal){
-                                        float avg_ = (SolColorOut.x + SolColorOut.y + SolColorOut.z)/3.;
-                                        Color.r += avg_*intensity;
-                                        Color.g += avg_*intensity;
-                                        Color.b += avg_*intensity;
-                                    }
-                                    else{
-                                        Color.r += SolColorOut.x*intensity;
-                                        Color.g += SolColorOut.y*intensity;
-                                        Color.b += SolColorOut.z*intensity;
-                                    }
-                                }
-                            }
-                            if (lightRayEval(Angle1Out,Angle2Out,Angle3Out,Angle4Out,Angle5Out,uv,15.0, 240.0, HealthOut)){
-                                float intensity = 0.3*sin((dist / (1.5 * radius * size ) * 2.2) + 11.0);
-
-                                if (intensity > 0.0){
-                                    if (eternal){
-                                        float avg_ = (SolColorOut.x + SolColorOut.y + SolColorOut.z)/3.;
-                                        Color.r += avg_*intensity;
-                                        Color.g += avg_*intensity;
-                                        Color.b += avg_*intensity;
-                                    }
-                                    else{
-                                        Color.r += SolColorOut.x*intensity;
-                                        Color.g += SolColorOut.y*intensity;
-                                        Color.b += SolColorOut.z*intensity;
-                                    }
-                                }
-                            }
-                            
-                            if (lightRayEval(Angle1Out,Angle2Out,Angle3Out,Angle4Out,Angle5Out,-uv,5.0, 90.0, HealthOut)){
-                                float intensity = 0.3*sin((dist / (1.5 * radius * size ) * 2.2) + 11.25);
-
-                                if (intensity > 0.0){
-                                    if (eternal){
-                                        float avg_ = ((CoronaColorOut.x+SolColorOut.x) + (CoronaColorOut.y+SolColorOut.y) + (CoronaColorOut.z+SolColorOut.z))/3.;
-                                        float scalar = 1.0/2.0*intensity;
-                                        Color.r += avg_*scalar;
-                                        Color.g += avg_*scalar;
-                                        Color.b += avg_*scalar;
-                                    }
-                                    else{
-                                        float scalar = 1.0/2.0*intensity;
-                                        Color.r += (CoronaColorOut.x+SolColorOut.x)*scalar;
-                                        Color.g += (CoronaColorOut.y+SolColorOut.y)*scalar;
-                                        Color.b += (CoronaColorOut.z+SolColorOut.z)*scalar;
-                                    }
-                                }
-                            }
-                            if (lightRayEval(Angle1Out,Angle2Out,Angle3Out,Angle4Out,Angle5Out,-uv,10.0, 210.0, HealthOut)){
-                                float intensity = 0.3*sin((dist / (1.5 * radius * size ) * 2.2) + 11.50);
-
-                                if (intensity > 0.0){
-                                    if (eternal){
-                                        float avg_ = (CoronaColorOut.x + CoronaColorOut.y + CoronaColorOut.z)/3.;
-                                        Color.r += avg_*intensity;
-                                        Color.g += avg_*intensity;
-                                        Color.b += avg_*intensity;
-                                    }
-                                    else{
-                                        Color.r += CoronaColorOut.x*intensity;
-                                        Color.g += CoronaColorOut.y*intensity;
-                                        Color.b += CoronaColorOut.z*intensity;
-                                    }
-                                }
-                            }
-                            if (lightRayEval(Angle1Out,Angle2Out,Angle3Out,Angle4Out,Angle5Out,-uv,15.0, 330.0, HealthOut)){
-                                float intensity = 0.3*sin((dist / (1.5 * radius * size ) * 2.2) + 11.75);
-
-                                if (intensity > 0.0){
-                                    if (eternal){
-                                        float avg_ = (CoronaColorOut.x + CoronaColorOut.y + CoronaColorOut.z)/3.;
-                                        Color.r += avg_*intensity;
-                                        Color.g += avg_*intensity;
-                                        Color.b += avg_*intensity;
-                                    }
-                                    else{
-                                        Color.r += CoronaColorOut.x*intensity;
-                                        Color.g += CoronaColorOut.y*intensity;
-                                        Color.b += CoronaColorOut.z*intensity;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if(!eyeCondition){
-
-                        //Flares
-                        if(true){
-                            float n = 1.;
-                            if(!notLittleFucker){
-                                n = 2.;
-                            }
-                            for (int i=0; i<n; i++){
-                                vec4 fragColor = vec4(0.0);
-
-                                float iTime = TimeOut/10.0;    
-
-                                //vec2 uv = (TexCoord0 - pos)*vec2(aspect,1.0);
-
-                                float flareBorder = 0.07 * (-0.7*healthBin + 1.176)*ScaleOut;
-                                float flareSize = radius/HealthOut*4.0*ScaleOut;
-
-                                float f = .0;
-                                float f2 = .0;
-                                float t = iTime * 0.1;
-                                float value = HealthOut/8.0;
-
-                                float lf = 1.;
-                                float lff = 1.;
-                                if(!notLittleFucker){
-                                    if(i==0){
-                                        lf = .5;
-                                        lff = .5;
-                                    }
-                                    else{
-                                        lf = 1.3;
-                                        lff = 1.3;
-                                    }
-                                }
-
-                                float alpha = light(uv, flareSize, value, INNER_FADE*lf,OUTER_FADE*lff);
-                                float angle = atan(uv.x,uv.y);
-                                float n = noise(vec2(uv.x*20.+iTime,uv.y*20.+iTime));
-                                float l = length(uv);
-
-                                if (dist < radius){
-                                    t *= 8.0;
-                                    alpha = (1. - pow(((radius - dist)/radius),0.22)*(1.7-healthBin));
-                                    alpha = clamp(alpha-light(uv,0.2,0.0,1.3,.7)*.55,.0,1.);
-                                    f = flare(angle*1.0,alpha,-t*.5+alpha);
-                                    f2 = flare(angle*1.0,alpha*1.2,((-t+alpha*.5+0.38134)));
-                                }
-                                else if(alpha < 0.001){
-                                    f = alpha;
-                                }else{
-                                    f = flare(angle,alpha,t)*1.3;
-                                }
-
-
-                                fragColor = vec4(vec3(f*(1.0+sin(angle-t*4.)*.3)+f2*f2*f2,f*alpha+f2*f2*2.0,f*alpha*0.5+f2*(1.0+sin(angle+t*4.)*.3)),1.0);
-                                
-                                if(notLittleFucker){
-                                    if (eternal){
-                                        float avg_ = ((fragColor.x*CoronaColorOut.x) + (fragColor.y*CoronaColorOut.x*max(0.5,healthBin)) + (fragColor.z*CoronaColorOut.x*max(0.5,healthBin)))/3.;
-                                        Color.r += avg_;
-                                        Color.g += avg_;
-                                        Color.b += avg_;
-                                    }
-                                    else{
-                                        Color.r += fragColor.x*CoronaColorOut.x;
-                                        Color.g += fragColor.y*CoronaColorOut.x*max(0.5,healthBin);
-                                        Color.b += fragColor.z*CoronaColorOut.x*max(0.5,healthBin);
-                                    }
-                                }
-                                else{
-                                    float distdist = dist*dist*dist*0.25*(i+1.);
-                                    Color.r += distdist*fragColor.x*CoronaColorOut.x;
-                                    Color.g += 0.75*distdist*fragColor.y*CoronaColorOut.x*max(0.5,healthBin);
-                                    Color.b += 0.75*distdist*fragColor.z*CoronaColorOut.x*max(0.5,healthBin);
-                                }
-                            }
-                        }
-                    }
-
-                    //triangle and circle
-                    if (true && notLittleFucker){
-                        int its = 1;
-                        if (TimeOut < 30){
-                            its = 2;
-                        }
-                        for (int i=0; i<its; i++){
-                            vec2 position = SolPositionOut.xy * ScaleOut ;
-                            float time = TimeOut/30.0;
-
-                            float angleOffset = i*(2.094393333*time);
-                            float time_2 = time + angleOffset;
-                            vec2 arm = mat2(vec2(cos(time_2),sin(time_2)), vec2(-sin(time_2),cos(time_2))) * vec2(1.0,0.0);
-                            arm = arm * radius / aspect * (750.0 + 500*healthScale);
-
-                            float density = 0.5 + 7.5*healthScale;
-
-                            float angle = 2.0943951;
-                            mat2 rotMatrix = mat2(vec2(cos(angle),sin(angle)), vec2(-sin(angle),cos(angle)));
-                            vec2 v1 = position + rotMatrix*arm;
-                            vec2 v2 = position + rotMatrix*rotMatrix*arm;
-                            vec2 v3 = position + rotMatrix*rotMatrix*rotMatrix*arm;
-
-                            float a1 = (v1.y-v2.y);
-                            float a2 = (v2.y-v3.y);
-                            float a3 = (v3.y-v1.y);
-
-                            float b1 = (v2.x-v1.x);
-                            float b2 = (v3.x-v2.x);
-                            float b3 = (v1.x-v3.x);
-
-                            float c1 = v1.x*v2.y - v1.y*v2.x;
-                            float c2 = v2.x*v3.y - v2.y*v3.x;
-                            float c3 = v3.x*v1.y - v3.y*v1.x;
-
-
-                            vec2 b11 = vec2(b1,-a1);
-                            vec2 b12 = vec2(v2.x-gl_FragCoord.x, v2.y-gl_FragCoord.y);
-
-                            vec2 b21 = vec2(b2,-a2);
-                            vec2 b22 = vec2(v3.x-gl_FragCoord.x, v3.y-gl_FragCoord.y);
-
-                            vec2 b31 = vec2(b3,-a3);
-                            vec2 b32 = vec2(v1.x-gl_FragCoord.x, v1.y-gl_FragCoord.y);
-
-                            //Color = vec4(1.0);
-
-                            if ((pointNearLine(gl_FragCoord.xy, a1,b1,c1, density) || pointNearLine(gl_FragCoord.xy, a2,b2,c2, density) || pointNearLine(gl_FragCoord.xy, a3,b3,c3, density)) &&
-                                ( (b11.x*b12.y-b11.y*b12.x <0.0) && (b21.x*b22.y-b21.y*b22.x <0.0) && (b31.x*b32.y-b31.y*b32.x <0.0) )){
-                                Color = vec4(vec3(0.01),1.0);
-
-                                Color.r = staticCol;
-                                Color.g = staticCol;
-                                Color.b = staticCol;
-                            };
-
-
-                            //Circle
-                            float density2 = 2.0 + 3.0 * healthScale;
-                            float grow = 0.1 * healthScale;
-                            if (radius*(0.65+grow) < dist && dist < radius*(0.65+grow + density2/125.0)) {
-                                Color = vec4(vec3(0.01),1.0);
-
-                                Color.r = staticCol;
-                                Color.g = staticCol;
-                                Color.b = staticCol;
-                            }
-                                
-                        }
-                    }
-
-                }
-                
-                gl_FragColor = Color;
-            }
+            vec3 mod289(vec3 x) {
+				return x - floor(x * (1.0 / 289.0)) * 289.0;
+			}
+
+			vec4 mod289(vec4 x) {
+				return x - floor(x * (1.0 / 289.0)) * 289.0;
+			}
+
+			vec4 permute(vec4 x) {
+				return mod289(((x * 34.0) + 1.0) * x);
+			}
+
+			vec4 taylorInvSqrt(vec4 r) {
+				return 1.79284291400159 - 0.85373472095314 * r;
+			}
+
+			float snoise(vec3 v) {
+				const vec2  C = vec2(1.0 / 6.0, 1.0 / 3.0);
+				const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);
+
+				vec3 i = floor(v + dot(v, C.yyy));
+				vec3 x0 = v - i + dot(i, C.xxx);
+
+				vec3 g = step(x0.yzx, x0.xyz);
+				vec3 l = 1.0 - g;
+				vec3 i1 = min(g, l.zxy);
+				vec3 i2 = max(g, l.zxy);
+
+				vec3 x1 = x0 - i1 + C.xxx;
+				vec3 x2 = x0 - i2 + C.yyy;
+				vec3 x3 = x0 - D.yyy;
+
+				i = mod289(i);
+				vec4 p = permute(
+					permute(
+						permute(i.z + vec4(0.0, i1.z, i2.z, 1.0)) +
+						i.y + vec4(0.0, i1.y, i2.y, 1.0)
+					) + i.x + vec4(0.0, i1.x, i2.x, 1.0)
+				);
+
+				float n_ = 1.0 / 7.0;
+				vec3 ns = n_ * D.wyz - D.xzx;
+
+				vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+				vec4 x_ = floor(j * ns.z);
+				vec4 y_ = floor(j - 7.0 * x_);
+
+				vec4 x = x_ * ns.x + ns.yyyy;
+				vec4 y = y_ * ns.x + ns.yyyy;
+				vec4 h = 1.0 - abs(x) - abs(y);
+
+				vec4 b0 = vec4(x.xy, y.xy);
+				vec4 b1 = vec4(x.zw, y.zw);
+
+				vec4 s0 = floor(b0) * 2.0 + 1.0;
+				vec4 s1 = floor(b1) * 2.0 + 1.0;
+				vec4 sh = -step(h, vec4(0.0));
+
+				vec4 a0 = b0.xzyw + s0.xzyw * sh.xxyy;
+				vec4 a1 = b1.xzyw + s1.xzyw * sh.zzww;
+
+				vec3 p0 = vec3(a0.xy, h.x);
+				vec3 p1 = vec3(a0.zw, h.y);
+				vec3 p2 = vec3(a1.xy, h.z);
+				vec3 p3 = vec3(a1.zw, h.w);
+
+				vec4 norm = taylorInvSqrt(vec4(dot(p0, p0), dot(p1, p1), dot(p2, p2), dot(p3, p3)));
+				p0 *= norm.x;
+				p1 *= norm.y;
+				p2 *= norm.z;
+				p3 *= norm.w;
+
+				vec4 m = max(0.6 - vec4(dot(x0, x0), dot(x1, x1), dot(x2, x2), dot(x3, x3)), 0.0);
+				m *= m;
+
+				return 42.0 * dot(m * m, vec4(dot(p0, x0), dot(p1, x1), dot(p2, x2), dot(p3, x3)));
+			}
+
+			float Turbulence(vec3 position, float minFreq, float maxFreq, float qWidth) {
+				float value = 0.0;
+				float cutoff = clamp(0.5 / qWidth, 0.0, maxFreq);
+				float fade;
+				float freq = minFreq;
+
+				for (int i = NoiseSteps; i >= 0; i--) {
+					if (freq >= 0.5 * cutoff) break;
+					freq *= 2.0;
+					value += abs(snoise(position * freq)) / freq;
+				}
+
+				fade = clamp(2.0 * (cutoff - freq) / cutoff, 0.0, 1.0);
+				return 1.0 - value - fade * abs(snoise(position * freq)) / freq;
+			}
+
+			float SphereDist(vec3 position) {
+				return (length(position - ExpPosition) - Radius) * 7.5;
+			}
+
+			vec3 Shade(float distance) {
+				float c1 = saturate(distance * 5.0 + 0.5);
+				float c2 = saturate(distance * 5.0 - 0.25);
+				float c3 = saturate(distance * 3.4 - 0.5);
+
+				vec3 a = mix(Color1, Color2, c1);
+				vec3 b = mix(a, Color3, c2);
+				return mix(b, Color4, c3);
+			}
+			
+			float RenderScene(vec3 position, out float distance) {
+				float time = TimeOut / 10.0;
+				float noise = Turbulence(position * NoiseFrequency + Animation * time * 0.4, 0.1, 1.5, 0.03) * NoiseAmplitude;
+				noise = saturate(abs(noise));
+				distance = SphereDist(position) - noise;
+				return noise;
+			}
+
+			vec3 March(vec3 rayOrigin, vec3 rayStep) {
+				vec3 position = rayOrigin;
+				float distance, displacement;
+
+				for (int step = MarchSteps; step >= 0; --step) {
+					displacement = RenderScene(position, distance);
+					if (distance < 0.05) break;
+					position += rayStep * distance;
+				}
+
+				return mix(Shade(displacement), Background, float(distance >= 0.5));
+			}
+
+			bool IntersectSphere(vec3 ro, vec3 rd, vec3 pos, float radius, out vec3 intersectPoint) {
+				vec3 oc = ro - pos;
+				float b = dot(oc, rd);
+				float c = dot(oc, oc) - radius * radius;
+				float discriminant = b * b - c;
+
+				if (discriminant < 0.0) return false;
+
+				intersectPoint = ro - rd * (b + sqrt(discriminant));
+				return true;
+			}
+			
+			vec3 fireball(vec2 p, float aspect) {
+				float rotx = TimeOut / 100.0;
+				float roty = TimeOut / 100.0;
+				float zoom = 10.0 / aspect;
+
+				vec3 ro = zoom * normalize(vec3(cos(roty), cos(rotx), sin(roty)));
+				vec3 ww = normalize(vec3(0.0) - ro);
+				vec3 uu = normalize(cross(vec3(0.0, 1.0, 0.0), ww));
+				vec3 vv = cross(ww, uu);
+				vec3 rd = normalize(p.x * uu + p.y * vv + 1.5 * ww);
+
+				vec3 origin, color = vec3(0.0);
+				if (IntersectSphere(ro, rd, ExpPosition, Radius + NoiseAmplitude * 6.0, origin)) {
+					color = March(origin, rd) * 0.5;
+				}
+
+				return color;
+			}
+
+			void ApplyFlare(inout vec4 Color, int i, bool notLittleFucker, vec2 uv, float radius, float dist, float aspect, float healthOut, float healthBin, float TimeOut, vec3 CoronaColorOut, float ScaleOut) {
+				vec4 fragColor = vec4(0.0);
+				float iTime = TimeOut * 0.1;
+
+				float flareBorder = 0.07 * (-0.7 * healthBin + 1.176) * ScaleOut;
+
+				float safeHealthOut = max(healthOut, 0.0001);
+				float flareSize = max(radius / safeHealthOut * 4.0 * ScaleOut, 0.0001);
+
+				float alpha = light(uv, flareSize, healthOut / 8.0, INNER_FADE * (notLittleFucker ? 1.0 : (i == 0 ? 0.5 : 1.3)), OUTER_FADE * (notLittleFucker ? 1.0 : (i == 0 ? 0.5 : 1.3)));
+				float angle = atan(uv.y, uv.x);
+				float t = iTime * 0.1;
+				float l = length(uv);
+
+				float n_noise = noise(uv * 20.0 + vec2(iTime));
+
+				float f = 0.0, f2 = 0.0;
+
+				if (dist < radius) {
+					t *= 8.0;
+					float base = (radius - dist) / radius;
+					alpha = 1.0 - pow(max(base, 0.0), 0.22) * (1.7 - healthBin);
+					alpha = clamp(alpha - light(uv, 0.2, 0.0, 1.3, 0.7) * 0.55, 0.0, 1.0);
+					f = flare(angle, alpha, -t * 0.5 + alpha);
+					f2 = flare(angle, alpha * 1.2, -t + alpha * 0.5 + 0.38134);
+				} else if (alpha > 0.001) {
+					f = flare(angle, alpha, t) * 1.3;
+				}
+
+				fragColor.rgb = vec3(
+					f * (1.0 + sin(angle - t * 4.0) * 0.3) + pow(f2, 3.0),
+					f * alpha + f2 * f2 * 2.0,
+					f * alpha * 0.5 + f2 * (1.0 + sin(angle + t * 4.0) * 0.3)
+				);
+				fragColor.a = 1.0;
+
+				bool eternal = healthOut < 0.0;
+				float avg;
+
+				if (notLittleFucker) {
+					if (eternal) {
+						avg = (fragColor.r * CoronaColorOut.x +
+							   fragColor.g * CoronaColorOut.x * max(0.5, healthBin) +
+							   fragColor.b * CoronaColorOut.x * max(0.5, healthBin)) / 3.0;
+						Color.rgb += vec3(avg);
+					} else {
+						Color.r += fragColor.r * CoronaColorOut.x;
+						Color.g += fragColor.g * CoronaColorOut.x * max(0.5, healthBin);
+						Color.b += fragColor.b * CoronaColorOut.x * max(0.5, healthBin);
+					}
+				} else {
+					float distFactor = pow(dist, 3.0) * 0.25 * (float(i) + 1.0);
+					Color.r += distFactor * fragColor.r * CoronaColorOut.x;
+					Color.g += 0.75 * distFactor * fragColor.g * CoronaColorOut.x * max(0.5, healthBin);
+					Color.b += 0.75 * distFactor * fragColor.b * CoronaColorOut.x * max(0.5, healthBin);
+				}
+			}
+			
+			void DrawTriangleAndCircle(
+				inout vec4 Color, int i, vec3 SolPositionOut, float ScaleOut,
+				float TimeOut, float radius, float healthScale,
+				float staticCol, float dist, float aspect
+			) {
+				float density = 0.45 * ScaleOut + 0.10;
+				
+				// Normalize scale
+				vec2 position = SolPositionOut.xy * ScaleOut;
+				float time = TimeOut / 30.0;
+				float angleOffset = float(i) * (2.094393333 * time);
+				float t = time + angleOffset;
+
+				// Unified line width in screen-space (pixels)
+				float lineWidth = 1.5 + 6.0 * healthScale;
+				lineWidth *= density;
+
+				// Build triangle
+				vec2 arm = 0.14 * (ScaleOut * 0.5) * ((750.0+radius) + 500.0 * healthScale) * vec2(cos(t), sin(t));
+				float angle = 2.0943951; // 120 degrees
+				mat2 rot = mat2(cos(angle), sin(angle), -sin(angle), cos(angle));
+				vec2 v1 = position + rot * arm;
+				vec2 v2 = position + rot * rot * arm;
+				vec2 v3 = position + rot * rot * rot * arm;
+
+				// Triangle edges
+				float a1 = v1.y - v2.y, b1 = v2.x - v1.x, c1 = v1.x * v2.y - v1.y * v2.x;
+				float a2 = v2.y - v3.y, b2 = v3.x - v2.x, c2 = v2.x * v3.y - v2.y * v3.x;
+				float a3 = v3.y - v1.y, b3 = v1.x - v3.x, c3 = v3.x * v1.y - v3.y * v1.x;
+
+				vec2 fc = gl_FragCoord.xy;
+
+				// Is pixel near triangle edge?
+				bool nearEdge =
+					pointNearLine(fc, a1, b1, c1, lineWidth) ||
+					pointNearLine(fc, a2, b2, c2, lineWidth) ||
+					pointNearLine(fc, a3, b3, c3, lineWidth);
+
+				// Is pixel inside triangle bounds?
+				vec2 b11 = vec2(b1, -a1), b12 = v2 - fc;
+				vec2 b21 = vec2(b2, -a2), b22 = v3 - fc;
+				vec2 b31 = vec2(b3, -a3), b32 = v1 - fc;
+
+				bool insideTriangle =
+					dot(b11, vec2(b12.y, -b12.x)) < 0.0 &&
+					dot(b21, vec2(b22.y, -b22.x)) < 0.0 &&
+					dot(b31, vec2(b32.y, -b32.x)) < 0.0;
+
+				if (nearEdge && insideTriangle) {
+					Color.rgb = vec3(staticCol);
+					Color.a = 1.0;
+				}
+
+				// --- Circle edge with same screen-space thickness ---
+				float grow = 0.1 * healthScale;
+
+				// Convert screen-space lineWidth to world-space thickness based on aspect
+				float pxToWorld = 1.0 / (ScaleOut * 750.0); // adjust 750 if needed to match triangle size scale
+				float ringThickness = lineWidth * pxToWorld * 10.5 * density;
+
+				// Because `dist` is in world space, scale `ringThickness` to match
+				if (dist > radius * (0.65 + grow) && dist < radius * (0.65 + grow + ringThickness)) {
+					Color.rgb = vec3(staticCol);
+					Color.a = 1.0;
+				}
+			}
+
+			void applyLightRays(float Angle1Out, float Angle2Out, float Angle3Out, float Angle4Out, float Angle5Out, vec2 uv, float dist, float radius, bool notLittleFucker, bool eternal, vec3 CoronaColorOut, vec3 SolColorOut, float healthOut, inout vec4 Color) {
+				float size = 0.8;
+				if(!notLittleFucker){
+					size *= 1.5;
+				}
+
+				if (lightRayEval(Angle1Out,Angle2Out,Angle3Out,Angle4Out,Angle5Out,uv,5.0, 0.0, healthOut)){
+					float intensity = 0.3*sin((dist / (1.5 * radius * size ) * 2.2) + 12.0);
+
+					if (intensity > 0.0){
+						if (eternal){
+							float avg_ = ((CoronaColorOut.x+SolColorOut.x) + (CoronaColorOut.y+SolColorOut.y) + (CoronaColorOut.z+SolColorOut.z))/3.;
+							Color.r += avg_ * intensity;
+							Color.g += avg_ * intensity;
+							Color.b += avg_ * intensity;
+						}
+						else{
+							Color.r += (CoronaColorOut.x+SolColorOut.x) * intensity;
+							Color.g += (CoronaColorOut.y+SolColorOut.y) * intensity;
+							Color.b += (CoronaColorOut.z+SolColorOut.z) * intensity;
+						}
+					}
+				}
+				if (lightRayEval(Angle1Out,Angle2Out,Angle3Out,Angle4Out,Angle5Out,uv,10.0, 120.0, healthOut)){
+					float intensity = 0.3*sin((dist / (1.5 * radius * size ) * 2.2) + 10.75);
+
+					if (intensity > 0.0){
+						if (eternal){
+							float avg_ = (SolColorOut.x + SolColorOut.y + SolColorOut.z)/3.;
+							Color.r += avg_*intensity;
+							Color.g += avg_*intensity;
+							Color.b += avg_*intensity;
+						}
+						else{
+							Color.r += SolColorOut.x*intensity;
+							Color.g += SolColorOut.y*intensity;
+							Color.b += SolColorOut.z*intensity;
+						}
+					}
+				}
+				if (lightRayEval(Angle1Out,Angle2Out,Angle3Out,Angle4Out,Angle5Out,uv,15.0, 240.0, healthOut)){
+					float intensity = 0.3*sin((dist / (1.5 * radius * size ) * 2.2) + 11.0);
+
+					if (intensity > 0.0){
+						if (eternal){
+							float avg_ = (SolColorOut.x + SolColorOut.y + SolColorOut.z)/3.;
+							Color.r += avg_*intensity;
+							Color.g += avg_*intensity;
+							Color.b += avg_*intensity;
+						}
+						else{
+							Color.r += SolColorOut.x*intensity;
+							Color.g += SolColorOut.y*intensity;
+							Color.b += SolColorOut.z*intensity;
+						}
+					}
+				}
+				
+				if (lightRayEval(Angle1Out,Angle2Out,Angle3Out,Angle4Out,Angle5Out,-uv,5.0, 90.0, healthOut)){
+					float intensity = 0.3*sin((dist / (1.5 * radius * size ) * 2.2) + 11.25);
+
+					if (intensity > 0.0){
+						if (eternal){
+							float avg_ = ((CoronaColorOut.x+SolColorOut.x) + (CoronaColorOut.y+SolColorOut.y) + (CoronaColorOut.z+SolColorOut.z))/3.;
+							float scalar = 1.0/2.0*intensity;
+							Color.r += avg_*scalar;
+							Color.g += avg_*scalar;
+							Color.b += avg_*scalar;
+						}
+						else{
+							float scalar = 1.0/2.0*intensity;
+							Color.r += (CoronaColorOut.x+SolColorOut.x)*scalar;
+							Color.g += (CoronaColorOut.y+SolColorOut.y)*scalar;
+							Color.b += (CoronaColorOut.z+SolColorOut.z)*scalar;
+						}
+					}
+				}
+				if (lightRayEval(Angle1Out,Angle2Out,Angle3Out,Angle4Out,Angle5Out,-uv,10.0, 210.0, healthOut)){
+					float intensity = 0.3*sin((dist / (1.5 * radius * size ) * 2.2) + 11.50);
+
+					if (intensity > 0.0){
+						if (eternal){
+							float avg_ = (CoronaColorOut.x + CoronaColorOut.y + CoronaColorOut.z)/3.;
+							Color.r += avg_*intensity;
+							Color.g += avg_*intensity;
+							Color.b += avg_*intensity;
+						}
+						else{
+							Color.r += CoronaColorOut.x*intensity;
+							Color.g += CoronaColorOut.y*intensity;
+							Color.b += CoronaColorOut.z*intensity;
+						}
+					}
+				}
+				if (lightRayEval(Angle1Out,Angle2Out,Angle3Out,Angle4Out,Angle5Out,-uv,15.0, 330.0, healthOut)){
+					float intensity = 0.3*sin((dist / (1.5 * radius * size ) * 2.2) + 11.75);
+
+					if (intensity > 0.0){
+						if (eternal){
+							float avg_ = (CoronaColorOut.x + CoronaColorOut.y + CoronaColorOut.z)/3.;
+							Color.r += avg_*intensity;
+							Color.g += avg_*intensity;
+							Color.b += avg_*intensity;
+						}
+						else{
+							Color.r += CoronaColorOut.x*intensity;
+							Color.g += CoronaColorOut.y*intensity;
+							Color.b += CoronaColorOut.z*intensity;
+						}
+					}
+				}
+			}
+			
+			void renderSolBody(inout vec4 Color, vec2 uv, float aspect, float dist, float radius, bool notLittleFucker, bool eternal, float healthBin, float TimeOut, float healthOut, vec3 SolColorOut, vec3 CoronaColorOut){
+				// Body
+				Color.r = SolColorOut.x;
+				Color.g = SolColorOut.y;
+				Color.b = SolColorOut.z;
+
+				// Plasma
+				if (notLittleFucker){
+					Color = vec4(fireball(uv, aspect), 1.0);
+				} else {
+					Color = vec4(fireball(uv * dist * 0.3, aspect), 1.0) * 1.5;
+				}
+
+				// Extra plasma swirl
+				vec3 col = vec3(0.);
+				float t = TimeOut / 100.0 * (20.0 * (1.0 - healthBin));
+
+				vec2 n = vec2(0);
+				vec2 q = vec2(0);
+				vec2 p = uv / aspect;
+				float d = dot(p, p);
+				float S = 15.0;
+				float a = healthBin * healthBin;
+				mat2 m = rotate2D(5.);
+
+				for (float j = 0.; j < 15.; j++) {
+					p *= m;
+					n *= m;
+					q = p * S + t + 0.8 + j + n;
+					a += dot(cos(q) / S, vec2(0.2));
+					n -= sin(q);
+					S *= 1.2;
+				}
+
+				col = vec3(8.0, 2.0, 1.0) * (2.0 * a + 0.2) - d;
+
+				if (notLittleFucker) {
+					if (eternal) {
+						float avg_ = (col.x + col.y + col.z) / 3.0;
+						Color.rgb += vec3(avg_);
+					} else {
+						Color.r += col.x;
+						Color.g += col.y;
+						Color.b += col.z;
+					}
+				} else {
+					Color.r += col.x;
+				}
+
+				// Corona
+				float intensity = 1.1 - dist * dist / (aspect * aspect) * 26.5;
+				if (!notLittleFucker) {
+					intensity = dist * dist * dist;
+				}
+
+				if (eternal) {
+					float avg_ = (2.0 * CoronaColorOut.x + CoronaColorOut.y) / 3.0;
+					Color.rgb -= vec3(intensity * avg_);
+				} else {
+					Color.r -= intensity * CoronaColorOut.y;
+					Color.g -= intensity * CoronaColorOut.x;
+					Color.b -= intensity * CoronaColorOut.x;
+				}
+			}
+			
+			void main(void)
+			{
+				vec4 color = Color0 * texture2D(Texture0, TexCoord0);
+
+				if (EnabledOut > 0.0) {
+
+					bool notLittleFucker = SolColorOut.r != -1.0;
+					bool eternal = false;
+
+					float healthOut = HealthOut;
+					if (healthOut < 0.0) {
+						eternal = true;
+						healthOut = -healthOut;
+					}
+
+					float healthScale = healthOut;
+					float healthBin = -(healthOut - 1.25) / 0.67;
+					float aspect = RenderDataOut.z / RenderDataOut.w;
+
+					float time = TimeOut;
+					float timeFloor = floor(time) + time * 0.005;
+
+					vec2 texSize = RenderDataOut.zw;
+					vec2 pixelCoord = TexCoord0 * texSize;
+
+					float gridSize = 4.0;
+					vec2 coord = floor(pixelCoord / gridSize) * gridSize;
+
+					float dotVal = dot(coord / (timeFloor + 1.0), vec2(12.9898, 78.233));
+					float staticNoise = fract(sin(dotVal) * 43758.5453);
+					float staticCol = staticNoise * staticNoise * healthBin / 1.5;
+
+					vec2 pos = (SolPositionOut.xy / RenderDataOut.zw) * ScaleOut;
+					vec2 rad = (SolPositionOut.zy / RenderDataOut.zw) * ScaleOut * 1.02;
+
+					float radius = length((rad - pos) * vec2(aspect, 1.0));
+					float dist = length((TexCoord0 - pos) * vec2(aspect, 1.0));
+					vec2 uv = (TexCoord0 - pos) * vec2(aspect, 1.0);
+
+					bool eyeCondition = (color.r == 0.0) && (color.g == 1.0) && (abs(color.b - 0.5647059) < 0.00001);
+
+					if (dist < radius * 1.7 && eyeCondition) {
+						color.r = staticCol;
+						color.g = staticCol;
+						color.b = staticCol;
+					}
+					else if (dist < radius * 3.0) {
+
+						if (dist < radius) {
+							renderSolBody(color, uv, aspect, dist, radius,
+										  notLittleFucker, eternal, healthBin,
+										  TimeOut, healthOut, SolColorOut, CoronaColorOut);
+						}
+
+						applyLightRays(Angle1Out, Angle2Out, Angle3Out, Angle4Out, Angle5Out,
+									   uv, dist, radius, notLittleFucker, eternal,
+									   CoronaColorOut, SolColorOut, healthOut, color);
+					}
+
+					if (!eyeCondition && radius > 0.0001) {
+						ApplyFlare(color, 0, notLittleFucker, uv, radius, dist, aspect,
+								   HealthOut, healthBin, TimeOut, CoronaColorOut, 2.0);
+						if (!notLittleFucker) {
+							ApplyFlare(color, 1, notLittleFucker, uv, radius, dist, aspect,
+									   HealthOut, healthBin, TimeOut, CoronaColorOut, 2.0);
+						}
+					}
+
+					if (notLittleFucker && radius > 0.0001) {
+						DrawTriangleAndCircle(color, 0, SolPositionOut, ScaleOut, TimeOut,
+											  radius, healthScale, staticCol, dist, aspect);
+						if (TimeOut < 30.0) {
+							DrawTriangleAndCircle(color, 1, SolPositionOut, ScaleOut, TimeOut,
+												  radius, healthScale, staticCol, dist, aspect);
+						}
+					}
+				}
+
+				gl_FragColor = color;
+			}
+
         ]]></fragment>
 
     </shader>

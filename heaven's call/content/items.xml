@@ -58,7 +58,7 @@
 	<familiar name="Mothership-02" id="12" description="The pistol" quality="4" cache="familiars" craftquality="3" gfx="collectibles_HC_mothership2.png" tags="offensive summonable" achievement="mothership (HC)"/>
 	<familiar name="Mothership-03" id="13" description="The penetrator" quality="4" cache="familiars" craftquality="3" gfx="collectibles_HC_mothership3.png" tags="offensive summonable" achievement="mothership (HC)"/>
 	<familiar name="Mothership-04" id="14" description="The protector" quality="4" cache="familiars" craftquality="3" gfx="collectibles_HC_mothership4.png" tags="offensive summonable" achievement="mothership (HC)"/>
-	<familiar name="Herald's Stallion" id="15" description="Hold [drop] to ride" quality="2" cache="familiars" craftquality="3" gfx="collectibles_HC_ox.png" tags="offensive poop summonable stars" achievement="heralds_stallion (HC)"/>
+	<familiar name="Herald's Stallion" id="15" description="Hold [drop] to ride" quality="3" cache="familiars" craftquality="3" gfx="collectibles_HC_ox.png" tags="offensive poop summonable stars" achievement="heralds_stallion (HC)"/>
 	<!--not implemented--><active name="The Scepter" id="16" description="Fecal enchanter" quality="2" craftquality="3" gfx="collectibles_HC_scepter.png" tags="offensive poop" chargetype="special" maxcharges="12" hidden="true" achievement="PERMALOCK"/>
 	<passive name="Rocket Engine" id="17" description="Overdrive!" quality="3" craftquality="3" gfx="collectibles_HC_rocketEngine.png" tags="offensive summonable" achievement="rocket_engine (HC)"/>
 	<passive name="Stellar Battery" id="18" description="Tame the stars" quality="3" craftquality="3" gfx="collectibles_HC_battery.png" tags="offensive battery summonable" achievement="stellar_battery (HC)"/>

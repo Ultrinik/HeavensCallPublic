@@ -4,7 +4,9 @@
     <directory>heaven's call</directory>
     <id>3503885496</id>
     <description>[img] https://i.ibb.co/4gfB4Ycy/heaven-call.png [/img]
+DO NOT HAVE INSTALLED [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2839972756]OLD HEAVEN'S CALL[/url] VERSION!!!
 [url=https://repentogon.com/index.html][b]THIS MOD REQUIRES [img]https://i.ibb.co/zTdqYPTz/repentogon.png[/img] TO FUNCTION[/b][/url]
+[url=https://isaacguru.com/mod/heavenscall] [img] https://i.ibb.co/twQmQgC6/guruicon.png [/img] Check Isaac Guru's page for more detailed information [/url]
 [url=https://twitter.com/HeavensCallMOD] [img] https://i.ibb.co/d09RHHWH/twitter.png [/img] Follow Heaven's Call on Twitter [/url]
 [url=https://github.com/Ultrinik/HeavensCallPublic/releases/latest] [img] https://i.ibb.co/677dKRwp/github.png [/img] Mirror download for manual installation  [/url]
 [url=https://ultrinik.itch.io/heavens-call-suika] [img] https://i.ibb.co/5WtkKpR7/itchio.png [/img] Play Heaven's Call Suika [/url]
@@ -54,15 +56,15 @@
 [*] [url=https://www.youtube.com/channel/UCOkq76alQLrfSFkQVLPlgeA] Nihil[/url]: Music
 [*] [url=https://twitter.com/JunkyX1122] Junky[/url]: Help with artworks
 [*] Kharjaro: Help with sound effects
-[*] [url=https://twitter.com/Aladar_C137]Aladar[/url], Churupinha, mycenaut, Harvester, Mattee, Grommy, IzzyIsakoi_: Help with sprites
+[*] [url=https://twitter.com/Aladar_C137]Aladar[/url], Churupinha, mycenaut, Harvester, Mattee, Opexe, Grommy, IzzyIsakoi_: Help with sprites
 [*] Jerb: Help with shaders
 [/list]
 And every mod developer from which I used code &lt;3
 [i]If you collaborated with HC development and your name is not here, tell me![/i]
 
 [h1][b] If you are going to report a bug or post a suggestion, please do so in the appropriate discussion. [/b][/h1]</description>
-    <version>1.6.1</version>
-    <visibility>Private</visibility>
+    <version>1.6.4</version>
+    <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
     <tag id="Active Items"/>

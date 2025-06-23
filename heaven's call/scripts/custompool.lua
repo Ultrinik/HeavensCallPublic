@@ -62,7 +62,7 @@ mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.OnPreGetCollectible)
 
 function mod:OnPostGetCollectible(item, poolType, decrese, seed)
 	if mod.SolarItemsVars.MothershipNeeded then
-		if rng:RandomFloat() < mod.MothershipOverwriteChance then
+		if (rng:RandomFloat() < mod.MothershipOverwriteChance) and not (game:GetLevel():GetDimension() == Dimension.DEATH_CERTIFICATE) then
 			return mod:GetSomeMissingMothership()
 		end
 	end

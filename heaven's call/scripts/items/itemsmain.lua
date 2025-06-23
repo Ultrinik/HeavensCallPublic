@@ -94,7 +94,7 @@ function mod:OnSolarItemsUpdateMain(player)
 end
 function mod:OnItemsUpdateMain()
 
-	mod:OnUpdateCheckRadioactivity()
+	--mod:OnUpdateCheckRadioactivity()
 
     for i=0, game:GetNumPlayers ()-1 do
 		local player = game:GetPlayer(i)
@@ -376,7 +376,7 @@ include("scripts.items.solaritems.mothership")
 include("scripts.items.solaritems.redshovel")
 include("scripts.items.solaritems.rocketengine")
 include("scripts.items.solaritems.iridescentitems")
-include("scripts.items.solaritems.radioactiveitems")
+--include("scripts.items.solaritems.radioactiveitems")
 include("scripts.items.solaritems.stellarbattery")
 include("scripts.items.solaritems.picatrix")
 --include("scripts.items.solaritems.wormhole")

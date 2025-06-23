@@ -58,7 +58,7 @@ function mod:GoldenTelescopeOnNewStage()
                     table.insert(mod.ModFlags.goldenRoomsIdx, roomdesc.GridIndex)
                     mod.ModFlags.currentUnvisitedRooms = mod.ModFlags.currentUnvisitedRooms - 1
 
-                    mod:FineTineRoomData(roomdesc, 0.5)
+                    mod:FineTuneRoomData(roomdesc, 0.5 * mod:HowManyItems(mod.SolarItems.Telescope))
                 end
             end
 

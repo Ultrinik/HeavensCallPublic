@@ -253,6 +253,8 @@ function mod:StartAchievement(paper, text)
 	achievementSprite:ReplaceSpritesheet(2, "hc/gfx/ui/achievement/"..paper..".png")
 	achievementSprite:ReplaceSpritesheet(3, "hc/gfx/ui/achievement/"..paper..".png")
 
+	achievementSprite:LoadGraphics()
+
 	achievementSprite:Play("Show", true)
 	
 	mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.RenderAchievement)

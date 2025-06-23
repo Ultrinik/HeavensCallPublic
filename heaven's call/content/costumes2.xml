@@ -9,8 +9,8 @@
     <costume id="41" anm2path="costume_panspermia.anm2" type="passive" hasSkinAlt="true" priority="2" />
     <costume id="23" anm2path="costume_spacejam.anm2" type="passive" />
     <costume id="22" anm2path="costumes_goldentelescope.anm2" type="passive" />
-    <costume id="39" anm2path="costume_mochi.anm2" type="passive" hasSkinAlt="true" priority="1" />
-    <costume id="38" anm2path="costume_eye.anm2" type="passive" priority="2" />
+    <costume id="38" anm2path="costume_mochi.anm2" type="passive" hasSkinAlt="true" priority="1" />
+    <costume id="39" anm2path="costume_eye.anm2" type="passive" priority="2" />
 
     <costume type="none" anm2path="costume_engineActive.anm2" priority="100" hasOverlay="true"/>
     <costume type="none" anm2path="costume_stallion.anm2" priority="999"/>

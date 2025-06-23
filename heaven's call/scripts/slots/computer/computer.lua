@@ -1168,4 +1168,4 @@ function mod:OnPunchedSpawn(pickup, variant, subType)
         return {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, mod.ComputerConts.cardId}
     end
 end
-mod:AddSillyCallback(mod.ModCallbacks.ON_PICKUP_CREATION, mod.OnPunchedSpawn, {"computer (HC)", mod.ComputerConts.cardChance, PickupVariant.PICKUP_TAROTCARD, -1, mod.ComputerConts.cardId})
+--mod:AddSillyCallback(mod.ModCallbacks.ON_PICKUP_CREATION, mod.OnPunchedSpawn, {"computer (HC)", mod.ComputerConts.cardChance, PickupVariant.PICKUP_TAROTCARD, -1, mod.ComputerConts.cardId})

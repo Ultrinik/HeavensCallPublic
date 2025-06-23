@@ -16,7 +16,7 @@ function mod:MakeLunarPact(pedestal, override, pool)
         local player0 = Isaac.GetPlayer(0)
         player0:AddCollectible(CollectibleType.COLLECTIBLE_SACRED_ORB)
 
-        local new_collectible = game:GetItemPool():GetCollectible(pool)
+        local new_collectible = game:GetItemPool():GetCollectible(pool, true)
         table.insert(mod.savedatarun().LunarPactItems, pedestal.InitSeed)
         pedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, new_collectible, false, true)
 
@@ -72,7 +72,7 @@ function mod:PriceUpdate(entity)
         local data = entity:GetData()
         local sprite = entity:GetSprite()
 
-        if (data.Force or entity.FrameCount%15==0) and data.OriginalPrice then
+        if (data.Force or entity.FrameCount%5==0) and data.OriginalPrice then
             data.Force = false
 
             local BROKEN = data.OriginalPrice.BROKEN
@@ -191,6 +191,7 @@ function mod:TakeLunarPact(player, RED, SOUL, BROKEN, apply)
 
             --Coins
             player:AddCoins(-necessaryCoins)
+
         end
 
         return BROKEN, necessaryCoins
@@ -203,18 +204,16 @@ function mod:TakeLunarPact(player, RED, SOUL, BROKEN, apply)
 
         if redHealth < RED then
             SOUL = 3
-            RED = RED - 1
+            RED = math.max(0, RED - 1)
         end
         while redHealth < RED do
             SOUL = SOUL + 1
-            RED = RED - 1
+            RED = math.max(0, RED - 1)
         end
-    
         while blueHealth < SOUL do
-            SOUL = SOUL - 2
+            SOUL = math.max(0, SOUL - 2)
             BROKEN = BROKEN + 1
         end
-    
 	
 		if BROKEN + RED + SOUL > 5 then
 			for i=1, 5 do
@@ -331,42 +330,38 @@ end
 function mod:PactCollision(pedestal, entity)
     local data = pedestal:GetData()
     if entity.Type == EntityType.ENTITY_PLAYER and data.LunarPact then
-        local price = data.Price
+        local player = entity:ToPlayer()
 
-        local oldSubType = pedestal.SubType
+        if player:CanPickupItem() and not ('P' == mod:get_char(player:GetSprite():GetAnimation(), 1)) then
 
-        mod:scheduleForUpdate(function()
-            if (oldSubType ~= pedestal.SubType) and pedestal and pedestal:GetData().LunarPact then
-                local data = pedestal:GetData()
+            local price = data.Price
 
-                mod:TakeLunarPact(entity:ToPlayer(), price.RED, price.SOUL, price.BROKEN, true)
+            mod:TakeLunarPact(player, price.RED, price.SOUL, price.BROKEN, true)
 
-                local level = game:GetLevel()
-                local pacts = mod.savedatarun().LunarPactItems
-                for i = #pacts, 1, -1 do
-                    local pact = pacts[i]
-                    if pact == pedestal.InitSeed then
-                        table.remove(pacts, i)
-                    end
-                end
-
-                sfx:Stop(SoundEffect.SOUND_DEVILROOM_DEAL)
-                sfx:Play(Isaac.GetSoundIdByName("LunarPact"), 5)
-                --entity:ToPlayer():UseActiveItem(CollectibleType.COLLECTIBLE_DULL_RAZOR, false, false, true, false)
-
-                data.LunarPact = false
-                data.Price = nil
-
-                --pedestal:Remove()
-
-                --Increase price
-                for _, item in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)) do
-                    if item:GetData().LunarPact then
-                        --mod:IncreasePrice(item)
-                    end
+            local level = game:GetLevel()
+            local pacts = mod.savedatarun().LunarPactItems
+            for i = #pacts, 1, -1 do
+                local pact = pacts[i]
+                if pact == pedestal.InitSeed then
+                    table.remove(pacts, i)
                 end
             end
-        end, 2)
+
+            sfx:Stop(SoundEffect.SOUND_DEVILROOM_DEAL)
+            sfx:Play(Isaac.GetSoundIdByName("LunarPact"), 5)
+
+            data.LunarPact = false
+            data.Price = nil
+
+            --pedestal:Remove()
+            
+            if mod:GetPlayerHearts(player) == 0 then
+                player:AddSoulHearts(1)
+                mod:scheduleForUpdate(function ()
+                    player:AddSoulHearts(-1)
+                end,2)
+            end
+        end
     end
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.PactCollision, PickupVariant.PICKUP_COLLECTIBLE)

@@ -4,8 +4,6 @@
 	<card description="Call of the void" hud="Void Pill" name="Void Pill" type="object" mimiccharge="12" pickup="372" achievement="PERMALOCK"/>
 	<card description="Call of the void" hud="fAKE Void Pill" name="Fake Void Pill" type="special" mimiccharge="12" pickup="373" achievement="PERMALOCK"/>
 	
-	<card description="Into orbit" hud="The Moon" name="The Moon" type="special" mimiccharge="4" pickup="374" achievement="PERMALOCK"/>
-	
 	<card description="Call me whenever you want" hud="Friend" name="Friend Phone Number" type="object" mimiccharge="12" pickup="375"  achievement="PERMALOCK"/>
 	
 	<card description="Beep boop" hud="Punched" name="Punched Card" type="special" mimiccharge="12" pickup="376" achievement="PERMALOCK"/>

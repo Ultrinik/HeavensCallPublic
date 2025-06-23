@@ -240,7 +240,7 @@ function mod:AppearPlanet(entity, noMusic)
 				end, 85)
 			end
 				
-			local final_hp = mod:SetStageHpButbad(entity, 3, 0.75)
+			local final_hp = mod:SetStageHpButbad(entity, 3, 0.75*0.85)
 
 			--[[
 			--bosses with stage hp adjusted to 
@@ -564,6 +564,8 @@ function mod:UpdateDefeat(entity)
 							mod:StartAchievement("paper", text)
 						end,60)
 					end
+				else
+					print("ERROR: INVALID ACHIEVEMENT!")
 				end
 			end
 			mod:GoToGauntletInit()

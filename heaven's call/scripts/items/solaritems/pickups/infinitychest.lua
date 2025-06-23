@@ -11,8 +11,13 @@ local infinityChestFlag = false
 function mod:OnInfinityChestInit(chest)
     if chest.SubType == mod.EntityVoidSub+1 and game:GetRoom():GetFrameCount() <= 0 and not infinityChestFlag then
         infinityChestFlag = true
-        local newChest = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_CHEST, mod.EntityVoidSub+1, chest.Position, Vector.Zero, nil)
+        local newChest = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_CHEST, mod.EntityVoidSub+1, chest.Position, Vector.Zero, nil):ToPickup()
+        newChest.Wait = 60
+
+        chest.Wait = 60
+        chest.Position = Vector.Zero
         chest:Remove()
+        chest:Update()
     end
     infinityChestFlag = false
 end
@@ -100,7 +105,7 @@ mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, mod.DestroyOnActive, CollectibleTy
 
 
 function mod:OnInfinityChestSpawn(pickup, variant, subType)
-    if pickup then
+    if pickup and pickup.SubType ~= mod.EntityVoidSub+1 then
         --avoid FF chest overwrite
         if FiendFolio and FiendFolio.getFieldInit and FiendFolio.savedata then
             local chestseed = tostring(pickup.InitSeed)

@@ -1,7 +1,7 @@
 local mod = HeavensCall
 local game = Game()
 
-function mod:FineTineRoomData(roomdesc, mult)
+function mod:FineTuneRoomData(roomdesc, mult)
     local n = math.ceil(120*mult)
 
     local stb = Isaac.GetCurrentStageConfigId()
@@ -41,7 +41,7 @@ function mod:SolRoomsRoll()
         for index = 0, 13*13-1 do
             local roomdesc = game:GetLevel():GetRoomByIdx(index)
             if index ~= level:GetCurrentRoomIndex() then
-                mod:FineTineRoomData(roomdesc, 1)
+                mod:FineTuneRoomData(roomdesc, mod:HowManyTrinkets(mod.Trinkets.Sol))
             end
         end
     end

@@ -25,6 +25,8 @@ end
 
 function mod:OnCollectibleInitIncense(pickup)
 
+    mod.savedatarun().RerolledIncenseSeeds = mod.savedatarun().RerolledIncenseSeeds or {}
+
     local flag = false
     for i, seed in ipairs(mod.savedatarun().RerolledIncenseSeeds) do
         if seed == pickup.InitSeed then
