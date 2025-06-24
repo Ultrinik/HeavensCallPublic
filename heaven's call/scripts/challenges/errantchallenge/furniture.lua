@@ -74,7 +74,7 @@ function mod:FurnitureUpdate(entity)
                         sfx:Stop(mod.SFX.Generator)
                         mod:scheduleForUpdate(function()
                             sfx:Stop(mod.SFX.Generator)
-                            flags.position7 = {[0]=0, [1]=0, [2]=0}
+                            flags.position5 = {[0]=0, [1]=0, [2]=0}
                         end, 2)
                     end
 
@@ -133,7 +133,7 @@ function mod:FurnitureUpdate(entity)
         end
 
         --light
-        flags.position7 = {[0]=entity.Position.X, [1]=entity.Position.Y-15, [2]=450 + 70*math.sin( (flags.time or 0) )}
+        flags.position5 = {[0]=entity.Position.X, [1]=entity.Position.Y-15, [2]=450 + 70*math.sin( (flags.time or 0) )}
 
         if data.Overcharged and not mod.CirclesStates[4] then
             if entity.FrameCount % 30 == 0 then

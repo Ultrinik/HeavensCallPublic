@@ -532,7 +532,7 @@ if StageAPI then
 	end
 end
 
---STAGE API
+--ANDROMEDA
 if ANDROMEDA then
 	function mod:OnUseGravityShift(item, rng, player)
 		if player:GetPlayerType() == Isaac.GetPlayerTypeByName("Andromeda", false) then

@@ -26,7 +26,9 @@ mod:AddResetFlag(ModCallbacks.MC_POST_GAME_STARTED, "savedatarun.solEnabled", fa
 table.insert(mod.PostLoadInits, {"savedatarun", "solRoomGenerated", false})
 mod:AddResetFlag(ModCallbacks.MC_POST_NEW_LEVEL, "savedatarun.solRoomGenerated", false)
 
-
+function mod:IsSolEnalbed()
+	return mod.savedatarun().solEnabled
+end
 function mod:CurrentlyInHeaven()
 	local level = game:GetLevel()
 	return mod.savedatarun().solEnabled and (level:GetStage() == LevelStage.STAGE_NULL)

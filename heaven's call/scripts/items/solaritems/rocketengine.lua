@@ -676,6 +676,14 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.AddEngineCallbacks)
 
 --[[
 
+--Cache
+function mod:OnRocketEngineCache(player, cache)
+    if player:HasCollectible(mod.SolarItems.Engine) and cache == CacheFlag.CACHE_TEARFLAG then
+        player.TearFlags = player.TearFlags | TearFlags.TEAR_BURN
+    end
+end
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.OnRocketEngineCache, CacheFlag.CACHE_TEARFLAG)
+
 function mod:OnTearInitEngine(tear)
     if tear.TearFlags & TearFlags.TEAR_LUDOVICO then
         local player = tear.SpawnerEntity and (tear.SpawnerEntity:ToPlayer() or (tear.SpawnerEntity:ToFamiliar() and tear.SpawnerEntity:ToFamiliar().Player))

@@ -6,11 +6,11 @@ mod.EntityVoidSub = 370
 
 
 mod.voidConsts = {
-    BOMB_CHANCE = 0.002,
-    KEY_CHANCE = 0.002,
-    HEART_CHANCE = 0.002,
-    COIN_CHANCE = 0.001,
-    BATTERY_CHANCE = 0.003,
+    BOMB_CHANCE = 0.001,
+    KEY_CHANCE = 0.001,
+    HEART_CHANCE = 0.001,
+    COIN_CHANCE = 0.0005,
+    BATTERY_CHANCE = 0.005,
 
     CHEST_CHANCE = 0.0025,
     SACK_CHANCE = 0.005,

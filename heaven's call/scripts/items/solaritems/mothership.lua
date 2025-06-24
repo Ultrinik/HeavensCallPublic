@@ -32,7 +32,7 @@ mod.SolarItemsVars.InfectedEnts = {}
 mod.SolarItemsVars.MothershipNeeds = {[1]=false,[2]=false,[3]=false,[4]=false}
 mod.SolarItemsVars.MothershipNeeded = false
 
-mod.MothershipOverwriteChance = 0.069
+mod.MothershipOverwriteChance = 0.04
 
 --INITS-------------------------------------------
 function mod:OnMothershipInit(familiar)
@@ -445,14 +445,15 @@ function mod:MothershipOnNewRoom()
 
 			local currentroomdesc = level:GetCurrentRoomDesc()
 			if not (currentroomdesc.Data and currentroomdesc.Data.Type == RoomType.ROOM_CHALLENGE) then
-				for _, chest in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMBCHEST, ChestSubType.CHEST_CLOSED)) do
-					index = index + 1
-					mod.SolarItemsVars.MothershipTargets[index] = chest.Position
-				end
 				
 				for _, bishop in ipairs(Isaac.FindByType(EntityType.ENTITY_BISHOP)) do
 					index = index + 1
 					mod.SolarItemsVars.MothershipTargets[index] = bishop.Position
+				end
+
+				for _, chest in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMBCHEST, ChestSubType.CHEST_CLOSED)) do
+					index = index + 1
+					mod.SolarItemsVars.MothershipTargets[index] = chest.Position
 				end
 			end
 			
@@ -464,6 +465,12 @@ function mod:MothershipOnNewRoom()
 			if grid and grid:GetType() == GridEntityType.GRID_ROCK and grid.State~=2 then
 				index = index + 1
 				mod.SolarItemsVars.MothershipTargets[index] = grid.Position
+			end
+			
+			
+			for _, carpet in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.ISAACS_CARPET)) do
+				index = index + 1
+				mod.SolarItemsVars.MothershipTargets[index] = carpet.Position
 			end
 
 		end

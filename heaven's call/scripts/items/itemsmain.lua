@@ -102,6 +102,9 @@ function mod:OnItemsUpdateMain()
 
 		local shotDirection
 		shotDirection = Vector(Input.GetActionValue(ButtonAction.ACTION_SHOOTRIGHT, player.ControllerIndex) - Input.GetActionValue(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex), Input.GetActionValue(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex) - Input.GetActionValue(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex))
+		if (game:GetLevel():GetDimension() == Dimension.MIRROR) then
+			shotDirection.X = -shotDirection.X
+		end
 		data.CurrentAttackDirection_DIG_HC = shotDirection:Normalized()
 		
 		if shotDirection:LengthSquared() > 0.01 then

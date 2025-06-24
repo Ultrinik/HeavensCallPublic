@@ -727,9 +727,14 @@ function mod:GetNumOfTearShots(player)
 	local wizBonus = (wizNum > 0 and 1) or 0
 	wizBonus = wizBonus + math.max(0, wizNum-1)
 
+	local conjoinedBonus = 0
+	if player:HasPlayerForm(PlayerForm.PLAYERFORM_BABY) then
+		conjoinedBonus = conjoinedBonus + 2
+	end
+
 	local keeperBonus = ( (player:GetPlayerType() == PlayerType.PLAYER_KEEPER) and 2) or ( (player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) and 3) or 0
 
-	return math.min(16, mutantBonus+innerBonus+nerdBonus+wizBonus+keeperBonus)
+	return math.min(16, mutantBonus+innerBonus+nerdBonus+wizBonus+keeperBonus+conjoinedBonus)
 end
 
 --Charge active with Bethanies charges (for Saturnus? and Mars?)

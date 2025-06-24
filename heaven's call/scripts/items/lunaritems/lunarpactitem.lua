@@ -64,7 +64,7 @@ end
 function mod:PriceUpdate(entity)
     if entity.SubType == mod.EntityInf[mod.Entity.Price].SUB then
         --if (not entity.Parent) or (entity.Parent:ToPickup().Wait == 20) then
-        if not entity.Parent then
+        if (not entity.Parent) or (not entity.Parent:GetData().LunarPact) then
             entity:Remove()
             return
         end
@@ -327,6 +327,23 @@ function mod:IncreasePrice(item)
     --Update sprite
 end
 
+function mod:ClearLunarPactItem(pedestal)
+    local data = pedestal:GetData()
+
+    local level = game:GetLevel()
+    local pacts = mod.savedatarun().LunarPactItems
+    for i = #pacts, 1, -1 do
+        local pact = pacts[i]
+        if pact == pedestal.InitSeed then
+            table.remove(pacts, i)
+        end
+    end
+
+    data.LunarPact = false
+    data.Price = nil
+
+end
+
 function mod:PactCollision(pedestal, entity)
     local data = pedestal:GetData()
     if entity.Type == EntityType.ENTITY_PLAYER and data.LunarPact then
@@ -337,23 +354,11 @@ function mod:PactCollision(pedestal, entity)
             local price = data.Price
 
             mod:TakeLunarPact(player, price.RED, price.SOUL, price.BROKEN, true)
-
-            local level = game:GetLevel()
-            local pacts = mod.savedatarun().LunarPactItems
-            for i = #pacts, 1, -1 do
-                local pact = pacts[i]
-                if pact == pedestal.InitSeed then
-                    table.remove(pacts, i)
-                end
-            end
+            
+            mod:ClearLunarPactItem(pedestal)
 
             sfx:Stop(SoundEffect.SOUND_DEVILROOM_DEAL)
             sfx:Play(Isaac.GetSoundIdByName("LunarPact"), 5)
-
-            data.LunarPact = false
-            data.Price = nil
-
-            --pedestal:Remove()
             
             if mod:GetPlayerHearts(player) == 0 then
                 player:AddSoulHearts(1)
@@ -393,3 +398,20 @@ function mod:OnLunarPactCollectibleInit(pedestal)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.OnLunarPactCollectibleInit, PickupVariant.PICKUP_COLLECTIBLE)
+
+function mod:OnCreditCardUse()
+    
+    local pacts = mod.savedatarun().LunarPactItems
+    local items = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)
+    if pacts then
+        for j, pedestal in ipairs(items) do
+            for i, pact in ipairs(pacts) do
+
+                if pact == pedestal.InitSeed then
+                    mod:ClearLunarPactItem(pedestal)
+                end
+            end
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.OnCreditCardUse, Card.CARD_CREDIT)

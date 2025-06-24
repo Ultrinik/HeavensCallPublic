@@ -112,6 +112,8 @@ function mod:EverchangerStartCheck(isContinue)
     flags.jumpscareFlag = false
     flags.deleteInfinite = false
 
+    flags.firstRoom = true
+
     mod.CirclesStates = {}
     mod.furnitureQueue = {}
     mod.ClockPassword = {}
@@ -339,6 +341,7 @@ function mod:EverchangerMainRender()
             end
         end
     end
+
 end
 function mod:InitializeEverchangerRoomsData()
     mod.everchangerroomdata = {
@@ -554,6 +557,14 @@ function mod:OnEverchangerNewRoom()
             sprite:SetFrame("idle", player:GetCollectibleNum(CollectibleType.COLLECTIBLE_JUDAS_SHADOW))
             effect.DepthOffset = -5000
         elseif flags.enabledErrant and not flags.HasEverchangeBeenInitialized then
+
+            mod:scheduleForUpdate(function ()
+                if flags.firstRoom then
+                    flags.firstRoom = false
+                    sfx:Play(mod.SFX.LightsOff, 10)
+                end
+            end, 30*5)
+
             flags.HasEverchangeBeenInitialized = true
             mod:StartEverchangerEntity(63, nil, nil)
         end

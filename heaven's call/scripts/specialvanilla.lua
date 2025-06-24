@@ -199,48 +199,30 @@ mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, function(_,item)
 end, CollectibleType.COLLECTIBLE_D20)
 
 --Void and abyss deintegration
-function mod:OnVoidDeintegration(item, rng, player)
+function mod:OnVoidDeintegration(og_item, rng, player)
 
     local items = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)
 	for i, _item in ipairs(items) do
-		if _item.SubType > 0 then
-			local item = _item:ToPickup()
+		local item = _item:ToPickup()
+		if item.SubType > 0 and item.Price == 0 then
 
-			local deintegration = mod:SpawnDeintegration(item, 32, 32, 4, player, nil, 1, nil, nil, 1)
+			local deintegration
+			if og_item == CollectibleType.COLLECTIBLE_VOID then
+				deintegration = mod:SpawnDeintegration(item, 32, 32, 4, player, nil, 1, nil, nil, 1)
+			elseif CollectibleType.COLLECTIBLE_ABYSS then
+				deintegration = mod:SpawnDeintegration(item, 32, 32, 4, nil, nil, 1, nil, nil, 1)
+			end
 			deintegration:GetData().EnabledSound = true
 
-			item:Remove()
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, item.Position, Vector.Zero, nil)
+			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, item.Position, Vector.Zero, nil)			
+
+			sfx:Play(SoundEffect.SOUND_MEGA_BLAST_END)
+			sfx:Play(SoundEffect.SOUND_SIREN_MINION_SMOKE)
 		end
 	end
-
-	sfx:Play(SoundEffect.SOUND_MEGA_BLAST_END)
-	sfx:Play(SoundEffect.SOUND_SIREN_MINION_SMOKE)
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.OnVoidDeintegration, CollectibleType.COLLECTIBLE_VOID)
-function mod:OnAbyssDeintegration(item, rng, player)
-
-	--local locusts = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST)
-	--local locust = locusts[#locusts]
-
-    local items = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)
-	for i, _item in ipairs(items) do
-		if _item.SubType > 0 then
-			local item = _item:ToPickup()
-
-			--local deintegration = mod:SpawnDeintegration(item, 32, 32, 4, locust, nil, 1, nil, nil, 1)
-			local deintegration = mod:SpawnDeintegration(item, 32, 32, 4, nil, nil, 1, nil, nil, 1)
-			deintegration:GetData().EnabledSound = true
-
-			item:Remove()
-			local poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, item.Position, Vector.Zero, nil)
-		end
-	end
-
-	sfx:Play(SoundEffect.SOUND_MEGA_BLAST_END)
-	sfx:Play(SoundEffect.SOUND_SIREN_MINION_SMOKE)
-end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.OnAbyssDeintegration, CollectibleType.COLLECTIBLE_ABYSS)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.OnVoidDeintegration, CollectibleType.COLLECTIBLE_ABYSS)
 
 --FAKE ACHIEVEMENT
 local achievementSprite

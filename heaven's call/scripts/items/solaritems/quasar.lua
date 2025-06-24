@@ -47,7 +47,8 @@ function mod:OnQuasarActiveUse(collectibleType, rng, player, flags, slot, custom
         player:AnimateCollectible(collectibleType, "UseItem", "PlayerPickup")
 
         for i, _item in ipairs(items) do
-            if _item.SubType > 0 then
+            _item = _item:ToPickup()
+            if _item.SubType > 0 and _item.Price == 0 then
                 local item = _item:ToPickup()
 
                 local deintegration = mod:SpawnDeintegration(item, 32, 32, 4, player, nil, 1, nil, nil, 1)

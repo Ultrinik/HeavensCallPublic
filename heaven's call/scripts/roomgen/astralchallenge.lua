@@ -110,25 +110,28 @@ function mod:AstralRoomGenerator()
 			elseif astralMode=="inner" then
 				newroomdata = RoomConfigHolder.GetRandomRoom(mod:RandomInt(1,99999), false, StbType.SPECIAL_ROOMS, RoomType.ROOM_DICE, RoomShape.ROOMSHAPE_1x1, mod.RoomVariantVecs.Astral2.X, mod.RoomVariantVecs.Astral2.Y, 20, 20, mod.normalDoors)
 			end
-			local newroomdesc = mod:GenerateRoomFromData(newroomdata, true)
-			if not newroomdesc then 
-				mod.ModFlags.forceSpawn = true
-			else
-				mod.ModFlags.forceSpawn = false
-					
-				--The little wisps to mark that the room spawned
-				if mod.savedatasettings().astraltooltip == 1 then
-					for i=1,5 do
-						local wisp = Isaac.Spawn(EntityType.ENTITY_EFFECT,EffectVariant.WISP,0,game:GetRoom():GetRandomPosition(0),Vector.Zero,nil)
-						wisp:GetSprite().Color = Color.Default
+
+			if newroomdata then
+				local newroomdesc = mod:GenerateRoomFromData(newroomdata, true)
+				if not newroomdesc then
+					mod.ModFlags.forceSpawn = true
+				else
+					mod.ModFlags.forceSpawn = false
+						
+					--The little wisps to mark that the room spawned
+					if mod.savedatasettings().astraltooltip == 1 then
+						for i=1,5 do
+							local wisp = Isaac.Spawn(EntityType.ENTITY_EFFECT,EffectVariant.WISP,0,game:GetRoom():GetRandomPosition(0),Vector.Zero,nil)
+							wisp:GetSprite().Color = Color.Default
+						end
+					elseif mod.savedatasettings().astraltooltip == 2 then
+						mod:scheduleForUpdate(function ()
+							local hud = game:GetHUD()
+							hud:ShowItemText("The heaven calls your name","")
+						end, 30)
 					end
-				elseif mod.savedatasettings().astraltooltip == 2 then
-					mod:scheduleForUpdate(function ()
-						local hud = game:GetHUD()
-						hud:ShowItemText("The heaven calls your name","")
-					end, 30)
+					success = newroomdesc
 				end
-				success = newroomdesc
 			end
 		end
 	end

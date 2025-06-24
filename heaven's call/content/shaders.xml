@@ -264,7 +264,6 @@
             
 
             // Rain:
-            #define S(a, b, t) smoothstep(a, b, t)
 
             vec3 N13(float p) {
                 //  from DAVE HOSKINS
@@ -281,7 +280,7 @@
             }
 
             float Saw(float b, float t) {
-                return S(0., b, t)*S(1., b, t);
+                return smoothstep(0., b, t)*smoothstep(1., b, t);
             }
 
             vec2 DropLayer2(vec2 uv, float t) {
@@ -311,20 +310,20 @@
                 
                 float d = length((st-p)*a.yx);
                 
-                float mainDrop = S(.4, .0, d);
+                float mainDrop = smoothstep(.4, .0, d);
                 
-                float r = sqrt(S(1., y, st.y));
+                float r = sqrt(smoothstep(1., y, st.y));
                 float cd = abs(st.x-x);
-                float trail = S(.23*r, .15*r*r, cd);
-                float trailFront = S(-.02, .02, st.y-y);
+                float trail = smoothstep(.23*r, .15*r*r, cd);
+                float trailFront = smoothstep(-.02, .02, st.y-y);
                 trail *= trailFront*r*r;
                 
                 y = UV.y;
-                float trail2 = S(.2*r, .0, cd);
+                float trail2 = smoothstep(.2*r, .0, cd);
                 float droplets = max(0., (sin(y*(1.-y)*120.)-st.y))*trail2*trailFront*n.z;
                 y = fract(y*10.)+(st.y-.5);
                 float dd = length(st-vec2(x, y));
-                droplets = S(.3, 0., dd);
+                droplets = smoothstep(.3, 0., dd);
                 float m = mainDrop+droplets*r*trailFront;
                 
                 //m += st.x>a.y*.45 || st.y>a.x*.165 ? 1.2 : 0.;
@@ -341,7 +340,7 @@
                 float d = length(uv-p);
                 
                 float fade = Saw(.025, fract(t+n.z));
-                float c = S(.3, 0., d)*fract(n.z*10.)*fade;
+                float c = smoothstep(.3, 0., d)*fract(n.z*10.)*fade;
                 return c;
             }
 
@@ -351,7 +350,7 @@
                 vec2 m2 = DropLayer2(uv*1.85, t)*l2;
                 
                 float c = s+m1.x+m2.x;
-                c = S(.3, 2., c);
+                c = smoothstep(.3, 2., c);
                 
                 return vec2(c, max(m1.y*l0, m2.y*l1));
             }
@@ -388,9 +387,9 @@
 						float maxBlur = 10.0;
 						float minBlur = 1.0;
 
-						float staticDrops = S(0.0, 1.0, rainAmount);
-						float layer1 = S(0.25, 0.75, rainAmount);
-						float layer2 = S(0.0, 0.5, rainAmount);
+						float staticDrops = smoothstep(0.0, 1.0, rainAmount);
+						float layer1 = smoothstep(0.25, 0.75, rainAmount);
+						float layer2 = smoothstep(0.0, 0.5, rainAmount);
 
 						// Original value
 						vec2 c = Drops(uv, t, staticDrops, layer1, layer2);
@@ -404,7 +403,7 @@
 
 						vec2 n = vec2(dc_dx, dc_dy) * 0.5; // central difference approx
 
-						float focus = mix(maxBlur - c.y, minBlur, S(0.1, 0.2, c.x));
+						float focus = mix(maxBlur - c.y, minBlur, smoothstep(0.1, 0.2, c.x));
 						Color = Color0 * texture2D(Texture0, TexCoord0 + n * focus);
 
                     }
@@ -743,8 +742,6 @@
 			<param name="TargetPosition3" type="vec4"/>
 			<param name="TargetPosition4" type="vec4"/>
 			<param name="TargetPosition5" type="vec4"/>
-			<param name="TargetPosition6" type="vec4"/>
-			<param name="TargetPosition7" type="vec4"/>
             <param name="WarpCheck" type="vec2"/>
 		</parameters>
         <vertex><![CDATA[
@@ -768,8 +765,6 @@
             attribute vec4 TargetPosition3;
             attribute vec4 TargetPosition4;
             attribute vec4 TargetPosition5;
-            attribute vec4 TargetPosition6;
-            attribute vec4 TargetPosition7;
 
             varying vec3 TargetPositionOut0;
             varying vec3 TargetPositionOut1;
@@ -777,8 +772,6 @@
             varying vec3 TargetPositionOut3;
             varying vec3 TargetPositionOut4;
             varying vec3 TargetPositionOut5;
-            varying vec3 TargetPositionOut6;
-            varying vec3 TargetPositionOut7;
 
             attribute vec2 WarpCheck;
             varying float YWarping;
@@ -826,14 +819,6 @@
                     TargetPos.xy = (TargetPosition5.xy / RenderData.zw) * Scale;
                     TargetPos.zw = (TargetPosition5.zw / RenderData.zw) * Scale;
                     TargetPositionOut5 = vec3(TargetPos.xy, distance(TargetPos.xy, TargetPos.zw));
-                    
-                    TargetPos.xy = (TargetPosition6.xy / RenderData.zw) * Scale;
-                    TargetPos.zw = (TargetPosition6.zw / RenderData.zw) * Scale;
-                    TargetPositionOut6 = vec3(TargetPos.xy, distance(TargetPos.xy, TargetPos.zw));
-                    
-                    TargetPos.xy = (TargetPosition7.xy / RenderData.zw) * Scale;
-                    TargetPos.zw = (TargetPosition7.zw / RenderData.zw) * Scale;
-                    TargetPositionOut7 = vec3(TargetPos.xy, distance(TargetPos.xy, TargetPos.zw));
                 }
             }
             ]]>
@@ -853,8 +838,6 @@
             varying vec3 TargetPositionOut3;
             varying vec3 TargetPositionOut4;
             varying vec3 TargetPositionOut5;
-            varying vec3 TargetPositionOut6;
-            varying vec3 TargetPositionOut7;
             varying float YWarping;
 
             float warpedDistance(vec2 a, vec2 b) {
@@ -892,14 +875,6 @@
                     intensity   = dist / TargetPositionOut5.z / 1.8;
                     newColor = max(newColor, Color*0.8 - intensity*intensity);
 
-                    dist = warpedDistance(TexCoord0, TargetPositionOut6.xy);
-                    intensity   = dist / TargetPositionOut6.z / 1.8;
-                    newColor = max(newColor, Color*0.8 - intensity*intensity);
-
-                    dist = warpedDistance(TexCoord0, TargetPositionOut7.xy);
-                    intensity   = dist / TargetPositionOut7.z / 1.8;
-                    newColor = max(newColor, Color*0.8 - intensity*intensity);
-
                     Color = newColor;
                 }
                 gl_FragColor = Color;
@@ -913,16 +888,11 @@
             <param name="SolPosition" type="vec3"/>
             <param name="Time" type="float"/>
             
-            <param name="Health" type="float"/>
+            <param name="HealthAngleAngle" type="vec3"/>
+            <param name="AngleAngleAngle" type="vec3"/>
             
             <param name="CoronaColor" type="vec3"/>
             <param name="SolColor" type="vec3"/>
-            
-            <param name="Angle1" type="float"/>
-            <param name="Angle2" type="float"/>
-            <param name="Angle3" type="float"/>
-            <param name="Angle4" type="float"/>
-            <param name="Angle5" type="float"/>
             
             <param name="WarpCheck" type="vec2"/>
 
@@ -939,16 +909,11 @@
                 attribute vec3 SolPosition;
                 attribute float Time;
                 
-                attribute float Health;
-                
                 attribute vec3 CoronaColor;
                 attribute vec3 SolColor;
                 
-                attribute float Angle1;
-                attribute float Angle2;
-                attribute float Angle3;
-                attribute float Angle4;
-                attribute float Angle5;
+                attribute vec3 HealthAngleAngle;
+                attribute vec3 AngleAngleAngle;
                 
                 varying vec4 Color0; 
                 varying vec2 TexCoord0; 
@@ -991,16 +956,16 @@
                     SolPositionOut = vec3(TargetPos.xy, distance(TargetPos.xy, TargetPos.zw));
                     SolPositionOut = SolPosition;
                     
-                    HealthOut = Health;
+                    HealthOut = HealthAngleAngle.x;
                     
                     CoronaColorOut = CoronaColor;
                     SolColorOut = SolColor;
                     
-                    Angle1Out = Angle1;
-                    Angle2Out = Angle2;
-                    Angle3Out = Angle3;
-                    Angle4Out = Angle4;
-                    Angle5Out = Angle5;
+                    Angle1Out = HealthAngleAngle.y;
+                    Angle2Out = HealthAngleAngle.z;
+                    Angle3Out = AngleAngleAngle.x;
+                    Angle4Out = AngleAngleAngle.y;
+                    Angle5Out = AngleAngleAngle.z;
                     
                     vec2 WarpChecker = (WarpCheck.xy / RenderData.zw) * Scale;
                     float xDistance = distance(vec2(WarpChecker.x, TargetPos.y), TargetPos.xy);
@@ -1168,8 +1133,6 @@
             //               https://github.com/ashima/webgl-noise
             //--------------------------------------------------------------------
 
-            #define saturate(oo) clamp(oo, 0.0, 1.0)
-
             // Quality Settings
             #define MarchSteps 4
 
@@ -1291,9 +1254,9 @@
 			}
 
 			vec3 Shade(float distance) {
-				float c1 = saturate(distance * 5.0 + 0.5);
-				float c2 = saturate(distance * 5.0 - 0.25);
-				float c3 = saturate(distance * 3.4 - 0.5);
+				float c1 = clamp(distance * 5.0 + 0.5, 0.0, 1.0);
+				float c2 = clamp(distance * 5.0 - 0.25, 0.0, 1.0);
+				float c3 = clamp(distance * 3.4 - 0.5, 0.0, 1.0);
 
 				vec3 a = mix(Color1, Color2, c1);
 				vec3 b = mix(a, Color3, c2);
@@ -1303,7 +1266,7 @@
 			float RenderScene(vec3 position, out float distance) {
 				float time = TimeOut / 10.0;
 				float noise = Turbulence(position * NoiseFrequency + Animation * time * 0.4, 0.1, 1.5, 0.03) * NoiseAmplitude;
-				noise = saturate(abs(noise));
+				noise = clamp(abs(noise), 0.0, 1.0);
 				distance = SphereDist(position) - noise;
 				return noise;
 			}

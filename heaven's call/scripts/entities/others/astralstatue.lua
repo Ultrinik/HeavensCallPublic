@@ -365,7 +365,7 @@ function mod:BossStatueUpdate(entity)
 				
 				mod.ModFlags.astral_boss = data.Planet
 
-				if data.Planet < 4 or data.Planet > 7 and data.Planet ~= 11 then
+				if data.Planet < 4 or data.Planet > 7 and data.Planet ~= 11 and data.Planet ~= 8 then
 					player:AddCollectible(mod.OtherItems.Carrot)
 				end
 				if data.Planet == 12 then

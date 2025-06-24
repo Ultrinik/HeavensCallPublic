@@ -1,0 +1,16 @@
+v1.6.5
+Maybe^3 fixed the black screen issue (?).
+Astral Challenge trying to spawn with nil data.
+Fixed Kuiper Hooligans triggering the victory when only one of them died.
+Balls Up now caps at 2.
+Fixed Rocket Engine shooting backwards in the mirror dimension.
+Rocket Engine and Panspermia now get extra attack numbers from conjoined.
+Reduced Mothership overwrite chance.
+(Penetrator)Mothership now also breaks carpets.
+Credit Card now works inside Lunar Pacts.
+Quasar can no longer absorb shop items.
+Abyssal Penny chance is now 1/2000.
+Abyssal Bomb chance is now 1/1000.
+Abyssal Key chance is now 1/1000.
+Abyssal Heart chance is now 1/1000.
+Light now goes out after the first room in Escape The Everchanger.

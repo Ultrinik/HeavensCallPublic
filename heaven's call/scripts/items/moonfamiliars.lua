@@ -589,8 +589,6 @@ function mod:ChooseMiniMoon(player)
 
 	for k in pairs(mod.Moons) do
 		local moon = mod.Moons[k]
-		Isaac.DebugString("Moon = "..tostring(moon))
-		Isaac.DebugString("Has Moon = "..tostring(player:HasCollectible(moon)))
 		if (not player:HasCollectible(moon)) and not (mod.Moons.Ash <= moon and moon <= mod.Moons.Bramble) then
 			table.insert(options, moon)
 		end

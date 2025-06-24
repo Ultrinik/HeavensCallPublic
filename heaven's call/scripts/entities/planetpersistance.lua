@@ -514,61 +514,74 @@ function mod:UpdateDefeat(entity)
 
 	if mod:IsChallenge(mod.Challenges.BabelTower) then
 		if mod.ModFlags.astral_boss then
-			if current_difficulty >= 4 then
-				local achv
-				local text
-				if mod.ModFlags.astral_boss == 0 then
-					achv = "mercury (HC)"
-					text = "Achievement_Mercury"
-				elseif mod.ModFlags.astral_boss == 1 then
-					achv = "venus (HC)"
-					text = "Achievement_Venus"
-				elseif mod.ModFlags.astral_boss == 2 then
-					achv = "terra (HC)"
-					text = "Achievement_Terra"
-				elseif mod.ModFlags.astral_boss == 3 then
-					achv = "mars (HC)"
-					text = "Achievement_Mars"
-				elseif mod.ModFlags.astral_boss == 4 then
-					achv = "jupiter (HC)"
-					text = "Achievement_Jupiter"
-				elseif mod.ModFlags.astral_boss == 5 then
-					achv = "saturn (HC)"
-					text = "Achievement_Saturn"
-				elseif mod.ModFlags.astral_boss == 6 then
-					achv = "uranus (HC)"
-					text = "Achievement_Uranus"
-				elseif mod.ModFlags.astral_boss == 7 then
-					achv = "neptune (HC)"
-					text = "Achievement_Neptune"
-				elseif mod.ModFlags.astral_boss == 8 then
-					achv = "kuiper (HC)"
-					text = "Achievement_Kuiper"
-				elseif mod.ModFlags.astral_boss == 9 then
-					achv = "luna (HC)"
-					text = "Achievement_Luna"
-				elseif mod.ModFlags.astral_boss == 10 then
-					achv = "errant (HC)"
-					text = "Achievement_Errant"
-				elseif mod.ModFlags.astral_boss == 11 then
-					achv = "rsaturn (HC)"
-					text = "Achievement_RSaturn"
-				elseif mod.ModFlags.astral_boss == 12 then
-					achv = "sol (HC)"
-					text = "Achievement_Sol"
-				end
-				if achv and text then
-					local unlocked = persistentData:TryUnlock(Isaac.GetAchievementIdByName(achv), false)
-					if unlocked then
-						mod:scheduleForUpdate(function ()
-							mod:StartAchievement("paper", text)
-						end,60)
+			local flag = true
+			if mod.ModFlags.astral_boss == 8 then--kuiper
+				local c = 0
+				for _, _entity in ipairs(Isaac.GetRoomEntities()) do
+					if _entity:IsBoss() and (_entity.Type == mod.EntityInf[mod.Entity.Pluto].ID or _entity.Type == mod.EntityInf[mod.Entity.Eris].ID or _entity.Type == mod.EntityInf[mod.Entity.Haumea].ID or _entity.Type == mod.EntityInf[mod.Entity.Makemake].ID) then
+						c = c + 1
 					end
-				else
-					print("ERROR: INVALID ACHIEVEMENT!")
 				end
+				if c~=1 then flag = false end
 			end
-			mod:GoToGauntletInit()
+
+			if flag then
+				if current_difficulty >= 4 then
+					local achv
+					local text
+					if mod.ModFlags.astral_boss == 0 then
+						achv = "mercury (HC)"
+						text = "Achievement_Mercury"
+					elseif mod.ModFlags.astral_boss == 1 then
+						achv = "venus (HC)"
+						text = "Achievement_Venus"
+					elseif mod.ModFlags.astral_boss == 2 then
+						achv = "terra (HC)"
+						text = "Achievement_Terra"
+					elseif mod.ModFlags.astral_boss == 3 then
+						achv = "mars (HC)"
+						text = "Achievement_Mars"
+					elseif mod.ModFlags.astral_boss == 4 then
+						achv = "jupiter (HC)"
+						text = "Achievement_Jupiter"
+					elseif mod.ModFlags.astral_boss == 5 then
+						achv = "saturn (HC)"
+						text = "Achievement_Saturn"
+					elseif mod.ModFlags.astral_boss == 6 then
+						achv = "uranus (HC)"
+						text = "Achievement_Uranus"
+					elseif mod.ModFlags.astral_boss == 7 then
+						achv = "neptune (HC)"
+						text = "Achievement_Neptune"
+					elseif mod.ModFlags.astral_boss == 8 then
+						achv = "kuiper (HC)"
+						text = "Achievement_Kuiper"
+					elseif mod.ModFlags.astral_boss == 9 then
+						achv = "luna (HC)"
+						text = "Achievement_Luna"
+					elseif mod.ModFlags.astral_boss == 10 then
+						achv = "errant (HC)"
+						text = "Achievement_Errant"
+					elseif mod.ModFlags.astral_boss == 11 then
+						achv = "rsaturn (HC)"
+						text = "Achievement_RSaturn"
+					elseif mod.ModFlags.astral_boss == 12 then
+						achv = "sol (HC)"
+						text = "Achievement_Sol"
+					end
+					if achv and text then
+						local unlocked = persistentData:TryUnlock(Isaac.GetAchievementIdByName(achv), false)
+						if unlocked then
+							mod:scheduleForUpdate(function ()
+								mod:StartAchievement("paper", text)
+							end,60)
+						end
+					else
+						print("ERROR: INVALID ACHIEVEMENT!")
+					end
+				end
+				mod:GoToGauntletInit()
+			end
 
 		else
 			if entity.Type == mod.EntityInf[mod.Entity.Errant].ID then
