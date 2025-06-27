@@ -75,7 +75,7 @@ function mod:OnHyperdiceUse(item, rng, player)
 
 	local targetroomdesc = level:GetRoomByIdx(closestDoor.TargetRoomIndex)
 	
-	if targetroomdesc.Data and targetroomdesc.VisitedCount == 0 and targetroomdesc.Data.Shape == RoomShape.ROOMSHAPE_1x1 and ( (mod.RoomType2String[targetroomdesc.Data.Type] ~= nil) or (GODMODE and ( tostring(level:GetRoomByIdx(closestDoor.TargetRoomIndex).SafeGridIndex) == tostring(GODMODE.save_manager.get_data("ObservatoryGridIdx","")) )) ) then
+	if targetroomdesc.Data and targetroomdesc.VisitedCount == 0 and (targetroomdesc.Data.Shape == RoomShape.ROOMSHAPE_1x1 or targetroomdesc.Data.Shape == RoomShape.ROOMSHAPE_IH or targetroomdesc.Data.Shape == RoomShape.ROOMSHAPE_IV) and ( (mod.RoomType2String[targetroomdesc.Data.Type] ~= nil) or (GODMODE and ( tostring(level:GetRoomByIdx(closestDoor.TargetRoomIndex).SafeGridIndex) == tostring(GODMODE.save_manager.get_data("ObservatoryGridIdx","")) )) ) then
 		mod:GenerateHyperRoom(closestDoor)
 
 		if player:HasCollectible(mod.SolarItems.HyperDice) then
@@ -134,7 +134,7 @@ function mod:RerrollRoom(targetroomdesc, door)
 		end
 		
 		--if ogType == RoomType.ROOM_CURSE then newRoomType = RoomType.ROOM_SECRET else newRoomType = RoomType.ROOM_CURSE end
-		--newRoomType = 42 --test
+		if rng:RandomFloat() < 0.25 then newRoomType = 43 end--test
 		
 		return newRoomType
 	end
@@ -186,7 +186,7 @@ function mod:RerrollRoom(targetroomdesc, door)
 
 	--Post procesing
 	for key, postporsFunction in pairs(mod.RoomPostFunctions) do
-		postporsFunction(nil, ogType, newRoomType)
+		postporsFunction(nil, ogType, newRoomType, targetroomdesc)
 	end
 
 	--UpdateDoor

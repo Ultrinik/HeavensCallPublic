@@ -15,6 +15,7 @@ mod.PanspermiaConsts = {
 function mod:OnPlayerPanspermiaUpdate(player)
 	if player:HasCollectible(mod.SolarItems.Panspermia) then
 		local data = player:GetData()
+        data.BloodLock = math.max(0, (data.BloodLock and (data.BloodLock - 1)) or 0)
 
         --mod.SaveManager.GetRunSave(player).currentBloodCharge = mod.PanspermiaConsts.MAX_BLOOD
         mod.SaveManager.GetRunSave(player).currentBloodCharge = mod.SaveManager.GetRunSave(player).currentBloodCharge or mod.PanspermiaConsts.TENTACLE_CONSUME
@@ -46,6 +47,7 @@ function mod:OnPlayerPanspermiaUpdate(player)
 end
 
 function mod:SummonFleshWhip(player)
+    player:GetData().BloodLock = 30
     local shot_angle = player:GetAimDirection():GetAngleDegrees()
 
     for tenta=1,3 do
@@ -120,11 +122,11 @@ function mod:FleshWhipUpdate(effect)
                         if entity.Type == EntityType.ENTITY_PROJECTILE then
                             entity:Remove()
                         else
-                            game:SpawnParticles(entity.Position, EffectVariant.BLOOD_PARTICLE, 5, 5)
+                            game:SpawnParticles(entity.Position, EffectVariant.BLOOD_PARTICLE, 1, 5)
                             entity:TakeDamage(mod.PanspermiaConsts.TENTACLE_DAMAGE, flags, source, 2)
                             entity:AddKnockback(source, direction*10, 1, false)
 
-                            if (#mod:FindByTypeMod(mod.Entity.Teratomato) < 5) and (entity.MaxHitPoints >= 12) and entity:IsActiveEnemy() and entity:IsVulnerableEnemy() and (not entity:HasEntityFlags(EntityFlag.FLAG_CHARM | EntityFlag.FLAG_FRIENDLY)) and (not entity:IsBoss()) then
+                            if false and (#mod:FindByTypeMod(mod.Entity.Teratomato) < 5) and (entity.MaxHitPoints >= 12) and entity:IsActiveEnemy() and entity:IsVulnerableEnemy() and (not entity:HasEntityFlags(EntityFlag.FLAG_CHARM | EntityFlag.FLAG_FRIENDLY)) and (not entity:IsBoss()) then
                                 entity:Remove()
                                 --spawn fleshling
                                 local tera = mod:SpawnEntity(mod.Entity.Teratomato, entity.Position, Vector.Zero, source.Entity)
@@ -164,19 +166,23 @@ function mod:OnPanspermiaDomesticAbuse(entity, amount, flags, source, frames)
     if source and source.Entity then
 
         local player = mod:GetPlayerFromSource(source.Entity)
-        if player and player:HasCollectible(mod.SolarItems.Panspermia) then
+        if player and player:HasCollectible(mod.SolarItems.Panspermia) and player:GetData().BloodLock <= 0 then
             if amount ~= mod.PanspermiaConsts.TENTACLE_DAMAGE then
                 local blood = amount* mod.PanspermiaConsts.BLOOD_PERC * player:GetCollectibleNum(mod.SolarItems.Panspermia)
                 mod.SaveManager.GetRunSave(player).currentBloodCharge = mod.SaveManager.GetRunSave(player).currentBloodCharge + blood
 
-                if mod.SaveManager.GetRunSave(player).currentBloodCharge >= mod.PanspermiaConsts.TRUE_MAX_BLOOD then
-                    mod.SaveManager.GetRunSave(player).currentBloodCharge = mod.PanspermiaConsts.MAX_BLOOD
+                if #Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_HALF) <= 10 then
+                    if mod.SaveManager.GetRunSave(player).currentBloodCharge >= mod.PanspermiaConsts.TRUE_MAX_BLOOD then
+                        mod.SaveManager.GetRunSave(player).currentBloodCharge = 0--mod.PanspermiaConsts.MAX_BLOOD
 
-                    local v = mod:RandomVector(10)
-		            local heart = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_HALF, player.Position-v, v, nil):ToPickup()
-                    heart:Update()
-                    heart.Wait = 0
+                        local v = mod:RandomVector(10)
+                        local heart = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_HALF, player.Position-v, v, nil):ToPickup()
+                        heart:Update()
+                        heart.Wait = 0
+                    end
                 end
+
+                mod.SaveManager.GetRunSave(player).currentBloodCharge = math.min(mod.SaveManager.GetRunSave(player).currentBloodCharge, mod.PanspermiaConsts.TRUE_MAX_BLOOD)
             end
         end
     end

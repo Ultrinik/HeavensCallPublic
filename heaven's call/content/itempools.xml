@@ -218,10 +218,10 @@
 		
 		<Item Name="Red Shovel" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
 
-		<Item Name="Mothership-01" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
-		<Item Name="Mothership-02" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
-		<Item Name="Mothership-03" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
-		<Item Name="Mothership-04" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-01" Weight="0.15" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-02" Weight="0.15" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-03" Weight="0.15" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-04" Weight="0.15" DecreaseBy="1" RemoveOn="0.02"/>
 		
 		<Item Name="Panspermia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 
@@ -230,14 +230,14 @@
 	<Pool Name="treasure">
 		<Item Name="The Hyperdice" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 
-		<Item Name="Mothership-01" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
-		<Item Name="Mothership-02" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
-		<Item Name="Mothership-03" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
-		<Item Name="Mothership-04" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-01" Weight="0.10" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-02" Weight="0.10" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-03" Weight="0.10" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-04" Weight="0.10" DecreaseBy="1" RemoveOn="0.02"/>
 		
-		<Item Name="Herald's Stallion" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Herald's Stallion" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
 
-		<Item Name="Rocket Engine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rocket Engine" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
 		
 		<Item Name="Stellar Battery" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		
@@ -247,9 +247,9 @@
 
 		<Item Name="Lil Sol   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		
-		<Item Name="Quasar" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Quasar" Weight="0.75" DecreaseBy="1" RemoveOn="0.1"/>
 		
-		<Item Name="Panspermia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Panspermia" Weight="0.75" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 
 	<Pool Name="shop">
@@ -265,9 +265,9 @@
 	</Pool>
 
 	<Pool Name="angel">
-		<Item Name="Lil Sol   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Lil Sol   " Weight="0.75" DecreaseBy="1" RemoveOn="0.1"/>
 		
-		<Item Name="Quasar" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Quasar" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 
 	<Pool Name="secret">
@@ -310,10 +310,10 @@
 
 	<Pool Name="greedTreasure">
 
-		<Item Name="Mothership-01" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
-		<Item Name="Mothership-02" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
-		<Item Name="Mothership-03" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
-		<Item Name="Mothership-04" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-01" Weight="0.20" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-02" Weight="0.20" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-03" Weight="0.20" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-04" Weight="0.20" DecreaseBy="1" RemoveOn="0.02"/>
 		
 		<Item Name="Herald's Stallion" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 
@@ -334,10 +334,10 @@
 
 	<Pool Name="greedShop">
 
-		<Item Name="Mothership-01" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
-		<Item Name="Mothership-02" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
-		<Item Name="Mothership-03" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
-		<Item Name="Mothership-04" Weight="0.25" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-01" Weight="0.20" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-02" Weight="0.20" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-03" Weight="0.20" DecreaseBy="1" RemoveOn="0.02"/>
+		<Item Name="Mothership-04" Weight="0.20" DecreaseBy="1" RemoveOn="0.02"/>
 
 		<Item Name="Rocket Engine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		
@@ -345,21 +345,19 @@
 
 		<Item Name="Space Jam   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 
-		<Item Name="Asteroid Belt   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-
 		<Item Name="Lil Sol   " Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		
-		<Item Name="Panspermia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Panspermia" Weight="0.3" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 
 	<Pool Name="greedCurse">
 		<Item Name="Mochi   " Weight="0.2" DecreaseBy="1" RemoveOn="0.1"/>
 		
-		<Item Name="Panspermia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Panspermia" Weight="0.3" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 
 	<Pool Name="greedDevil">
-		<Item Name="Panspermia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Panspermia" Weight="0.75" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 
 	<Pool Name="greedAngel">
@@ -369,7 +367,7 @@
 	</Pool>
 
 	<Pool Name="craneGame">
-		<Item Name="Stellar Battery" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Stellar Battery" Weight="0.5" DecreaseBy="1" RemoveOn="0.1"/>
 		
 	</Pool>
 

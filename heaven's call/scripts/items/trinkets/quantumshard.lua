@@ -34,7 +34,7 @@ function mod:QuantumRoll(player)
 	local roll = rng:RandomFloat()
 
 	if player:HasTrinket(mod.Trinkets.Shard) then
-		return roll < 0.1333*player:GetTrinketMultiplier(mod.Trinkets.Shard)
+		return roll < 1-(1-0.1333)^player:GetTrinketMultiplier(mod.Trinkets.Shard)
 	else
 		return false
 	end

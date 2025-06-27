@@ -492,7 +492,9 @@ function mod:NormalDeath(entity, notExplosion, mamaMega, miniExplosion)
 	if game:IsGreedMode() then
 		persistentData:TryUnlock(Isaac.GetAchievementIdByName("titan (HC)"), false)
 
-		mod:LunarPactDoomSpawn(nil,nil,true)
+		mod:scheduleForUpdate(function ()
+			mod:LunarPactDoomSpawn(nil,nil,true)
+		end, 12)
 	end
 
 
@@ -726,15 +728,13 @@ function mod:ShowBattleScreen(entity)
 	end
 
 	--cosas
-	local entry = mod.PlayerPortraits[Isaac.GetPlayer(0):GetPlayerType()]
-	if entry then
-		local portrait = entry.Portrait
-		local name = entry.Name
+	local player_config = EntityConfig.GetPlayer(Isaac.GetPlayer(0):GetPlayerType())
+	local portrait = player_config:GetPortraitPath()
+	local name = player_config:GetNameImagePath()
 
-		vsSprite:ReplaceSpritesheet(6, portrait)
-		vsSprite:ReplaceSpritesheet(2, portrait)
-		vsSprite:ReplaceSpritesheet(3, name)
-	end
+	vsSprite:ReplaceSpritesheet(6, portrait)
+	vsSprite:ReplaceSpritesheet(2, portrait)
+	vsSprite:ReplaceSpritesheet(3, name)
 
 	vsSprite:LoadGraphics()
 

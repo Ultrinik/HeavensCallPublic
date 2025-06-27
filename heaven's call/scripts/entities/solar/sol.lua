@@ -397,7 +397,7 @@ function mod:SolUpdate(entity)
         --entity.HitPoints = entity.MaxHitPoints
         --entity.HitPoints = 201
         --entity.HitPoints = entity.MaxHitPoints/2
-        --entity.HitPoints = entity.MaxHitPoints*math.sin(entity.FrameCount*math.pi/180 )^2
+        --entity.HitPoints = entity.MaxHitPoints*math.sin(entity.FrameCount*math.pi/180*2)^2+1
         --sfx:Stop(SoundEffect.SOUND_ZOMBIE_WALKER_KID)
         --entity.HitPoints = 1
 
@@ -495,6 +495,8 @@ function mod:SolUpdate(entity)
         end
         
         local hpStage = data.hpStage + (mod.savedatasettings().Difficulty)*1.5
+
+        --hpStage = 50
 		
 		if data.State == mod.SolState.APPEAR then
             mod:SolAppear(entity, data, sprite, target, room, hpStage)
@@ -1237,7 +1239,7 @@ function mod:SolLaser(entity, data, sprite, target, room, hpStage)
     local laserIdles = math.ceil(mod.SolConst.LASER_IDLES*(1+hpStage/9))
     local laserIdles2 = math.floor(1.5*mod.SolConst.LASER_IDLES)
 
-    local laserTimeout = math.floor(mod.SolConst.LASER_TIMEOUT*(1+hpStage*2))
+    local laserTimeout = math.floor(mod.SolConst.LASER_TIMEOUT*(1+math.min(3,hpStage)*2))
 
     if data.StateFrame == 1 then
         local snakes = mod:FindByTypeMod(mod.Entity.SolSnake)

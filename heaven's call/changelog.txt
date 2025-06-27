@@ -1,16 +1,17 @@
-v1.6.5
-Maybe^3 fixed the black screen issue (?).
-Astral Challenge trying to spawn with nil data.
-Fixed Kuiper Hooligans triggering the victory when only one of them died.
-Balls Up now caps at 2.
-Fixed Rocket Engine shooting backwards in the mirror dimension.
-Rocket Engine and Panspermia now get extra attack numbers from conjoined.
-Reduced Mothership overwrite chance.
-(Penetrator)Mothership now also breaks carpets.
-Credit Card now works inside Lunar Pacts.
-Quasar can no longer absorb shop items.
-Abyssal Penny chance is now 1/2000.
-Abyssal Bomb chance is now 1/1000.
-Abyssal Key chance is now 1/1000.
-Abyssal Heart chance is now 1/1000.
-Light now goes out after the first room in Escape The Everchanger.
+v1.6.7
+Added special compatibility with GODMODE, where Cursed Effigy can apply blessings from that mod.
+Hyperdice can now reroll narrow rooms.
+Added funcion HeavensCall:AddStellarBatteryBan(CollectibleType item) to let other devs prevent their items from interacting with Stellar Battery.
+Updated Panspermia EID description.
+Fervent Incence trinket now stacks with itself, increasing chance of finding golden trinkets.
+Rocket Engine is now Q4.
+Multiple copies of Mothership no longer give more than one UFO familiar.
+Fixed Fervent Incence not spawning modded trinkets.
+Fixed Mercury using hard mode attacks on normal mode.
+Fixed Mercury drill attack not stoping when he stops existing.
+Fixed R.Jupiter 'overcharge' while holding the Bomb Button.
+Fixed Lunar Pacts removing more hearts than it should under specific circumstances.
+Fixed Saturn Clock on Escape the Everchanger flicking for some players.
+Fixed Lunar Pact not working on Greed Mode.
+Fixed HC items not having defined Devil Deal prices.
+Fixed bug with Faded Flag.

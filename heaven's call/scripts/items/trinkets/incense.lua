@@ -12,14 +12,26 @@ mod:AddResetFlag(ModCallbacks.MC_POST_GAME_STARTED, "savedatarun.RerolledIncense
 function mod:GetFerventTrinket(collectible)
     local rng = RNG(collectible.InitSeed)
 
-    local trinket = mod:RandomInt(1, TrinketType.NUM_TRINKETS-1, rng)
+    local is_golden = false
+    if rng:RandomFloat() < 1-(1-0.02)^mod:HowManyTrinkets(mod.Trinkets.Incense) then
+        is_golden = true
+    end
+
+    local total_trinkets = Isaac.GetItemConfig():GetTrinkets().Size - 1
+
+    local trinket = mod:RandomInt(1, total_trinkets, rng)
     local c = 0
 
-    while mod:IsTrinketInRoom(trinket) do
-        trinket = mod:RandomInt(1, TrinketType.NUM_TRINKETS-1, rng)
+    while (not mod:TrinketExists(trinket)) or mod:IsTrinketInRoom(trinket) do
+        trinket = mod:RandomInt(1, total_trinkets, rng)
         c = c + 1
         if c>=100 then break end
     end
+
+    if is_golden then
+        trinket = trinket | TrinketType.TRINKET_GOLDEN_FLAG
+    end
+
     return trinket
 end
 
@@ -41,13 +53,13 @@ function mod:OnCollectibleInitIncense(pickup)
     if pickup.SubType == FERVENT_TRINKET_ID then
         local sprite = pickup:GetSprite()
         local data = pickup:GetData()
+        
+        sprite:SetRenderFlags(sprite:GetRenderFlags() & (~AnimRenderFlags.GOLDEN))
 
         local trinket = mod:GetFerventTrinket(pickup)
         data.fervent_trinket_id = trinket
 
-        local trinket_dummy = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, trinket, Vector.Zero, Vector.Zero, nil)
-        local path = trinket_dummy:GetSprite():GetLayer(0):GetSpritesheetPath()
-        trinket_dummy:Remove()
+        local path = Isaac.GetItemConfig():GetTrinket(trinket).GfxFileName
 
         if game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND == 0 then
             sprite:ReplaceSpritesheet(1, path, true)
@@ -57,6 +69,10 @@ function mod:OnCollectibleInitIncense(pickup)
         if EID then
             local description = EID:getDescriptionObj(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, trinket, nil, false)
             data["EID_Description"] = description
+        end
+
+        if trinket & TrinketType.TRINKET_GOLDEN_FLAG > 0 then --is golden
+            sprite:SetRenderFlags(sprite:GetRenderFlags () | AnimRenderFlags.GOLDEN)
         end
 
     elseif mod:SomebodyHasTrinket(mod.Trinkets.Incense) and pickup.SubType > 0 then
@@ -77,6 +93,13 @@ function mod:FerventTrinketPostCollision(collectible, collider)
 
     if (collectible.SubType == 0) and is_fervent then
         local trinket = mod:GetFerventTrinket(collectible)
+        local is_golden = false
+        if trinket & TrinketType.TRINKET_GOLDEN_FLAG > 0 then --is golden
+            is_golden = true
+        end
+        trinket = trinket  & (~TrinketType.TRINKET_GOLDEN_FLAG)
+        
+        
 		local player = collider:ToPlayer()
 		if player then
             local hud = game:GetHUD()
@@ -84,7 +107,12 @@ function mod:FerventTrinketPostCollision(collectible, collider)
             local description = XMLData.GetEntryById(XMLNode.TRINKET, trinket).description
             hud:ShowItemText(name,description)
 
-			mod:AddGulpedTrinket(player, trinket, true)
+            if is_golden then
+			    mod:AddGulpedTrinket(player, trinket | TrinketType.TRINKET_GOLDEN_FLAG, true)
+            else
+			    mod:AddGulpedTrinket(player, trinket, true)
+            end
+
             collectible:GetData().fervent_trinket_id = nil
             collectible:GetSprite().Color = Color.Default
 

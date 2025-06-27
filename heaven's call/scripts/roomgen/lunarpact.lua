@@ -222,19 +222,19 @@ function mod:LunarPactDoomSpawn(rng, position, forced)
 
     if forced or (roomType == RoomType.ROOM_BOSS and room:IsCurrentRoomLastBoss()) then
         local level = game:GetLevel()
- 
+
         for i = 0, DoorSlot.NUM_DOOR_SLOTS do
             local door = room:GetDoor(i)
 
             if door then
                 local targetroomdesc = level:GetRoomByIdx(door.TargetRoomIndex)
-                
+
                 if not mod.savedatasettings().lunarRoomSpawnChance then mod.savedatasettings().lunarRoomSpawnChance = mod.lunarPactConsts.BASE_SPAWN_CHANCE end
 
                 if (targetroomdesc and targetroomdesc.Data and targetroomdesc.Data.Type == RoomType.ROOM_DEVIL) and targetroomdesc.VisitedCount == 0 then
                     mod:LunarRoomGenerator(door, targetroomdesc, forced)
                 end
-                
+
                 if mod:IsRoomDescLunarPact(targetroomdesc) then
 
                     for _, effect in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.DUST_CLOUD)) do

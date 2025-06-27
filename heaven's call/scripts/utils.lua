@@ -1392,17 +1392,19 @@ function mod:GetTrinketFromList(lista)
 
 	local trinket = lista[mod:RandomInt(1,#lista)]
 	local counter = 0
-	while mod:IsTrinketInRoom(trinket) do
+    local total_trinkets = Isaac.GetItemConfig():GetTrinkets().Size - 1
+
+	while (not mod:TrinketExists(trinket)) or mod:IsTrinketInRoom(trinket) do
 		trinket = lista[mod:RandomInt(1,#lista)]
 		counter = counter + 1
 		if counter > 500 then
-			trinket = mod:RandomInt(1, TrinketType.NUM_TRINKETS-1)
+			trinket = mod:RandomInt(1, total_trinkets)
 			break
 		end
 	end
 	counter = 0
-	while mod:IsTrinketInRoom(trinket) do
-		trinket = mod:RandomInt(1, TrinketType.NUM_TRINKETS-1)
+	while (not mod:TrinketExists(trinket)) or mod:IsTrinketInRoom(trinket) do
+		trinket = mod:RandomInt(1, total_trinkets)
 		counter = counter + 1
 		if counter > 500 then
 			break
@@ -1458,6 +1460,19 @@ function mod:GetPlayerHearts(player)
 	end
 	return last_index
 	]]
+end
+
+function mod:TrinketExists(trinket)
+	local config = Isaac.GetItemConfig():GetTrinket(trinket)
+
+	local is_everchanger = false
+	for i, t in pairs(mod.EverchangerTrinkets) do
+		if (t ~= TrinketType.TRINKET_STRANGE_KEY) and trinket == t then
+			is_everchanger = true
+		end
+	end
+
+	return config and (config.GfxFileName ~= "gfx/items/trinkets/") and config:IsAvailable() and not is_everchanger
 end
 
 --OWN MOD THINGS--------------------------------------------------------------------

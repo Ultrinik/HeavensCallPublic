@@ -4,6 +4,7 @@ local game = Game()
 local rng = mod:GetRunRNG()
 local sfx = SFXManager()
 local music = MusicManager()
+local persistentData = Isaac.GetPersistentGameData()
 
 --[[
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -845,6 +846,14 @@ function mod:ErrantDeath(entity)
             end
         end
         mod.savedatarun().errantAlive = false
+
+        if game:IsGreedMode() then
+            persistentData:TryUnlock(Isaac.GetAchievementIdByName("titan (HC)"), false)
+
+            mod:scheduleForUpdate(function ()
+                mod:LunarPactDoomSpawn(nil,nil,true)
+            end, 12)
+        end
 
         music:Crossfade(Music.MUSIC_DARK_CLOSET, 0.003)
     end

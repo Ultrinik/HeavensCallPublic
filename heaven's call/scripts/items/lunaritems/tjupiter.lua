@@ -43,53 +43,53 @@ mod.TjupiterConsts = {
 function mod:OnJupiterPlayerUpdate(player)
 	if player:HasCollectible(mod.Items.Jupiter) then
 
-		if Input.GetActionValue(ButtonAction.ACTION_BOMB, player.ControllerIndex) > 0 then
+		if Input.GetActionValue(ButtonAction.ACTION_BOMB, player.ControllerIndex) > 0 and not mod.ModFlags.jupiterLocked then
 			mod.ModFlags.jupiterLocked = true
 			mod:scheduleForUpdate(function()
 				mod.ModFlags.jupiterLocked = false
-                
+
 				mod.ItemsVars.jupiterSets[mod:PlayerId(player)] = {}
 			end, 30)
 
 			mod:JupiterContact(player, #mod.ItemsVars.jupiterSets[mod:PlayerId(player)], true)
 		end
-		
+
 		if game:GetFrameCount() % 6 == 0 then
 
-		if mod.ModFlags.jupiterLocked then return end
+			if mod.ModFlags.jupiterLocked then return end
 
-		mod.ItemsVars.jupiterSets[mod:PlayerId(player)] = mod.ItemsVars.jupiterSets[mod:PlayerId(player)] or {}
+			mod.ItemsVars.jupiterSets[mod:PlayerId(player)] = mod.ItemsVars.jupiterSets[mod:PlayerId(player)] or {}
 
-		--Crate new laser
-		mod:CreateNewJupiterLaser(player)
+			--Crate new laser
+			mod:CreateNewJupiterLaser(player)
 
-        local jupiterSets = mod.ItemsVars.jupiterSets[mod:PlayerId(player)]
-		local nLasers = #jupiterSets
+			local jupiterSets = mod.ItemsVars.jupiterSets[mod:PlayerId(player)]
+			local nLasers = #jupiterSets
 
-		if nLasers > 3 then
+			if nLasers > 3 then
 
-			local contactFlag = false
-			local index_contacted_volt
-			
-			local segment1A = jupiterSets[nLasers - 1]
-			local segment1B = jupiterSets[nLasers - 0]
-			for i = 2, nLasers - 2 do
+				local contactFlag = false
+				local index_contacted_volt
 
-				local segment2A = jupiterSets[i - 0]
-				local segment2B = jupiterSets[i - 1]
+				local segment1A = jupiterSets[nLasers - 1]
+				local segment1B = jupiterSets[nLasers - 0]
+				for i = 2, nLasers - 2 do
 
-				contactFlag = mod:intersect(segment1A, segment1B, segment2A, segment2B)
+					local segment2A = jupiterSets[i - 0]
+					local segment2B = jupiterSets[i - 1]
+
+					contactFlag = mod:intersect(segment1A, segment1B, segment2A, segment2B)
+					if contactFlag then
+						index_contacted_volt = i-1
+						break
+					end
+				end
+
 				if contactFlag then
-					index_contacted_volt = i-1
-					break
+					mod:JupiterContact(player, index_contacted_volt)
 				end
 			end
-			
-			if contactFlag then
-				mod:JupiterContact(player, index_contacted_volt)
-			end
 		end
-	end
 	end
 end
 
@@ -122,15 +122,16 @@ function mod:CreateNewJupiterLaser(player)
 			local laser = EntityLaser.ShootAngle(mod.EntityInf[mod.Entity.JupiterLaser].VAR, playerPos, laserAngle, 120, Vector.Zero, player)
 			laser.MaxDistance = playerPos:Distance(laserPos)
 			laser.DisableFollowParent = true
-			laser.CollisionDamage = 0.1
+			laser.CollisionDamage = 0
 			laser.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
+			laser:SetOneHit(true)
+			laser.EndPoint = laser.Position
 
 		end
 	end
 end
 
 function mod:JupiterContact(player, index_contacted_volt, fromBomb)
-	sfx:Play(SoundEffect.SOUND_LASERRING_STRONG)
 
 	for _, laser in ipairs(mod:FindByTypeMod(mod.Entity.JupiterLaser)) do
 		if laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer() and mod:ComparePlayer(player, laser.SpawnerEntity:ToPlayer()) then
@@ -141,19 +142,21 @@ function mod:JupiterContact(player, index_contacted_volt, fromBomb)
     local laserSet = mod.ItemsVars.jupiterSets[mod:PlayerId(player)] or {}
     local nLasers = #laserSet
 
-	for i=2, nLasers-1 do
-		local point1 = laserSet[i]
-		local point2 = laserSet[i%nLasers+1]
-
-		local angle = (point1 - point2):GetAngleDegrees()
-		local laser = EntityLaser.ShootAngle(LaserVariant.THIN_RED, point2, angle, 10, Vector.Zero, player)
-		laser.MaxDistance = (point1 - point2):Length()
-		laser.DisableFollowParent = true
-		laser:GetSprite().Color = mod.Colors.jupiterLaser2
-
-	end
-
 	if not fromBomb then
+		sfx:Play(SoundEffect.SOUND_LASERRING_STRONG)
+
+		for i=2, nLasers-1 do
+			local point1 = laserSet[i]
+			local point2 = laserSet[i%nLasers+1]
+
+			local angle = (point1 - point2):GetAngleDegrees()
+			local laser = EntityLaser.ShootAngle(LaserVariant.THIN_RED, point2, angle, 10, Vector.Zero, player)
+			laser.MaxDistance = (point1 - point2):Length()
+			laser.DisableFollowParent = true
+			laser:GetSprite().Color = mod.Colors.jupiterLaser2
+
+		end
+		
 		for _, entity in ipairs(Isaac.GetRoomEntities()) do
 			local tipo = entity.Type
 			if (tipo ~= EntityType.ENTITY_EFFECT) and ((EntityType.ENTITY_PICKUP <= tipo and tipo <= EntityType.ENTITY_SLOT) or tipo >= EntityType.ENTITY_GAPER) then
@@ -170,6 +173,9 @@ function mod:JupiterContact(player, index_contacted_volt, fromBomb)
 		mod.ItemsVars.jupiterSets[mod:PlayerId(player)] = {}
 		table.insert(mod.ItemsVars.jupiterSets[mod:PlayerId(player)], p2)
 		table.insert(mod.ItemsVars.jupiterSets[mod:PlayerId(player)], p1 + Vector(0.1,0))
+
+	else
+		sfx:Play(SoundEffect.SOUND_BATTERYDISCHARGE, 2,2,false, 2)
 	end
 end
 
@@ -210,13 +216,18 @@ function mod:PointInPoly(full_polygon, position, start_point)
 end
 
 function mod:JupiterLaserUpdate(entity)
-	if entity.SubType == mod.EntityInf[mod.Entity.JupiterLaser].SUB and entity.Timeout == 1 then
-		entity.Timeout = 0
-		entity:Remove()
+	if entity.SubType == mod.EntityInf[mod.Entity.JupiterLaser].SUB then
 
-		local player = entity.SpawnerEntity and entity.SpawnerEntity:ToPlayer()
-		if player then
-			table.remove(mod.ItemsVars.jupiterSets[mod:PlayerId(player)], 1)
+		entity:SetDamageMultiplier(0.001)
+
+		if entity.Timeout == 1 then
+			entity.Timeout = 0
+			entity:Remove()
+
+			local player = entity.SpawnerEntity and entity.SpawnerEntity:ToPlayer()
+			if player then
+				table.remove(mod.ItemsVars.jupiterSets[mod:PlayerId(player)], 1)
+			end
 		end
 	end
 end

@@ -278,20 +278,13 @@ function mod:OnMotherShipCache(player, cacheFlag)
 	if cacheFlag == CacheFlag.CACHE_FAMILIARS then
 		local boxUses = player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_BOX_OF_FRIENDS)
 
-		local numItem = math.max(
-							math.max(
-								math.max(player:GetCollectibleNum(mod.SolarItems.Mothership_01), player:GetCollectibleNum(mod.SolarItems.Mothership_02)),
-									player:GetCollectibleNum(mod.SolarItems.Mothership_03)
-								),
-							player:GetCollectibleNum(mod.SolarItems.Mothership_04)
-							)
-
+		local numItem = math.min(1, player:GetCollectibleNum(mod.SolarItems.Mothership_01)+player:GetCollectibleNum(mod.SolarItems.Mothership_02)+player:GetCollectibleNum(mod.SolarItems.Mothership_03)+player:GetCollectibleNum(mod.SolarItems.Mothership_04))
 		local numFamiliars = (numItem > 0 and (numItem + boxUses) or 0)
 
 		player:CheckFamiliar(mod.EntityInf[mod.Entity.Mothership].VAR, numFamiliars, player:GetCollectibleRNG(mod.SolarItems.Mothership_01), Isaac.GetItemConfig():GetCollectible(mod.SolarItems.Mothership_01))
 		player:CheckFamiliar(mod.EntityInf[mod.Entity.Mothership].VAR, numFamiliars, player:GetCollectibleRNG(mod.SolarItems.Mothership_02), Isaac.GetItemConfig():GetCollectible(mod.SolarItems.Mothership_02))
 		player:CheckFamiliar(mod.EntityInf[mod.Entity.Mothership].VAR, numFamiliars, player:GetCollectibleRNG(mod.SolarItems.Mothership_03), Isaac.GetItemConfig():GetCollectible(mod.SolarItems.Mothership_03))
-		player:CheckFamiliar(mod.EntityInf[mod.Entity.Mothership].VAR, numFamiliars, player:GetCollectibleRNG(mod.SolarItems.Mothership_04), Isaac.GetItemConfig():GetCollectible(mod.SolarItems.Mothership_04))	
+		player:CheckFamiliar(mod.EntityInf[mod.Entity.Mothership].VAR, numFamiliars, player:GetCollectibleRNG(mod.SolarItems.Mothership_04), Isaac.GetItemConfig():GetCollectible(mod.SolarItems.Mothership_04))
 
 		mod:scheduleForUpdate(function()
 			if not player then return end

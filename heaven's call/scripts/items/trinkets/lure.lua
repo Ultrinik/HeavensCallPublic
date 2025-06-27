@@ -46,6 +46,7 @@ function mod:OnLureNewRoom()
                         local pool = room:GetItemPool()
                         local new_item = game:GetItemPool():GetCollectible(pool, false)
                         local c = 0
+                        
                         while mod:GetItemQuality(new_item) ~= (quality+1) do
                             new_item = game:GetItemPool():GetCollectible(pool, false)
                             c = c+1

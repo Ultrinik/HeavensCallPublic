@@ -200,7 +200,7 @@ function mod:EverchangerUpdate(entity)
 
             local quantum_player = mod:SpawnEntity(mod.Entity.QuantumPlayer, entity.Position + Vector(0,-60), Vector.Zero, entity):ToEffect()
             quantum_player.DepthOffset = 59
-            quantum_player.Parent = player
+            quantum_player.Parent = Isaac.GetPlayer(0)
             quantum_player:FollowParent(entity)
 
             if not data.Map_Init then

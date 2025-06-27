@@ -456,7 +456,7 @@ function mod:AddNewHyperRoom(stringRoomType, enumRoomType, variantsVector, name,
 		mod.RoomRestrictionFunctions[hyperId] = restrictionCaseFunction
 	end
 
-	--we store the post process function, it recieves (ogHyperId, newHyperId), this will be executed after the room was replaced
+	--we store the post process function, it recieves (ogHyperId, newHyperId, targetroomdesc), this will be executed after the room was replaced
 	if postprocessFunction then
 		mod.RoomPostFunctions[hyperId] = postprocessFunction
 	end
@@ -632,6 +632,57 @@ if DemonVaults then
 	mod:AddNewHyperRoom("library", RoomType.ROOM_LIBRARY, {}, "DemonVault", mod.HyperCaseDemonVault, nil, nil, nil, mod.IsRoomDescDemonVault)
 
 end
+--Observatory
+--[[
+if GODMODE then
+	function mod:HyperCaseCursedPlanetarium(door)
+		local newRoomData = RoomConfigHolder.GetRandomRoom(mod:RandomInt(1,99999), false, StbType.SPECIAL_ROOMS, RoomType.ROOM_CHEST, RoomShape.ROOMSHAPE_1x1, 0, -1, 0, 10, mod.normalDoors)
+		local targetroomdesc = game:GetLevel():GetRoomByIdx(door.TargetRoomIndex)
+
+		GODMODE.api.set_observatory(targetroomdesc.SafeGridIndex, true)
+		
+
+		local newroomdesc = targetroomdesc
+		local data = StageAPI.GetGotoDataForTypeShape(RoomType.ROOM_DICE, RoomShape.ROOMSHAPE_1x1)
+
+		newroomdesc.Data = data
+		local luaroom = StageAPI.LevelRoom{
+			RoomType = RoomType.ROOM_DEFAULT,
+			RequireRoomType = false,
+			RoomsList = GODMODE.observatory_rooms,
+			RoomDescriptor = newroomdesc
+		}
+		StageAPI.SetLevelRoom(luaroom, newroomdesc.ListIndex)
+		
+
+
+		return newRoomData
+	end
+	function mod:HyperPostCursedPlanetarium(ogHyperId, newHyperId, targetroomdesc)
+		local cidx = GODMODE.save_manager.get_data("ObservatoryGridIdx","",false)
+		if (ogHyperId == mod.HyperroomsNames2Id["CursedPlanetarium"]) or (cidx == targetroomdesc.SafeGridIndex) then --if the rerolled room was a cursed planetarium, erase its data
+	
+			GODMODE.api.set_observatory(targetroomdesc.SafeGridIndex, false)
+			--GODMODE.save_manager.remove_list_data("ObservatoryGridIdx",targetroomdesc.SafeGridIndex,true)
+			--GODMODE.observatory_door_cache = nil
+			
+			StageAPI.SetLevelRoom(nil, newroomdesc.ListIndex)
+
+			mod:DeleteEntities(Isaac.FindByType(GODMODE.registry.entities.observatory_fx.type,GODMODE.registry.entities.observatory_fx.variant,8))
+		end
+	end
+	function mod:HyperIdentificationCursedPlanetarium(roomdesc)
+		local idx = roomdesc.SafeGridIndex
+		local cidx = GODMODE.save_manager.get_data("ObservatoryGridIdx","",false)
+		local flag = cidx and (idx == cidx)
+		return flag
+	end
+	function mod:TransformDoor2CursedPlanetarium(door)
+		GODMODE.paint_observatory_door(door)
+	end
+	mod:AddNewHyperRoom(nil, nil, {}, "CursedPlanetarium", mod.HyperCaseCursedPlanetarium, nil, mod.HyperPostCursedPlanetarium, mod.TransformDoor2CursedPlanetarium, mod.HyperIdentificationCursedPlanetarium)
+end
+]]
 
 function mod:GetHyperDiceRoomData(hyperId)
 	for key, value in pairs(mod.DiceRooms) do --bruh

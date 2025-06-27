@@ -41,7 +41,7 @@ end
 function mod:TelescopeChance()
 	local base = 0.15
 	if mod:SomebodyHasTrinket(mod.Trinkets.Flag) then
-		return base + base*player:GetTrinketMultiplier(mod.Trinkets.Flag)
+		return base + base*mod:HowManyTrinkets(mod.Trinkets.Flag)
 	end
 	return base
 end

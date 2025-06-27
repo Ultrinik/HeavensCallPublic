@@ -1391,7 +1391,7 @@
 				lineWidth *= density;
 
 				// Build triangle
-				vec2 arm = 0.14 * (ScaleOut * 0.5) * ((750.0+radius) + 500.0 * healthScale) * vec2(cos(t), sin(t));
+				vec2 arm = 0.14 * (ScaleOut * 0.5) * ((750.0+radius) + 1000.0) * healthScale * vec2(cos(t), sin(t));
 				float angle = 2.0943951; // 120 degrees
 				mat2 rot = mat2(cos(angle), sin(angle), -sin(angle), cos(angle));
 				vec2 v1 = position + rot * arm;

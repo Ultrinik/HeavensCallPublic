@@ -2014,6 +2014,11 @@ function mod:TerraDeath(entity)
         end
 
         mod:NormalDeath(entity)
+
+        if entity.Child then
+            entity.Child:Die()
+        end
+        local item = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_EDENS_BLESSING, entity.Position, Vector.Zero, nil)
         
     elseif entity.Variant == mod.EntityInf[mod.Entity.Terra3].VAR and entity.SubType == mod.EntityInf[mod.Entity.Terra3].SUB then
         for _, e in ipairs(mod:FindByTypeMod(mod.Entity.Horsemen)) do

@@ -19,6 +19,17 @@ end
 function mod:OnNewLevelCurseEffigy(curses_bit)
     if mod:SomebodyHasTrinket(mod.Trinkets.Effigy) then
         if mod:ShouldEffigyBlockCurse() then
+            
+            if curses_bit>0 and GODMODE then
+                mod:scheduleForUpdate(function ()
+                    local curse = mod:random_elem(GODMODE.registry.blessings)
+                    for i,c in pairs(GODMODE.registry.blessings) do
+                        --print("curse", c-1, 1<<(c-1))
+                    end
+                    game:GetLevel():AddCurse(1<<(curse-1))
+                end,1)
+            end
+
             return 0
         end
     end

@@ -106,7 +106,7 @@ function mod:EverchangerPlayerUpdate(player)
     local r = lightRange + 3*math.sin( (flags.time or 0)/10 )
     local mr = 1
     if flags.firstRoom then mr = 2.5 end
-    print(mr,r)
+    
     flags.position0 = {[0]=Isaac.GetPlayer(0).Position.X, [1]=Isaac.GetPlayer(0).Position.Y-15, [2]=r*mr}
 
     

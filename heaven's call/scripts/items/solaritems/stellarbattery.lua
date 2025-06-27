@@ -69,12 +69,13 @@ mod.BannedBatteryItems = {
     CollectibleType.COLLECTIBLE_JAR_OF_FLIES,
     CollectibleType.COLLECTIBLE_POTATO_PEELER,
     CollectibleType.COLLECTIBLE_BLACK_HOLE,
-    
-    mod.Items.Saturnus,
-    mod.Items.Mars,
-
-    mod.SolarItems.RedShovel,
 }
+function mod:AddStellarBatteryBan(item)
+    table.insert(mod.BannedBatteryItems, item)
+end
+mod:AddStellarBatteryBan(mod.Items.Saturnus)
+mod:AddStellarBatteryBan(mod.Items.Mars)
+mod:AddStellarBatteryBan(mod.SolarItems.RedShovel)
 
 table.insert(mod.PostLoadInits, {"savedatarun", "currentItemWisps", {}})
 mod:AddResetFlag(ModCallbacks.MC_POST_GAME_STARTED, "savedatarun.currentItemWisps", {})

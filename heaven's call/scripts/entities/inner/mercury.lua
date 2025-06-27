@@ -137,8 +137,8 @@ mod.MRConst = {--Some constant variables of Mercury
 }
 function mod:SetMercuryDifficulty(difficulty)
     if difficulty == mod.Difficulties.NORMAL then
-        --                                 A    I      Circ   Line   Spin   DSpin   Horn   Side   Drill  Brid    bounces
-        mod.chainMR[mod.MRMSState.IDLE] = {0, 	0.709, 0.025, 0.02,	 0.058,	0.058,	0.04,  0.035, 0.04,	 0.015,  0}
+        --                                 A    I      Circ   Egg   Spin   DSpin   Horn   Side   Drill  Brid    bounces
+        mod.chainMR[mod.MRMSState.IDLE] = {0, 	0.709, 0.025, 0.0,	 0.058,	0.058,	0.04,  0.035, 0.04,	 0.015,  0}
 
         mod.MRConst.SPEED = 1.65
 
@@ -187,8 +187,8 @@ function mod:SetMercuryDifficulty(difficulty)
         mod.MRConst.EGG_FEATHER_SPEED = 10
 
     elseif difficulty == mod.Difficulties.ATTUNED then
-        --                                 A    I      Circ   Line   Spin   DSpin   Horn   Side   Drill  Brid    bounces
-        mod.chainMR[mod.MRMSState.IDLE] = {0, 	0.707, 0.023, 0.017, 0.054,	0.054,	0.035,  0.035, 0.04, 0.0175, 0.0175}
+        --                                 A    I      Circ   egg   Spin   DSpin   Horn   Side   Drill  Brid    bounces
+        mod.chainMR[mod.MRMSState.IDLE] = {0, 	0.707, 0.023, 0.008, 0.054,	0.054,	0.035,  0.035, 0.04, 0.0175, 0.0175}
 
         mod.MRConst.SPEED = 1.7
 
@@ -237,7 +237,7 @@ function mod:SetMercuryDifficulty(difficulty)
         mod.MRConst.EGG_FEATHER_SPEED = 15
         
     elseif difficulty == mod.Difficulties.ASCENDED then
-        --                                 A    I      Circ   Line   Spin   DSpin   Horn   Side   Drill  Brid    bounces
+        --                                 A    I      Circ   egg   Spin   DSpin   Horn   Side   Drill  Brid    bounces
         mod.chainMR[mod.MRMSState.IDLE] = {0, 	0.707, 0.023, 0.017, 0.054,	0.054,	0.035,  0.035, 0.04, 0.0175, 0.0175}
 
         mod.MRConst.SPEED = 1.75
@@ -284,7 +284,9 @@ function mod:SetMercuryDifficulty(difficulty)
         mod.MRConst.EGG_FEATHER_ANGLE = 30
         mod.MRConst.EGG_FEATHER_SPEED = 15
     end
+    mod.chainMR = mod:NormalizeTable(mod.chainMR)
 end
+mod.chainMR = mod:NormalizeTable(mod.chainMR)
 --mod:scheduleForUpdate(function () mod:SetMercuryDifficulty(mod.Difficulties.ASCENDED) end,1)
 
 function mod:MercuryUpdate(entity)
@@ -712,16 +714,18 @@ function mod:MercuryDrill(entity, data, sprite, target,room)
 
         for i = 1, mod.MRConst.N_DRILL_PROJS do
             mod:scheduleForUpdate(function()
-                local offset = i*180/mod.MRConst.N_DRILL_PROJS
-                for j = 1, mod.MRConst.N_TRUE_DRILL_PROJS do
-                    local angle = j*360/mod.MRConst.N_TRUE_DRILL_PROJS + offset
-                    local tear
-                    if isGlassRoom then
-                        tear = mod:SpawnEntity(mod.Entity.GlassShard, entity.Position, Vector.FromAngle(angle)*mod.MRConst.DRILL_ROCK_SPEED, entity):ToProjectile()
-                    else
-                        tear = Isaac.Spawn(EntityType.ENTITY_PROJECTILE, ProjectileVariant.PROJECTILE_ROCK, 0, entity.Position, Vector.FromAngle(angle)*mod.MRConst.DRILL_ROCK_SPEED, entity):ToProjectile()
-                    end
+                if entity:Exists() then
+                    local offset = i*180/mod.MRConst.N_DRILL_PROJS
+                    for j = 1, mod.MRConst.N_TRUE_DRILL_PROJS do
+                        local angle = j*360/mod.MRConst.N_TRUE_DRILL_PROJS + offset
+                        local tear
+                        if isGlassRoom then
+                            tear = mod:SpawnEntity(mod.Entity.GlassShard, entity.Position, Vector.FromAngle(angle)*mod.MRConst.DRILL_ROCK_SPEED, entity):ToProjectile()
+                        else
+                            tear = Isaac.Spawn(EntityType.ENTITY_PROJECTILE, ProjectileVariant.PROJECTILE_ROCK, 0, entity.Position, Vector.FromAngle(angle)*mod.MRConst.DRILL_ROCK_SPEED, entity):ToProjectile()
+                        end
 
+                    end
                 end
             end, i*6)
 

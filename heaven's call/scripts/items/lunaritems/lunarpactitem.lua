@@ -178,8 +178,6 @@ function mod:TakeLunarPact(player, RED, SOUL, BROKEN, apply)
         necessaryCoins = math.min(99, necessaryCoins)
 
         if apply then
-            --Broken Hearts
-            player:AddBrokenHearts(BROKEN)
 
             if necessaryCoins > totalCoins then
                 for _, pedestal in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)) do
@@ -191,6 +189,9 @@ function mod:TakeLunarPact(player, RED, SOUL, BROKEN, apply)
 
             --Coins
             player:AddCoins(-necessaryCoins)
+            
+            --Broken Hearts
+            player:AddBrokenHearts(BROKEN)
 
         end
 
@@ -248,10 +249,6 @@ function mod:TakeLunarPact(player, RED, SOUL, BROKEN, apply)
                 return 0,0,0
             end
 
-
-            --Broken Hearts
-            player:AddBrokenHearts(BROKEN)
-        
             --Blood
             --player:AddHearts(-2*math.max(0,BROKEN))
         
@@ -273,6 +270,10 @@ function mod:TakeLunarPact(player, RED, SOUL, BROKEN, apply)
             if player:GetHearts() <= 0 then
                 --player:AddHearts(1)
             end
+
+            --Broken Hearts
+            player:AddBrokenHearts(BROKEN)
+        
 
         end
 

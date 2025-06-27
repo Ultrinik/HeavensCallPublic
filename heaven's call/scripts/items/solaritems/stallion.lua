@@ -185,15 +185,15 @@ function mod:OnCowUpdate(familiar)
                         if grid then
                             --Isaac.Spawn(EntityType.ENTITY_TEAR,0,0,grid.Position,Vector.Zero,nil)
                             local gridType = grid:GetType()
-                            if gridType ~= GridEntityType.GRID_ROCKB then
-                                if gridType == GridEntityType.GRID_PIT then
-                                    grid:ToPit():MakeBridge(grid)
-                                elseif (GridEntityType.GRID_ROCK <= gridType and gridType <= GridEntityType.GRID_ROCK_ALT) or (GridEntityType.GRID_LOCK <= gridType and gridType <= GridEntityType.GRID_POOP) or (GridEntityType.GRID_STATUE <= gridType and gridType <= GridEntityType.GRID_ROCK_SS) or (GridEntityType.GRID_LOCK <= gridType and gridType <= GridEntityType.GRID_POOP) or (GridEntityType.GRID_PILLAR <= gridType and gridType <= GridEntityType.GRID_ROCK_GOLD) then
-                                    if gridType == GridEntityType.GRID_ROCKB or gridType == GridEntityType.GRID_PILLAR then
-                                        room:RemoveGridEntity(grid:GetGridIndex (), 0, true)
-                                    else
-                                        grid:Destroy()
-                                    end
+                            if gridType == GridEntityType.GRID_PIT then
+                                grid:ToPit():MakeBridge(grid)
+                            elseif (GridEntityType.GRID_ROCK <= gridType and gridType <= GridEntityType.GRID_ROCK_ALT) or (GridEntityType.GRID_LOCK <= gridType and gridType <= GridEntityType.GRID_POOP) or (GridEntityType.GRID_STATUE <= gridType and gridType <= GridEntityType.GRID_ROCK_SS) or (GridEntityType.GRID_LOCK <= gridType and gridType <= GridEntityType.GRID_POOP) or (GridEntityType.GRID_PILLAR <= gridType and gridType <= GridEntityType.GRID_ROCK_GOLD) then
+                                if gridType == GridEntityType.GRID_ROCKB or gridType == GridEntityType.GRID_PILLAR then
+                                    sfx:Play(SoundEffect.SOUND_METAL_BLOCKBREAK, 1.5, 2, false, 1.25)
+                                    game:SpawnParticles (grid.Position, EffectVariant.ROCK_PARTICLE, 10, 5)
+                                    room:RemoveGridEntity(grid:GetGridIndex (), 0, true)
+                                else
+                                    grid:Destroy()
                                 end
                             end
                         end
