@@ -45,26 +45,26 @@ mod.SolarItems = {
 	Wormhole = Isaac.GetItemIdByName("Cosmic Tapeworm"),
 	Theia = Isaac.GetItemIdByName("Theia"),
 	Telescope = Isaac.GetItemIdByName("Golden Telescope"),
-	SpaceJam = Isaac.GetItemIdByName("Space Jam   "),
-	AsteroidBelt = Isaac.GetItemIdByName("Asteroid Belt   "),
-	SunGlasses = Isaac.GetItemIdByName("  Sun Glasses  "),
-	Jupiter = Isaac.GetItemIdByName(" Wait What!? "),
-	LilSol = Isaac.GetItemIdByName("Lil Sol   "),
+	SpaceJam = Isaac.GetItemIdByName("​​​Space Jam"),
+	AsteroidBelt = Isaac.GetItemIdByName("​​​Asteroid Belt"),
+	SunGlasses = Isaac.GetItemIdByName("​​​Sun Glasses"),
+	Jupiter = Isaac.GetItemIdByName("​​​Wait What!?"),
+	LilSol = Isaac.GetItemIdByName("​​​Lil Sol"),
 	Dial = Isaac.GetItemIdByName("Eye of the Universe"),
-	Mochi = Isaac.GetItemIdByName("Mochi   "),
+	Mochi = Isaac.GetItemIdByName("​​​Mochi"),
 	Panspermia = Isaac.GetItemIdByName("Panspermia"),
-	Friend = Isaac.GetItemIdByName("   Friend   "),
-	CursedHead = Isaac.GetItemIdByName("   Cursed Head   "),
-	CursedBody = Isaac.GetItemIdByName("   Cursed Body   "),
-	CursedSoul = Isaac.GetItemIdByName("   Cursed Soul   "),
-	Quasar = Isaac.GetItemIdByName("Quasar"),
+	Friend = Isaac.GetItemIdByName("​Friend"),
+	CursedHead = Isaac.GetItemIdByName("​Cursed Head"),
+	CursedBody = Isaac.GetItemIdByName("​Cursed Body"),
+	CursedSoul = Isaac.GetItemIdByName("​Cursed Soul"),
+	Quasar = Isaac.GetItemIdByName("​​​Quasar"),
 	Whistle = Isaac.GetItemIdByName("Death Whistle"),
 }
 for i=0, 8 do
 	local j = i+1
 	local text = "Eye of the Universe"
 	for k=1, j do
-		text = " "..text.." "
+		text = "​"..text
 	end
 	mod.SolarItems["Dial"..tostring(i)] = Isaac.GetItemIdByName(text)
 end
@@ -72,9 +72,9 @@ end
 
 mod.OtherItems = {
 	CatFish = Isaac.GetItemIdByName("Cat Fish"),
-	Apple = Isaac.GetItemIdByName("   Apple   "),
-	Carrot = Isaac.GetItemIdByName("   Carrot   "),
-	Egg = Isaac.GetItemIdByName("   Egg   "),
+	Apple = Isaac.GetItemIdByName("​Apple"),
+	Carrot = Isaac.GetItemIdByName("​Carrot"),
+	Egg = Isaac.GetItemIdByName("​Egg"),
 }
 
 --VARIABLES---------------------

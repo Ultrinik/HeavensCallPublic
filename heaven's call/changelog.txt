@@ -1,17 +1,27 @@
-v1.6.7
-Added special compatibility with GODMODE, where Cursed Effigy can apply blessings from that mod.
-Hyperdice can now reroll narrow rooms.
-Added funcion HeavensCall:AddStellarBatteryBan(CollectibleType item) to let other devs prevent their items from interacting with Stellar Battery.
-Updated Panspermia EID description.
-Fervent Incence trinket now stacks with itself, increasing chance of finding golden trinkets.
-Rocket Engine is now Q4.
-Multiple copies of Mothership no longer give more than one UFO familiar.
-Fixed Fervent Incence not spawning modded trinkets.
-Fixed Mercury using hard mode attacks on normal mode.
-Fixed Mercury drill attack not stoping when he stops existing.
-Fixed R.Jupiter 'overcharge' while holding the Bomb Button.
-Fixed Lunar Pacts removing more hearts than it should under specific circumstances.
-Fixed Saturn Clock on Escape the Everchanger flicking for some players.
-Fixed Lunar Pact not working on Greed Mode.
-Fixed HC items not having defined Devil Deal prices.
-Fixed bug with Faded Flag.
+v1.6.9
+Added Card Protector, which needs to be unlocked by defeating Neptune at 3am in the mirror.
+Added special compatibility with Andromeda, where Theia now synergizes with the mod's Star Runes.
+On Corpse, the Blue Chest takes Isaac to either Chest or Dark Room if he has either Polaroid or Negative, if neither, random.
+Astral Challenge can no longer spawn on Ivory Palace from Godmode.
+Defeating The Errant now counts towards triggering Sol.
+Using R Key no longer resets Sol progress.
+Horse Pill Clairvoyance now actually gives +3% Planetarium chance.
+Clairvoyance now also gives a permanent +5% Astral Challenge chance and +1% Lunar Pact chance.
+Neptune's fish attack is now less dense and fish now disappear before certain attacks.
+Mars now takes longer before charging.
+Sol's laser grid attack is slower and more forgiving.
+Doubled the chance for Theia to target Isaac.
+HP of ######### in Tower of Babel reduced by 15%
+All bosses in the Tower of Babel now drop half a heart more.
+Brother Bobby and Sister Maggy can be obtained in the Tower of Babel (but not on the arena).
+Astral Bosses in Greed Mode have no boss armor.
+Fixed Isaac getting instantly killed if Sol dies while the Rocket Engine laser is active (bro wtf was this bug).
+Fixed Rocket Engine working for only the last entity player.
+Fixed T.Jupiter trying to check for non existent machines.
+Fixed Fervent Incense and Neptune's Lure affecting quest items.
+Fixed Neptune's Lure blackening all items.
+Fixed Escape the Everchanger death screen sometimes having no background.
+Fixed all Kuiper Hooligans sometimes dropping hearts in the Tower of Babel.
+Fixed i opening the Ascent door for free.
+Fixed Glass Hearts being infinite.
+Fixed EID description for Double or Nothing not displaying correctly.

@@ -3,7 +3,7 @@ local game = Game()
 local rng = mod:GetRunRNG()
 local sfx = SFXManager()
 local music = MusicManager()
-local persistentData = Isaac.GetPersistentGameData()
+local persistentGameData = Isaac.GetPersistentGameData()
 
 local planet_map = {
 	[700] = 4,
@@ -239,8 +239,15 @@ function mod:AppearPlanet(entity, noMusic)
 					end
 				end, 85)
 			end
-				
-			local final_hp = mod:SetStageHpButbad(entity, 3, 0.75*0.85)
+			
+			if entity.Type == mod.EntityInf[mod.Entity.Pluto].ID or entity.Type == mod.EntityInf[mod.Entity.Eris].ID or entity.Type == mod.EntityInf[mod.Entity.Makemake].ID or entity.Type == mod.EntityInf[mod.Entity.Haumea].ID then
+				local final_hp = mod:SetStageHpButbad(entity, 3, 0.75*0.62)
+			elseif entity.Type == mod.EntityInf[mod.Entity.RSaturn].ID then
+				local final_hp = mod:SetStageHpButbad(entity, 3, 0.75*0.85*0.85)
+			else
+				local final_hp = mod:SetStageHpButbad(entity, 3, 0.75*0.85)
+			end
+			
 
 			--[[
 			--bosses with stage hp adjusted to 
@@ -363,8 +370,8 @@ function mod:AppearPlanet(entity, noMusic)
 
 	end,5)
 
-	if mod:ShouldBossBeEternal(entity) then
-		
+	if game:IsGreedMode() then
+		entity:SetShieldStrength(0)
 	end
 
 	mod.CriticalState = false
@@ -401,11 +408,13 @@ end
 
 --ded
 function mod:NormalDeath(entity, notExplosion, mamaMega, miniExplosion)
-	if mod.savedatarun().planetAlive then
+	if mod.savedatarun().planetAlive or entity.Type == mod.EntityInf[mod.Entity.RSaturn].ID then
 		if mamaMega then
 			mod.savedatarun().planetKilled2 = true
+			mod.savedatarun().planetSol2 = true
 		else
 			mod.savedatarun().planetKilled1 = true
+			mod.savedatarun().planetSol1 = true
 		end
 	end
 
@@ -422,7 +431,17 @@ function mod:NormalDeath(entity, notExplosion, mamaMega, miniExplosion)
 					local heart = mod:SpawnEntity(mod.Entity.GlassHeart, entity.Position, mod:RandomVector(10), nil)
 				end
 			else
-				local heart = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_FULL, entity.Position, mod:RandomVector(10), nil)
+				if entity.I2 and entity.I2 > 0 then --kuiper
+					if #Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART) == 0 then
+						local heart = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_FULL, entity.Position, mod:RandomVector(10), nil)
+						local heart = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_HALF, entity.Position, mod:RandomVector(10), nil)
+
+						local brother = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BROTHER_BOBBY, entity.Position, Vector.Zero, nil)
+					end
+				else
+					local heart = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_FULL, entity.Position, mod:RandomVector(10), nil)
+					local heart = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_HALF, entity.Position, mod:RandomVector(10), nil)
+				end
 			end
 
 			mod.ModFlags.babelHeight = mod.ModFlags.babelHeight + 1
@@ -490,7 +509,7 @@ function mod:NormalDeath(entity, notExplosion, mamaMega, miniExplosion)
 	mod:RemoveCallback(ModCallbacks.MC_POST_RENDER, mod.GetFps)
 
 	if game:IsGreedMode() then
-		persistentData:TryUnlock(Isaac.GetAchievementIdByName("titan (HC)"), false)
+		persistentGameData:TryUnlock(Isaac.GetAchievementIdByName("titan (HC)"), false)
 
 		mod:scheduleForUpdate(function ()
 			mod:LunarPactDoomSpawn(nil,nil,true)
@@ -572,7 +591,7 @@ function mod:UpdateDefeat(entity)
 						text = "Achievement_Sol"
 					end
 					if achv and text then
-						local unlocked = persistentData:TryUnlock(Isaac.GetAchievementIdByName(achv), false)
+						local unlocked = persistentGameData:TryUnlock(Isaac.GetAchievementIdByName(achv), false)
 						if unlocked then
 							mod:scheduleForUpdate(function ()
 								mod:StartAchievement("paper", text)
@@ -627,7 +646,7 @@ function mod:UpdateDefeat(entity)
 				sfx:Play(mod.SFX.AngryStaticScream, 3.5)
                 game:ShakeScreen(15)
 
-				local unlocked = persistentData:TryUnlock(Isaac.GetAchievementIdByName("challenge_everchanger (HC)"), false)
+				local unlocked = persistentGameData:TryUnlock(Isaac.GetAchievementIdByName("challenge_everchanger (HC)"), false)
 				if unlocked then
 					mod:scheduleForUpdate(function ()
 						mod:StartAchievement("paper", "Achievement_ChallengeEverchanger")
@@ -640,6 +659,7 @@ end
 
 function mod:SpawnChestAfterAstralBoss(entity)
 
+	local level = game:GetLevel()
 	local center = game:GetRoom():GetCenterPos()
 
 	if mod.savedatarun().planetNum == mod.Entity.Luna then
@@ -654,23 +674,30 @@ function mod:SpawnChestAfterAstralBoss(entity)
 	end
 
 
-	local chestFlag = (mod.savedatasettings().victoryChest and mod.savedatasettings().victoryChest == 1) or (mod.savedatarun().planetKilled1 and mod.savedatarun().planetKilled2)
+	local chestFlag = (mod.savedatasettings().victoryChest and mod.savedatasettings().victoryChest == 1) or (mod.savedatarun().planetSol1 and mod.savedatarun().planetSol2)
+	local stage6Flag = mod:CheckChestUnlock()
 
-	if chestFlag and game:GetLevel():GetStage() == LevelStage.STAGE5 then
-	
-		if mod:CheckChestUnlock() and mod:CheckCorrectPolaroid() then
+	if chestFlag and stage6Flag then
+		local corpseFlag = mod:AreWeOnCorpse() and mod.savedatarun().planetSol1
+		
+		if game:GetLevel():GetStage() == LevelStage.STAGE5 then
+			if mod:CheckCorrectPolaroid() then
+				local winChest = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BIGCHEST, 0, center, Vector.Zero, nil)
+				mod:HeavenifyChest()
+			end
+			
+			if rng:RandomFloat() <= 0.5 and mod:CheckVoidUnlock() then
+				
+				local voidPortal = Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 1, center + Vector(0,75), true)
+				voidPortal.VarData = 1
+				
+				-- Replace the spritesheet to make it look like a Void Portal
+				local sprite = voidPortal:GetSprite()
+				sprite:Load("gfx/grid/voidtrapdoor.anm2", true)
+			end
+		elseif corpseFlag then
 			local winChest = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BIGCHEST, 0, center, Vector.Zero, nil)
 			mod:HeavenifyChest()
-		end
-		
-		if rng:RandomFloat() <= 0.5 and mod:CheckVoidUnlock() then
-			
-			local voidPortal = Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 1, center + Vector(0,75), true)
-			voidPortal.VarData = 1
-			
-			-- Replace the spritesheet to make it look like a Void Portal
-			local sprite = voidPortal:GetSprite()
-			sprite:Load("gfx/grid/voidtrapdoor.anm2", true)
 		end
 	end
 end
@@ -682,9 +709,13 @@ mod.Difficulties = {
 	ASCENDED = 2,
 }
 
-mod:AddResetFlag(ModCallbacks.MC_POST_GAME_STARTED, "savedatasettings.Difficulty", mod.Difficulties.NORMAL)
 table.insert(mod.PostLoadInits, {"savedatasettings", "Difficulty", mod.Difficulties.NORMAL})
-
+function mod:ResetDifficulty(iscontinued)
+	if not iscontinued then
+		mod:UpdateDifficulty(mod.Difficulties.NORMAL)
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetDifficulty)
 function mod:UpdateDifficulty(difficulty, instant)
 	difficulty = difficulty or mod.savedatasettings().Difficulty or mod.Difficulties.NORMAL
 
@@ -956,8 +987,43 @@ end
 
 
 function mod:OnVictoryChestCollision(entity, collider, collision)
-	if entity:GetData().IsHeaven then
-		mod.savedatarun().solEnabled = true
+	if collider:ToPlayer() and entity:GetSprite():IsFinished() then
+		if entity:GetData().IsHeaven then
+			local level = game:GetLevel()
+			local levelStage = level:GetStage()
+			mod.savedatarun().solEnabled = true
+
+			local corpseFlag = ( (LevelStage.STAGE4_1 <= levelStage and levelStage == LevelStage.STAGE4_2) and ( level:GetStageType() == StageType.STAGETYPE_REPENTANCE or level:GetStageType() == StageType.STAGETYPE_REPENTANCE_B )) or (LastJudgement and LastJudgement.STAGE.Mortis:IsStage())
+			if corpseFlag then
+				
+				local cathedral = mod:RandomInt(0,1)
+				if player:HasCollectible(CollectibleType.COLLECTIBLE_POLAROID) then
+					cathedral = 1
+				elseif player:HasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE) then
+					cathedral = 0
+				end
+
+				if cathedral == 0 and not persistentGameData:Unlocked(Achievement.NEGATIVE) then
+					cathedral = 1
+				end
+
+				if cathedral == 1 then
+					if not player:HasCollectible(CollectibleType.COLLECTIBLE_POLAROID) then
+						Isaac.GetPlayer(0):AddCollectible(CollectibleType.COLLECTIBLE_POLAROID)
+					end
+				else
+					if not player:HasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE) then
+						Isaac.GetPlayer(0):AddCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
+					end
+				end
+
+				level:SetStage(10, cathedral)
+
+				return false
+			end
+		else
+			mod.savedatarun().solEnabled = false
+		end
 	end
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.OnVictoryChestCollision, PickupVariant.PICKUP_BIGCHEST)

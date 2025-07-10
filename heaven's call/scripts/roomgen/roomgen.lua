@@ -633,56 +633,28 @@ if DemonVaults then
 
 end
 --Observatory
---[[
 if GODMODE then
-	function mod:HyperCaseCursedPlanetarium(door)
-		local newRoomData = RoomConfigHolder.GetRandomRoom(mod:RandomInt(1,99999), false, StbType.SPECIAL_ROOMS, RoomType.ROOM_CHEST, RoomShape.ROOMSHAPE_1x1, 0, -1, 0, 10, mod.normalDoors)
+	function mod:HyperCaseCursedPlanetarium(door) --Before replacing room into an Observatory
 		local targetroomdesc = game:GetLevel():GetRoomByIdx(door.TargetRoomIndex)
-
 		GODMODE.api.set_observatory(targetroomdesc.SafeGridIndex, true)
-		
-
-		local newroomdesc = targetroomdesc
-		local data = StageAPI.GetGotoDataForTypeShape(RoomType.ROOM_DICE, RoomShape.ROOMSHAPE_1x1)
-
-		newroomdesc.Data = data
-		local luaroom = StageAPI.LevelRoom{
-			RoomType = RoomType.ROOM_DEFAULT,
-			RequireRoomType = false,
-			RoomsList = GODMODE.observatory_rooms,
-			RoomDescriptor = newroomdesc
-		}
-		StageAPI.SetLevelRoom(luaroom, newroomdesc.ListIndex)
-		
-
-
-		return newRoomData
 	end
-	function mod:HyperPostCursedPlanetarium(ogHyperId, newHyperId, targetroomdesc)
-		local cidx = GODMODE.save_manager.get_data("ObservatoryGridIdx","",false)
-		if (ogHyperId == mod.HyperroomsNames2Id["CursedPlanetarium"]) or (cidx == targetroomdesc.SafeGridIndex) then --if the rerolled room was a cursed planetarium, erase its data
-	
-			GODMODE.api.set_observatory(targetroomdesc.SafeGridIndex, false)
-			--GODMODE.save_manager.remove_list_data("ObservatoryGridIdx",targetroomdesc.SafeGridIndex,true)
-			--GODMODE.observatory_door_cache = nil
-			
-			StageAPI.SetLevelRoom(nil, newroomdesc.ListIndex)
+	function mod:HyperPostCursedPlanetarium(ogHyperId, newHyperId, targetroomdesc) --After replacing Observatory into other room
+		if (ogHyperId == mod.HyperroomsNames2Id["CursedPlanetarium"]) then
 
+			GODMODE.api.set_observatory(targetroomdesc.SafeGridIndex, false)
 			mod:DeleteEntities(Isaac.FindByType(GODMODE.registry.entities.observatory_fx.type,GODMODE.registry.entities.observatory_fx.variant,8))
+			GODMODE.cached_observatory_ids = nil
 		end
 	end
-	function mod:HyperIdentificationCursedPlanetarium(roomdesc)
-		local idx = roomdesc.SafeGridIndex
-		local cidx = GODMODE.save_manager.get_data("ObservatoryGridIdx","",false)
-		local flag = cidx and (idx == cidx)
-		return flag
+	function mod:HyperIdentificationCursedPlanetarium(roomdesc) --Is roomdesc from an Observatory
+		return GODMODE.save_manager.list_contains("ObservatoryGridIdx",nil,function(ele) return tonumber(ele) == roomdesc.SafeGridIndex end)
 	end
-	function mod:TransformDoor2CursedPlanetarium(door)
+	function mod:TransformDoor2CursedPlanetarium(door) --Change door
 		GODMODE.paint_observatory_door(door)
 	end
-	mod:AddNewHyperRoom(nil, nil, {}, "CursedPlanetarium", mod.HyperCaseCursedPlanetarium, nil, mod.HyperPostCursedPlanetarium, mod.TransformDoor2CursedPlanetarium, mod.HyperIdentificationCursedPlanetarium)
+
+	mod:AddNewHyperRoom("chest", RoomType.ROOM_CHEST, Vector(8550, 8556), "CursedPlanetarium", mod.HyperCaseCursedPlanetarium, nil, mod.HyperPostCursedPlanetarium, mod.TransformDoor2CursedPlanetarium, mod.HyperIdentificationCursedPlanetarium)
 end
-]]
 
 function mod:GetHyperDiceRoomData(hyperId)
 	for key, value in pairs(mod.DiceRooms) do --bruh

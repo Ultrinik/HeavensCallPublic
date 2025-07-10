@@ -64,6 +64,8 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, function(_,item)
 		mod.savedatarun().spawnchancemultiplier2 = 1
 		mod.savedatarun().planetKilled1 = false
 		mod.savedatarun().planetKilled2 = false
+		mod.savedatarun().planetKilled3 = false
+		mod.savedatarun().planetKilled4 = false
 	end
 end,  CollectibleType.COLLECTIBLE_R_KEY)
 

@@ -74,16 +74,15 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.OnDomesticAbuseKill)
 
 function mod:OnPlayerGameUpdate()
-
-    for j=0, game:GetNumPlayers ()-1 do
-
-        for i, call_entry in ipairs(mod.PlayerGameUpdateCallbacks) do
-		    local player = game:GetPlayer(i)
-            local func = call_entry[1]
-            func(nil, player)
-        end
+    for i=0, game:GetNumPlayers ()-1 do
+		local player = game:GetPlayer(i)
+		if player then
+            for i, call_entry in ipairs(mod.PlayerGameUpdateCallbacks) do
+                local func = call_entry[1]
+                func(nil, player)
+            end
+		end
 	end
-
 end
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.OnPlayerGameUpdate)
 

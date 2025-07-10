@@ -81,6 +81,9 @@ function mod:AstralRoomGenerator()
 		spawnChance = math.max(spawnChance, mod.astralChallengeConsts.FUTURE_SPAWN_CHANCE/100)
 	end
 
+	local pill_bonus = mod.savedatarun().planetariumPillsPermanent or 0
+	spawnChance = spawnChance + pill_bonus*5/100
+
 	--Apply persistent multiplier
 	if (astralMode == "outer") and not mod.savedatarun().planetAlive and not mod.savedatarun().planetKilled1 then
 		if mod.savedatarun().spawnchancemultiplier1 == nil then mod.savedatarun().spawnchancemultiplier1 = 1 end
@@ -99,7 +102,13 @@ function mod:AstralRoomGenerator()
 			break
 		end
 	end
-	
+
+	if GODMODE and StageAPI then
+		if StageAPI:GetCurrentStage() and StageAPI:GetCurrentStage().Name == 'IvoryPalace' then
+			totalchance = 0
+		end
+	end
+
 	if (totalchance > 0) and not negFlag then
 		local randomchance = rng:RandomFloat()
 		if randomchance <= (totalchance) or mod.ModFlags.forceSpawn then
@@ -447,7 +456,7 @@ function mod:ActivateAstralBossBackground(variant, seed)
 		elseif variant == 8529 then--luna
 			mod:ChangeRoomBackdrop(mod.Backdrops.DRAW, nil, seed)
 			
-			local item = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)[1]
+			local item = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_SISTER_MAGGY)[1]
 			if item then
 				local pitem = item:ToPickup()
 				if pitem then pitem:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, mod.OtherItems.Carrot) end

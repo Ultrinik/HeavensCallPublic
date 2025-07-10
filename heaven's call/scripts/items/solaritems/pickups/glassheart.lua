@@ -16,6 +16,8 @@ function mod:OnGlassHeartUpdate(heart)
         elseif sprite:IsPlaying("Collect") then
             heart.Velocity = Vector.Zero
 
+        elseif sprite:IsFinished("Collect") then
+            heart:Remove()
         end
 
     end

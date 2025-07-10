@@ -54,6 +54,10 @@ if HPBars then
 		(function(entity)
 			return entity:GetData().FlipFlag
 		end)
+	HPBars.Conditions["isBlood"] =
+		(function()
+			return mod:IsWomb()
+		end)
 
 	local truFunc = function(entity)
 		return entity:HasEntityFlags(EntityFlag.FLAG_DONT_COUNT_BOSS_HP | EntityFlag.FLAG_HIDE_HP_BAR)
@@ -128,8 +132,7 @@ if HPBars then
 	HPBars.BossDefinitions[Nid] = {
         sprite = "hc/gfx/ui/icons/icon_neptune.png",
 		conditionalSprites = {
-			{"isAbsoluteStage","hc/gfx/ui/icons/icon_neptune_shiny.png", {LevelStage.STAGE4_1}},
-			{"isAbsoluteStage","hc/gfx/ui/icons/icon_neptune_shiny.png", {LevelStage.STAGE4_2}}
+			{"isBlood","hc/gfx/ui/icons/icon_neptune_shiny.png"}
 		},
 		iconAnm2 = "hc/gfx/ui/icons/icon.anm2",
 		barStyle = "PlanetariumHC"
@@ -324,8 +327,8 @@ if EID then
 	EID:addTrinket(mod.Trinkets.i, "#{{Collectible"..mod.SolarItems.HyperDice.."}} At the start of each floor, special rooms have a 50% chance to be rerolled into other types", "i", "en_us")
 	EID:addTrinket(mod.Trinkets.i, "#{{Collectible"..mod.SolarItems.HyperDice.."}} Al comenzar cada piso, las salas especiales tienen probabilidad del 50% de convertirse en otras diferentes", "i", "spa")
 
-    EID:addTrinket(mod.Trinkets.Shard, "# Taking damage has a 13% chance to nullify it #{{Warning}} Isaac will be teleported to a random spot in the room, regardless of safety", "Quantum Shard", "en_us")
-    EID:addTrinket(mod.Trinkets.Shard, "# Al recibir daño hay una posibilidad del 13% de anularlo #{{Warning}} Isaac será teletransportado a una posición aleatoria en la sala, sin importar si es segura", "Fragmento Cuántico", "spa")
+    EID:addTrinket(mod.Trinkets.Shard, "# Taking damage has a "..tostring(math.floor(100*mod.SHARD_CHANCE)).."% chance to nullify it #{{Warning}} Isaac will be teleported to a random spot in the room, regardless of safety", "Quantum Shard", "en_us")
+    EID:addTrinket(mod.Trinkets.Shard, "# Al recibir daño hay una posibilidad del "..tostring(math.floor(100*mod.SHARD_CHANCE)).."% de anularlo #{{Warning}} Isaac será teletransportado a una posición aleatoria en la sala, sin importar si es segura", "Fragmento Cuántico", "spa")
 
 	--SOLAR ITEMS
 	EID:addCollectible(mod.SolarItems.HyperDice, "# Rerolls unvisited special rooms into different ones", "Hyper Dice", "en_us")
@@ -406,6 +409,9 @@ if EID then
 	EID:addPill(mod.Pills.MARSHMALLOW, "#{{Throwable}} Otorga 9 familiares Mini Luna especiales durante la habitación", "¿¡Malvavisco!?", "spa")
 	EID:addHorsePill(mod.Pills.MARSHMALLOW, "#{{Throwable}} Otorga 9 familiares Mini Luna especiales durante la habitación # Otorga {{Collectible247}} durante la habitación", "¿¡Malvavisco!?", "spa")
 
+	
+	EID:addCard(mod.FoilConsts.FOIL_ID, "# Applies a protection to the nearest card # Protected cards have a "..tostring(math.floor(100*(1-mod.FoilConsts.BREAK_CHANCE))).."% chance not to be consumed", "Card Protector", "en_us")
+	EID:addCard(mod.FoilConsts.FOIL_ID, "# Aplica una funda a la carta más cercana # Las cartas con funda tienen un "..tostring(math.floor(100*(1-mod.FoilConsts.BREAK_CHANCE))).."% de probabilidad de no consumirse", "Funda de Carta", "spa")
 
 
 	EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, mod.EntityVoidSub, "Abyssal Penny", "# Will take all your coins and create a golden explosion, gilding pickups, trinkets, enemies and more!", "en_us")
@@ -418,9 +424,9 @@ if EID then
 	EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, mod.EntityVoidSub, "Llave Abisal", "# La siguiente puerta que se abra creará una línea de habitaciones rojas en su dirección, llegando a la sala I'm Error # Activa {{Collectible175}} al ser usada # Chocar contra una puerta cerrada también activará el efecto", "spa")
 
 
-	EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, mod.EntityVoidSub, "Abyssal Heart", "# +1 {{AbyssalHC}} (+1 {{BrokenHeart}} if no free hearts available) # Works as a shield, 10% chance to break # If not broken, may be restored when picking up a {{Heart}} at full health #  Triggers {{Collectible35}} on use # Picking up a {{Heart}} while both health and {{AbyssalHC}} are full grants a permanent damage up # Amount of {{AbyssalHC}} acts as a damage multiplier", "en_us")
+	EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, mod.EntityVoidSub, "Abyssal Heart", "# +1 {{AbyssalHC}} (+1 {{BrokenHeart}} if no free hearts available) # Works as a shield, "..tostring(math.floor(100*mod.VoidHeartConsts.BREAK_CHANCE)).."% chance to break # If not broken, may be restored when picking up a {{Heart}} at full health #  Triggers {{Collectible35}} on use # Picking up a {{Heart}} while both health and {{AbyssalHC}} are full grants a permanent damage up # Amount of {{AbyssalHC}} acts as a damage multiplier", "en_us")
 
-	EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, mod.EntityVoidSub, "Corazón Abisal", "# +1 {{AbyssalHC}} (+1 {{BrokenHeart}} si no hay corazones libres) # Funciona como escudo, 10% de probabilidades de romperse # Si no es roto, puede restaurarse al tomar un {{Heart}} con la vida llena # Activa el efecto de {{Collectible35}} al usarse # Recoger un {{Heart}} mientras tanto la salud como los {{AbyssalHC}} están llenos otorga un aumento permanente de daño # Cantidad de {{AbyssalHC}} actúa como multiplicador de daño", "spa")
+	EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, mod.EntityVoidSub, "Corazón Abisal", "# +1 {{AbyssalHC}} (+1 {{BrokenHeart}} si no hay corazones libres) # Funciona como escudo, "..tostring(math.floor(100*mod.VoidHeartConsts.BREAK_CHANCE)).."% de probabilidades de romperse # Si no es roto, puede restaurarse al tomar un {{Heart}} con la vida llena # Activa el efecto de {{Collectible35}} al usarse # Recoger un {{Heart}} mientras tanto la salud como los {{AbyssalHC}} están llenos otorga un aumento permanente de daño # Cantidad de {{AbyssalHC}} actúa como multiplicador de daño", "spa")
 
 
 	EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_LIL_BATTERY, mod.EntityVoidSub, "Abyssal Battery", "# Will take all your item charge and can only be picked up when fully charged # Grants you 5 item sparks of your active item", "en_us")
@@ -453,7 +459,7 @@ if EID then
 	for i=0, 9 do
 		local text = "Eye of the Universe"
 		for k=1, i do
-			text = " "..text.." "
+			text = "​"..text
 		end
 		EID:addCollectible(mod.SolarItems.Dial+i, "# Not implementad", "Eye of the Universe", "en_us")
 	end
@@ -480,13 +486,15 @@ if EID then
 	--EID:addEntity(mod.EntityInf[mod.Entity.Titan].ID, mod.EntityInf[mod.Entity.Titan].VAR, mod.EntityInf[mod.Entity.Titan].SUB, "Lil Titan Beggar", "Takes an increasing number of coins and can reward you with golden pickups and trinkets", "en_us")
 	--EID:addEntity(mod.EntityInf[mod.Entity.Titan].ID, mod.EntityInf[mod.Entity.Titan].VAR, mod.EntityInf[mod.Entity.Titan].SUB, "Pequeño Mendigo Titán", "Toma una cantidad creciente de monedas y puede recompensarte con objetos y baratijas doradas", "spa")
 
-	if persistentData:Unlocked(Isaac.GetAchievementIdByName("double_nothing (HC)")) then
-		EID:addEntity(mod.EntityInf[mod.Entity.Statue].ID, mod.EntityInf[mod.Entity.Statue].VAR, mod.EntityInf[mod.Entity.Statue].SUB, "Astral Statue", "#{{Planetarium}} Take the item to trigger a boss fight #{{Bomb}} Bombing the statue turns the item into pickups (and also spawns the boss!) # Collect all stars in the room to activate Double-or-Nothing: # Gain an extra reward item, but lose both if hit # Isaac receives a free {{Collectible313}} shield # Boss difficulty increases to Ascended", "en_us")
-		EID:addEntity(mod.EntityInf[mod.Entity.Statue].ID, mod.EntityInf[mod.Entity.Statue].VAR, mod.EntityInf[mod.Entity.Statue].SUB, "Estatua Astral", "#{{Planetarium}} Tomar el objeto inicia una pelea contra un jefe #{{Bomb}} Si revientas la estatua, el objeto se convierte en consumibles (¡y también aparece el jefe!) # Recoge todas las estrellas de la sala para activar Doble o Nada: # Obtén un objeto extra como recompensa, pero pierde ambos si recibes daño # Isaac recibe un escudo de {{Collectible313}} gratis # La dificultad del jefe sube a Ascendido", "spa")
-	else
-		EID:addEntity(mod.EntityInf[mod.Entity.Statue].ID, mod.EntityInf[mod.Entity.Statue].VAR, mod.EntityInf[mod.Entity.Statue].SUB, "Astral Statue", "#{{Planetarium}} Take the item to trigger a boss fight #{{Bomb}} Bombing the statue turns the item into pickups (and also spawns the boss!)", "en_us")
-		EID:addEntity(mod.EntityInf[mod.Entity.Statue].ID, mod.EntityInf[mod.Entity.Statue].VAR, mod.EntityInf[mod.Entity.Statue].SUB, "Estatua Astral", "#{{Planetarium}} Tomar el objeto inicia una pelea contra un jefe #{{Bomb}} Si revientas la estatua, el objeto se convierte en consumibles (¡y también aparece el jefe!)", "spa")
-	end
+	mod:scheduleForUpdate(function ()
+		if persistentData:Unlocked(Isaac.GetAchievementIdByName("double_nothing (HC)")) then
+			EID:addEntity(mod.EntityInf[mod.Entity.Statue].ID, mod.EntityInf[mod.Entity.Statue].VAR, mod.EntityInf[mod.Entity.Statue].SUB, "Astral Statue", "#{{Planetarium}} Take the item to trigger a boss fight #{{Bomb}} Bombing the statue turns the item into pickups (and also spawns the boss!) # {{ColorTransform}}Collect all stars in the room to activate Double-or-Nothing:{{ColorText}} # Gain an extra reward item, but lose both if hit # Isaac receives a free {{Collectible313}} shield # Boss difficulty increases to Ascended", "en_us")
+			EID:addEntity(mod.EntityInf[mod.Entity.Statue].ID, mod.EntityInf[mod.Entity.Statue].VAR, mod.EntityInf[mod.Entity.Statue].SUB, "Estatua Astral", "#{{Planetarium}} Tomar el objeto inicia una pelea contra un jefe #{{Bomb}} Si revientas la estatua, el objeto se convierte en consumibles (¡y también aparece el jefe!) # {{ColorTransform}}Recoge todas las estrellas de la sala para activar Doble o Nada{{ColorText}}: # Obtén un objeto extra como recompensa, pero pierde ambos si recibes daño # Isaac recibe un escudo de {{Collectible313}} gratis # La dificultad del jefe sube a Ascendido", "spa")
+		else
+			EID:addEntity(mod.EntityInf[mod.Entity.Statue].ID, mod.EntityInf[mod.Entity.Statue].VAR, mod.EntityInf[mod.Entity.Statue].SUB, "Astral Statue", "#{{Planetarium}} Take the item to trigger a boss fight #{{Bomb}} Bombing the statue turns the item into pickups (and also spawns the boss!)", "en_us")
+			EID:addEntity(mod.EntityInf[mod.Entity.Statue].ID, mod.EntityInf[mod.Entity.Statue].VAR, mod.EntityInf[mod.Entity.Statue].SUB, "Estatua Astral", "#{{Planetarium}} Tomar el objeto inicia una pelea contra un jefe #{{Bomb}} Si revientas la estatua, el objeto se convierte en consumibles (¡y también aparece el jefe!)", "spa")
+		end
+	end, 1)
 
 	EID:addEntity(mod.EntityInf[mod.Entity.LunarStatue].ID, mod.EntityInf[mod.Entity.LunarStatue].VAR, mod.EntityInf[mod.Entity.LunarStatue].SUB, "Lunar Pact", "#Trade {{BrokenHeart}}, {{Heart}}, and {{SoulHeart}} for an item # This room is under the effects of {{Collectible691}}", "en_us")
 	EID:addEntity(mod.EntityInf[mod.Entity.LunarStatue].ID, mod.EntityInf[mod.Entity.LunarStatue].VAR, mod.EntityInf[mod.Entity.LunarStatue].SUB, "Pacto Lunar", "#Intercambia {{BrokenHeart}}, {{Heart}} y {{SoulHeart}} por un objeto # Esta sala está bajo los efectos de {{Collectible691}}", "spa")

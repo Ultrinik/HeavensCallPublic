@@ -7,7 +7,7 @@ mod.Trinkets = {
 	Sputnik = Isaac.GetTrinketIdByName("Sputnik"),
 	Flag = Isaac.GetTrinketIdByName("Faded Flag"),
 
-	Void = Isaac.GetTrinketIdByName(" Void Matter "),
+	Void = Isaac.GetTrinketIdByName("​​​Void Matter"),
 	Noise = Isaac.GetTrinketIdByName("Background Noise"),
 
 	BismuthPenny = Isaac.GetTrinketIdByName("Bismuth Penny"),

@@ -130,6 +130,7 @@ function mod:PlutoUpdate(entity)
 			data.State = 0
 			data.StateFrame = 0
             data.IsDwaft = true
+            entity.I2 = 1
 
             data.ObjectivePosition = room:GetCenterPos()
 
@@ -715,6 +716,7 @@ function mod:ErisUpdate(entity)
 			data.State = 0
 			data.StateFrame = 0
             data.IsDwaft = true
+            entity.I2 = 1
 
             data.LookingAt = 'l'
             
@@ -1010,10 +1012,11 @@ function mod:MakemakeUpdate(entity)
 		local room = game:GetRoom()
 		
 		--Custom data:
-		if data.State == nil then 
+		if data.State == nil then
 			data.State = 0
 			data.StateFrame = 0
             data.IsDwaft = true
+            entity.I2 = 1
             
             data.Direction = Vector(1,0):Rotated(360*rng:RandomFloat())
             
@@ -1172,6 +1175,7 @@ function mod:HaumeaUpdate(entity)
 			data.State = 0
 			data.StateFrame = 0
             data.IsDwaft = true
+            entity.I2 = 1
             
 			mod:CheckEternalBoss(entity)
 		end

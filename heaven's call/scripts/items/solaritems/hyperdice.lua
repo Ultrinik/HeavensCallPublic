@@ -134,7 +134,7 @@ function mod:RerrollRoom(targetroomdesc, door)
 		end
 		
 		--if ogType == RoomType.ROOM_CURSE then newRoomType = RoomType.ROOM_SECRET else newRoomType = RoomType.ROOM_CURSE end
-		if rng:RandomFloat() < 0.25 then newRoomType = 43 end--test
+		--if rng:RandomFloat() < 0.25 then newRoomType = 42 end--test
 		
 		return newRoomType
 	end
@@ -170,8 +170,9 @@ function mod:RerrollRoom(targetroomdesc, door)
 	local newRoomData
 	local specialCaseRoomdataFunction = mod.RoomdataFunctions[newRoomType]
 	if specialCaseRoomdataFunction then
-		newRoomData = mod.RoomdataFunctions[newRoomType](nil, door)
-	else
+		newRoomData = specialCaseRoomdataFunction(nil, door)
+	end
+	if not newRoomData then
 		newRoomData = mod:GetHyperDiceRoomData(newRoomType)
 	end
 	--print(newRoomData.Name, newRoomData.Shape, newRoomData.Type, newRoomData.Variant, newRoomData.StageID, newRoomData.Difficulty)

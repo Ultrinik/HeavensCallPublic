@@ -63,6 +63,9 @@ end
 function mod:IsRoomDescPlanetarium(roomdesc)
 	return roomdesc and roomdesc.Data and roomdesc.Data.Type == RoomType.ROOM_PLANETARIUM
 end
+function mod:IsRoomDescMirror(roomdesc)
+	return roomdesc and roomdesc.Data and roomdesc.Data.Subtype == RoomSubType.DOWNPOUR_MIRROR
+end
 function mod:IsRoomDescEvilPlanetarium(roomdesc, sameRoom)
 	local a = (mod:SomebodyHasTrinket(TrinketType.TRINKET_DEVILS_CROWN) or mod:SomebodyHasTrinket(mod.Trinkets.Crown) or mod:IsStageRedStage()) and roomdesc and roomdesc.Data and roomdesc.Data.Type == RoomType.ROOM_PLANETARIUM and (roomdesc.VisitedCount == 0 or (sameRoom and game:GetRoom():IsFirstVisit()))
 
@@ -387,6 +390,11 @@ function mod:RoomsFunctionOutside(room, level, roomdesc)
 					end
 				end
 			end
+		end
+	
+	else
+		if mod:IsRoomDescMirror(roomdesc) then
+			mod:SpawnEntity(mod.Entity.NeptuneMirrorTimer, Vector.Zero, Vector.Zero, nil)
 		end
 	end
 	

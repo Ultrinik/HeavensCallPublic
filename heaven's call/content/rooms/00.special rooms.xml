@@ -423,8 +423,11 @@
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
 		<door exists="True" x="13" y="3"/>
-		<spawn x="6" y="3">
-			<entity type="5" variant="100" subtype="0" weight="1.0"/>
+		<spawn x="4" y="3">
+			<entity type="5" variant="100" subtype="67" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="3">
+			<entity type="5" variant="100" subtype="67" weight="1.0"/>
 		</spawn>
 	</room>
 	<room variant="8530" name="astral boss luna" type="21" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="0.01">
@@ -6864,6 +6867,186 @@
 		</spawn>
 		<spawn x="8" y="2">
 			<entity type="999" variant="116" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="8550" name="godmode observatory 0" type="20" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="0.01">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="1" y="1">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="3" y="3">
+			<entity type="5" variant="150" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="3">
+			<entity type="5" variant="100" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="9" y="3">
+			<entity type="5" variant="150" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="11" y="5">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="8551" name="godmode observatory 1" type="20" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="0.01">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="11" y="1">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="3" y="3">
+			<entity type="5" variant="150" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="3">
+			<entity type="5" variant="100" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="9" y="3">
+			<entity type="5" variant="150" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="1" y="5">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="8551" name="godmode observatory 1" type="20" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="0.01">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="2" y="3">
+			<entity type="5" variant="150" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="3">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="3">
+			<entity type="5" variant="100" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="3">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="3">
+			<entity type="5" variant="150" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="8552" name="godmode observatory 2" type="20" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="0.01">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="2" y="3">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="3">
+			<entity type="5" variant="150" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="3">
+			<entity type="5" variant="100" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="3">
+			<entity type="5" variant="150" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="3">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="8553" name="godmode observatory 3" type="20" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="0.01">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="2" y="3">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="3">
+			<entity type="5" variant="300" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="3">
+			<entity type="5" variant="300" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="3">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="4">
+			<entity type="5" variant="300" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="8554" name="godmode observatory 4" type="20" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="0.01">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="2" y="3">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="3">
+			<entity type="5" variant="350" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="3">
+			<entity type="5" variant="350" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="3">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="4">
+			<entity type="5" variant="350" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="8555" name="godmode observatory 5" type="20" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="0.01">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="0" y="0">
+			<entity type="5" variant="301" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="0">
+			<entity type="5" variant="301" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="3">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="3">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="0" y="6">
+			<entity type="5" variant="301" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="6">
+			<entity type="5" variant="301" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="8556" name="godmode observatory 6" type="20" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="0.01">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="1" y="1">
+			<entity type="5" variant="700" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="11" y="1">
+			<entity type="5" variant="700" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="3">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="3">
+			<entity type="5" variant="700" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="3">
+			<entity type="5" variant="700" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="3">
+			<entity type="33" variant="3" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="1" y="5">
+			<entity type="5" variant="700" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="11" y="5">
+			<entity type="5" variant="700" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
 	<room variant="8666" name="backrooms" type="12" subtype="0" shape="1" width="13" height="7" difficulty="20" weight="0.0">

@@ -290,7 +290,7 @@ mod.SolConst = {
 
     --blasters B
     N_BLASTER_B = 7,
-    BLASTER_SPACING = 75,
+    BLASTER_SPACING = 95,
     BLASTER_IDLES = 1,
 
     --focus
@@ -649,7 +649,7 @@ function mod:SolUpdate(entity)
 			local m = 1.49925
 			local b = -0.874063
 			healthSize = m*healthSize + b
-			healthSize = healthSize^2
+			healthSize = healthSize^1
 			healthSize = (healthSize-b)/m
             mod.ShaderData.solData.HPSIZE = healthSize
             
@@ -1800,6 +1800,8 @@ function mod:SolBlasterB(entity, data, sprite, target, room, hpStage)
                 blaster:GetData().Color = data.Color
                 blaster:GetData().Trace = true
                 blaster.EntityCollisionClass = EntityCollisionClass.ENTCOLL_PLAYERONLY
+
+                blaster:GetSprite().PlaybackSpeed = 0.75
             end
         end
     end
@@ -2339,6 +2341,12 @@ function mod:SolSnake(entity, data, sprite, target, room, hpStage)
     entity.Velocity = Vector.Zero
 
     if data.StateFrame == 1 then
+
+        if true then
+            mod:SolChangeState(entity, data, mod.SolState.IDLE, true)
+            return
+        end
+
         local f1 = #mod:FindByTypeMod(mod.Entity.SolarBlaster) > 0
         local f2 = #mod:FindByTypeMod(mod.Entity.SolSnake) > 0
         if f1 or f2 then
@@ -2758,6 +2766,8 @@ function mod:SolChangeState(entity, data, force, noIdle)
                             mod:SolSpeak("angry", data.hpStage)
                         end
 
+                        --data.State = mod.SolState.BLASTER_B
+
                         return
                     else
                         r = r - chance
@@ -2903,8 +2913,13 @@ function mod:SolDying(entity)
 
                 if sprite:GetFrame() == 1 then
                     mod:KillEntities(Isaac.FindByType(EntityType.ENTITY_PROJECTILE))
-                    mod:KillEntities(Isaac.FindByType(EntityType.ENTITY_LASER))
                     mod:KillEntities(mod:FindByTypeMod(mod.Entity.SolHand))
+                    --mod:KillEntities(Isaac.FindByType(EntityType.ENTITY_LASER))
+                    for i, laser in ipairs(Isaac.FindByType(EntityType.ENTITY_LASER)) do
+                        if laser.SpawnerEntity and not laser.SpawnerEntity:ToPlayer() then
+                            laser:Die()
+                        end
+                    end
 
                     game:ShakeScreen(60)
 
@@ -3127,6 +3142,8 @@ function mod:SolarBlasterUpdate(entity)
             laser:GetSprite().Color = data.Color
             laser:Update()
             laser:SetColor(data.Color, 9999, 99, true, true)
+
+            laser:SetScale(0.75)
 
             laser.CollisionDamage = 1
 

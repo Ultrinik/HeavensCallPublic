@@ -344,7 +344,7 @@ function mod:MarsUpdate(entity)
 end
 function mod:MarsCharge(entity, data, sprite, target, room)
 
-    local invf = 15
+    local invf = 25
 
     if data.StateFrame == 1 then
 

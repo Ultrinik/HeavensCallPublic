@@ -726,6 +726,9 @@ function mod:OnBabelItemsCache(player, cache)
         if cache == CacheFlag.CACHE_RANGE then
             player.TearRange  = player.TearRange + 30 * player:GetCollectibleNum(mod.OtherItems.Apple)
         end
+        if cache == CacheFlag.CACHE_FAMILIARS then
+            --player:CheckFamiliar(FamiliarVariant.BROTHER_BOBBY, 1, player:GetCollectibleRNG(mod.OtherItems.Apple), Isaac.GetItemConfig():GetCollectible(mod.OtherItems.Apple), 0)
+        end
     end
     
     if player:HasCollectible(mod.OtherItems.Carrot) then
@@ -740,6 +743,9 @@ function mod:OnBabelItemsCache(player, cache)
         end
         if cache == CacheFlag.CACHE_RANGE then
             player.TearRange  = player.TearRange + 30 * player:GetCollectibleNum(mod.OtherItems.Carrot)
+        end
+        if cache == CacheFlag.CACHE_FAMILIARS then
+            --player:CheckFamiliar(FamiliarVariant.SISTER_MAGGY, 1, player:GetCollectibleRNG(mod.OtherItems.Apple), Isaac.GetItemConfig():GetCollectible(mod.OtherItems.Apple), 0)
         end
     end
     

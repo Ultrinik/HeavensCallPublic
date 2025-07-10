@@ -149,6 +149,7 @@ local achievement_names = {
     "errant (HC)",
     "rsaturn (HC)",
     "sol (HC)",
+    "card_foil (HC)"
 }
 
 -- Adding a Menu
@@ -271,7 +272,7 @@ local directory = {
                 -- "max", incrementing by "increment".
                 min = 0,
                 max = 100,
-                increment = 5,
+                increment = 1,
                 
                 -- You can also specify a prefix or suffix that will be applied to the number, which
                 -- is especially useful for percentages!
@@ -300,7 +301,7 @@ local directory = {
                 
                 min = 0,
                 max = 100,
-                increment = 5,
+                increment = 1,
 
                 suf = '%',
                 setting = mod.astralChallengeConsts.BASE_SPAWN_CHANCE2,
@@ -321,7 +322,7 @@ local directory = {
 
                 min = 0,
                 max = 100,
-                increment = 5,
+                increment = 1,
 
                 suf = '%',
                 setting = mod.lunarPactConsts.BASE_SPAWN_CHANCE,
@@ -1616,6 +1617,30 @@ local directory = {
                 end,
 
                 tooltip = { strset = { 'beat an', 'astral boss', 'in greed mode' } }
+            },
+            {
+                str = 'card protector',
+                choices = { 'unlocked', 'locked' },
+                setting = 2,
+                variable = 'FoilUnlock',
+                
+                load = function()
+                    if persistentData:Unlocked(Isaac.GetAchievementIdByName("card_foil (HC)")) then
+                        return 1
+                    else
+                        return 2
+                    end
+                end,
+                
+                store = function(var)
+                    if var == 1 then
+                        persistentData:TryUnlock(Isaac.GetAchievementIdByName("card_foil (HC)"), true)
+                    else
+                        Isaac.ExecuteCommand('lockachievement '..Isaac.GetAchievementIdByName("card_foil (HC)"))
+                    end
+                end,
+
+                tooltip = { strset = { 'beat neptune', 'at 3 am', 'in the mirror' } }
             }
         }
     },

@@ -12,6 +12,8 @@
 	<!-- beat astral boss in greed -->
 	<achievement name="titan (HC)" text='"Titan" has appeared in the basement' gfx="Achievement_Titan.png" gfxback="paper.png"/>
 
+	<!-- beat neptune in mirror -->
+	<achievement name="card_foil (HC)" text='"Card Foil" has appeared in the basement' gfx="Achievement_CardFoil.png" gfxback="paper.png"/>
 
 	<!-- beat tower of babel -->
 	<achievement name="double_nothing (HC)" text='"Double-or-Nothing" has appeared in the Astral Challenge' gfx="Achievement_DoubleNothing.png" gfxback="paper.png"/>
@@ -92,6 +94,6 @@
 	<achievement name="sol (HC)" text='"Fine Tuning" has appeared in the basement' gfx="Achievement_Sol.png" gfxback="paper.png"/>
 
 
-	<achievement name="PERMALOCK" text='bruh' gfx="bruh" gfxback="bruh"/>
+	<achievement name="PERMALOCK" text='bruh' gfx="bruh" gfxback="paper_thanks.png"/>
 	
 </achievements>

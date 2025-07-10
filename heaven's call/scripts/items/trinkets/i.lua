@@ -23,7 +23,7 @@ function mod:IRoomsRoll()
         local room = game:GetRoom()
         for i = 0, DoorSlot.NUM_DOOR_SLOTS do
             local door = room:GetDoor(i)
-            if door and door.TargetRoomType ~= RoomType.ROOM_SECRET then
+            if door and door.TargetRoomType ~= RoomType.ROOM_SECRET and door.TargetRoomIndex > 0 then
                 door:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_DEFAULT)
                 mod:HyperUpdateDoor(door, door.TargetRoomType)
             end

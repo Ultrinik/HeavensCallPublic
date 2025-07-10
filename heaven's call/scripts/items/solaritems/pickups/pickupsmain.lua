@@ -8,7 +8,7 @@ include("scripts.items.solaritems.pickups.voidpickups")
 include("scripts.items.solaritems.pickups.infinitychest")
 include("scripts.items.solaritems.pickups.pills")
 include("scripts.items.solaritems.pickups.bismuth")
-
+include("scripts.items.solaritems.pickups.cardfoil")
 
 
 if FiendFolio then

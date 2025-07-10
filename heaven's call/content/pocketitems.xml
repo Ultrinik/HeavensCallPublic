@@ -4,6 +4,8 @@
 	<card description="Call of the void" hud="Void Pill" name="Void Pill" type="object" mimiccharge="12" pickup="372" achievement="PERMALOCK"/>
 	<card description="Call of the void" hud="fAKE Void Pill" name="Fake Void Pill" type="special" mimiccharge="12" pickup="373" achievement="PERMALOCK"/>
 	
+	<card description="Long lasting" hud="Card Protector" name="Card Protector" type="special" mimiccharge="12" pickup="374" achievement="card_foil (HC)"/>
+
 	<card description="Call me whenever you want" hud="Friend" name="Friend Phone Number" type="object" mimiccharge="12" pickup="375"  achievement="PERMALOCK"/>
 	
 	<card description="Beep boop" hud="Punched" name="Punched Card" type="special" mimiccharge="12" pickup="376" achievement="PERMALOCK"/>
@@ -43,6 +45,6 @@
 	
 	<pilleffect name="Marshmallow!?" class="2+" mimiccharge="3" achievement="curse_wanderer (HC)" />
 
-	<pilleffect description="You should not be reading this, if you do, it's a bug" name="Void Pill" class="3+" mimiccharge="12" achievement="PERMALOCK"/>
+	<pilleffect description="You should not be reading this, if you do, report to Heaven's Call" name="Void Pill" class="3+" mimiccharge="12" achievement="PERMALOCK"/>
 
 </pocketitems>

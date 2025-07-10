@@ -40,18 +40,18 @@ mod:AddResetFlag(ModCallbacks.MC_POST_GAME_STARTED, "savedatarun.redShovelUsed",
 mod.StagesPacked = {
 	[1] = {"1", "1a", "1b", "1c", "1d"},
 	[2] = {"2", "2a", "2b", "2c", "2d"},
-	
+
 	[3] = {"3", "3a", "3b", "3c", "3d"},
 	[4] = {"4", "4a", "4b", "4c", "4d"},
-	
+
 	[5] = {"5", "5a", "5b", "5c", "5d"},
 	[6] = {"6", "6a", "6b", "6c", "6d"},
-	
+
 	[7] = {"7", "7a", "7b", "7c"},
 	[8] = {"8", "8a", "8b", "8c"},
-	
+
 	[10] = {"10", "10a"},
-	
+
 	[11] = {"11", "11a"},
 }
 
@@ -79,6 +79,10 @@ if StageAPI then
 	if LastJudgement then
 		table.insert(mod.StagesPacked[7], "Mortis")
 		table.insert(mod.StagesPacked[8], "Mortis 2")
+	end
+
+	if false and GODMODE then
+		table.insert(mod.StagesPacked[11], "IvoryPalace")
 	end
 end
 
@@ -145,6 +149,7 @@ mod.RedStages = {
 	
 	["11"] = mod.StagesPacked[11],
 	["11a"] = mod.StagesPacked[11],
+	["IvoryPalace"] = mod.StagesPacked[11],
 	
 }
 
@@ -248,6 +253,12 @@ function mod:OnUseRedShovel(item, rng, player)
 				end
 			end
 		end
+
+		if GODMODE then
+			if StageAPI:GetCurrentStage() and StageAPI:GetCurrentStage().Name == 'IvoryPalace' then
+				currentStage = "IvoryPalace"
+			end
+		end
 	end
 
 	local newStage = mod:random_elem(mod.RedStages[currentStage])
@@ -268,6 +279,19 @@ function mod:OnUseRedShovel(item, rng, player)
 	--trapdoor:GetSprite():Play("BigIdle", true)
 
 	player:PlayExtraAnimation("Trapdoor")
+	--swap polaroid for negative and vice versa
+	for i=0, game:GetNumPlayers ()-1 do
+		local player = game:GetPlayer(i)
+		if player then
+			if currentStage == '10' and player:HasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE) then
+				player:RemoveCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
+				player:AddCollectible(CollectibleType.COLLECTIBLE_POLAROID)
+			elseif (currentStage == '10a' or currentStage == 'Eden') and player:HasCollectible(CollectibleType.COLLECTIBLE_POLAROID) then
+				player:RemoveCollectible(CollectibleType.COLLECTIBLE_POLAROID)
+				player:AddCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
+			end
+		end
+	end
 
 	sfx:Play(SoundEffect.SOUND_SHOVEL_DIG,1.5)
 

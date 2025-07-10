@@ -1,6 +1,7 @@
 local mod = HeavensCall
 local game = Game()
 local persistentGameData = Isaac.GetPersistentGameData()
+local sfx = SFXManager()
 
 mod.RNGS = {}
 function mod:GetRunRNG()
@@ -447,6 +448,10 @@ function mod:IsPointInCapsule(P, A, B, r)
     return dx * dx + dy * dy <= r * r
 end
 
+function mod:GetDateTime()
+	return os.date("*t")
+end
+
 --ISAAC THINGS----------------------------------------------------------------------
 ------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------
@@ -603,8 +608,8 @@ function mod:CheckVoidUnlock()
 	]]--
 end
 function mod:CheckChestUnlock()
-	
 	local level = game:GetLevel()
+	local corpseFlag = mod:AreWeOnCorpse()
 
 	if level:GetStage() == LevelStage.STAGE5 then
 		if level:GetStageType() == StageType.STAGETYPE_ORIGINAL and persistentGameData:Unlocked(Achievement.NEGATIVE) then--Sheol
@@ -612,7 +617,8 @@ function mod:CheckChestUnlock()
 		elseif level:GetStageType() == StageType.STAGETYPE_WOTL and persistentGameData:Unlocked(Achievement.POLAROID) then--Cathedral
 			return true
 		end
-		
+	elseif corpseFlag then
+		return persistentGameData:Unlocked(Achievement.NEGATIVE) or persistentGameData:Unlocked(Achievement.POLAROID)
 	end
 	return false
 
@@ -631,6 +637,13 @@ function mod:CheckChestUnlock()
 	end
 	return false
 	]]--
+end
+
+function mod:AreWeOnCorpse()
+	local level = game:GetLevel()
+	local levelStage = level:GetStage()
+	local corpseFlag = ( (LevelStage.STAGE4_1 <= levelStage and levelStage == LevelStage.STAGE4_2) and ( level:GetStageType() == StageType.STAGETYPE_REPENTANCE or level:GetStageType() == StageType.STAGETYPE_REPENTANCE_B )) or (LastJudgement and LastJudgement.STAGE.Mortis:IsStage())
+	return corpseFlag
 end
 
 function mod:CheckCorrectPolaroid()
@@ -1185,7 +1198,7 @@ function mod:ItemGivesExtraLive(item)
 end
 
 function mod:HeavenifyChest()
-	if not (mod.savedatarun().planetKilled1 and mod.savedatarun().planetKilled2) then return end
+	if not (mod.savedatarun().planetSol1 and mod.savedatarun().planetSol2) then return end
 
 	for i, winChest in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BIGCHEST, 0)) do
 		winChest:GetData().IsHeaven = true
@@ -1232,6 +1245,81 @@ function mod:PlayerHasMeteor(player)
 		end
 	end
 	return false
+end
+
+function mod:PlayerHasStar(player)
+	for i=0, 3 do
+		local card = player:GetCard(i)
+		if Isaac.GetCardIdByName("betelgeuse") <= card and card <= Isaac.GetCardIdByName("alphacentauri") then
+			return true
+		end
+	end
+	return false
+end
+
+function mod:AndromedaSpodeTears(entity, player, pos)
+
+	local colors = {
+		"red",
+		"lightred",
+		"orange",
+		"yellow",
+		"blue",
+		"white",
+	}
+
+	local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_TINY_PLANET)
+	local velocity = Vector.Zero
+
+	if entity.Type == EntityType.ENTITY_EFFECT
+	or entity.Type == EntityType.ENTITY_BOMB
+	or entity.Type == EntityType.ENTITY_LASER
+	then
+		velocity = RandomVector() * rng:RandomFloat() * (rng:RandomInt(15) + 1)
+	end
+	
+	local newTear = Isaac.Spawn(EntityType.ENTITY_TEAR, 0, 0, pos, velocity, player):ToTear()
+	local sprite = newTear:GetSprite()
+	local randNum = rng:RandomInt(#colors) + 1
+    sfx:Play(SoundEffect.SOUND_TEARS_FIRE, 0)
+	
+	newTear:AddTearFlags(player.TearFlags | TearFlags.TEAR_SPECTRAL | TearFlags.TEAR_HOMING)
+	
+	sprite:Load("gfx/tears/tears_spode_" .. colors[randNum] .. ".anm2", true)
+	newTear.CollisionDamage = player.Damage / 4
+	newTear.Scale = 0.5345 * math.sqrt(newTear.CollisionDamage)
+	newTear.WaitFrames = 0
+	newTear.HomingFriction = 0.8
+	newTear:GetData().isSpodeTear = true
+	
+	if entity.Type == EntityType.ENTITY_TEAR then
+		newTear.FallingAcceleration = entity.FallingAcceleration
+		newTear.FallingSpeed = entity.FallingSpeed
+
+		if entity:GetData().starburstTear then
+			newTear:GetData().starburstTear = true
+		end
+	elseif entity.Type == EntityType.ENTITY_EFFECT
+	or entity.Type == EntityType.ENTITY_BOMB
+	then
+		local randFrame = rng:RandomInt(LAST_FRAME) + 1
+		
+		for i = 1, randFrame do
+			sprite:Update()
+		end
+
+		newTear.FallingSpeed = newTear.FallingSpeed - (2 * rng:RandomFloat())
+	else
+		newTear.FallingAcceleration = 0
+		newTear.FallingSpeed = -3
+	end
+
+	if entity.Type ~= EntityType.ENTITY_TEAR
+	and player:HasCollectible(Isaac.GetItemIdByName("Starburst"))
+	and rng:RandomFloat() < 0.06
+	then
+		newTear:GetData().starburstTear = true
+	end
 end
 
 function mod:CountPlayerTrinkets(player)
@@ -1345,8 +1433,6 @@ function mod:IsSlotAMachine(entity)
 	entity.Variant == SlotVariant.CRANE_GAME or
 
 	entity.Variant == mod.EntityInf[mod.Entity.Telescope].VAR or
-	(entity.Variant == mod.EntityInf[mod.Entity.Refinery].VAR and entity.SubType == mod.EntityInf[mod.Entity.Refinery].SUB) or
-	(entity.Variant == mod.EntityInf[mod.Entity.Assembly].VAR and entity.SubType == mod.EntityInf[mod.Entity.Assembly].SUB) or
 	(entity.Variant == mod.EntityInf[mod.Entity.Computer].VAR and entity.SubType == mod.EntityInf[mod.Entity.Computer].SUB)
 
 	if FiendFolio then
@@ -1673,3 +1759,22 @@ if true then
 	mod.Colors.lesbian:SetColorize(2,0,1.5,4)
 
 end
+
+--[[
+function aaa()
+	local room = game:GetRoom()
+	local level = game:GetLevel()
+	local roomdesc = level:GetCurrentRoomDesc()
+	local roomdata = roomdesc.Data
+
+	print("sub", roomdata.Subtype)
+
+	for i = 0, DoorSlot.NUM_DOOR_SLOTS do
+		local door = room:GetDoor(i)
+		if door then
+			print(door.TargetRoomIndex, door:GetSprite():GetAnimation())
+			print(door:IsLocked())
+		end
+	end
+end
+]]

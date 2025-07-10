@@ -295,10 +295,11 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.PlayerEffects, 0)
 
 --Player damage
 function mod:PrePlayerDamage(player, amount, damageFlags, sourceRef, frames)
-	local source = sourceRef.Entity
 
 	player = player:ToPlayer()
 	local data = player:GetData()
+
+	local source = sourceRef.Entity
 
 	--make fake players inmortal
 	if player:GetPlayerType() == mod.DollCharacterId then
@@ -402,10 +403,11 @@ end
 mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, mod.PrePlayerDamage, 0)
 
 function mod:PlayerDamage(player, amount, damageFlags, sourceRef, frames)
-	local source = sourceRef.Entity
 
 	player = player:ToPlayer()
 	local data = player:GetData()
+
+	local source = sourceRef.Entity
 
 	--full heart damage from apocalypse
 	if mod.ModFlags.IsApocalypseActive and (damageFlags & DamageFlag.DAMAGE_CLONES == 0) and (amount < 2) then
@@ -443,7 +445,7 @@ function mod:PlayerDamage(player, amount, damageFlags, sourceRef, frames)
 					player:TakeDamage(amount, damageFlags | DamageFlag.DAMAGE_INVINCIBLE, sourceRef, frames)
 				end
 	
-				if luna:GetData().State == mod.LMSState.MOMS_SHOVEL then 
+				if luna:GetData().State == mod.LMSState.MOMS_SHOVEL then
 					sfx:Play(Isaac.GetSoundIdByName("ShovelHit"),3)
 				end
 	

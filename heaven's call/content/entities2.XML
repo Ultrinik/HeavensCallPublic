@@ -148,7 +148,7 @@
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 
-    <entity name="The Moon (HC)" id="5" variant="300" subtype="374" anm2path="pickup_TheMoon.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="16" stageHP="0">
+    <entity name="Card Foil (HC)" id="5" variant="300" subtype="374" anm2path="pickup_CardFoil.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="16" stageHP="0">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
     <entity name="Friend Card (HC)" id="5" variant="300" subtype="375" anm2path="pickup_Friend.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" numGridCollisionPoints="24" shadowSize="16" stageHP="0">
@@ -671,6 +671,9 @@
     </entity>
 
 	<entity name="Flesh Whip (HC)" id="1000" variant="1408" subtype="160" anm2path="effect_FleshWhip.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="20" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
+    </entity>
+
+	<entity name="Neptune Mirror Timer (HC)" id="1000" variant="1409" subtype="160" anm2path="" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="20" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0" >
     </entity>
 
 	<!-- CRACK_THE_SKY -->

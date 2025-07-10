@@ -319,15 +319,17 @@ function mod:EngineShooterRender(player)
                     if laser and laser.FrameCount > 0 and laser.MaxDistance > 0 then
                         local laserData = laser:GetData()
                         local endPoint = Vector(laser.MaxDistance + 23, 0):Rotated(laser.Angle)
-                        
+
                         local sprite = laserData.TailSprite
-                        sprite.Color = laser:GetSprite().Color
-                        sprite.Rotation = laser.Angle
-                        sprite:SetFrame((sprite:GetFrame()+1)%4)
-                        local position = endPoint + player.Position + laser.PositionOffset - player.Velocity*(0.00239017*laser.MaxDistance + 0.783237)--laser.MaxDistance/75 + laser.MaxDistance^2/75)
-                        --local position = laser:GetEndPoint() + laser.PositionOffset - player.Velocity/2
-                        if room:IsPositionInRoom(position, 0) then
-                            sprite:Render(room:WorldToScreenPosition (position))
+                        if sprite then
+                            sprite.Color = laser:GetSprite().Color
+                            sprite.Rotation = laser.Angle
+                            sprite:SetFrame((sprite:GetFrame()+1)%4)
+                            local position = endPoint + player.Position + laser.PositionOffset - player.Velocity*(0.00239017*laser.MaxDistance + 0.783237)--laser.MaxDistance/75 + laser.MaxDistance^2/75)
+                            --local position = laser:GetEndPoint() + laser.PositionOffset - player.Velocity/2
+                            if room:IsPositionInRoom(position, 0) then
+                                sprite:Render(room:WorldToScreenPosition (position))
+                            end
                         end
                     end
                 end
@@ -673,80 +675,3 @@ end
 mod:AddEngineCallbacks()
 mod:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, mod.AddEngineCallbacks, mod.SolarItems.Engine)
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.AddEngineCallbacks)
-
---[[
-
---Cache
-function mod:OnRocketEngineCache(player, cache)
-    if player:HasCollectible(mod.SolarItems.Engine) and cache == CacheFlag.CACHE_TEARFLAG then
-        player.TearFlags = player.TearFlags | TearFlags.TEAR_BURN
-    end
-end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.OnRocketEngineCache, CacheFlag.CACHE_TEARFLAG)
-
-function mod:OnTearInitEngine(tear)
-    if tear.TearFlags & TearFlags.TEAR_LUDOVICO then
-        local player = tear.SpawnerEntity and (tear.SpawnerEntity:ToPlayer() or (tear.SpawnerEntity:ToFamiliar() and tear.SpawnerEntity:ToFamiliar().Player))
-        
-        if player and player:HasCollectible(mod.SolarItems.Engine) then
-            mod:scheduleForUpdate(function()
-                tear:AddTearFlags(TearFlags.TEAR_LASERSHOT)
-            end, 5)
-        end
-    end
-end
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, mod.OnTearInitEngine)
-function mod:AAAAA(entity)
-    pri nt(entity.TearFlags)
-end
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.AAAAA)
-
-function mod:CorrectShotDirection(familiar, direction)
-    if familiar.Variant == FamiliarVariant.BLOOD_BABY or familiar.Variant == FamiliarVariant.UMBILICAL_BABY or
-    (familiar.Variant == FamiliarVariant.TWISTED_BABY or familiar.SubType == 1) then
-        direction = Vector(-direction.X, direction.Y)
-    end
-
-    return direction
-end
-function mod:OnKnifeEngineUpdate(knife)
-    local player = knife.Parent:ToPlayer() or knife.Parent:ToFamiliar() and knife.Parent:ToFamiliar().Player
-    if player and player:HasCollectible(mod.SolarItems.Engine) then
-        knife:Reset()
-        
-        local charge = knife.Charge
-        if knife.Charge ~= 0 then
-            --Launch knifes
-        end
-        knife.Charge = 0
-    end
-end
-function mod:OnIncubusEngineUpdate(familiar)
-    local player = familiar.Player
-    if player and player:HasCollectible(mod.SolarItems.Engine) then
-        local damageMultiplier = 1
-        if not (player:GetPlayerType() == PlayerType.PLAYER_LILITH or player:GetPlayerType() == PlayerType.PLAYER_LILITH_B) then
-            if familiar.Variant == FamiliarVariant.INCUBUS or familiar.Variant == FamiliarVariant.UMBILICAL_BABY then damageMultiplier = 3/4 end
-            if familiar.Variant == FamiliarVariant.TWISTED_BABY then damageMultiplier = 2/5 end
-        end
-        if familiar.Variant == FamiliarVariant.BLOOD_BABY then damageMultiplier = 1/3 end
-
-        mod:EngineShooterUpdate(familiar, player, true, damageMultiplier, true)
-    end
-end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.OnIncubusEngineUpdate, FamiliarVariant.INCUBUS)
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.OnIncubusEngineUpdate, FamiliarVariant.TWISTED_BABY)
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.OnIncubusEngineUpdate, FamiliarVariant.BLOOD_BABY)
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.OnIncubusEngineUpdate, FamiliarVariant.UMBILICAL_BABY)
-
-function mod:OnEngineFamiliarDestroy(entity)
-    local player = entity.SpawnerEntity and entity.SpawnerEntity:ToFamiliar() and entity.SpawnerEntity:ToFamiliar().Player or entity.SpawnerEntity and entity.SpawnerEntity:ToPlayer()
-
-    if player and player:HasCollectible(mod.SolarItems.Engine) and not (entity.Type == EntityType.ENTITY_LASER and entity.Variant == mod.EntityInf[mod.Entity.EngineLaser].VAR) then
-        entity:Remove()
-    end
-end
-mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.OnEngineFamiliarDestroy)
-mod:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, mod.OnEngineFamiliarDestroy)
-mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, mod.OnEngineFamiliarDestroy)
-]]

@@ -30,11 +30,13 @@ local sfx = SFXManager()
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ]]
+mod.SHARD_CHANCE = 0.1333
+
 function mod:QuantumRoll(player)
 	local roll = rng:RandomFloat()
 
 	if player:HasTrinket(mod.Trinkets.Shard) then
-		return roll < 1-(1-0.1333)^player:GetTrinketMultiplier(mod.Trinkets.Shard)
+		return roll < 1-(1-mod.SHARD_CHANCE)^player:GetTrinketMultiplier(mod.Trinkets.Shard)
 	else
 		return false
 	end

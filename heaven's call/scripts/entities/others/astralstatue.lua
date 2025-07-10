@@ -164,8 +164,10 @@ function mod:OnStatueDeath(entity)
 			if mod:IsRoomDescAstralChallenge(roomdesc) then
 				if roomdesc.Data.Variant <= mod.RoomVariantVecs.Astral1.Y then
 					mod.savedatarun().planetKilled1 = true
+					mod.savedatarun().planetSol1 = true
 				elseif roomdesc.Data.Variant >= mod.RoomVariantVecs.Astral2.X then
 					mod.savedatarun().planetKilled2 = true
+					mod.savedatarun().planetSol2 = true
 				end
 			elseif mod:IsRoomDescErrant(roomdesc) and roomdesc.Data.Type == RoomType.ROOM_ERROR then
 				local trapdoor = Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 1, game:GetRoom():GetCenterPos(), true)

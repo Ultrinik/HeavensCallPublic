@@ -830,19 +830,25 @@ end
 function mod:ErrantDeath(entity)
     if entity.Variant == mod.EntityInf[mod.Entity.Errant].VAR and entity.SubType == mod.EntityInf[mod.Entity.Errant].SUB then
         mod.savedatarun().errantKilled = true
-        
+
         mod:ClearEntities()
 
         if mod.savedatarun().errantAlive then
             local reward = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,  2^32-2, entity.Position, Vector.Zero, nil)
             reward:AddEntityFlags(EntityFlag.FLAG_GLITCH)
-        
+
             local shard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, mod.Trinkets.Shard, entity.Position, mod:RandomVector(4, 3.5), nil)
-         
+
             if game:GetLevel():GetCurrentRoomDesc().Data.Type == RoomType.ROOM_ERROR then
                 local v = Vector(25,0)
                 local light = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEAVEN_LIGHT_DOOR, 0, game:GetRoom():GetCenterPos()+v, Vector.Zero, nil)
                 local trapdoor = Isaac.GridSpawn(GridEntityType.GRID_TRAPDOOR, 1, game:GetRoom():GetCenterPos()-v, true)
+            end
+            
+            if not mod.savedatarun().planetSol1 then
+                mod.savedatarun().planetSol1 = true
+            else
+                mod.savedatarun().planetSol2 = true
             end
         end
         mod.savedatarun().errantAlive = false
@@ -1121,12 +1127,14 @@ end, mod.EntityInf[mod.Entity.AshTwin].ID)
 
 
 function mod:ClearErrantFlagsOnNewStage()
-	if not mod.savedatarun().errantAlive then
+	if mod.savedatarun().errantAlive then
+		mod.ModFlags.ErrantRoomSpawned = true
+    else
 		mod.ModFlags.ErrantRoomSpawned = false
-		mod.savedatarun().errantAlive = false
 		mod.savedatarun().errantHP = 1
-		mod.savedatarun().errantKilled = false
 	end
+
+    mod.savedatarun().errantKilled = false
 end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.ClearErrantFlagsOnNewStage)
 

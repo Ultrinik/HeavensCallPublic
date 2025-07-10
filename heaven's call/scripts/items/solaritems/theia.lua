@@ -16,7 +16,7 @@ mod.TheiaConsts = {
     CHARGE_SPEED = 20,
     MAX_TARGET_DIST = 300,
     ATTACK_CHANCE = 0.5,
-    BETRAY_CHANCE = 0.01,
+    BETRAY_CHANCE = 0.02,
     CHAIN_L = 6,
 
     --runes
@@ -28,14 +28,19 @@ mod.TheiaConsts = {
     PERTHRO_CHANCE = 1,
     BERKANO_CHANCE = 1,
     ALGIZ_CHANCE = 1,
-    
+
     GEBO_CHANCE = 0.05,
     KENAZ_CHANCE = 1,
     FEHU_CHANCE = 0.15,
     OTHALA_CHANCE = 0.15,
     INGWAZ_CHANCE = 0.5,
     SOWILO_CHANCE = 0.3,
-    
+
+    --stars
+    BETELGEUSE_CHANCE = 0.5,
+    SIRIUS_CHANCE = 1/12,
+    ALPHAC_CHANCE = 1,
+
     --[[
     hagalazChance = 1,
     jeraChance = 1,
@@ -287,10 +292,16 @@ function mod:UpdateTheia()
         local data = theia:GetData()
         local sprite = theia:GetSprite()
         local player = theia.Player
+
         if mod:PlayerHasMeteor(player) then
             if data.Color ~= "meteor" then
                 data.Color = "meteor"
                 sprite:ReplaceSpritesheet(0, "hc/gfx/familiar/theia_meteor.png", true)
+            end
+        elseif mod:PlayerHasStar(player) then
+            if data.Color ~= "star" then
+                data.Color = "star"
+                sprite:ReplaceSpritesheet(0, "hc/gfx/familiar/theia_star.png", true)
             end
         elseif mod:PlayerHasRune(player) then
             if data.Color ~= "rune" then
@@ -340,19 +351,18 @@ function mod:OnTheiaKill(familiar, forcedCard, entity)
     if (forcedCard == Card.RUNE_HAGALAZ or mod:PlayerHasCard(player, Card.RUNE_HAGALAZ)) and (rng:RandomFloat() < mod.TheiaConsts.HAGALAZ_CHANCE) then
 		--Explosion:
 		local explode = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BOMB_EXPLOSION, 0, familiar.Position, Vector.Zero, familiar):ToEffect()
-		
+
 		--Explosion damage
 		for i, entity in ipairs(Isaac.FindInRadius(familiar.Position, 50)) do
 			if mod:IsHostileEnemy(entity) then
 				entity:TakeDamage(15, DamageFlag.DAMAGE_EXPLOSION, EntityRef(familiar), 0)
 			end
 		end
-        
-    
+
     elseif (forcedCard == Card.RUNE_JERA or mod:PlayerHasCard(player, Card.RUNE_JERA)) and (rng:RandomFloat() < mod.TheiaConsts.JERA_CHANCE) or (forcedCard == mod.Meteors.JERA or mod:PlayerHasCard(player, mod.Meteors.JERA)) and (rng:RandomFloat() < mod.TheiaConsts.JERA_CHANCE*2) then
         --Dupe
         player:UseActiveItem(CollectibleType.COLLECTIBLE_D1, false, false, true, false, -1)
-    
+
     elseif (forcedCard == Card.RUNE_EHWAZ or mod:PlayerHasCard(player, Card.RUNE_EHWAZ)) and (rng:RandomFloat() < mod.TheiaConsts.EHWAZ_CHANCE) or (forcedCard == mod.Meteors.EHWAZ or mod:PlayerHasCard(player, mod.Meteors.EHWAZ)) and (rng:RandomFloat() < mod.TheiaConsts.EHWAZ_CHANCE*2) then
         local enemies = Isaac.GetRoomEntities()
         local victim = enemies[mod:RandomInt(1,#enemies)]
@@ -363,10 +373,9 @@ function mod:OnTheiaKill(familiar, forcedCard, entity)
                 tear.Visible = false
             end
         end
-        
-    
+
     elseif (forcedCard == Card.RUNE_DAGAZ or mod:PlayerHasCard(player, Card.RUNE_DAGAZ)) and (rng:RandomFloat() < mod.TheiaConsts.DAGAZ_CHANCE) or (forcedCard == mod.Meteors.DAGAZ or mod:PlayerHasCard(player, mod.Meteors.DAGAZ)) and (rng:RandomFloat() < mod.TheiaConsts.DAGAZ_CHANCE*2) then
-        
+
         local chance = mod.TheiaConsts.DAGAZ_CHANCE
         if (forcedCard == mod.Meteors.DAGAZ or mod:PlayerHasCard(player, mod.Meteors.DAGAZ)) then chance = chance*2 end
 
@@ -380,8 +389,7 @@ function mod:OnTheiaKill(familiar, forcedCard, entity)
             Isaac.GetPlayer(0):AddCollectible(CollectibleType.COLLECTIBLE_BLACK_CANDLE, 0, false)
             Isaac.GetPlayer(0):RemoveCollectible(CollectibleType.COLLECTIBLE_BLACK_CANDLE)
         end
-        
-    
+
     elseif (forcedCard == Card.RUNE_ANSUZ or mod:PlayerHasCard(player, Card.RUNE_ANSUZ)) and (rng:RandomFloat() < mod.TheiaConsts.ANSUZ_CHANCE) or (forcedCard == mod.Meteors.ANSUZ or mod:PlayerHasCard(player, mod.Meteors.ANSUZ)) and (rng:RandomFloat() < mod.TheiaConsts.ANSUZ_CHANCE) then
         --Reveal
         local level = game:GetLevel()
@@ -396,13 +404,11 @@ function mod:OnTheiaKill(familiar, forcedCard, entity)
             end
         end
         level:UpdateVisibility()
-        
-    
+
     elseif (forcedCard == Card.RUNE_PERTHRO or mod:PlayerHasCard(player, Card.RUNE_PERTHRO)) and (rng:RandomFloat() < mod.TheiaConsts.PERTHRO_CHANCE) then
         --Reroll
         Isaac.GetPlayer(0):UseCard(Card.CARD_DICE_SHARD, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
-        
-    
+
     elseif (forcedCard == Card.RUNE_BERKANO or mod:PlayerHasCard(player, Card.RUNE_BERKANO)) and (rng:RandomFloat() < mod.TheiaConsts.BERKANO_CHANCE) or (forcedCard == mod.Meteors.BERKANO or mod:PlayerHasCard(player, mod.Meteors.BERKANO)) and (rng:RandomFloat() < mod.TheiaConsts.BERKANO_CHANCE) then
         --Flies
         local total = mod:RandomInt(1,2)
@@ -411,8 +417,7 @@ function mod:OnTheiaKill(familiar, forcedCard, entity)
             if (forcedCard == mod.Meteors.BERKANO or mod:PlayerHasCard(player, mod.Meteors.BERKANO)) then subtype = mod:RandomInt(LocustSubtypes.LOCUST_OF_WRATH, LocustSubtypes.LOCUST_OF_CONQUEST) end
             local pickup = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, subtype, familiar.Position, Vector.Zero, player)
         end
-        
-    
+
     elseif (forcedCard == Card.RUNE_ALGIZ or mod:PlayerHasCard(player, Card.RUNE_ALGIZ)) and (rng:RandomFloat() < mod.TheiaConsts.ALGIZ_CHANCE) then
         --shield
         player:SetMinDamageCooldown(60)
@@ -422,19 +427,19 @@ function mod:OnTheiaKill(familiar, forcedCard, entity)
     elseif (forcedCard == mod.Meteors.HAGALAZ or mod:PlayerHasCard(player, mod.Meteors.HAGALAZ)) and (rng:RandomFloat() < mod.TheiaConsts.HAGALAZ_CHANCE) then
         --Explosion:
         local explode = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BOMB_EXPLOSION, 0, familiar.Position, Vector.Zero, familiar):ToEffect()
-        
+
         --Explosion damage
         for i, entity in ipairs(Isaac.FindInRadius(familiar.Position, 100)) do
             if mod:IsHostileEnemy(entity) then
                 entity:TakeDamage(15, DamageFlag.DAMAGE_EXPLOSION, EntityRef(familiar), 0)
             end
         end
-    
+
     elseif (forcedCard == mod.Meteors.PERTHRO or mod:PlayerHasCard(player, mod.Meteors.PERTHRO)) and (rng:RandomFloat() < mod.TheiaConsts.PERTHRO_CHANCE) then
         --Reroll
         player:UseActiveItem(CollectibleType.COLLECTIBLE_D20, false, false, true, false, -1)
         Isaac.GetPlayer(0):UseCard(Card.CARD_SOUL_ISAAC, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
-    
+
     elseif (forcedCard == mod.Meteors.ALGIZ or mod:PlayerHasCard(player, mod.Meteors.ALGIZ)) and (rng:RandomFloat() < mod.TheiaConsts.ALGIZ_CHANCE) then
         --shield
         player:SetMinDamageCooldown(120)
@@ -449,7 +454,7 @@ function mod:OnTheiaKill(familiar, forcedCard, entity)
             mod.savedatarun().currentStatUps[playerKey] = mod.savedatarun().currentStatUps[playerKey] or {}
             mod.savedatarun().currentStatUps[playerKey].LUCK = mod.savedatarun().currentStatUps[playerKey].LUCK or 0
             mod.savedatarun().currentStatUps[playerKey].LUCK = mod.savedatarun().currentStatUps[playerKey].LUCK + 0.5
-                    
+
             player:AddCacheFlags(CacheFlag.CACHE_LUCK)
             player:EvaluateItems()
 
@@ -459,7 +464,7 @@ function mod:OnTheiaKill(familiar, forcedCard, entity)
             if cloud then
                 cloud.SpriteScale = cloud.SpriteScale*math.sqrt(giganteMult)
                 if (forcedCard == mod.Meteors.KENAZ or mod:PlayerHasCard(player, mod.Meteors.KENAZ)) then cloud.SpriteScale = cloud.SpriteScale*1.5 end
-    
+
                 mod:scheduleForUpdate(function()--ok sure
                     if cloud then
                         cloud.Timeout = math.ceil(30*math.sqrt(giganteMult))
@@ -509,7 +514,30 @@ function mod:OnTheiaKill(familiar, forcedCard, entity)
             end
         end
     end
-    
+
+    if ANDROMEDA then
+        if (forcedCard == Isaac.GetCardIdByName("betelgeuse") or mod:PlayerHasCard(player, Isaac.GetCardIdByName("betelgeuse"))) and (rng:RandomFloat() < mod.TheiaConsts.BETELGEUSE_CHANCE) then
+            --Explosion:
+            local explode = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BOMB_EXPLOSION, 0, familiar.Position, Vector.Zero, familiar):ToEffect()
+
+            --Explosion damage
+            for i, entity in ipairs(Isaac.FindInRadius(familiar.Position, 100)) do
+                if mod:IsHostileEnemy(entity) then
+                    entity:TakeDamage(15, DamageFlag.DAMAGE_EXPLOSION, EntityRef(familiar), 0)
+                end
+            end
+
+        elseif (forcedCard == Isaac.GetCardIdByName("sirius") or mod:PlayerHasCard(player, Isaac.GetCardIdByName("sirius"))) and (rng:RandomFloat() < mod.TheiaConsts.SIRIUS_CHANCE) then
+            local charges = player:GetActiveCharge()
+            player:SetActiveCharge(charges + 1)
+
+        elseif (forcedCard == Isaac.GetCardIdByName("alphacentauri") or mod:PlayerHasCard(player, Isaac.GetCardIdByName("alphacentauri"))) and (rng:RandomFloat() < mod.TheiaConsts.ALPHAC_CHANCE) then
+            --player:AddWisp(1, player.Position)
+            for i=1, mod:RandomInt(1,4) do
+                mod:AndromedaSpodeTears(entity, player, entity.Position) 
+            end
+        end
+    end
 end
 
 function mod:OnTheiaCache(player, cacheFlag)
@@ -519,7 +547,7 @@ function mod:OnTheiaCache(player, cacheFlag)
 		--Theia
 		local numItem = player:GetCollectibleNum(mod.SolarItems.Theia)
 		local numFamiliars = (numItem > 0 and (numItem + boxUses) or 0)
-		
+
 		player:CheckFamiliar(mod.EntityInf[mod.Entity.Theia].VAR, numFamiliars, player:GetCollectibleRNG(mod.SolarItems.Theia), Isaac.GetItemConfig():GetCollectible(mod.SolarItems.Theia))
     end
 end

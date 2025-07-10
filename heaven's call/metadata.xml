@@ -43,7 +43,7 @@ DO NOT HAVE INSTALLED [url=https://steamcommunity.com/sharedfiles/filedetails/?i
 [b] More stuff [/b] which I won't dedicate a section to!
 
 [h1][b] Reach Sol the Absolute [img] https://i.ibb.co/cS5g4Zpy/soolol.png [/img] [/b][/h1]
-To reach Sol the Absolute, [b]two Astral Challenges[/b] must be completed during the run, and Isaac must enter the [b]Blue Chest[/b]. Alternatively, Sol can be found at the top of the [b]Tower of Babel on Ascended[/b] difficulty.
+To reach Sol the Absolute [b]the two Astral Challenges[/b] must be completed during the run, and Isaac must enter the [b]Blue Chest[/b]. Alternatively, Sol can be found at the top of the [b]Tower of Babel on Ascended[/b] difficulty.
 
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2722017893][b]Andromeda[/b][/url] has the ability to transform regular challenge rooms into astral ones using [b]Gravity Shift[/b]! (once per kind).
 
@@ -59,7 +59,7 @@ Bosses have custom icons and health bars
 [h2]  [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872] [b]External Item Descriptions[/b] [/url] [/h2]
 Descriptions for most stuff in the mod
 
-Addtional [i][b]small[/b][/i] interactions with the following mods: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2851063440]Fiend Folio[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2880387531]Revelations[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2974704582]Fall From Grace[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2818356312]Tainted Treasure[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3010945909]Rune Rooms[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2609612697]Antibirth Runes[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3416946312]Exodus[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2530772508]Alt Horsemen[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3297246061]Boss Butch![/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3343815332]Last Judgement[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3420129062]Dark Vaults[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3012430463]Epiphany[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2500963144]Eternal Edition[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2801120315]Arachna[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3169946719]Time Machine[/url]
+Addtional [i][b]small[/b][/i] interactions with the following mods: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2851063440]Fiend Folio[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2880387531]Revelations[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2974704582]Fall From Grace[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2818356312]Tainted Treasure[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3010945909]Rune Rooms[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2609612697]Antibirth Runes[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2548296941]Godmode[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3416946312]Exodus[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2530772508]Alt Horsemen[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3297246061]Boss Butch![/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3343815332]Last Judgement[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3420129062]Dark Vaults[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3012430463]Epiphany[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2500963144]Eternal Edition[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2801120315]Arachna[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3169946719]Time Machine[/url]
 
 [h1] Credits [/h1] 
 [list] 
@@ -73,14 +73,17 @@ Addtional [i][b]small[/b][/i] interactions with the following mods: [url=https:/
 And every mod developer from which I used code &lt;3
 [i]If you collaborated with HC development and your name is not here, tell me![/i]
 
+[h2][url=https://ko-fi.com/ultrinik][img]https://i.ibb.co/BHCvY1fy/imagen-2025-07-02-003200849.png[/img] Heaven’s Call has been primarily the endeavor of a single person. If you enjoy my work and want to support me with a tip, feel free to visit my Ko-fi! [/url][/h2]
+
 [h1][b] If you are going to report a bug or post a suggestion, please do so in the appropriate discussion. [/b][/h1]</description>
-    <version>1.6.8</version>
+    <version>1.6.10</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
     <tag id="Active Items"/>
     <tag id="Trinkets"/>
     <tag id="Pills"/>
+    <tag id="Cards"/>
     <tag id="Pickups"/>
     <tag id="Familiars"/>
     <tag id="Rooms"/>
@@ -89,5 +92,8 @@ And every mod developer from which I used code &lt;3
     <tag id="Bosses"/>
     <tag id="Hazards"/>
     <tag id="Challenges"/>
+    <tag id="Graphics"/>
     <tag id="Shaders"/>
+    <tag id="Sound Effects"/>
+    <tag id="Music"/>
 </metadata>

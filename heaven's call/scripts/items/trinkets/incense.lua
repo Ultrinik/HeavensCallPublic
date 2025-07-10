@@ -37,6 +37,8 @@ end
 
 function mod:OnCollectibleInitIncense(pickup)
 
+    if mod:IsItemQuest(pickup.SubType) then return end
+
     mod.savedatarun().RerolledIncenseSeeds = mod.savedatarun().RerolledIncenseSeeds or {}
 
     local flag = false

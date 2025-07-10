@@ -321,6 +321,8 @@ mod:AddEntityInf("FriendHook", "Friend Hook (HC)")
 mod:AddEntityInf("FleshWhip", "Flesh Whip (HC)")
 mod:AddEntityInf("Teratomato", "Teratomato")
 
+mod:AddEntityInf("NeptuneMirrorTimer", "Neptune Mirror Timer (HC)")
+
 --MOUNT THINGS--------------------------------------------------------------------------------------------
 mod:AddEntityInf("SnakeHead", "Snake head (HC)")
 mod:AddEntityInf("SnakeBody", "Snake body (HC)")

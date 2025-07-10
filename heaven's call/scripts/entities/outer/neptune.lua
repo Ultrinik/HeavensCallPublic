@@ -2,6 +2,7 @@ local mod = HeavensCall
 local game = Game()
 local rng = mod:GetRunRNG()
 local sfx = SFXManager()
+local music = MusicManager()
 
 --[[
 /*//**/**//*//**/**//*//**/**//*//**/**//**/**/**//**/**//*//**/**//*//**/**//*/
@@ -34,6 +35,8 @@ local sfx = SFXManager()
 /*//**/**//*//**/**//*//**/**//*/@@@@@@@@@@@@@/**//**/**//(#(/*/**//*//**/**//*
 /*//**/**//*//**/**//*//**/**//*//**/**//**/**/**//**/**//*//**/**//*//**/**//*/
 ]]--
+
+mod:AddResetFlag(ModCallbacks.MC_POST_NEW_LEVEL, "ModFlags.blood_room", false)
 
 mod.NMSState = {
 	APPEAR = 0,
@@ -121,7 +124,7 @@ mod.NConst = {--Some constant variables of Neptune
 	--pixel
 	PIXEL_SPEED = 1.6,
 	PIXEL_ANGULAR_SPEED = 0.01,
-	FISH_DISSAPEAR_CHANCE = 0.25,
+	FISH_DISSAPEAR_CHANCE = 0.5,
 }
 function mod:SetNeptuneDifficulty(difficulty)
     if difficulty == mod.Difficulties.NORMAL then
@@ -162,7 +165,7 @@ function mod:SetNeptuneDifficulty(difficulty)
 		--pixel
 		mod.NConst.PIXEL_SPEED = 1.6
 		mod.NConst.PIXEL_ANGULAR_SPEED = 0.01
-		mod.NConst.FISH_DISSAPEAR_CHANCE = 0.25
+		mod.NConst.FISH_DISSAPEAR_CHANCE = 0.5
 
 	elseif difficulty == mod.Difficulties.ATTUNED then
 		--                             			app  idl   deid  reid    shot   torn  rain   bubbb  down  up    ambus reap    noamb   gyro    bite
@@ -202,7 +205,7 @@ function mod:SetNeptuneDifficulty(difficulty)
 		--pixel
 		mod.NConst.PIXEL_SPEED = 1.6
 		mod.NConst.PIXEL_ANGULAR_SPEED = 0.01
-		mod.NConst.FISH_DISSAPEAR_CHANCE = 0.25
+		mod.NConst.FISH_DISSAPEAR_CHANCE = 0.5
 
     elseif difficulty == mod.Difficulties.ASCENDED then
 		--                             			app  idl   deid  reid    shot   torn  rain   bubbb  down  up    ambus reap    noamb   gyro    bite
@@ -244,7 +247,7 @@ function mod:SetNeptuneDifficulty(difficulty)
 		--pixel
 		mod.NConst.PIXEL_SPEED = 1.75
 		mod.NConst.PIXEL_ANGULAR_SPEED = 0.02
-		mod.NConst.FISH_DISSAPEAR_CHANCE = 0.1
+		mod.NConst.FISH_DISSAPEAR_CHANCE = 0.25
 
     end
 end
@@ -272,7 +275,7 @@ function mod:NeptuneUpdate(entity)
 			data.State = 0
 			data.StateFrame = 0
 
-			data.AbsorbCount = 0 
+			data.AbsorbCount = 0
 
 			--game:GetLevel():AddCurse(LevelCurse.CURSE_OF_DARKNESS)
 
@@ -351,7 +354,7 @@ function mod:NeptuneUpdate(entity)
 
 		--water
 		if entity.FrameCount < 100 then
-			room:SetWaterAmount((entity.FrameCount/100)^2)
+			room:SetWaterAmount(math.max(room:GetWaterAmount(), (entity.FrameCount/100)^2))
 		end
 		
 		if data.State == mod.NMSState.APPEAR then
@@ -602,6 +605,11 @@ function mod:NeptuneAbsorb(entity, data, sprite, target, room)--actually a torna
 end
 function mod:NeptuneRain(entity, data, sprite, target, room)
 	if data.StateFrame == 1 then
+
+		for i, fish in ipairs(mod:FindByTypeMod(mod.Entity.NemoFish)) do
+			fish:ToProjectile():AddProjectileFlags(ProjectileFlags.TRACTOR_BEAM)
+		end
+
 		sprite:Play("Rain",true)
 	elseif sprite:IsFinished("Rain") then
 		mod:NeptuneStateChange(entity, sprite, data)
@@ -679,6 +687,11 @@ function mod:NeptuneBubble(entity, data, sprite, target, room)
 end
 function mod:NeptuneAmbush(entity, data, sprite, target, room)
 	if data.StateFrame == 1 then
+
+		for i, fish in ipairs(mod:FindByTypeMod(mod.Entity.NemoFish)) do
+			fish:ToProjectile():AddProjectileFlags(ProjectileFlags.TRACTOR_BEAM)
+		end
+
 		sprite:Play("Up",true)
 		entity.CollisionDamage = 0
 		local position = room:GetRandomPosition(0)
@@ -686,7 +699,7 @@ function mod:NeptuneAmbush(entity, data, sprite, target, room)
 			position = room:GetRandomPosition(0)
 		end
 		entity.Position = position
-		
+
 		for i=1,mod.NConst.N_FAKERS do
 			local position = Vector.Zero
 			local fakers = mod:FindByTypeMod(mod.Entity.NeptuneFaker)
@@ -736,7 +749,7 @@ function mod:NeptuneAmbush(entity, data, sprite, target, room)
 			faker.EntityCollisionClass = EntityCollisionClass.ENTCOLL_PLAYERONLY
 			faker:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 		end
-		
+
 		game:Darken(1,60)
 
 		local stereo = math.cos((entity.Position - target.Position):GetAngleDegrees()*3.1415/180)
@@ -780,6 +793,11 @@ function mod:NeptuneAmbush(entity, data, sprite, target, room)
 end
 function mod:NeptuneBite(entity, data, sprite, target, room)
 	if data.StateFrame == 1 then
+
+		for i, fish in ipairs(mod:FindByTypeMod(mod.Entity.NemoFish)) do
+			fish:ToProjectile():AddProjectileFlags(ProjectileFlags.TRACTOR_BEAM)
+		end
+
 		sprite:Play("Bite",true)
 		data.nBites = 0
 		data.biteNIdles = 0
@@ -897,7 +915,6 @@ function mod:NeptuneGyro(entity, data, sprite, target, room)
 		sprite:Play("GyroStart",true)
 
 		for i, fish in ipairs(mod:FindByTypeMod(mod.Entity.NemoFish)) do
-			--fish:Die()
 			fish:ToProjectile():AddProjectileFlags(ProjectileFlags.TRACTOR_BEAM)
 		end
 	elseif sprite:IsFinished("GyroStart") then
@@ -1013,6 +1030,13 @@ function mod:NeptuneDeath(entity)
 		game:GetRoom():SetWaterAmount(0)
 		
 		mod:DisableWeather(mod.WeatherFlags.RAIN)
+
+		if entity.I1 then
+			music:Fadeout()
+
+			local persistentGameData = Isaac.GetPersistentGameData()
+			persistentGameData:TryUnlock(Isaac.GetAchievementIdByName("card_foil (HC)"), false)
+		end
 	end
 
 end
@@ -1117,7 +1141,7 @@ function mod:IsDross()
 	return (game:GetLevel():GetStage()==LevelStage.STAGE1_1 or game:GetLevel():GetStage()==LevelStage.STAGE1_2) and game:GetLevel():GetStageType()==StageType.STAGETYPE_REPENTANCE_B
 end
 function mod:IsWomb()
-	return (game:GetLevel():GetStage()==LevelStage.STAGE4_1 or game:GetLevel():GetStage()==LevelStage.STAGE4_2)
+	return (game:GetLevel():GetStage()==LevelStage.STAGE4_1 or game:GetLevel():GetStage()==LevelStage.STAGE4_2) or mod.ModFlags.blood_room
 end
 function mod:IsGrotto()
 	return FFGRACE and FFGRACE.STAGE.Grotto:IsStage()
@@ -1327,3 +1351,94 @@ function mod:NemoFishUpdate(tear, collider, collided)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, mod.NemoFishUpdate, mod.EntityInf[mod.Entity.NemoFish].VAR)
 mod:AddCallback(ModCallbacks.MC_PRE_PROJECTILE_COLLISION, mod.NemoFishUpdate, mod.EntityInf[mod.Entity.NemoFish].VAR)
+
+--MIRROR
+function mod:OnNeptuneMirrorUpdate(entity)
+	if entity.SubType == mod.EntityInf[mod.Entity.NeptuneMirrorTimer].SUB then
+		local room = game:GetRoom()
+		local data = entity:GetData()
+
+		if entity.FrameCount < 5 then return end
+
+		if not data.Init then
+			data.Init = true
+			data.Frame = 0
+
+			local flag = false
+			for i = 0, DoorSlot.NUM_DOOR_SLOTS do
+				local door = room:GetDoor(i)
+				if door and door.TargetRoomIndex == -100 and door:GetSprite():GetAnimation() ~= 'Break' then
+					entity.Position = door.Position
+					flag  = true
+				end
+			end
+
+			for i=0, game:GetNumPlayers ()-1 do
+				local player = game:GetPlayer(i)
+				if player and player:GetPlayerType() == PlayerType.PLAYER_THELOST or player:GetPlayerType() == PlayerType.PLAYER_THELOST_B or player:HasInstantDeathCurse() then
+					flag = false
+				end
+			end
+
+			if game:GetLevel():GetDimension() == Dimension.MIRROR then
+				flag = false
+			end
+
+			if not flag then
+				entity:Remove()
+				return
+			end
+		end
+
+		local hour = mod:GetDateTime().hour
+		if hour == 3 then
+			data.Frame = data.Frame + 1
+			if data.Frame > 30*5 then
+				mod.ModFlags.blood_room = true
+				local neptune = mod:SpawnEntity(mod.Entity.Neptune, entity.Position, Vector.Zero, nil):ToNPC()
+				neptune.I1 = 1
+				neptune:Update()
+
+				local ndata = neptune:GetData()
+				neptune.MaxHitPoints = neptune.MaxHitPoints*0.5
+				neptune.HitPoints = neptune.MaxHitPoints
+				neptune.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ALL
+				ndata.State = mod.NMSState.BITE
+				ndata.StateFrame = 0
+
+				mod:DeleteEntities(mod:FindByTypeMod(mod.Entity.RedTrapdoor))
+				music:Crossfade (mod.Music.ERRANT, 2)
+				music:Queue(mod.Music.ERRANT)
+
+				room:SetWaterColor(KColor(1,-1,-1,0.5))
+
+				room:EmitBloodFromWalls(20, 10)
+
+				entity:Remove()
+				game:BombExplosionEffects (entity.Position, 0, TearFlags.TEAR_NORMAL, Color(1,1,1,0), nil, 0, true, false, DamageFlag.DAMAGE_EXPLOSION )
+
+				local gridSize = room:GetGridSize()
+				for i=0, gridSize do
+                	local grid = room:GetGridEntity(i)
+					if grid then
+						local gridType = grid:GetType()
+						if (GridEntityType.GRID_ROCK <= gridType and gridType <= GridEntityType.GRID_ROCK_ALT) or (GridEntityType.GRID_LOCK <= gridType and gridType <= GridEntityType.GRID_POOP) or (GridEntityType.GRID_STATUE <= gridType and gridType <= GridEntityType.GRID_ROCK_SS) or (GridEntityType.GRID_LOCK <= gridType and gridType <= GridEntityType.GRID_POOP) or (GridEntityType.GRID_PILLAR <= gridType and gridType <= GridEntityType.GRID_ROCK_GOLD) then
+							if gridType == GridEntityType.GRID_ROCKB or gridType == GridEntityType.GRID_PILLAR then
+								sfx:Play(SoundEffect.SOUND_METAL_BLOCKBREAK, 1.5, 2, false, 1.25)
+								game:SpawnParticles (grid.Position, EffectVariant.ROCK_PARTICLE, 10, 5)
+								room:RemoveGridEntity(grid:GetGridIndex (), 0, true)
+							else
+								grid:Destroy()
+							end
+						end
+					end
+				end
+				
+                for i, fire in ipairs(Isaac.FindByType(EntityType.ENTITY_FIREPLACE)) do
+                    fire:Die()
+                end
+			end
+		end
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.OnNeptuneMirrorUpdate, mod.EntityInf[mod.Entity.NeptuneMirrorTimer].VAR)

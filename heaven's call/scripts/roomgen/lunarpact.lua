@@ -40,6 +40,10 @@ function mod:LunarRoomGenerator(door, targetroomdesc, forced)
 
     --lunar crown
     totalchance = totalchance + mod:HowManyTrinkets(mod.Trinkets.Crown) * mod.LunarCrownConts.PACT_CHANCE
+    
+    --pill bonus
+	local pill_bonus = mod.savedatarun().planetariumPillsPermanent or 0
+	totalchance = totalchance + pill_bonus/100
 
 	if totalchance > 0 and targetroomdesc.Data then
 		if rng:RandomFloat() <= totalchance then

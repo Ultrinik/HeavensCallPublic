@@ -14,6 +14,8 @@ mod.Pills = {
 
 table.insert(mod.PostLoadInits, {"savedatarun", "planetariumPills", 0})
 mod:AddResetFlag(ModCallbacks.MC_POST_GAME_STARTED, "savedatarun.planetariumPills", 0)
+table.insert(mod.PostLoadInits, {"savedatarun", "planetariumPillsPermanent", 0})
+mod:AddResetFlag(ModCallbacks.MC_POST_GAME_STARTED, "savedatarun.planetariumPillsPermanent", 0)
 
 table.insert(mod.PostLoadInits, {"savedatarun", "ballsPills", 0})
 mod:AddResetFlag(ModCallbacks.MC_POST_GAME_STARTED, "savedatarun.ballsPills", 0)
@@ -24,8 +26,9 @@ mod:AddResetFlag(ModCallbacks.MC_POST_GAME_STARTED, "savedatarun.ballsPills", 0)
 function mod:OnClairvoyanceUse(pill, player, flags, color)
 
     local n = 1
-    if color & PillColor.PILL_GIANT_FLAG > 0 then n = 2 end
+    if color & PillColor.PILL_GIANT_FLAG > 0 then n = 3 end
 
+    mod.savedatarun().planetariumPillsPermanent = mod.savedatarun().planetariumPillsPermanent + math.ceil(n/2)
     mod.savedatarun().planetariumPills = mod.savedatarun().planetariumPills + n
     
 	player:AnimateHappy()
